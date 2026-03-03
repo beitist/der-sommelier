@@ -5,12 +5,18 @@
 function render() {
   const root = document.getElementById('game-root');
   let html = '';
-  switch (state.scene) {
-    case 'title': html = renderTitle(); break;
-    case 'explorer': html = renderExplorer(); break;
-    case 'map': html = renderMap(); break;
-    case 'restaurant': html = renderRestaurant(); break;
-    case 'region': html = renderRegion(); break;
+
+  // Chef intro has priority
+  if (state.showChefIntro && state.scene === 'restaurant') {
+    html = renderChefIntro();
+  } else {
+    switch (state.scene) {
+      case 'title': html = renderTitle(); break;
+      case 'explorer': html = renderExplorer(); break;
+      case 'map': html = renderMap(); break;
+      case 'restaurant': html = renderRestaurant(); break;
+      case 'region': html = renderRegion(); break;
+    }
   }
   root.innerHTML = html;
   attachEvents();
@@ -39,6 +45,38 @@ function renderTitle() {
     </div>`;
 }
 
+// ===== CHEF INTRO =====
+function renderChefIntro() {
+  const lv = getLevel();
+  const chef = CHEFS[lv.id];
+  if (!chef) { dismissChefIntro(); return ''; }
+
+  return `
+    <div class="scene scene-restaurant active">
+      ${renderSidebar()}
+      <div class="main-area">
+        <div class="restaurant-bg">
+          <div class="rest-layer rest-bg-layer" style="background-image:url('assets/${lv.bgKey}/hintergrund.png')"></div>
+          <div class="rest-layer rest-fg-layer" style="background-image:url('assets/${lv.bgKey}/theke.png')"></div>
+          <div class="rest-ui-overlay">
+            <div class="chef-intro-card">
+              <img class="chef-portrait" src="${chef.sprite}" alt="${chef.name}" onerror="this.style.display='none'">
+              <h2 class="chef-name">${chef.name}</h2>
+              <div class="chef-restaurant">${lv.icon} ${lv.name}</div>
+              <div class="chef-theme">${lv.themeLabel}</div>
+              <p class="chef-intro-text">"${chef.intro}"</p>
+              <div class="chef-intro-buttons">
+                <button class="btn btn-secondary" onclick="dismissChefIntro();goToScene('map')">🗺️ Länderinfo anschauen</button>
+                <button class="btn btn-primary btn-large" onclick="dismissChefIntro()">🍽️ Los geht's!</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      ${renderBottomBar()}
+    </div>`;
+}
+
 // ===== EXPLORER MODE =====
 function renderExplorer() {
   const wines = getExplorerWines();
@@ -51,19 +89,13 @@ function renderExplorer() {
   const colorBg = wine.color === 'rot' ? '#5c1a2a' : wine.color === 'weiss' ? '#4a4a2a' : '#5c2a3a';
   const colorAccent = wine.color === 'rot' ? '#e94560' : wine.color === 'weiss' ? '#f0e68c' : '#ffb6c1';
 
-  // Mark as discovered
   state.player.discoveredWines.add(wine.id);
 
   return `
     <div class="scene scene-explorer active">
-      <!-- Sidebar -->
       ${renderSidebar()}
-
-      <!-- Main area -->
       <div class="main-area">
         <div class="explorer-bg" style="background:linear-gradient(135deg, ${colorBg}, #1a1a2e)">
-
-          <!-- Header -->
           <div class="explorer-header">
             <div class="explorer-title">
               <span class="explorer-badge">📚 LEHRGANG</span>
@@ -72,26 +104,19 @@ function renderExplorer() {
             <div class="explorer-progress">${progress}</div>
           </div>
 
-          <!-- Wine Card -->
           <div class="explorer-card">
-            <!-- Left: Wine Bottle -->
+            <!-- Wine Bottle Image -->
             <div class="wine-bottle-area">
-              <div class="wine-bottle" style="--wine-color: ${colorAccent}">
-                <div class="bottle-neck"></div>
-                <div class="bottle-body">
-                  <div class="bottle-label">
-                    <div class="label-region">${region ? region.flag : ''} ${region ? region.name : ''}</div>
-                    <div class="label-name">${wine.name}</div>
-                    <div class="label-type">${wine.color === 'rot' ? '🔴 Rot' : wine.color === 'weiss' ? '⚪ Weiß' : '🩷 Rosé'} · ${wine.sweetness}</div>
-                  </div>
-                </div>
-                <div class="bottle-bottom"></div>
-              </div>
+              <img class="wine-bottle-img" src="${wine.label}" alt="${wine.name}" onerror="this.style.display='none'">
             </div>
 
-            <!-- Right: Wine Info -->
+            <!-- Wine Info -->
             <div class="wine-info-area">
               <h2 class="wine-title" style="color:${colorAccent}">${wine.name}</h2>
+              <div class="wine-meta">
+                <span class="wine-price">${wine.price}</span>
+                <span class="wine-grape">${wine.grape}</span>
+              </div>
               <p class="wine-desc">${wine.description}</p>
 
               <div class="wine-details">
@@ -108,8 +133,8 @@ function renderExplorer() {
                   <span class="detail-value">${wine.body}</span>
                 </div>
                 <div class="detail-row">
-                  <span class="detail-label">🍋 Säure</span>
-                  <span class="detail-value">${wine.acidity}</span>
+                  <span class="detail-label">🌍 Region</span>
+                  <span class="detail-value">${region ? region.flag + ' ' + region.name : ''}</span>
                 </div>
                 <div class="detail-row">
                   <span class="detail-label">👃 Aromen</span>
@@ -128,7 +153,6 @@ function renderExplorer() {
             </div>
           </div>
 
-          <!-- Navigation -->
           <div class="explorer-nav">
             <button class="btn btn-secondary" onclick="explorerPrev()" ${state.explorerWineIndex === 0 ? 'disabled' : ''}>← Zurück</button>
             <button class="btn btn-ghost" onclick="explorerSkip()">Überspringen →→</button>
@@ -136,8 +160,6 @@ function renderExplorer() {
           </div>
         </div>
       </div>
-
-      <!-- Bottom bar -->
       ${renderBottomBar()}
     </div>`;
 }
@@ -148,12 +170,13 @@ function renderMap() {
 
   let regions = Object.values(REGIONS).map(r => {
     const isUnlocked = unlocked.includes(r.id);
+    const wineCount = r.wines.filter(wId => WINES[wId] && WINES[wId].level <= state.player.level).length;
     return `<div class="map-pin ${isUnlocked ? 'unlocked' : 'locked'}"
                  style="left:${r.mapX}%;top:${r.mapY}%"
                  ${isUnlocked ? `onclick="goToScene('region', {selectedRegion:'${r.id}'})"` : ''}>
-      <span class="pin-icon">${r.icon}</span>
+      <span class="pin-icon">${r.flag}</span>
       <span class="pin-name">${r.name}</span>
-      ${!isUnlocked ? '<span class="pin-lock">🔒</span>' : `<span class="pin-wines">${(r.wines||[]).length} Weine</span>`}
+      ${!isUnlocked ? '<span class="pin-lock">🔒</span>' : `<span class="pin-wines">${wineCount} Weine</span>`}
     </div>`;
   }).join('');
 
@@ -163,10 +186,10 @@ function renderMap() {
       <div class="main-area">
         <div class="map-bg">
           <div class="map-title-bar">
-            <h2>🗺️ Weinregionen der Welt</h2>
+            <h2>🗺️ Weinländer der Welt</h2>
             <button class="btn btn-small btn-secondary" onclick="goToScene('restaurant')">← Zurück zum Restaurant</button>
           </div>
-          <div class="map-world">
+          <div class="map-world" style="background-image:url('assets/map/weltkarte.png')">
             ${regions}
           </div>
         </div>
@@ -180,19 +203,27 @@ function renderRegion() {
   const r = REGIONS[state.selectedRegion];
   if (!r) return renderMap();
 
-  const winesHtml = r.wines.map(wId => {
+  const playerLevel = state.player.level;
+  const visibleWines = r.wines.filter(wId => WINES[wId] && WINES[wId].level <= playerLevel);
+  const lockedCount = r.wines.length - visibleWines.length;
+
+  const winesHtml = visibleWines.map(wId => {
     const w = WINES[wId];
     if (!w) return '';
     const dot = w.color === 'rot' ? '🔴' : w.color === 'weiss' ? '⚪' : '🩷';
     return `<div class="region-wine-card">
-      <div class="rwc-color">${dot}</div>
+      <img class="rwc-img" src="${w.label}" alt="${w.name}" onerror="this.style.display='none'">
       <div class="rwc-info">
-        <div class="rwc-name">${w.name}</div>
-        <div class="rwc-detail">${w.sweetness} · ${w.flavors.join(', ')}</div>
+        <div class="rwc-name">${dot} ${w.name}</div>
+        <div class="rwc-detail">${w.grape} · ${w.sweetness} · ${w.price}</div>
+        <div class="rwc-flavors">${w.flavors.join(', ')}</div>
       </div>
       <div class="rwc-pairings">🍽️ ${w.pairings.slice(0,2).join(', ')}</div>
     </div>`;
   }).join('');
+
+  const lockedHtml = lockedCount > 0 ?
+    `<div class="region-locked-hint">🔒 ${lockedCount} weitere${lockedCount === 1 ? 'r' : ''} Wein${lockedCount === 1 ? '' : 'e'} noch nicht freigeschaltet</div>` : '';
 
   return `
     <div class="scene scene-region active">
@@ -201,17 +232,19 @@ function renderRegion() {
         <div class="region-bg">
           <div class="region-header">
             <button class="btn btn-small btn-secondary" onclick="goToScene('map')">← Karte</button>
-            <h2>${r.icon} ${r.name}</h2>
+            <h2>${r.flag} ${r.name}</h2>
             <div></div>
           </div>
           <div class="region-body">
             <div class="region-desc">
               <p>${r.description}</p>
+              <div class="region-main-regions"><strong>Hauptregionen:</strong> ${r.mainRegions}</div>
               ${r.keyFacts.length ? '<div class="region-facts">' + r.keyFacts.map(f => `<div class="fact-item">📌 ${f}</div>`).join('') + '</div>' : ''}
             </div>
             <div class="region-wines-list">
               <h3>Weine aus ${r.name}</h3>
-              ${winesHtml || '<p class="muted">Noch keine Weine für diese Region.</p>'}
+              ${winesHtml || '<p class="muted">Noch keine Weine freigeschaltet.</p>'}
+              ${lockedHtml}
             </div>
           </div>
         </div>
@@ -222,9 +255,7 @@ function renderRegion() {
 
 // ===== RESTAURANT =====
 function renderRestaurant() {
-  const lv = getLevel();
   const shift = state.currentShift;
-
   if (!shift) return renderRestaurantLobby();
   if (!state.currentQuestion) return renderShiftEnd();
   return renderQuestion();
@@ -232,22 +263,21 @@ function renderRestaurant() {
 
 function renderRestaurantLobby() {
   const lv = getLevel();
+  const chef = CHEFS[lv.id];
   const rep = state.player.reputation[state.player.level];
   const stars = renderStars(rep);
+  const shifts = state.player.shiftsCompleted[state.player.level];
 
   return `
     <div class="scene scene-restaurant active">
       ${renderSidebar()}
       <div class="main-area">
         <div class="restaurant-bg">
-          <!-- Background layer -->
-          <div class="rest-layer rest-bg-layer" style="background-image:url('assets/imbiss/hintergrund.png')"></div>
-          <!-- Foreground counter layer -->
-          <div class="rest-layer rest-fg-layer" style="background-image:url('assets/imbiss/theke.png')"></div>
-
-          <!-- UI overlay -->
+          <div class="rest-layer rest-bg-layer" style="background-image:url('assets/${lv.bgKey}/hintergrund.png')"></div>
+          <div class="rest-layer rest-fg-layer" style="background-image:url('assets/${lv.bgKey}/theke.png')"></div>
           <div class="rest-ui-overlay">
             <div class="lobby-card">
+              ${chef ? `<img class="lobby-chef-mini" src="${chef.sprite}" alt="${chef.name}" onerror="this.style.display='none'">` : ''}
               <div class="lobby-icon">${lv.icon}</div>
               <h2 class="lobby-title">${lv.name}</h2>
               <p class="lobby-desc">${lv.description}</p>
@@ -260,10 +290,15 @@ function renderRestaurantLobby() {
                   <span class="lobby-stat-label">Bekannte Weine</span>
                   <span class="lobby-stat-value">${state.player.discoveredWines.size}</span>
                 </div>
+                <div class="lobby-stat">
+                  <span class="lobby-stat-label">Schichten</span>
+                  <span class="lobby-stat-value">${shifts}</span>
+                </div>
               </div>
               <div class="lobby-buttons">
                 <button class="btn btn-primary btn-large" onclick="startShift()">🍽️ Schicht starten</button>
                 <button class="btn btn-secondary" onclick="goToScene('explorer', {explorerWineIndex:0})">📚 Weine wiederholen</button>
+                <button class="btn btn-ghost" onclick="goToScene('map')">🗺️ Länderinfo</button>
               </div>
             </div>
           </div>
@@ -273,46 +308,51 @@ function renderRestaurantLobby() {
     </div>`;
 }
 
+// ===== QUESTION RENDERING =====
 function renderQuestion() {
   const q = state.currentQuestion;
   const shift = state.currentShift;
   const lv = getLevel();
 
   let dialogContent = '';
-  if (q.type === 'besserwisser') {
-    dialogContent = renderBesserwisserQ(q);
-  } else {
-    dialogContent = renderPairingQ(q);
+  switch (q.type) {
+    case 'besserwisser': dialogContent = renderBesserwisserQ(q); break;
+    case 'weinwissen': dialogContent = renderWeinwissenQ(q); break;
+    case 'blindtasting': dialogContent = renderBlindtastingQ(q); break;
+    default: dialogContent = renderPairingQ(q); break;
   }
+
+  const guest = state.currentGuest;
+  const flipStyle = guest && guest.facing === 'right' ? ' style="transform:scaleX(-1)"' : '';
+  const guestHtml = guest ? `<div class="guest-sprite-area"><img class="guest-sprite" src="${guest.sprite}" alt="${guest.name}"${flipStyle} onerror="this.style.display='none'"></div>` : '';
 
   return `
     <div class="scene scene-restaurant active">
       ${renderSidebar()}
       <div class="main-area">
         <div class="restaurant-bg">
-          <div class="rest-layer rest-bg-layer" style="background-image:url('assets/imbiss/hintergrund.png')"></div>
-          <div class="rest-layer rest-fg-layer" style="background-image:url('assets/imbiss/theke.png')"></div>
+          <div class="rest-layer rest-bg-layer" style="background-image:url('assets/${lv.bgKey}/hintergrund.png')"></div>
+          ${guestHtml}
+          <div class="rest-layer rest-fg-layer" style="background-image:url('assets/${lv.bgKey}/theke.png')"></div>
 
-          <!-- Shift HUD -->
           <div class="shift-hud">
             <div class="hud-item">Gast ${shift.questionIndex + 1}/${CONFIG.questionsPerShift}</div>
             <div class="hud-item hud-score">✅ ${shift.correct} ❌ ${shift.wrong}</div>
           </div>
 
-          <!-- Dialog -->
           <div class="dialog-container">
             ${dialogContent}
           </div>
         </div>
       </div>
       ${renderBottomBar()}
-
       ${state.overlay === 'feedback' ? renderFeedbackOverlay() : ''}
     </div>`;
 }
 
 function renderPairingQ(q) {
   const answered = q.answered !== undefined;
+  const guest = state.currentGuest;
 
   const optionsHtml = q.data.options.map((opt, i) => {
     const wine = WINES[opt.wineId];
@@ -321,17 +361,18 @@ function renderPairingQ(q) {
       if (opt.correct) cls += ' correct';
       else if (i === q.answered && !opt.correct) cls += ' wrong';
     }
-    const dot = wine.color === 'rot' ? '🔴' : wine.color === 'weiss' ? '⚪' : '🩷';
+    const dot = wine ? (wine.color === 'rot' ? '🔴' : wine.color === 'weiss' ? '⚪' : '🩷') : '';
     return `<button class="${cls}" ${answered ? 'disabled' : ''} onclick="answerQuestion(${i})">
-      <span class="choice-wine">${dot} ${wine.name}</span>
-      <span class="choice-detail">${wine.sweetness} · ${wine.flavors.slice(0,2).join(', ')}</span>
+      <span class="choice-wine">${dot} ${wine ? wine.name : '???'}</span>
+      <span class="choice-detail">${wine ? wine.sweetness + ' · ' + wine.flavors.slice(0,2).join(', ') : ''}</span>
     </button>`;
   }).join('');
 
   return `
     <div class="dialog-box">
       <div class="dialog-header">
-        <span class="dialog-guest">${q.data.guestMood} ${q.data.guestName || 'Gast'}</span>
+        <span class="dialog-guest">${q.data.mood || ''} ${guest ? guest.name : ''}</span>
+        <span class="dialog-type-badge fp-badge">${q.type === 'preference' ? '💭 VORLIEBEN' : '🍽️ EMPFEHLUNG'}</span>
       </div>
       <div class="dialog-body">
         <p class="dialog-scenario">${q.data.scenario}</p>
@@ -346,6 +387,7 @@ function renderPairingQ(q) {
 function renderBesserwisserQ(q) {
   const answered = q.answered !== undefined;
   const data = q.data;
+  const guest = state.currentGuest;
 
   let responseHtml = '';
   if (answered) {
@@ -371,33 +413,111 @@ function renderBesserwisserQ(q) {
   return `
     <div class="dialog-box dialog-besserwisser">
       <div class="dialog-header">
-        <span class="dialog-guest">${data.guestMood} ${data.guestName || 'Besserwisser'}</span>
+        <span class="dialog-guest">${data.mood || '🧐'} ${guest ? guest.name : ''}</span>
         <span class="bw-badge">🧐 BESSERWISSER</span>
       </div>
       <div class="dialog-body">
-        <p class="dialog-scenario bw-statement">"${data.statement.replace(/"/g, '')}"</p>
+        <p class="dialog-scenario bw-statement">${data.statement}</p>
       </div>
       ${responseHtml}
     </div>`;
 }
 
+function renderWeinwissenQ(q) {
+  const answered = q.answered !== undefined;
+  const data = q.data;
+  const guest = state.currentGuest;
+
+  const optionsHtml = data.options.map((opt, i) => {
+    let cls = 'dialog-choice';
+    if (answered) {
+      if (opt.correct) cls += ' correct';
+      else if (i === q.answered && !opt.correct) cls += ' wrong';
+    }
+    return `<button class="${cls}" ${answered ? 'disabled' : ''} onclick="answerWeinwissen(${i})">
+      <span class="choice-wine">${opt.text}</span>
+    </button>`;
+  }).join('');
+
+  return `
+    <div class="dialog-box dialog-weinwissen">
+      <div class="dialog-header">
+        <span class="dialog-guest">${data.mood || '🤔'} ${guest ? guest.name : ''}</span>
+        <span class="ww-badge">🎓 WEINWISSEN</span>
+      </div>
+      <div class="dialog-body">
+        <p class="dialog-scenario">${data.question}</p>
+      </div>
+      <div class="dialog-choices">
+        ${optionsHtml}
+      </div>
+    </div>`;
+}
+
+function renderBlindtastingQ(q) {
+  const answered = q.answered !== undefined;
+  const data = q.data;
+  const guest = state.currentGuest;
+
+  const cluesHtml = `
+    <div class="bt-clues">
+      <div class="bt-clue"><span class="bt-clue-label">👁️ Aussehen</span><span>${data.clues.appearance}</span></div>
+      <div class="bt-clue"><span class="bt-clue-label">👃 Nase</span><span>${data.clues.nose}</span></div>
+      <div class="bt-clue"><span class="bt-clue-label">👅 Gaumen</span><span>${data.clues.palate}</span></div>
+    </div>`;
+
+  const optionsHtml = data.options.map((opt, i) => {
+    const wine = WINES[opt.wineId];
+    let cls = 'dialog-choice';
+    if (answered) {
+      if (opt.correct) cls += ' correct';
+      else if (i === q.answered && !opt.correct) cls += ' wrong';
+    }
+    return `<button class="${cls}" ${answered ? 'disabled' : ''} onclick="answerBlindtasting(${i})">
+      <span class="choice-wine">${wine ? wine.name : '???'}</span>
+      <span class="choice-detail">${wine ? wine.region ? (REGIONS[wine.region]?.flag || '') + ' ' + (REGIONS[wine.region]?.name || '') : '' : ''}</span>
+    </button>`;
+  }).join('');
+
+  return `
+    <div class="dialog-box dialog-blindtasting">
+      <div class="dialog-header">
+        <span class="dialog-guest">${data.mood || '🍷'} ${guest ? guest.name : 'Blindverkostung'}</span>
+        <span class="bt-badge">🥃 BLIND TASTING</span>
+      </div>
+      <div class="dialog-body">
+        <p class="dialog-scenario">Ein geheimnisvoller Wein im Glas – was könnten Sie hier vor sich haben?</p>
+        ${cluesHtml}
+      </div>
+      <div class="dialog-choices">
+        ${optionsHtml}
+      </div>
+    </div>`;
+}
+
+// ===== FEEDBACK OVERLAY =====
 function renderFeedbackOverlay() {
   const d = state.overlayData;
+  const revealHtml = d.revealWine ? `<p class="fb-reveal">Der richtige Wein war: <strong>${WINES[d.revealWine]?.name || ''}</strong></p>` : '';
+
   return `
     <div class="overlay-backdrop" onclick="nextQuestion()">
       <div class="feedback-card ${d.correct ? 'fb-correct' : 'fb-wrong'}" onclick="event.stopPropagation()">
         <div class="fb-icon">${d.correct ? '✅' : '❌'}</div>
         <h3>${d.correct ? 'Richtig!' : 'Nicht ganz...'}</h3>
         <p class="fb-explanation">${d.explanation}</p>
+        ${revealHtml}
         ${d.funFact ? `<p class="fb-funfact">💡 ${d.funFact}</p>` : ''}
-        <div class="fb-xp">+${d.xp} XP</div>
+        <div class="fb-tips">+${d.tips}€ Trinkgeld</div>
         <button class="btn btn-primary" onclick="nextQuestion()">Weiter →</button>
       </div>
     </div>`;
 }
 
+// ===== SHIFT END =====
 function renderShiftEnd() {
   const shift = state.currentShift;
+  const lv = getLevel();
   const accuracy = shift.total > 0 ? Math.round((shift.correct / shift.total) * 100) : 0;
 
   return `
@@ -405,9 +525,8 @@ function renderShiftEnd() {
       ${renderSidebar()}
       <div class="main-area">
         <div class="restaurant-bg">
-          <div class="rest-layer rest-bg-layer" style="background-image:url('assets/imbiss/hintergrund.png')"></div>
-          <div class="rest-layer rest-fg-layer" style="background-image:url('assets/imbiss/theke.png')"></div>
-
+          <div class="rest-layer rest-bg-layer" style="background-image:url('assets/${lv.bgKey}/hintergrund.png')"></div>
+          <div class="rest-layer rest-fg-layer" style="background-image:url('assets/${lv.bgKey}/theke.png')"></div>
           <div class="rest-ui-overlay">
             <div class="shift-summary-card">
               <h2>🏁 Schicht geschafft!</h2>
@@ -415,7 +534,7 @@ function renderShiftEnd() {
                 <div class="summary-stat"><div class="stat-num correct">${shift.correct}</div><div class="stat-label">Richtig</div></div>
                 <div class="summary-stat"><div class="stat-num wrong">${shift.wrong}</div><div class="stat-label">Falsch</div></div>
                 <div class="summary-stat"><div class="stat-num">${accuracy}%</div><div class="stat-label">Quote</div></div>
-                <div class="summary-stat"><div class="stat-num xp">+${shift.xpEarned}</div><div class="stat-label">XP</div></div>
+                <div class="summary-stat"><div class="stat-num tips">+${shift.tipsEarned}€</div><div class="stat-label">Trinkgeld</div></div>
               </div>
               <div class="summary-buttons">
                 <button class="btn btn-primary" onclick="startShift()">🔄 Nächste Schicht</button>
@@ -426,7 +545,6 @@ function renderShiftEnd() {
         </div>
       </div>
       ${renderBottomBar()}
-
       ${state.overlay === 'levelup' ? renderLevelUpOverlay() : ''}
     </div>`;
 }
@@ -442,12 +560,12 @@ function renderLevelUpOverlay() {
         <h2>AUFSTIEG!</h2>
         <div class="lu-new-title">${d.newLevel.icon} ${d.newLevel.name}</div>
         <p class="lu-desc">${d.newLevel.description}</p>
-        <div class="lu-regions">
-          <h4>Neue Weinregionen:</h4>
-          ${newRegions.map(r => `<span class="lu-region">${r.icon} ${r.name}</span>`).join('')}
-        </div>
+        ${newRegions.length ? `<div class="lu-regions">
+          <h4>Neue Weinländer:</h4>
+          ${newRegions.map(r => `<span class="lu-region">${r.flag} ${r.name}</span>`).join('')}
+        </div>` : ''}
         <button class="btn btn-primary btn-large" onclick="state.overlay=null;state.overlayData=null;goToScene('explorer',{explorerWineIndex:0})">
-          🍷 Weine kennenlernen!
+          🍷 Neue Weine kennenlernen!
         </button>
       </div>
     </div>`;
@@ -487,16 +605,16 @@ function renderSidebar() {
 function renderBottomBar() {
   const lv = getLevel();
   const next = getNextLevel();
-  const xpProg = getXpProgress();
+  const tipProg = getTipProgress();
 
   return `
     <div class="bottom-bar">
       <div class="bb-level">${lv.icon} ${lv.shortName}</div>
       <div class="bb-xp">
         <div class="xp-bar">
-          <div class="xp-fill" style="width:${xpProg}%"></div>
+          <div class="xp-fill" style="width:${tipProg}%"></div>
         </div>
-        <span class="xp-text">${state.player.xp} XP ${next ? `/ ${next.xpNeeded}` : '(MAX)'}</span>
+        <span class="xp-text">${state.player.tips}€ ${next ? `/ ${next.xpNeeded}€` : '(MAX)'}</span>
       </div>
       <div class="bb-stats">
         <span>🍷 ${state.player.discoveredWines.size} Weine</span>
@@ -519,5 +637,5 @@ function renderStarsSmall(rep) {
 
 // ===== EVENT DELEGATION =====
 function attachEvents() {
-  // Events handled via onclick attributes for simplicity
+  // Events handled via onclick attributes
 }

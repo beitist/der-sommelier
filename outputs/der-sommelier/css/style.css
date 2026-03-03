@@ -309,7 +309,7 @@ body {
   align-items: center;
 }
 
-/* Wine bottle (CSS-drawn) */
+/* Wine bottle (image-based) */
 .wine-bottle-area {
   flex-shrink: 0;
   display: flex;
@@ -317,69 +317,24 @@ body {
   align-items: center;
   width: 220px;
 }
-.wine-bottle {
-  width: 100px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.wine-bottle-img {
+  max-height: 380px;
+  max-width: 200px;
+  image-rendering: pixelated;
   filter: drop-shadow(0 8px 24px rgba(0,0,0,0.5));
 }
-.bottle-neck {
-  width: 24px; height: 50px;
-  background: linear-gradient(180deg, #2a2a2a, #3a3a3a);
-  border-radius: 4px 4px 0 0;
-  border: 2px solid #555;
-  border-bottom: none;
-  position: relative;
+.wine-meta {
+  display: flex; gap: 12px; margin-bottom: 12px;
+  font-size: 13px; color: var(--c-muted);
 }
-.bottle-neck::before {
-  content: '';
-  position: absolute; top: -8px; left: 50%; transform: translateX(-50%);
-  width: 30px; height: 10px;
-  background: #8b4513;
+.wine-price {
+  background: rgba(240,230,140,0.15);
+  color: var(--c-gold);
+  padding: 2px 8px;
   border-radius: 4px;
-  border: 2px solid #6b3410;
+  font-weight: 700;
 }
-.bottle-body {
-  width: 100px; height: 200px;
-  background: linear-gradient(180deg, #1a3a1a, #0a2a0a);
-  border: 2px solid #444;
-  border-radius: 6px 6px 4px 4px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-}
-.bottle-body::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
-}
-.bottle-label {
-  background: #f5f0e0;
-  width: 80px;
-  padding: 10px 6px;
-  text-align: center;
-  border: 1px solid #ccc;
-  border-radius: 2px;
-}
-.label-region { font-size: 10px; color: #666; margin-bottom: 4px; }
-.label-name {
-  font-family: var(--font-pixel);
-  font-size: 8px;
-  color: #333;
-  margin-bottom: 4px;
-  line-height: 1.3;
-}
-.label-type { font-size: 9px; color: #888; }
-.bottle-bottom {
-  width: 100px; height: 16px;
-  background: linear-gradient(180deg, #0a2a0a, #051a05);
-  border: 2px solid #444;
-  border-top: none;
-  border-radius: 0 0 8px 8px;
-}
+.wine-grape { font-style: italic; }
 
 /* Wine info */
 .wine-info-area {
@@ -623,7 +578,7 @@ body {
 /* Dialog */
 .dialog-container {
   position: absolute;
-  bottom: 0; left: 0; right: 0;
+  bottom: 0; left: 30%; right: 0;
   z-index: 10;
   padding: 0 24px 24px;
 }
@@ -826,6 +781,289 @@ body {
   border-radius: 20px;
   font-size: 13px;
   margin: 3px;
+}
+
+/* ===== CHEF INTRO ===== */
+.chef-intro-scene {
+  display: flex;
+  width: 100%; height: 100%;
+  align-items: flex-end;
+}
+.chef-sprite-area {
+  flex-shrink: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 0 0 5%;
+  z-index: 2;
+}
+.chef-sprite-area img {
+  max-height: 520px;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 6px 24px rgba(0,0,0,0.5));
+}
+.chef-dialog-area {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  z-index: 5;
+}
+.chef-intro-card {
+  background: rgba(22,33,62,0.95);
+  border: 3px solid var(--c-gold);
+  border-radius: 16px;
+  padding: 32px 36px;
+  max-width: 540px;
+  backdrop-filter: blur(10px);
+  animation: popIn 0.4s ease;
+  box-shadow: 0 0 40px rgba(240,230,140,0.15);
+}
+.chef-name {
+  font-family: var(--font-pixel);
+  font-size: 16px;
+  color: var(--c-gold);
+  margin-bottom: 2px;
+}
+.chef-restaurant {
+  font-size: 13px;
+  color: var(--c-accent);
+  margin-bottom: 4px;
+}
+.chef-theme {
+  font-size: 12px;
+  color: var(--c-muted);
+  margin-bottom: 14px;
+  font-style: italic;
+}
+.chef-intro-text {
+  font-size: 15px;
+  color: var(--c-text);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+.chef-intro-text p { margin-bottom: 10px; }
+.chef-intro-buttons {
+  display: flex; gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* ===== EXPLORER INTRO ===== */
+.explorer-intro {
+  flex: 1;
+  overflow-y: auto;
+  padding: 32px 48px;
+}
+.explorer-intro h2 {
+  font-family: var(--font-pixel);
+  font-size: 20px;
+  color: var(--c-accent);
+  margin-bottom: 20px;
+}
+.intro-section {
+  background: rgba(0,0,0,0.25);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin-bottom: 14px;
+}
+.intro-section h3 {
+  font-size: 16px;
+  color: var(--c-gold);
+  margin-bottom: 8px;
+}
+.intro-section p {
+  font-size: 14px;
+  color: var(--c-text);
+  line-height: 1.6;
+}
+.intro-recap {
+  background: rgba(240,230,140,0.08);
+  border: 2px solid rgba(240,230,140,0.25);
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin-top: 20px;
+}
+.intro-recap h3 {
+  font-size: 15px;
+  color: var(--c-gold);
+  margin-bottom: 10px;
+}
+.intro-recap li {
+  font-size: 14px;
+  color: var(--c-text);
+  line-height: 1.6;
+  margin-bottom: 4px;
+  list-style: none;
+}
+
+/* ===== WINE DETAIL OVERLAY ===== */
+.wine-detail-card {
+  background: var(--c-card);
+  border: 3px solid var(--c-purple);
+  border-radius: 12px;
+  padding: 32px 40px;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  animation: popIn 0.3s ease;
+  display: flex; gap: 24px;
+}
+.wine-detail-bottle {
+  flex-shrink: 0;
+}
+.wine-detail-bottle img {
+  max-height: 280px;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
+}
+.wine-detail-info { flex: 1; }
+.wine-detail-info h3 {
+  font-family: var(--font-pixel);
+  font-size: 16px;
+  color: var(--c-accent);
+  margin-bottom: 8px;
+}
+.wine-detail-info p {
+  font-size: 14px; color: var(--c-text);
+  line-height: 1.6; margin-bottom: 10px;
+}
+
+/* ===== GUEST SPRITES ===== */
+.guest-sprite-area {
+  position: absolute;
+  z-index: 2;
+  bottom: 5%;
+  left: 8%;
+  pointer-events: none;
+}
+.guest-sprite {
+  max-height: 480px;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 6px 20px rgba(0,0,0,0.6));
+}
+
+/* ===== LOBBY CHEF MINI ===== */
+.lobby-chef-mini {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  border: 3px solid var(--c-gold);
+  object-fit: cover;
+  image-rendering: pixelated;
+  margin-bottom: 8px;
+}
+
+/* ===== DIALOG TYPE BADGES ===== */
+.dialog-type-badge {
+  padding: 2px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 4px;
+}
+.fp-badge {
+  background: var(--c-accent);
+  color: #fff;
+}
+.ww-badge {
+  background: var(--c-purple);
+  color: #fff;
+}
+.bt-badge {
+  background: #7b5b3a;
+  color: #fff;
+}
+
+/* ===== WEINWISSEN DIALOG ===== */
+.dialog-weinwissen {
+  border-color: var(--c-purple);
+}
+
+/* ===== BLINDTASTING DIALOG ===== */
+.dialog-blindtasting {
+  border-color: #7b5b3a;
+}
+.bt-clues {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 12px 0;
+}
+.bt-clue {
+  background: rgba(123,91,58,0.15);
+  border: 1px solid rgba(123,91,58,0.3);
+  border-radius: 8px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.bt-clue-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #c9a96e;
+}
+.bt-clue span:last-child {
+  font-size: 13px;
+  color: var(--c-text);
+  line-height: 1.4;
+}
+
+/* ===== REGION ENHANCEMENTS ===== */
+.region-main-regions {
+  margin-top: 14px;
+  font-size: 14px;
+  color: var(--c-muted);
+  line-height: 1.5;
+}
+.region-locked-hint {
+  margin-top: 12px;
+  padding: 10px 16px;
+  background: rgba(255,255,255,0.04);
+  border: 1px dashed var(--c-muted);
+  border-radius: 8px;
+  font-size: 13px;
+  color: var(--c-muted);
+  text-align: center;
+}
+.rwc-img {
+  width: 48px; height: 72px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4));
+}
+.rwc-info {
+  flex: 1;
+  display: flex; flex-direction: column; gap: 2px;
+}
+.rwc-flavors {
+  font-size: 11px;
+  color: var(--c-muted);
+  font-style: italic;
+}
+
+/* ===== TRINKGELD DISPLAY ===== */
+.fb-tips {
+  font-family: var(--font-pixel);
+  font-size: 18px;
+  color: var(--c-success);
+  margin-bottom: 16px;
+}
+.stat-num.tips { color: var(--c-success); }
+
+/* ===== FEEDBACK REVEAL ===== */
+.fb-reveal {
+  font-size: 13px;
+  color: var(--c-muted);
+  margin-bottom: 10px;
+}
+.fb-reveal strong { color: var(--c-accent); }
+
+/* ===== MAP BACKGROUND ===== */
+.map-world {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 /* ===== SCROLLBAR ===== */
