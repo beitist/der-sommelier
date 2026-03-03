@@ -1,0 +1,14 @@
+.env
+.claude
+audit.jsonl
+briefing.md
+.venv
+.agent
+
+uploads/
+
+.DS_Store
+
+outputs/.DS_Store
+
+generate_assets.py

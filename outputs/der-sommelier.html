@@ -1,0 +1,1602 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Der Sommelier – Ein Wein-RPG</title>
+<style>
+/* ===== RESET & BASE ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+@font-face {
+  font-family: 'PixelFont';
+  src: url('data:font/woff2;base64,') format('woff2');
+}
+body {
+  background: #1a1a2e;
+  display: flex; justify-content: center; align-items: center;
+  min-height: 100vh;
+  font-family: 'Courier New', monospace;
+  image-rendering: pixelated;
+  overflow: hidden;
+}
+
+/* ===== GAME CONTAINER ===== */
+#game-root {
+  width: 800px; height: 600px;
+  background: #16213e;
+  border: 4px solid #e94560;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 40px rgba(233,69,96,0.3);
+}
+
+/* ===== PIXEL ART HELPERS ===== */
+.pixel-border {
+  border: 3px solid;
+  border-image: repeating-linear-gradient(90deg, #e94560 0px, #e94560 3px, transparent 3px, transparent 6px) 3;
+}
+
+/* ===== SCENES ===== */
+.scene {
+  width: 100%; height: 100%;
+  position: absolute; top: 0; left: 0;
+  display: none;
+  flex-direction: column;
+}
+.scene.active { display: flex; }
+
+/* ===== TITLE SCREEN ===== */
+#scene-title {
+  background: linear-gradient(180deg, #1a1a2e 0%, #16213e 40%, #0f3460 100%);
+  justify-content: center; align-items: center;
+  text-align: center;
+}
+#scene-title h1 {
+  font-size: 48px; color: #e94560;
+  text-shadow: 3px 3px 0 #0f3460, -1px -1px 0 #533483;
+  letter-spacing: 4px;
+  margin-bottom: 8px;
+  animation: titlePulse 2s ease-in-out infinite;
+}
+#scene-title .subtitle {
+  font-size: 16px; color: #a7a7c5;
+  margin-bottom: 60px;
+  letter-spacing: 2px;
+}
+@keyframes titlePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+
+/* ===== WINE GLASS PIXEL ART ===== */
+.wine-glass-art {
+  margin: 30px auto;
+  width: 80px; height: 120px;
+  position: relative;
+}
+.wine-glass-art .bowl {
+  width: 60px; height: 50px;
+  border: 4px solid #e94560;
+  border-radius: 0 0 30px 30px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+.wine-glass-art .wine-fill {
+  position: absolute; bottom: 0;
+  width: 100%; height: 60%;
+  background: #8b0000;
+  animation: wineWave 3s ease-in-out infinite;
+}
+@keyframes wineWave {
+  0%, 100% { height: 60%; }
+  50% { height: 65%; }
+}
+.wine-glass-art .stem {
+  width: 6px; height: 30px;
+  background: #e94560;
+  margin: 0 auto;
+}
+.wine-glass-art .base {
+  width: 40px; height: 6px;
+  background: #e94560;
+  margin: 0 auto;
+  border-radius: 0 0 3px 3px;
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+  padding: 12px 32px;
+  font-family: 'Courier New', monospace;
+  font-size: 16px; font-weight: bold;
+  color: #fff;
+  background: #e94560;
+  border: 3px solid #533483;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: all 0.15s;
+  margin: 6px;
+}
+.btn:hover {
+  background: #533483;
+  border-color: #e94560;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 0 #0f3460;
+}
+.btn:active { transform: translateY(0); box-shadow: none; }
+.btn:disabled {
+  background: #333; border-color: #555; color: #777;
+  cursor: not-allowed; transform: none; box-shadow: none;
+}
+.btn-small { padding: 8px 16px; font-size: 13px; }
+
+/* ===== MAP SCENE ===== */
+#scene-map {
+  background: #0a1628;
+}
+.map-header {
+  background: #16213e;
+  border-bottom: 3px solid #e94560;
+  padding: 10px 20px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.map-header h2 { color: #e94560; font-size: 18px; }
+.player-stats {
+  display: flex; gap: 20px; font-size: 13px; color: #a7a7c5;
+}
+.stat-badge {
+  background: #1a1a2e;
+  padding: 4px 12px;
+  border: 2px solid #533483;
+}
+.stat-badge .val { color: #e94560; font-weight: bold; }
+
+.map-container {
+  flex: 1; position: relative;
+  background:
+    radial-gradient(circle at 30% 40%, #0f3460 0%, transparent 50%),
+    radial-gradient(circle at 70% 60%, #1a1a2e 0%, transparent 40%),
+    #0a1628;
+  overflow: hidden;
+}
+
+/* Map regions as clickable areas */
+.map-region {
+  position: absolute;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s;
+  padding: 8px;
+}
+.map-region:hover:not(.locked) {
+  transform: scale(1.08);
+  z-index: 10;
+}
+.map-region.locked {
+  opacity: 0.3;
+  cursor: not-allowed;
+  filter: grayscale(1);
+}
+.map-region .region-icon {
+  font-size: 36px;
+  display: block;
+  margin-bottom: 4px;
+  filter: drop-shadow(2px 2px 0 #000);
+}
+.map-region .region-name {
+  font-size: 11px;
+  color: #fff;
+  text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+  font-weight: bold;
+}
+.map-region .region-status {
+  font-size: 9px;
+  color: #a7a7c5;
+}
+
+/* Restaurant marker on map */
+.map-restaurant {
+  position: absolute;
+  cursor: pointer;
+  text-align: center;
+  padding: 10px;
+  background: rgba(233,69,96,0.15);
+  border: 2px solid #e94560;
+  transition: all 0.2s;
+}
+.map-restaurant:hover {
+  background: rgba(233,69,96,0.3);
+  transform: scale(1.05);
+}
+.map-restaurant.locked {
+  opacity: 0.3; cursor: not-allowed;
+  border-color: #555;
+  background: rgba(80,80,80,0.15);
+}
+.map-restaurant .rest-icon { font-size: 28px; display: block; }
+.map-restaurant .rest-name { font-size: 12px; color: #fff; font-weight: bold; }
+.map-restaurant .rest-level { font-size: 10px; color: #a7a7c5; }
+
+/* Map bottom bar */
+.map-footer {
+  background: #16213e;
+  border-top: 3px solid #533483;
+  padding: 8px 20px;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 12px; color: #a7a7c5;
+}
+
+/* ===== RESTAURANT SCENE ===== */
+#scene-restaurant {
+  background: #1a1a2e;
+}
+.restaurant-header {
+  background: #16213e;
+  border-bottom: 3px solid #e94560;
+  padding: 10px 20px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.restaurant-header h2 { color: #e94560; font-size: 18px; }
+
+.restaurant-floor {
+  flex: 1; display: flex; flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px;
+  position: relative;
+  background: linear-gradient(180deg, #1a1a2e 0%, #2a1a3e 60%, #3a2a1e 100%);
+}
+
+/* Pixel art floor tiles */
+.floor-tiles {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 80px;
+  background: repeating-conic-gradient(#3a2a1e 0% 25%, #2e2218 0% 50%) 0 0 / 40px 40px;
+  opacity: 0.5;
+}
+
+/* Character sprites */
+.character {
+  position: absolute;
+  width: 48px; height: 64px;
+  image-rendering: pixelated;
+}
+.character-player {
+  bottom: 90px; left: 120px;
+}
+.character-guest {
+  bottom: 90px; right: 200px;
+}
+
+/* Pixel character via CSS */
+.pixel-char {
+  width: 48px; height: 64px;
+  position: relative;
+}
+.pixel-char .head {
+  width: 24px; height: 24px;
+  background: #ffd5a0;
+  border: 2px solid #333;
+  margin: 0 auto;
+  border-radius: 4px;
+}
+.pixel-char .body-part {
+  width: 32px; height: 28px;
+  margin: 0 auto;
+  border: 2px solid #333;
+  border-radius: 2px;
+}
+.pixel-char .legs {
+  display: flex; justify-content: center; gap: 4px;
+}
+.pixel-char .leg {
+  width: 10px; height: 14px;
+  border: 2px solid #333;
+  border-radius: 0 0 2px 2px;
+}
+.player-char .body-part { background: #e94560; }
+.player-char .leg { background: #333; }
+.guest-char .body-part { background: #4a8; }
+.guest-char .leg { background: #446; }
+.guest-char .head { background: #f0c080; }
+
+/* Speech bubbles */
+.speech-bubble {
+  position: absolute;
+  background: #fff;
+  color: #111;
+  padding: 10px 14px;
+  font-size: 13px;
+  max-width: 280px;
+  border: 3px solid #333;
+  line-height: 1.4;
+}
+.speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -12px; left: 20px;
+  border: 6px solid transparent;
+  border-top-color: #333;
+}
+.guest-bubble {
+  top: 60px; right: 80px;
+}
+
+/* ===== DIALOG / QUIZ OVERLAY ===== */
+.dialog-box {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: #16213e;
+  border-top: 4px solid #e94560;
+  padding: 20px;
+  min-height: 220px;
+  display: flex; flex-direction: column;
+}
+.dialog-speaker {
+  color: #e94560;
+  font-size: 14px; font-weight: bold;
+  margin-bottom: 8px;
+}
+.dialog-text {
+  color: #e0e0e0;
+  font-size: 14px;
+  line-height: 1.6;
+  flex: 1;
+  margin-bottom: 12px;
+}
+.dialog-choices {
+  display: flex; flex-direction: column; gap: 6px;
+}
+.choice-btn {
+  padding: 10px 16px;
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  color: #e0e0e0;
+  background: #1a1a2e;
+  border: 2px solid #533483;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s;
+}
+.choice-btn:hover {
+  background: #533483;
+  border-color: #e94560;
+  color: #fff;
+}
+.choice-btn.correct {
+  background: #1a5c3a;
+  border-color: #4a8;
+  color: #8f8;
+}
+.choice-btn.wrong {
+  background: #5c1a1a;
+  border-color: #e94560;
+  color: #f88;
+}
+
+/* ===== FEEDBACK OVERLAY ===== */
+.feedback-overlay {
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex; justify-content: center; align-items: center;
+  z-index: 100;
+}
+.feedback-card {
+  background: #16213e;
+  border: 4px solid #533483;
+  padding: 30px;
+  max-width: 500px;
+  text-align: center;
+}
+.feedback-card h3 {
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+.feedback-card h3.correct { color: #4a8; }
+.feedback-card h3.wrong { color: #e94560; }
+.feedback-card p {
+  color: #a7a7c5;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+.feedback-card .xp-gain {
+  color: #e94560;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+/* ===== REGION INFO SCENE ===== */
+#scene-region {
+  background: #0a1628;
+}
+.region-header {
+  background: #16213e;
+  border-bottom: 3px solid #e94560;
+  padding: 12px 20px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.region-header h2 { color: #e94560; font-size: 18px; }
+.region-content {
+  flex: 1; padding: 20px;
+  overflow-y: auto;
+  color: #e0e0e0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.region-content h3 {
+  color: #e94560;
+  font-size: 16px;
+  margin: 16px 0 8px;
+}
+.wine-list-item {
+  background: #1a1a2e;
+  border: 2px solid #533483;
+  padding: 10px 14px;
+  margin: 6px 0;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.wine-list-item .wine-name { color: #fff; font-weight: bold; }
+.wine-list-item .wine-type {
+  font-size: 12px;
+  padding: 2px 8px;
+  border: 1px solid;
+}
+.wine-type-rot { color: #e94560; border-color: #e94560; }
+.wine-type-weiss { color: #f0e68c; border-color: #f0e68c; }
+.wine-type-rose { color: #ffb6c1; border-color: #ffb6c1; }
+
+/* ===== LEVEL UP OVERLAY ===== */
+.levelup-overlay {
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.85);
+  display: flex; justify-content: center; align-items: center;
+  z-index: 200;
+}
+.levelup-card {
+  background: linear-gradient(180deg, #1a1a2e, #16213e);
+  border: 4px solid #e94560;
+  padding: 40px;
+  text-align: center;
+  animation: levelUpBounce 0.5s ease;
+}
+@keyframes levelUpBounce {
+  0% { transform: scale(0.5); opacity: 0; }
+  60% { transform: scale(1.1); }
+  100% { transform: scale(1); opacity: 1; }
+}
+.levelup-card h2 {
+  color: #e94560; font-size: 28px;
+  margin-bottom: 8px;
+}
+.levelup-card .new-title {
+  color: #f0e68c;
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+.levelup-card p {
+  color: #a7a7c5;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+/* ===== XP BAR ===== */
+.xp-bar-container {
+  background: #0a0a1a;
+  border: 2px solid #533483;
+  height: 16px;
+  width: 200px;
+  position: relative;
+}
+.xp-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #e94560, #533483);
+  transition: width 0.5s;
+}
+.xp-bar-text {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: flex; justify-content: center; align-items: center;
+  font-size: 10px; color: #fff;
+  text-shadow: 1px 1px 0 #000;
+}
+
+/* ===== NOTIFICATION ===== */
+.notification {
+  position: absolute;
+  top: 50px; left: 50%; transform: translateX(-50%);
+  background: #533483;
+  color: #fff;
+  padding: 10px 24px;
+  font-size: 14px;
+  border: 2px solid #e94560;
+  z-index: 300;
+  animation: notifSlide 0.3s ease;
+}
+@keyframes notifSlide {
+  from { top: 20px; opacity: 0; }
+  to { top: 50px; opacity: 1; }
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #0a1628; }
+::-webkit-scrollbar-thumb { background: #533483; }
+::-webkit-scrollbar-thumb:hover { background: #e94560; }
+
+/* ===== STARS ===== */
+.stars-bg {
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+}
+.star {
+  position: absolute;
+  width: 2px; height: 2px;
+  background: #fff;
+  border-radius: 50%;
+  animation: twinkle 3s ease-in-out infinite;
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+/* ===== MENU OVERLAY ===== */
+.menu-overlay {
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.8);
+  display: flex; justify-content: center; align-items: center;
+  z-index: 150;
+}
+.menu-card {
+  background: #16213e;
+  border: 4px solid #e94560;
+  padding: 30px;
+  min-width: 400px;
+}
+.menu-card h3 {
+  color: #e94560; font-size: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* ===== REPUTATION DISPLAY ===== */
+.rep-stars {
+  display: inline-flex; gap: 2px;
+}
+.rep-star { color: #e94560; font-size: 12px; }
+.rep-star.empty { color: #333; }
+
+/* ===== SHIFT SUMMARY ===== */
+.shift-summary {
+  padding: 20px; text-align: center;
+}
+.shift-summary h3 { color: #e94560; font-size: 20px; margin-bottom: 16px; }
+.shift-stats {
+  display: flex; justify-content: center; gap: 30px; margin-bottom: 20px;
+}
+.shift-stat {
+  text-align: center;
+}
+.shift-stat .num { font-size: 28px; color: #e94560; font-weight: bold; }
+.shift-stat .label { font-size: 12px; color: #a7a7c5; }
+</style>
+</head>
+<body>
+
+<div id="game-root">
+  <!-- Scenes rendered dynamically by JS -->
+</div>
+
+<script>
+// ============================================================
+// DER SOMMELIER - Ein Wein-RPG
+// ============================================================
+
+// ===== GAME CONFIGURATION =====
+const CONFIG = {
+  levels: [
+    { id: 'imbiss', name: 'Imbiss "Zum Goldenen Gyros"', icon: '🌯', xpNeeded: 0, xpToNext: 80, unlockRegions: ['deutschland', 'italien', 'griechenland'] },
+    { id: 'steakhaus', name: 'Steakhaus "Black Angus"', icon: '🥩', xpNeeded: 80, xpToNext: 200, unlockRegions: ['argentinien', 'suedafrika', 'spanien', 'australien'] },
+    { id: 'gutbuergerlich', name: 'Gasthaus "Zur Linde"', icon: '🍽️', xpNeeded: 200, xpToNext: 400, unlockRegions: ['frankreich_basis', 'oesterreich'] },
+    { id: 'gehoben', name: 'Restaurant "Le Vignoble"', icon: '🍷', xpNeeded: 400, xpToNext: 700, unlockRegions: ['burgund', 'bordeaux', 'piemont'] },
+    { id: 'sterne', name: 'Sterne-Restaurant "Étoile"', icon: '⭐', xpNeeded: 700, xpToNext: 999, unlockRegions: ['champagne', 'napa', 'barossa'] },
+  ],
+  questionsPerShift: 5,
+  xpPerCorrect: 12,
+  xpPerWrong: 3,
+  repPerCorrect: 8,
+  repPerWrong: -3,
+};
+
+// ===== WINE DATABASE =====
+const WINES = {
+  // === IMBISS WINES ===
+  dornfelder: {
+    id: 'dornfelder', name: 'Dornfelder', region: 'deutschland',
+    color: 'rot', body: 'mittel', acidity: 'mild', sweetness: 'halbtrocken',
+    price: 'günstig', quality: 'tafelwein',
+    flavors: ['Kirsche', 'Brombeere'],
+    pairings: ['Gyros', 'Pizza', 'Grillwurst', 'Burger'],
+    description: 'Unkomplizierter, fruchtiger Rotwein aus Deutschland. Passt zu deftigen Speisen.',
+    funFact: 'Dornfelder ist eine relativ junge Rebsorte, erst 1955 an der Weinbauschule Weinsberg gezüchtet.'
+  },
+  mueller_thurgau: {
+    id: 'mueller_thurgau', name: 'Müller-Thurgau', region: 'deutschland',
+    color: 'weiss', body: 'leicht', acidity: 'mild', sweetness: 'halbtrocken',
+    price: 'günstig', quality: 'tafelwein',
+    flavors: ['Apfel', 'Muskat', 'Blüten'],
+    pairings: ['Salat', 'leichter Fisch', 'Geflügel'],
+    description: 'Milder, blumiger Weißwein. Deutschlands meistangebaute weiße Rebsorte (neben Riesling).',
+    funFact: 'Benannt nach dem Schweizer Botaniker Hermann Müller aus dem Kanton Thurgau.'
+  },
+  riesling_einfach: {
+    id: 'riesling_einfach', name: 'Riesling (trocken)', region: 'deutschland',
+    color: 'weiss', body: 'leicht', acidity: 'hoch', sweetness: 'trocken',
+    price: 'günstig', quality: 'tafelwein',
+    flavors: ['Zitrus', 'Apfel', 'mineralisch'],
+    pairings: ['Fisch', 'Geflügel', 'Salat', 'Spargel'],
+    description: 'Frischer, säurebetonter Weißwein. Deutschlands Aushängeschild.',
+    funFact: 'Riesling ist eine der ältesten Rebsorten – erste Erwähnung 1435 am Rhein.'
+  },
+  lambrusco: {
+    id: 'lambrusco', name: 'Lambrusco', region: 'italien',
+    color: 'rot', body: 'leicht', acidity: 'mittel', sweetness: 'lieblich',
+    price: 'günstig', quality: 'tafelwein',
+    flavors: ['Erdbeere', 'Kirsche', 'spritzig'],
+    pairings: ['Pizza', 'Pasta', 'Antipasti'],
+    description: 'Leichter, spritziger Rotwein aus der Emilia-Romagna. Leicht perlend.',
+    funFact: 'Lambrusco ist eigentlich eine ganze Familie von über 60 Unterrebsorten.'
+  },
+  pinot_grigio: {
+    id: 'pinot_grigio', name: 'Pinot Grigio', region: 'italien',
+    color: 'weiss', body: 'leicht', acidity: 'mittel', sweetness: 'trocken',
+    price: 'günstig', quality: 'tafelwein',
+    flavors: ['Birne', 'Zitrus', 'Mandel'],
+    pairings: ['Salat', 'Fisch', 'Meeresfrüchte', 'Pizza Bianca'],
+    description: 'Leichter, erfrischender Weißwein aus Norditalien.',
+    funFact: 'Pinot Grigio und Grauburgunder sind die gleiche Rebsorte – nur der Name ist anders!'
+  },
+  imiglykos: {
+    id: 'imiglykos', name: 'Imiglykos (Mädchentraube)', region: 'griechenland',
+    color: 'rot', body: 'leicht', acidity: 'niedrig', sweetness: 'lieblich',
+    price: 'günstig', quality: 'tafelwein',
+    flavors: ['Kirsche', 'Pflaume', 'süß'],
+    pairings: ['Gyros', 'Souvlaki', 'Moussaka'],
+    description: 'Lieblicher, süffiger griechischer Rotwein. Im Volksmund "Mädchentraube" genannt.',
+    funFact: '"Imiglykos" bedeutet wörtlich "halbtrocken" auf Griechisch – obwohl der Wein eher lieblich schmeckt!'
+  },
+  retsina: {
+    id: 'retsina', name: 'Retsina', region: 'griechenland',
+    color: 'weiss', body: 'mittel', acidity: 'mittel', sweetness: 'trocken',
+    price: 'günstig', quality: 'tafelwein',
+    flavors: ['Harz', 'Kiefer', 'Zitrus'],
+    pairings: ['Gyros', 'Feta', 'Oliven', 'Meeresfrüchte'],
+    description: 'Geharzter griechischer Weißwein mit unverwechselbarem Geschmack.',
+    funFact: 'Retsina wird seit über 2000 Jahren hergestellt – antike Griechen versiegelten Amphoren mit Kiefernharz.'
+  },
+  rose_provence: {
+    id: 'rose_provence', name: 'Rosé (Hauswein)', region: 'frankreich_basis',
+    color: 'rose', body: 'leicht', acidity: 'mittel', sweetness: 'trocken',
+    price: 'günstig', quality: 'tafelwein',
+    flavors: ['Erdbeere', 'Wassermelone', 'frisch'],
+    pairings: ['Salat', 'Geflügel', 'Pizza', 'leichte Vorspeisen'],
+    description: 'Leichter, fruchtiger Rosé. Perfekt als unkomplizierter Sommerwein.',
+    funFact: 'Rosé wird nicht aus gemischtem Rot- und Weißwein hergestellt, sondern durch kurzen Hautkontakt roter Trauben!'
+  }
+};
+
+// Index wines by various keys
+const WINES_BY_REGION = {};
+const WINES_BY_COLOR = { rot: [], weiss: [], rose: [] };
+Object.values(WINES).forEach(w => {
+  if (!WINES_BY_REGION[w.region]) WINES_BY_REGION[w.region] = [];
+  WINES_BY_REGION[w.region].push(w.id);
+  WINES_BY_COLOR[w.color].push(w.id);
+});
+
+// ===== REGIONS DATABASE =====
+const REGIONS = {
+  deutschland: {
+    id: 'deutschland', name: 'Deutschland', icon: '🇩🇪',
+    mapX: 48, mapY: 25,
+    description: 'Berühmt für Riesling und eine Vielfalt an Weißweinen. 13 Anbaugebiete von Mosel bis Baden.',
+    keyFacts: [
+      'Größte Rebsorte: Riesling (weiß) und Spätburgunder (rot)',
+      'Qualitätsstufen: Tafelwein → Landwein → QbA → Prädikatswein',
+      'Bekannte Gebiete: Mosel, Rheingau, Pfalz, Baden',
+    ],
+    wines: ['dornfelder', 'mueller_thurgau', 'riesling_einfach'],
+    unlocked: true
+  },
+  italien: {
+    id: 'italien', name: 'Italien', icon: '🇮🇹',
+    mapX: 52, mapY: 45,
+    description: 'Größter Weinproduzent der Welt! Von Südtirol bis Sizilien, überall wird Wein angebaut.',
+    keyFacts: [
+      'Qualitätsstufen: Vino da Tavola → IGT → DOC → DOCG',
+      'Bekannteste Regionen: Toskana, Piemont, Venetien',
+      'Bekannte Weine: Chianti, Barolo, Prosecco, Lambrusco',
+    ],
+    wines: ['lambrusco', 'pinot_grigio'],
+    unlocked: true
+  },
+  griechenland: {
+    id: 'griechenland', name: 'Griechenland', icon: '🇬🇷',
+    mapX: 60, mapY: 55,
+    description: 'Eines der ältesten Weinbauländer der Welt. Wiege des europäischen Weinbaus!',
+    keyFacts: [
+      'Tradition seit über 4000 Jahren',
+      'Bekannte Rebsorten: Assyrtiko, Agiorgitiko, Moschofilero',
+      '"Imiglykos" (Mädchentraube) ist der bekannteste griechische Exportwein',
+    ],
+    wines: ['imiglykos', 'retsina'],
+    unlocked: true
+  },
+  argentinien: { id: 'argentinien', name: 'Argentinien', icon: '🇦🇷', mapX: 25, mapY: 78, description: '', keyFacts: [], wines: [], unlocked: false },
+  suedafrika: { id: 'suedafrika', name: 'Südafrika', icon: '🇿🇦', mapX: 55, mapY: 85, description: '', keyFacts: [], wines: [], unlocked: false },
+  spanien: { id: 'spanien', name: 'Spanien', icon: '🇪🇸', mapX: 38, mapY: 48, description: '', keyFacts: [], wines: [], unlocked: false },
+  australien: { id: 'australien', name: 'Australien', icon: '🇦🇺', mapX: 82, mapY: 80, description: '', keyFacts: [], wines: [], unlocked: false },
+  frankreich_basis: { id: 'frankreich_basis', name: 'Frankreich', icon: '🇫🇷', mapX: 43, mapY: 38, description: '', keyFacts: [], wines: ['rose_provence'], unlocked: false },
+  oesterreich: { id: 'oesterreich', name: 'Österreich', icon: '🇦🇹', mapX: 53, mapY: 30, description: '', keyFacts: [], wines: [], unlocked: false },
+  burgund: { id: 'burgund', name: 'Burgund', icon: '🍇', mapX: 44, mapY: 35, description: '', keyFacts: [], wines: [], unlocked: false },
+  bordeaux: { id: 'bordeaux', name: 'Bordeaux', icon: '🏰', mapX: 38, mapY: 42, description: '', keyFacts: [], wines: [], unlocked: false },
+  piemont: { id: 'piemont', name: 'Piemont', icon: '⛰️', mapX: 50, mapY: 40, description: '', keyFacts: [], wines: [], unlocked: false },
+  champagne: { id: 'champagne', name: 'Champagne', icon: '🥂', mapX: 45, mapY: 30, description: '', keyFacts: [], wines: [], unlocked: false },
+};
+
+// ===== QUESTIONS DATABASE =====
+const QUESTIONS = {
+  imbiss: {
+    food_pairing: [
+      {
+        id: 'ip1',
+        scenario: 'Ein Stammgast bestellt einen großen Gyrosteller mit Tsatsiki und Pommes.',
+        question: 'Welchen Wein empfiehlst du?',
+        guestMood: 'entspannt',
+        options: [
+          { wineId: 'imiglykos', correct: true, explanation: 'Perfekt! Imiglykos passt hervorragend zur griechischen Küche – süffig und unkompliziert.' },
+          { wineId: 'riesling_einfach', correct: false, explanation: 'Riesling wäre zu säurebetont für das herzhafte Gyros mit Tsatsiki.' },
+          { wineId: 'lambrusco', correct: false, explanation: 'Lambrusco passt eher zur italienischen Küche. Zum Gyros lieber was Griechisches!' },
+        ]
+      },
+      {
+        id: 'ip2',
+        scenario: 'Eine Gruppe Studenten bestellt drei große Pizzen (Margherita, Salami, Quattro Formaggi).',
+        question: 'Was schlägst du vor?',
+        guestMood: 'feiernd',
+        options: [
+          { wineId: 'lambrusco', correct: true, explanation: 'Richtig! Lambrusco zur Pizza ist ein Klassiker – leicht, spritzig, italienisch.' },
+          { wineId: 'retsina', correct: false, explanation: 'Retsina ist ein griechischer Harzwein – der würde die Studenten eher irritieren als begeistern.' },
+          { wineId: 'dornfelder', correct: false, explanation: 'Dornfelder geht, aber Lambrusco ist der Klassiker zu Pizza – und die prickelnde Note passt perfekt.' },
+        ]
+      },
+      {
+        id: 'ip3',
+        scenario: 'Ein Pärchen bestellt Putenspieße mit Salat und fragt nach einem "leichten Wein".',
+        question: 'Was empfiehlst du?',
+        guestMood: 'romantisch',
+        options: [
+          { wineId: 'pinot_grigio', correct: true, explanation: 'Genau! Pinot Grigio ist leicht und frisch – perfekt zu Geflügel und Salat.' },
+          { wineId: 'dornfelder', correct: false, explanation: 'Dornfelder ist ein Rotwein mit Körper – nicht das, was man unter "leicht" versteht.' },
+          { wineId: 'imiglykos', correct: false, explanation: 'Imiglykos ist süßlich und eher schwer – zum Salat passt ein frischer Weißer besser.' },
+        ]
+      },
+      {
+        id: 'ip4',
+        scenario: 'Freitag Abend, ein Gast holt seine Currywurst-Pommes ab und will noch ne Flasche Wein mitnehmen. "Irgendwas Rotes!"',
+        question: 'Was gibst du ihm mit?',
+        guestMood: 'eilig',
+        options: [
+          { wineId: 'dornfelder', correct: true, explanation: 'Genau! Dornfelder ist der unkomplizierte Deutsche zum Deftigem – passt zur Currywurst.' },
+          { wineId: 'mueller_thurgau', correct: false, explanation: 'Er wollte ROT – Müller-Thurgau ist ein Weißwein!' },
+          { wineId: 'rose_provence', correct: false, explanation: 'Der Gast wollte explizit einen Roten. Rosé ist weder rot noch weiß.' },
+        ]
+      },
+      {
+        id: 'ip5',
+        scenario: 'Eine Kundin schaut die Karte an: "Ich möchte etwas Süßes, aber keinen Weißwein."',
+        question: 'Was empfiehlst du?',
+        guestMood: 'wählerisch',
+        options: [
+          { wineId: 'imiglykos', correct: true, explanation: 'Richtig! Imiglykos ist lieblich und rot – genau was sie sucht.' },
+          { wineId: 'lambrusco', correct: true, explanation: 'Gute Wahl! Lambrusco hat eine fruchtige Süße und ist rot. Passt!' },
+          { wineId: 'riesling_einfach', correct: false, explanation: 'Sie hat gesagt kein Weißwein – Riesling fällt also raus.' },
+        ]
+      },
+      {
+        id: 'ip6',
+        scenario: 'Ein Gast bestellt einen gemischten Salat mit Hähnchenbrust und will "etwas Erfrischendes".',
+        question: 'Was schlägst du vor?',
+        guestMood: 'entspannt',
+        options: [
+          { wineId: 'mueller_thurgau', correct: true, explanation: 'Stimmt! Müller-Thurgau ist mild, blumig und erfrischend – perfekt zum leichten Salat.' },
+          { wineId: 'dornfelder', correct: false, explanation: 'Dornfelder ist ein Rotwein mit mehr Körper – zum Salat lieber was Leichtes, Weißes.' },
+          { wineId: 'retsina', correct: false, explanation: 'Retsina ist zwar erfrischend, aber der Harzgeschmack ist gewöhnungsbedürftig und passt nicht zu jedem Salat.' },
+        ]
+      },
+    ],
+    preference: [
+      {
+        id: 'ipref1',
+        scenario: 'Ein Gast sagt: "Ich kenn mich nicht aus, aber süß und rot wäre nett."',
+        question: 'Was empfiehlst du?',
+        guestMood: 'unsicher',
+        options: [
+          { wineId: 'imiglykos', correct: true, explanation: 'Genau! Imiglykos ist lieblich und rot – die "Mädchentraube" ist perfekt für Einsteiger.' },
+          { wineId: 'pinot_grigio', correct: false, explanation: 'Pinot Grigio ist weiß und trocken – das Gegenteil von dem was der Gast möchte.' },
+          { wineId: 'riesling_einfach', correct: false, explanation: 'Riesling ist weiß – der Gast wollte ausdrücklich einen Roten.' },
+        ]
+      },
+      {
+        id: 'ipref2',
+        scenario: '"Ich hätte gern was Trockenes, Weißes. Nichts zu Kompliziertes."',
+        question: 'Was empfiehlst du?',
+        guestMood: 'bestimmt',
+        options: [
+          { wineId: 'riesling_einfach', correct: true, explanation: 'Perfekt! Ein einfacher trockener Riesling – klar, frisch, unkompliziert.' },
+          { wineId: 'pinot_grigio', correct: true, explanation: 'Gute Wahl! Pinot Grigio ist trocken, weiß und genau so unkompliziert wie gewünscht.' },
+          { wineId: 'imiglykos', correct: false, explanation: 'Imiglykos ist rot und lieblich – das Gegenteil von dem was bestellt wurde!' },
+        ]
+      },
+      {
+        id: 'ipref3',
+        scenario: '"Haben Sie auch Rosé? Ich mag nichts zu Trockenes."',
+        question: 'Was empfiehlst du?',
+        guestMood: 'neugierig',
+        options: [
+          { wineId: 'rose_provence', correct: true, explanation: 'Unser Rosé ist zwar eher trocken, aber leicht und fruchtig – für viele trotzdem angenehm. Ehrlich beraten!' },
+          { wineId: 'lambrusco', correct: false, explanation: 'Lambrusco ist zwar fruchtig-süß, aber ein Rotwein – kein Rosé.' },
+          { wineId: 'mueller_thurgau', correct: false, explanation: 'Müller-Thurgau ist ein Weißwein. Der Gast hat nach Rosé gefragt!' },
+        ]
+      },
+    ],
+    besserwisser: [
+      {
+        id: 'ibw1',
+        statement: '"Rosé wird doch einfach aus Rotwein und Weißwein zusammengekippt!"',
+        isCorrect: false,
+        correction: 'Nicht ganz! Rosé entsteht meist durch kurzen Hautkontakt (Mazeration) roter Trauben. Die Schalen geben nur kurz Farbe ab, dann wird der Most abgepresst. Mischen ist in der EU tatsächlich verboten – außer bei Champagner!',
+        guestMood: 'überheblich',
+        politeResponse: 'Das ist ein verbreiteter Irrtum! In Wirklichkeit...'
+      },
+      {
+        id: 'ibw2',
+        statement: '"Schraubverschluss heißt immer billiger Wein."',
+        isCorrect: false,
+        correction: 'Stimmt nicht! Viele hochwertige Weingüter – besonders in Australien und Neuseeland, aber auch in Deutschland – nutzen Schraubverschluss. Er schützt sogar besser vor Korkfehler (TCA).',
+        guestMood: 'besserwisserisch',
+        politeResponse: 'Da muss ich höflich widersprechen...'
+      },
+      {
+        id: 'ibw3',
+        statement: '"Rotwein muss immer bei Zimmertemperatur getrunken werden."',
+        isCorrect: false,
+        correction: 'Jein! "Zimmertemperatur" stammt aus einer Zeit, als Räume 16-18°C hatten. Heute bei 22-24°C wird Rotwein zu warm – ideal sind 14-18°C je nach Wein. Leichte Rote wie Lambrusco sogar leicht gekühlt!',
+        guestMood: 'belehrend',
+        politeResponse: 'Das stimmt teilweise, aber...'
+      },
+      {
+        id: 'ibw4',
+        statement: '"Pinot Grigio und Grauburgunder – das sind doch zwei verschiedene Trauben."',
+        isCorrect: false,
+        correction: 'Gleiche Traube, anderer Name! Pinot Grigio (Italien), Grauburgunder (Deutschland), Pinot Gris (Frankreich/Elsass) – alles dieselbe Rebsorte. Der Stil kann unterschiedlich sein, aber die Traube ist identisch.',
+        guestMood: 'interessiert',
+        politeResponse: 'Tatsächlich ist es dieselbe Rebsorte!'
+      },
+      {
+        id: 'ibw5',
+        statement: '"Retsina schmeckt nach Harz, weil die Griechen Kiefernharz in den Wein kippen."',
+        isCorrect: true,
+        correction: 'Das stimmt tatsächlich! Kleine Mengen Kiefernharz werden während der Gärung zugegeben. Das geht auf die Antike zurück, als man Amphoren mit Harz versiegelte – und den Geschmack dann mochte.',
+        guestMood: 'skeptisch',
+        politeResponse: 'Da haben Sie tatsächlich recht!'
+      },
+      {
+        id: 'ibw6',
+        statement: '"Von Wein mit Sulfiten bekommt man Kopfschmerzen."',
+        isCorrect: false,
+        correction: 'Das ist stark vereinfacht! Sulfite können bei empfindlichen Menschen Reaktionen auslösen, aber Kopfschmerzen kommen meist von Histaminen, Tanninen – oder schlicht zu viel Alkohol. Sulfite sind in vielen Lebensmitteln (Trockenfrüchte!) in viel höherer Konzentration.',
+        guestMood: 'besorgt',
+        politeResponse: 'Das ist ein häufiger Irrglaube...'
+      },
+    ]
+  }
+};
+
+// ===== GAME STATE =====
+let state = {
+  scene: 'title',       // current scene
+  player: {
+    name: 'Du',
+    level: 0,            // index into CONFIG.levels
+    xp: 0,
+    reputation: [0, 0, 0, 0, 0],  // per restaurant
+    wineKnowledge: {},   // wineId → { seen, correct }
+    completedQuestions: new Set(),
+  },
+  currentShift: null,    // active shift data
+  currentQuestion: null, // active question
+  selectedRegion: null,  // for region info view
+  notification: null,
+  overlay: null,         // 'levelup', 'feedback', 'menu', 'shiftsummary'
+  overlayData: null,
+};
+
+// ===== HELPER FUNCTIONS =====
+function getLevel() { return CONFIG.levels[state.player.level]; }
+function getNextLevel() { return CONFIG.levels[state.player.level + 1] || null; }
+function getXpProgress() {
+  const lv = getLevel();
+  const next = getNextLevel();
+  if (!next) return 100;
+  return Math.min(100, Math.round(((state.player.xp - lv.xpNeeded) / (next.xpNeeded - lv.xpNeeded)) * 100));
+}
+function getUnlockedRegionIds() {
+  const ids = [];
+  for (let i = 0; i <= state.player.level; i++) {
+    ids.push(...CONFIG.levels[i].unlockRegions);
+  }
+  return ids;
+}
+function getAvailableWineIds() {
+  const unlockedRegions = getUnlockedRegionIds();
+  return Object.values(WINES)
+    .filter(w => unlockedRegions.includes(w.region))
+    .map(w => w.id);
+}
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+function showNotification(text, duration = 2500) {
+  state.notification = text;
+  render();
+  setTimeout(() => { state.notification = null; render(); }, duration);
+}
+
+// ===== SCENE RENDERERS =====
+function render() {
+  const root = document.getElementById('game-root');
+  let html = '';
+
+  switch (state.scene) {
+    case 'title': html = renderTitle(); break;
+    case 'map': html = renderMap(); break;
+    case 'restaurant': html = renderRestaurant(); break;
+    case 'region': html = renderRegion(); break;
+  }
+
+  // Notification
+  if (state.notification) {
+    html += `<div class="notification">${state.notification}</div>`;
+  }
+
+  root.innerHTML = html;
+  attachEventListeners();
+}
+
+function renderTitle() {
+  return `
+    <div id="scene-title" class="scene active">
+      <div class="stars-bg">
+        ${Array.from({length: 30}, () =>
+          `<div class="star" style="left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${Math.random()*3}s;width:${Math.random()>0.5?3:2}px;height:${Math.random()>0.5?3:2}px"></div>`
+        ).join('')}
+      </div>
+      <div class="wine-glass-art">
+        <div class="bowl"><div class="wine-fill"></div></div>
+        <div class="stem"></div>
+        <div class="base"></div>
+      </div>
+      <h1>DER SOMMELIER</h1>
+      <div class="subtitle">Ein Wein-Abenteuer</div>
+      <button class="btn" onclick="startGame()">Neues Spiel</button>
+      <div style="margin-top: 12px;">
+        <button class="btn btn-small" onclick="loadGame()" id="btn-load" style="display:none">Weiterspielen</button>
+      </div>
+    </div>
+  `;
+}
+
+function renderMap() {
+  const lv = getLevel();
+  const unlockedRegions = getUnlockedRegionIds();
+  const xpProg = getXpProgress();
+  const nextLv = getNextLevel();
+
+  let regionsHtml = '';
+  Object.values(REGIONS).forEach(r => {
+    const unlocked = unlockedRegions.includes(r.id);
+    regionsHtml += `
+      <div class="map-region ${unlocked ? '' : 'locked'}"
+           style="left:${r.mapX}%;top:${r.mapY}%"
+           data-action="region" data-id="${r.id}">
+        <span class="region-icon">${r.icon}</span>
+        <span class="region-name">${r.name}</span>
+        ${unlocked ? `<span class="region-status">${(WINES_BY_REGION[r.id]||[]).length} Weine</span>` : '<span class="region-status">🔒</span>'}
+      </div>
+    `;
+  });
+
+  // Restaurant markers
+  let restHtml = '';
+  CONFIG.levels.forEach((l, i) => {
+    const unlocked = i <= state.player.level;
+    const isCurrent = i === state.player.level;
+    const positions = [
+      {x: 10, y: 72}, {x: 75, y: 20}, {x: 20, y: 35},
+      {x: 70, y: 50}, {x: 45, y: 15}
+    ];
+    restHtml += `
+      <div class="map-restaurant ${unlocked ? '' : 'locked'} ${isCurrent ? 'pixel-border' : ''}"
+           style="left:${positions[i].x}%;top:${positions[i].y}%"
+           data-action="restaurant" data-level="${i}">
+        <span class="rest-icon">${l.icon}</span>
+        <span class="rest-name">${l.name.split('"')[1] || l.name}</span>
+        <span class="rest-level">${isCurrent ? '← Du bist hier' : unlocked ? 'Freigeschaltet' : `Ab ${l.xpNeeded} XP`}</span>
+      </div>
+    `;
+  });
+
+  return `
+    <div id="scene-map" class="scene active">
+      <div class="map-header">
+        <h2>🗺️ Weltkarte</h2>
+        <div class="player-stats">
+          <div class="stat-badge">${lv.icon} <span class="val">${lv.name.split('"')[1] || lv.id}</span></div>
+          <div class="stat-badge">⭐ <span class="val">${state.player.xp} XP</span></div>
+          <div class="stat-badge">
+            <div class="xp-bar-container">
+              <div class="xp-bar-fill" style="width:${xpProg}%"></div>
+              <div class="xp-bar-text">${nextLv ? `${state.player.xp}/${nextLv.xpNeeded}` : 'MAX'}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="map-container">
+        ${regionsHtml}
+        ${restHtml}
+      </div>
+      <div class="map-footer">
+        <span>Klicke auf eine 🏳️ Region zum Lernen oder auf ein 🏠 Restaurant zum Arbeiten</span>
+        <span>Rep: ${renderRepStars(state.player.reputation[state.player.level])}</span>
+      </div>
+    </div>
+  `;
+}
+
+function renderRepStars(rep) {
+  const full = Math.floor(rep / 20);
+  const empty = 5 - full;
+  return '<span class="rep-stars">' +
+    '★'.repeat(full).split('').map(s => `<span class="rep-star">${s}</span>`).join('') +
+    '☆'.repeat(empty).split('').map(s => `<span class="rep-star empty">${s}</span>`).join('') +
+    '</span>';
+}
+
+function renderRestaurant() {
+  const lv = getLevel();
+  const shift = state.currentShift;
+
+  if (!shift) {
+    // Shift start screen
+    return `
+      <div id="scene-restaurant" class="scene active">
+        <div class="restaurant-header">
+          <h2>${lv.icon} ${lv.name}</h2>
+          <button class="btn btn-small" data-action="back-to-map">🗺️ Zurück</button>
+        </div>
+        <div class="restaurant-floor">
+          <div class="floor-tiles"></div>
+          <div style="position:relative;z-index:2;text-align:center;padding:40px;">
+            <h3 style="color:#e94560;font-size:22px;margin-bottom:16px;">Bereit für die Schicht?</h3>
+            <p style="color:#a7a7c5;margin-bottom:8px;">Dein Ruf: ${renderRepStars(state.player.reputation[state.player.level])}</p>
+            <p style="color:#a7a7c5;margin-bottom:24px;">${CONFIG.questionsPerShift} Gäste warten auf dich.</p>
+            <button class="btn" data-action="start-shift">Schicht starten!</button>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  // Active shift - show current question
+  const q = state.currentQuestion;
+  if (!q) {
+    // Shift summary
+    return renderShiftSummary();
+  }
+
+  // Render question based on type
+  let dialogHtml = '';
+  if (q.type === 'besserwisser') {
+    dialogHtml = renderBesserwisserQuestion(q);
+  } else {
+    dialogHtml = renderPairingQuestion(q);
+  }
+
+  return `
+    <div id="scene-restaurant" class="scene active">
+      <div class="restaurant-header">
+        <h2>${lv.icon} ${lv.name}</h2>
+        <div class="player-stats">
+          <div class="stat-badge">Gast <span class="val">${shift.questionIndex + 1}/${CONFIG.questionsPerShift}</span></div>
+          <div class="stat-badge">✓ <span class="val">${shift.correct}</span> ✗ <span class="val">${shift.wrong}</span></div>
+        </div>
+      </div>
+      <div class="restaurant-floor">
+        <div class="floor-tiles"></div>
+        <!-- Characters -->
+        <div class="character character-player">
+          <div class="pixel-char player-char">
+            <div class="head"></div>
+            <div class="body-part"></div>
+            <div class="legs"><div class="leg"></div><div class="leg"></div></div>
+          </div>
+        </div>
+        <div class="character character-guest">
+          <div class="pixel-char guest-char">
+            <div class="head" style="background:${q.guestColor || '#ffd5a0'}"></div>
+            <div class="body-part" style="background:${q.guestShirt || '#4a8'}"></div>
+            <div class="legs"><div class="leg"></div><div class="leg"></div></div>
+          </div>
+        </div>
+        ${dialogHtml}
+      </div>
+      ${state.overlay === 'feedback' ? renderFeedback() : ''}
+    </div>
+  `;
+}
+
+function renderPairingQuestion(q) {
+  const answered = q.answered !== undefined;
+  let optionsHtml = q.data.options.map((opt, i) => {
+    const wine = WINES[opt.wineId];
+    let cls = 'choice-btn';
+    if (answered) {
+      if (opt.correct) cls += ' correct';
+      else if (i === q.answered && !opt.correct) cls += ' wrong';
+    }
+    const colorDot = wine.color === 'rot' ? '🔴' : wine.color === 'weiss' ? '⚪' : '🩷';
+    return `<button class="${cls}" ${answered ? 'disabled' : ''} data-action="answer" data-index="${i}">
+      ${colorDot} ${wine.name} (${wine.region === 'deutschland' ? '🇩🇪' : wine.region === 'italien' ? '🇮🇹' : wine.region === 'griechenland' ? '🇬🇷' : '🇫🇷'} ${wine.sweetness})
+    </button>`;
+  }).join('');
+
+  return `
+    <div class="dialog-box">
+      <div class="dialog-speaker">🧑 Gast (${q.data.guestMood || ''})</div>
+      <div class="dialog-text">${q.data.scenario}<br><strong>${q.data.question}</strong></div>
+      <div class="dialog-choices">${optionsHtml}</div>
+    </div>
+  `;
+}
+
+function renderBesserwisserQuestion(q) {
+  const answered = q.answered !== undefined;
+  const data = q.data;
+
+  let optionsHtml = '';
+  if (!answered) {
+    optionsHtml = `
+      <button class="choice-btn" data-action="besserwisser-answer" data-value="true">🤔 "Das stimmt tatsächlich!"</button>
+      <button class="choice-btn" data-action="besserwisser-answer" data-value="false">😏 "Da muss ich höflich widersprechen..."</button>
+    `;
+  } else {
+    const playerSaidTrue = q.answered;
+    const wasRight = (playerSaidTrue === data.isCorrect);
+    optionsHtml = `
+      <div class="choice-btn ${wasRight ? 'correct' : 'wrong'}" style="cursor:default">
+        ${wasRight ? '✅ Richtig erkannt!' : '❌ Leider daneben!'}
+      </div>
+      <div style="color:#a7a7c5;font-size:13px;margin-top:8px;line-height:1.5;">
+        ${data.correction}
+      </div>
+      <button class="btn btn-small" style="margin-top:12px" data-action="next-question">Weiter →</button>
+    `;
+  }
+
+  return `
+    <div class="dialog-box">
+      <div class="dialog-speaker">🧐 Besserwisser-Gast (${data.guestMood})</div>
+      <div class="dialog-text">${data.statement}</div>
+      <div class="dialog-choices">${optionsHtml}</div>
+    </div>
+  `;
+}
+
+function renderFeedback() {
+  const d = state.overlayData;
+  return `
+    <div class="feedback-overlay">
+      <div class="feedback-card">
+        <h3 class="${d.correct ? 'correct' : 'wrong'}">${d.correct ? '✅ Richtig!' : '❌ Nicht ganz...'}</h3>
+        <p>${d.explanation}</p>
+        ${d.funFact ? `<p style="color:#f0e68c;font-style:italic;">💡 ${d.funFact}</p>` : ''}
+        <div class="xp-gain">${d.correct ? `+${CONFIG.xpPerCorrect} XP` : `+${CONFIG.xpPerWrong} XP`}</div>
+        <button class="btn" data-action="next-question">Weiter →</button>
+      </div>
+    </div>
+  `;
+}
+
+function renderShiftSummary() {
+  const shift = state.currentShift;
+  const lv = getLevel();
+  const accuracy = shift.total > 0 ? Math.round((shift.correct / shift.total) * 100) : 0;
+
+  return `
+    <div id="scene-restaurant" class="scene active">
+      <div class="restaurant-header">
+        <h2>${lv.icon} ${lv.name}</h2>
+      </div>
+      <div class="restaurant-floor" style="justify-content:center;align-items:center;">
+        <div class="floor-tiles"></div>
+        <div class="shift-summary" style="position:relative;z-index:2;">
+          <h3>🏁 Schicht geschafft!</h3>
+          <div class="shift-stats">
+            <div class="shift-stat"><div class="num">${shift.correct}</div><div class="label">Richtig</div></div>
+            <div class="shift-stat"><div class="num">${shift.wrong}</div><div class="label">Falsch</div></div>
+            <div class="shift-stat"><div class="num">${accuracy}%</div><div class="label">Genauigkeit</div></div>
+            <div class="shift-stat"><div class="num">+${shift.xpEarned}</div><div class="label">XP</div></div>
+          </div>
+          <p style="color:#a7a7c5;margin-bottom:20px;">Ruf: ${renderRepStars(state.player.reputation[state.player.level])}</p>
+          <div>
+            <button class="btn" data-action="another-shift">Nächste Schicht</button>
+            <button class="btn btn-small" data-action="back-to-map">🗺️ Zur Karte</button>
+          </div>
+        </div>
+      </div>
+      ${state.overlay === 'levelup' ? renderLevelUp() : ''}
+    </div>
+  `;
+}
+
+function renderLevelUp() {
+  const d = state.overlayData;
+  return `
+    <div class="levelup-overlay">
+      <div class="levelup-card">
+        <h2>🎉 AUFSTIEG!</h2>
+        <div class="new-title">${d.newLevel.icon} ${d.newLevel.name}</div>
+        <p>Neue Weinregionen freigeschaltet:<br>
+        ${d.newLevel.unlockRegions.map(r => REGIONS[r] ? `${REGIONS[r].icon} ${REGIONS[r].name}` : r).join(', ')}
+        </p>
+        <button class="btn" data-action="dismiss-levelup">Los geht's!</button>
+      </div>
+    </div>
+  `;
+}
+
+function renderRegion() {
+  const r = REGIONS[state.selectedRegion];
+  if (!r) return '';
+
+  const winesHtml = r.wines.map(wId => {
+    const w = WINES[wId];
+    if (!w) return '';
+    const colorCls = w.color === 'rot' ? 'wine-type-rot' : w.color === 'weiss' ? 'wine-type-weiss' : 'wine-type-rose';
+    return `
+      <div class="wine-list-item">
+        <div>
+          <span class="wine-name">${w.name}</span>
+          <span style="color:#a7a7c5;font-size:12px;margin-left:8px;">${w.flavors.join(', ')}</span>
+        </div>
+        <span class="wine-type ${colorCls}">${w.color} · ${w.sweetness}</span>
+      </div>
+    `;
+  }).join('');
+
+  const factsHtml = r.keyFacts.map(f => `<div style="margin:4px 0;color:#a7a7c5;">• ${f}</div>`).join('');
+
+  return `
+    <div id="scene-region" class="scene active">
+      <div class="region-header">
+        <h2>${r.icon} ${r.name}</h2>
+        <button class="btn btn-small" data-action="back-to-map">🗺️ Zurück</button>
+      </div>
+      <div class="region-content">
+        <p>${r.description}</p>
+        <h3>Wichtige Fakten</h3>
+        ${factsHtml}
+        <h3>Weine aus dieser Region</h3>
+        ${winesHtml || '<p style="color:#777;">Noch keine Weine freigeschaltet.</p>'}
+        ${r.wines.length > 0 ? `
+          <div style="margin-top:20px;text-align:center;">
+            <p style="color:#a7a7c5;margin-bottom:12px;">Lerne die Weine kennen, indem du im Restaurant arbeitest!</p>
+            <button class="btn btn-small" data-action="back-to-map">🗺️ Zur Weltkarte</button>
+          </div>
+        ` : ''}
+      </div>
+    </div>
+  `;
+}
+
+// ===== GAME LOGIC =====
+function startGame() {
+  state = {
+    scene: 'map',
+    player: {
+      name: 'Du',
+      level: 0,
+      xp: 0,
+      reputation: [0, 0, 0, 0, 0],
+      wineKnowledge: {},
+      completedQuestions: new Set(),
+    },
+    currentShift: null,
+    currentQuestion: null,
+    selectedRegion: null,
+    notification: null,
+    overlay: null,
+    overlayData: null,
+  };
+  saveGame();
+  render();
+}
+
+function startShift() {
+  const levelId = getLevel().id;
+  const questionPool = QUESTIONS[levelId];
+  if (!questionPool) {
+    showNotification('Für dieses Level gibt es noch keine Fragen!');
+    return;
+  }
+
+  // Build question queue
+  const allQuestions = [];
+  if (questionPool.food_pairing) {
+    questionPool.food_pairing.forEach(q => allQuestions.push({ type: 'food_pairing', data: q }));
+  }
+  if (questionPool.preference) {
+    questionPool.preference.forEach(q => allQuestions.push({ type: 'preference', data: q }));
+  }
+  if (questionPool.besserwisser) {
+    questionPool.besserwisser.forEach(q => allQuestions.push({ type: 'besserwisser', data: q }));
+  }
+
+  const selected = shuffle(allQuestions).slice(0, CONFIG.questionsPerShift);
+
+  // Assign random guest appearance
+  const guestColors = ['#ffd5a0', '#f0c080', '#c68642', '#8d5524', '#ffe0bd'];
+  const shirtColors = ['#4a8', '#48a', '#a48', '#8a4', '#84a', '#a84', '#488'];
+  selected.forEach(q => {
+    q.guestColor = pick(guestColors);
+    q.guestShirt = pick(shirtColors);
+  });
+
+  state.currentShift = {
+    questions: selected,
+    questionIndex: 0,
+    correct: 0,
+    wrong: 0,
+    total: 0,
+    xpEarned: 0,
+  };
+  state.currentQuestion = selected[0];
+  state.overlay = null;
+  render();
+}
+
+function answerQuestion(index) {
+  const q = state.currentQuestion;
+  if (q.answered !== undefined) return;
+
+  q.answered = index;
+  const opt = q.data.options[index];
+  const isCorrect = opt.correct;
+  const wine = WINES[opt.wineId];
+
+  // Update stats
+  const xpGain = isCorrect ? CONFIG.xpPerCorrect : CONFIG.xpPerWrong;
+  const repGain = isCorrect ? CONFIG.repPerCorrect : CONFIG.repPerWrong;
+
+  state.player.xp += xpGain;
+  state.player.reputation[state.player.level] = Math.max(0, Math.min(100, state.player.reputation[state.player.level] + repGain));
+  state.currentShift.xpEarned += xpGain;
+
+  if (isCorrect) state.currentShift.correct++;
+  else state.currentShift.wrong++;
+  state.currentShift.total++;
+
+  // Track wine knowledge
+  if (!state.player.wineKnowledge[opt.wineId]) {
+    state.player.wineKnowledge[opt.wineId] = { seen: 0, correct: 0 };
+  }
+  state.player.wineKnowledge[opt.wineId].seen++;
+  if (isCorrect) state.player.wineKnowledge[opt.wineId].correct++;
+
+  state.overlay = 'feedback';
+  state.overlayData = {
+    correct: isCorrect,
+    explanation: opt.explanation,
+    funFact: wine.funFact,
+    xp: xpGain,
+  };
+
+  saveGame();
+  render();
+}
+
+function answerBesserwisser(value) {
+  const q = state.currentQuestion;
+  if (q.answered !== undefined) return;
+
+  const playerSaidTrue = value === 'true';
+  q.answered = playerSaidTrue;
+
+  const isCorrect = (playerSaidTrue === q.data.isCorrect);
+  const xpGain = isCorrect ? CONFIG.xpPerCorrect : CONFIG.xpPerWrong;
+  const repGain = isCorrect ? CONFIG.repPerCorrect : CONFIG.repPerWrong;
+
+  state.player.xp += xpGain;
+  state.player.reputation[state.player.level] = Math.max(0, Math.min(100, state.player.reputation[state.player.level] + repGain));
+  state.currentShift.xpEarned += xpGain;
+
+  if (isCorrect) state.currentShift.correct++;
+  else state.currentShift.wrong++;
+  state.currentShift.total++;
+
+  saveGame();
+  render();
+}
+
+function nextQuestion() {
+  state.overlay = null;
+  state.overlayData = null;
+
+  const shift = state.currentShift;
+  shift.questionIndex++;
+
+  if (shift.questionIndex >= shift.questions.length) {
+    // Shift done
+    state.currentQuestion = null;
+
+    // Check level up
+    const nextLv = getNextLevel();
+    if (nextLv && state.player.xp >= nextLv.xpNeeded) {
+      state.player.level++;
+      // Unlock new regions
+      nextLv.unlockRegions.forEach(rId => {
+        if (REGIONS[rId]) REGIONS[rId].unlocked = true;
+      });
+      state.overlay = 'levelup';
+      state.overlayData = { newLevel: nextLv };
+    }
+
+    saveGame();
+    render();
+    return;
+  }
+
+  state.currentQuestion = shift.questions[shift.questionIndex];
+  render();
+}
+
+// ===== SAVE / LOAD =====
+function saveGame() {
+  try {
+    const saveData = {
+      ...state,
+      player: {
+        ...state.player,
+        completedQuestions: [...state.player.completedQuestions],
+      }
+    };
+    delete saveData.currentShift;
+    delete saveData.currentQuestion;
+    delete saveData.overlay;
+    delete saveData.overlayData;
+    delete saveData.notification;
+    localStorage.setItem('sommelier_save', JSON.stringify(saveData));
+  } catch(e) {}
+}
+
+function loadGame() {
+  try {
+    const data = JSON.parse(localStorage.getItem('sommelier_save'));
+    if (data) {
+      state.player = data.player;
+      state.player.completedQuestions = new Set(state.player.completedQuestions || []);
+      state.scene = 'map';
+      state.currentShift = null;
+      state.currentQuestion = null;
+      // Re-unlock regions
+      getUnlockedRegionIds().forEach(rId => {
+        if (REGIONS[rId]) REGIONS[rId].unlocked = true;
+      });
+      render();
+    }
+  } catch(e) { startGame(); }
+}
+
+function hasSave() {
+  return !!localStorage.getItem('sommelier_save');
+}
+
+// ===== EVENT HANDLING =====
+function attachEventListeners() {
+  document.querySelectorAll('[data-action]').forEach(el => {
+    el.addEventListener('click', handleAction);
+  });
+  // Show load button if save exists
+  const loadBtn = document.getElementById('btn-load');
+  if (loadBtn && hasSave()) loadBtn.style.display = 'inline-block';
+}
+
+function handleAction(e) {
+  const el = e.currentTarget;
+  const action = el.dataset.action;
+
+  switch (action) {
+    case 'region': {
+      const id = el.dataset.id;
+      if (REGIONS[id] && getUnlockedRegionIds().includes(id)) {
+        state.selectedRegion = id;
+        state.scene = 'region';
+        render();
+      } else {
+        showNotification('🔒 Diese Region ist noch nicht freigeschaltet!');
+      }
+      break;
+    }
+    case 'restaurant': {
+      const level = parseInt(el.dataset.level);
+      if (level <= state.player.level) {
+        state.scene = 'restaurant';
+        state.currentShift = null;
+        render();
+      } else {
+        showNotification(`🔒 Du brauchst ${CONFIG.levels[level].xpNeeded} XP für dieses Restaurant!`);
+      }
+      break;
+    }
+    case 'back-to-map':
+      state.scene = 'map';
+      state.currentShift = null;
+      state.currentQuestion = null;
+      state.overlay = null;
+      render();
+      break;
+    case 'start-shift':
+      startShift();
+      break;
+    case 'answer': {
+      const idx = parseInt(el.dataset.index);
+      answerQuestion(idx);
+      break;
+    }
+    case 'besserwisser-answer': {
+      const val = el.dataset.value;
+      answerBesserwisser(val);
+      break;
+    }
+    case 'next-question':
+      nextQuestion();
+      break;
+    case 'another-shift':
+      state.overlay = null;
+      state.currentShift = null;
+      state.currentQuestion = null;
+      startShift();
+      break;
+    case 'dismiss-levelup':
+      state.overlay = null;
+      state.overlayData = null;
+      render();
+      break;
+  }
+}
+
+// ===== INITIALIZATION =====
+render();
+</script>
+</body>
+</html>
