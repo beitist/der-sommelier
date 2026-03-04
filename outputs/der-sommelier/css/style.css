@@ -355,10 +355,10 @@ body {
   margin-bottom: 8px;
 }
 .wine-desc {
-  font-size: 15px;
+  font-size: 17px;
   color: var(--c-muted);
   margin-bottom: 20px;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 .wine-details {
   display: grid;
@@ -585,7 +585,7 @@ body {
 /* Dialog */
 .dialog-container {
   position: absolute;
-  bottom: 0; left: 30%; right: 0;
+  bottom: 0; left: 47%; right: 0;
   z-index: 10;
   padding: 0 24px 24px;
 }
@@ -595,7 +595,7 @@ body {
   border-radius: 12px;
   padding: 20px 24px;
   backdrop-filter: blur(8px);
-  max-width: 900px;
+  max-width: 720px;
   margin: 0 auto;
 }
 .dialog-besserwisser { border-color: var(--c-gold); }
@@ -604,7 +604,7 @@ body {
   margin-bottom: 10px;
 }
 .dialog-guest {
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 700;
   color: var(--c-accent);
 }
@@ -618,18 +618,18 @@ body {
 }
 .dialog-body { margin-bottom: 14px; }
 .dialog-scenario {
-  font-size: 15px;
+  font-size: 17px;
   color: var(--c-text);
   line-height: 1.5;
   margin-bottom: 6px;
 }
 .bw-statement {
-  font-size: 17px;
+  font-size: 18px;
   font-style: italic;
   color: var(--c-gold);
 }
 .dialog-question {
-  font-size: 14px;
+  font-size: 16px;
   color: var(--c-accent);
   font-weight: 600;
 }
@@ -647,7 +647,7 @@ body {
   display: flex; justify-content: space-between; align-items: center;
   color: var(--c-text);
   font-family: var(--font-ui);
-  font-size: 14px;
+  font-size: 15px;
 }
 .dialog-choice:hover:not(:disabled):not(.correct):not(.wrong) {
   background: rgba(233,69,96,0.15);
@@ -672,7 +672,7 @@ body {
   margin-bottom: 8px;
 }
 .bw-correction {
-  font-size: 14px;
+  font-size: 15px;
   color: var(--c-muted);
   line-height: 1.5;
   margin-bottom: 12px;
@@ -706,7 +706,7 @@ body {
 .fb-correct h3 { color: var(--c-success); }
 .fb-wrong h3 { color: var(--c-danger); }
 .fb-explanation {
-  font-size: 14px; color: var(--c-muted);
+  font-size: 15px; color: var(--c-muted);
   line-height: 1.6; margin-bottom: 12px;
 }
 .fb-funfact {
@@ -804,7 +804,7 @@ body {
   z-index: 2;
 }
 .chef-sprite-area img {
-  max-height: 520px;
+  max-height: 1274px;
   image-rendering: pixelated;
   filter: drop-shadow(0 6px 24px rgba(0,0,0,0.5));
 }
@@ -844,7 +844,7 @@ body {
   font-style: italic;
 }
 .chef-intro-text {
-  font-size: 15px;
+  font-size: 17px;
   color: var(--c-text);
   line-height: 1.7;
   margin-bottom: 20px;
@@ -859,13 +859,14 @@ body {
 .explorer-intro {
   flex: 1;
   overflow-y: auto;
-  padding: 32px 48px;
+  padding: 32px 64px;
+  max-width: 1100px;
 }
 .explorer-intro h2 {
   font-family: var(--font-pixel);
-  font-size: 20px;
+  font-size: 22px;
   color: var(--c-accent);
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 .intro-section {
   background: rgba(0,0,0,0.25);
@@ -875,14 +876,14 @@ body {
   margin-bottom: 14px;
 }
 .intro-section h3 {
-  font-size: 16px;
+  font-size: 19px;
   color: var(--c-gold);
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 .intro-section p {
-  font-size: 14px;
+  font-size: 17px;
   color: var(--c-text);
-  line-height: 1.6;
+  line-height: 1.7;
 }
 .intro-recap {
   background: rgba(240,230,140,0.08);
@@ -892,14 +893,14 @@ body {
   margin-top: 20px;
 }
 .intro-recap h3 {
-  font-size: 15px;
+  font-size: 17px;
   color: var(--c-gold);
   margin-bottom: 10px;
 }
 .intro-recap li {
-  font-size: 14px;
+  font-size: 16px;
   color: var(--c-text);
-  line-height: 1.6;
+  line-height: 1.7;
   margin-bottom: 4px;
   list-style: none;
 }
@@ -940,12 +941,12 @@ body {
 .guest-sprite-area {
   position: absolute;
   z-index: 2;
-  bottom: 5%;
+  bottom: calc(5% + 20px);
   left: 8%;
   pointer-events: none;
 }
 .guest-sprite {
-  max-height: 480px;
+  max-height: 1183px;
   image-rendering: pixelated;
   filter: drop-shadow(0 6px 20px rgba(0,0,0,0.6));
 }
@@ -1071,6 +1072,149 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+/* ===== CHEF COMMENTS IN FEEDBACK ===== */
+.fb-chef-comment {
+  margin: 10px 0;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-style: italic;
+  line-height: 1.5;
+}
+.fb-chef-stress {
+  background: rgba(231,76,60,0.1);
+  border: 1px solid rgba(231,76,60,0.3);
+  color: #e74c3c;
+}
+.fb-chef-praise {
+  background: rgba(46,204,113,0.1);
+  border: 1px solid rgba(46,204,113,0.3);
+  color: #2ecc71;
+}
+.fb-beer {
+  background: rgba(240,200,50,0.15);
+  border: 2px solid rgba(240,200,50,0.4);
+  color: #f0c832;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  animation: beerShake 0.5s ease;
+}
+@keyframes beerShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+.shift-chef-comment {
+  margin: 16px 0;
+  padding: 12px 18px;
+  background: rgba(240,230,140,0.1);
+  border: 1px solid rgba(240,230,140,0.25);
+  border-radius: 8px;
+  font-size: 14px;
+  font-style: italic;
+  color: var(--c-gold);
+  line-height: 1.5;
+}
+
+/* ===== SKULL EASTER EGG ===== */
+.skull-easter-egg {
+  position: absolute;
+  z-index: 4;
+  left: 5%;
+  top: 15%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.1s;
+}
+.skull-easter-egg:hover {
+  opacity: 0.15;
+  background: radial-gradient(circle, rgba(233,69,96,0.3), transparent 70%);
+  border-radius: 50%;
+}
+.skull-easter-egg:active {
+  opacity: 0.4;
+}
+
+/* ===== MINI-GAME ===== */
+.scene-minigame {
+  background: #0a0a2e;
+  justify-content: center;
+  align-items: center;
+}
+.minigame-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+#minigame-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  image-rendering: pixelated;
+}
+.minigame-end-card {
+  background: var(--c-card);
+  border: 4px solid var(--c-accent);
+  border-radius: 16px;
+  padding: 40px 48px;
+  text-align: center;
+  animation: popIn 0.4s ease;
+  box-shadow: 0 0 60px rgba(233,69,96,0.3);
+}
+
+/* ===== CHEF HINT (Frag den Chef) ===== */
+.btn-chef-hint {
+  background: rgba(240,230,140,0.1);
+  border: 2px solid rgba(240,230,140,0.3);
+  color: var(--c-gold);
+  padding: 6px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-bottom: 8px;
+}
+.btn-chef-hint:hover {
+  background: rgba(240,230,140,0.2);
+  border-color: var(--c-gold);
+  transform: translateY(-1px);
+}
+.chef-hint-box {
+  background: rgba(240,230,140,0.1);
+  border: 2px solid rgba(240,230,140,0.35);
+  border-radius: 8px;
+  padding: 10px 16px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: popIn 0.3s ease;
+}
+.chef-hint-icon { font-size: 20px; flex-shrink: 0; }
+.chef-hint-text {
+  flex: 1;
+  font-size: 14px;
+  font-style: italic;
+  color: var(--c-gold);
+  line-height: 1.4;
+}
+.chef-hint-cost {
+  font-size: 11px;
+  color: var(--c-muted);
+  white-space: nowrap;
+  opacity: 0.7;
+}
+.dialog-choice.eliminated {
+  opacity: 0.3;
+  text-decoration: line-through;
+  pointer-events: none;
+  filter: grayscale(1);
 }
 
 /* ===== SCROLLBAR ===== */

@@ -55,6 +55,16 @@ QUESTIONS.sterne = {
         { wineId: 'mueller_thurgau', correct: false, explanation: 'Müller-Thurgau zum Lammkarree? Das Fleisch würde den Wein komplett überdecken.' },
       ]
     },
+    {
+      id: 'fp_4_6', guestId: 'botschafterin', mood: '🌐',
+      scenario: 'Die Botschafterin gibt ein intimes Dinner für drei befreundete Diplomaten. "Wir starten mit Ziegenkäse-Salat und Walnüssen. Etwas Französisches, Elegantes – ein Weißwein, der zeigt, dass ich Geschmack habe."',
+      question: 'Was empfiehlst du?',
+      options: [
+        { wineId: 'sancerre', correct: true, explanation: 'Sancerre – ein eleganter Sauvignon Blanc von der Loire. Ziegenkäse und Sancerre ist eine der berühmtesten Paarungen Frankreichs. Die Botschafterin beweist damit wahren Geschmack!' },
+        { wineId: 'dornfelder', correct: false, explanation: 'Dornfelder zum Ziegenkäse-Salat beim Diplomaten-Dinner? Das wäre ein diplomatischer Fauxpas.' },
+        { wineId: 'imiglykos', correct: false, explanation: 'Imiglykos ist lieblich und griechisch – weder elegant noch französisch, wie die Botschafterin es wünscht.' },
+      ]
+    },
   ],
 
   preference: [
@@ -115,6 +125,12 @@ QUESTIONS.sterne = {
       isCorrect: false,
       correction: 'Auch in Kanada wird hervorragender Eiswein (Icewine) produziert – sogar in größeren Mengen als in Deutschland! Auch Österreich kennt Eiswein. In Deutschland ist es aber eine besonders lange Tradition.'
     },
+    {
+      id: 'bw_4_5', guestId: 'opernsaengerin', mood: '🎶',
+      statement: 'Die Opernsängerin nippt am Sancerre und verkündet dramatisch: "Sancerre wird aus Chardonnay gemacht – wie fast alle großen französischen Weißweine. Das ist einfach die beste weiße Traube!"',
+      isCorrect: false,
+      correction: 'Sancerre wird aus Sauvignon Blanc gemacht, nicht aus Chardonnay! Der Sauvignon Blanc gibt dem Sancerre seine typische Frische, Stachelbeere und das Feuerstein-Aroma. Chardonnay findet man eher im Burgund und in Chablis.'
+    },
   ],
 
   weinwissen: [
@@ -172,6 +188,17 @@ QUESTIONS.sterne = {
         { text: 'Das Ende der Gärung', correct: false },
       ],
       explanation: 'Der "Abgang" (frz. "finale") beschreibt, wie lange und intensiv der Geschmack im Mund nachwirkt. Bei großen Weinen kann der Abgang über 60 Sekunden dauern – das Zeichen wahrer Qualität!'
+    },
+    {
+      id: 'ww_4_6', guestId: 'kunstsammlerin', mood: '🖼️',
+      question: 'Die Kunstsammlerin betrachtet die Schlieren am Glas wie ein Gemälde: "Diese Tränen am Glas – manche sagen, je mehr Schlieren, desto besser der Wein. Was sagen sie wirklich aus?"',
+      options: [
+        { text: 'Den Alkohol- und Glyceringehalt des Weins', correct: true },
+        { text: 'Die Qualitätsstufe und den Preis', correct: false },
+        { text: 'Ob der Wein biologisch angebaut wurde', correct: false },
+        { text: 'Das Alter des Weins in Jahren', correct: false },
+      ],
+      explanation: 'Die "Kirchenfenster" oder "Tränen" (frz. "larmes") entstehen durch den Marangoni-Effekt: Alkohol verdunstet am Glasrand schneller als Wasser, was zu Schlieren führt. Mehr Schlieren = mehr Alkohol und Glycerin – aber nicht automatisch mehr Qualität!'
     },
   ],
 

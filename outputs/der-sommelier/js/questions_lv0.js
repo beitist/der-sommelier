@@ -65,6 +65,16 @@ QUESTIONS.imbiss = {
         { wineId: 'retsina', correct: false, explanation: 'Erfrischend ja, aber der Harzgeschmack passt nicht zu "nichts Schweres".' },
       ]
     },
+    {
+      id: 'fp_0_7', guestId: 'onkel_werner', mood: '🍖',
+      scenario: 'Onkel Werner kommt mit Sauerkrautflecken auf dem Hemd und bestellt: "Mädel, Leberkäse mit Spiegelei und Kartoffelsalat! Und bring mir nen ordentlichen Weißen – aber keinen von dem neumodischen Kram. Was Bodenständiges!"',
+      question: 'Was empfiehlst du?',
+      options: [
+        { wineId: 'riesling', correct: true, explanation: 'Riesling zum Leberkäse – ein ehrlicher deutscher Wein zum ehrlichen deutschen Essen. Die Säure schneidet schön durch das Fett!' },
+        { wineId: 'retsina', correct: false, explanation: 'Retsina ist für Werner definitiv "neumodischer Kram" – griechischer Harzwein zum Leberkäse? Da dreht er sich um.' },
+        { wineId: 'imiglykos', correct: false, explanation: 'Ein lieblicher Grieche zum Leberkäse? Onkel Werner will was Bodenständiges, nicht was Süßes.' },
+      ]
+    },
   ],
 
   preference: [
@@ -96,6 +106,16 @@ QUESTIONS.imbiss = {
         { wineId: 'lambrusco', correct: true, explanation: 'Wir haben keinen Rosé im Keller, aber Lambrusco hat eine fruchtige Süße und rötliche Farbe – eine gute Alternative!' },
         { wineId: 'riesling', correct: false, explanation: 'Riesling ist weiß und trocken – nicht was die Gästin sucht.' },
         { wineId: 'retsina', correct: false, explanation: 'Retsina ist weiß und hat einen starken Eigengeschmack – nichts für Rosé-Fans.' },
+      ]
+    },
+    {
+      id: 'pref_0_4', guestId: 'die_sportlerin', mood: '🏃',
+      scenario: 'Die Sportlerin ist diesmal nach dem Yoga da und deutlich entspannter. "Heute gönn ich mir was! Aber bitte trocken und weiß – ich mag keine süßen Weine. Und nichts über 12% Alkohol, morgen ist Halbmarathon."',
+      question: 'Was empfiehlst du?',
+      options: [
+        { wineId: 'riesling', correct: true, explanation: 'Trockener Riesling hat oft nur 11-12% Alkohol und ist erfrischend trocken – perfekt für die disziplinierte Sportlerin!' },
+        { wineId: 'imiglykos', correct: false, explanation: 'Imiglykos ist lieblich – sie wollte ausdrücklich trocken!' },
+        { wineId: 'dornfelder', correct: false, explanation: 'Dornfelder ist rot, nicht weiß. Zuhören ist die halbe Miete!' },
       ]
     },
   ],
@@ -136,6 +156,18 @@ QUESTIONS.imbiss = {
       statement: '"Ich trinke nur selten Wein," sagt die Sportlerin, "weil von den Sulfiten im Wein kriegt man doch Kopfschmerzen. Das steht überall im Netz."',
       isCorrect: false,
       correction: 'Stark vereinfacht! Kopfschmerzen kommen eher von Histaminen, Tanninen – oder zu viel Alkohol. Sulfite sind in Trockenfrüchten in viel höherer Konzentration und machen da keine Probleme!'
+    },
+    {
+      id: 'bw_0_7', guestId: 'studenten', mood: '🍕',
+      statement: 'Ein Student hält die Lambrusco-Flasche hoch: "Ey Leute, das ist doch kein echter Wein – Lambrusco ist alkoholfreie Limo aus Italien, oder?"',
+      isCorrect: false,
+      correction: 'Lambrusco ist ein vollwertiger Wein mit ca. 7-11% Alkohol! Er ist leicht perlend (frizzante) und oft etwas süßer, aber definitiv kein Softdrink. In der Emilia-Romagna hat er eine jahrhundertealte Tradition.'
+    },
+    {
+      id: 'bw_0_8', guestId: 'die_sportlerin', mood: '💧',
+      statement: 'Die Sportlerin schaut nachdenklich auf ihr Glas Müller-Thurgau: "Weißwein hat doch generell weniger Kalorien als Rotwein, oder? Deswegen trinke ich lieber Weißen."',
+      isCorrect: false,
+      correction: 'Nicht unbedingt! Die Kalorien kommen hauptsächlich vom Alkohol- und Zuckergehalt, nicht von der Farbe. Ein trockener Rotwein mit 12% hat ähnlich viele Kalorien wie ein trockener Weißer. Ein lieblicher Weißwein kann sogar mehr haben!'
     },
   ],
 
@@ -189,6 +221,26 @@ QUESTIONS.imbiss = {
         { text: 'Eine Weinregion', correct: false },
       ],
       explanation: 'Dornfelder ist eine rote Rebsorte! 1955 an der Weinbauschule Weinsberg gezüchtet. Benannt nach dem Gründer der Schule, Immanuel Dornfeld.'
+    },
+    {
+      id: 'ww_0_6', guestId: 'die_sportlerin', mood: '🏋️',
+      question: 'Die Sportlerin studiert die Karte und fragt: "Sag mal, was bedeutet eigentlich \'lieblich\' bei Wein? Heißt das einfach nur süß?"',
+      options: [
+        { text: 'Deutlich süß – zwischen halbtrocken und süß', correct: true },
+        { text: 'Besonders mild und magenfreundlich', correct: false },
+        { text: 'Ein Wein mit wenig Alkohol', correct: false },
+      ],
+      explanation: '"Lieblich" bedeutet deutlich spürbarer Restzucker (18-45 g/l). Es ist süßer als halbtrocken, aber noch nicht so süß wie "süß". Imiglykos und Lambrusco sind typisch liebliche Weine.'
+    },
+    {
+      id: 'ww_0_7', guestId: 'das_paerchen', mood: '💕',
+      question: 'Er will vor ihr angeben und fragt dich leise: "Was ist eigentlich der Unterschied zwischen Weißwein und Rotwein – nur die Traubenfarbe, oder steckt da mehr dahinter?"',
+      options: [
+        { text: 'Die Schale gibt die Farbe – bei Rotwein gärt sie mit', correct: true },
+        { text: 'Es sind komplett andere Pflanzenarten', correct: false },
+        { text: 'Der Unterschied ist nur die zugesetzte Farbe', correct: false },
+      ],
+      explanation: 'Der Saft fast aller Trauben ist hell! Die Farbe kommt von der Schale: Bei Rotwein bleibt die Schale beim Gären dabei (Maischegärung), bei Weißwein wird sie vorher entfernt. Daher auch die Tannine im Rotwein!'
     },
   ],
 };

@@ -65,6 +65,26 @@ QUESTIONS.steakhaus = {
         { wineId: 'primitivo', correct: false, explanation: 'Primitivo ist kräftig – fast zu "laut" fürs diskrete Geschäftsessen.' },
       ]
     },
+    {
+      id: 'fp_1_7', guestId: 'stammgast_jens', mood: '🍔',
+      scenario: 'Stammgast Jens hat sich heute den Mega-Burger mit Jalapeños und BBQ-Sauce bestellt. Er klopft auf den Tisch: "So, letztes Mal hatte ich Primitivo – top! Aber heute will ich was Neues. Was passt zum Burger, Chef?"',
+      question: 'Was empfiehlst du?',
+      options: [
+        { wineId: 'chianti', correct: true, explanation: 'Chianti mit seiner Kirschfrucht und den Tanninen schneidet durch die BBQ-Sauce und hält der Würze stand – ein kräftiger Essensbegleiter!' },
+        { wineId: 'gruener_veltliner', correct: false, explanation: 'Grüner Veltliner ist zu leicht und zart für einen Mega-Burger mit BBQ-Sauce.' },
+        { wineId: 'sekt', correct: false, explanation: 'Sekt zum Mega-Burger? Jens würde dich auslachen.' },
+      ]
+    },
+    {
+      id: 'fp_1_8', guestId: 'fitnesstrainerin', mood: '🥗',
+      scenario: 'Die Fitnesstrainerin ist heute mit einer Kollegin da. "Zwei Mal gegrillten Lachs mit Zitrone und Dill bitte! Und dazu einen Weißwein – trocken, nicht zu viel Alkohol. Wir müssen morgen früh raus zum Bootcamp."',
+      question: 'Was empfiehlst du?',
+      options: [
+        { wineId: 'mueller_thurgau', correct: true, explanation: 'Müller-Thurgau ist mild, leicht und hat moderate 11-12% Alkohol – perfekt zum Lachs und für den Bootcamp-Morgen!' },
+        { wineId: 'primitivo', correct: false, explanation: 'Primitivo hat 14%+ Alkohol und ist ein schwerer Roter – das Gegenteil von dem, was die Fitnesstrainerin will.' },
+        { wineId: 'dornfelder', correct: false, explanation: 'Dornfelder ist ein Rotwein – zum gegrillten Lachs mit Zitrone und Dill passt ein frischer Weißer viel besser.' },
+      ]
+    },
   ],
 
   preference: [
@@ -108,6 +128,16 @@ QUESTIONS.steakhaus = {
         { wineId: 'dornfelder', correct: false, explanation: 'Dornfelder ist OK, aber nicht die elegante Finesse, die Marco meint.' },
       ]
     },
+    {
+      id: 'pref_1_5', guestId: 'grillmeister', mood: '🔥',
+      scenario: 'Der Grillmeister wischt sich die Hände an der Schürze ab: "Alter, heute kein Steak – heute ist Pulled Pork angesagt! Acht Stunden Smoker. Ich brauch nen fruchtigen Roten, der da mitgeht. Nix Säuerliches!"',
+      question: 'Was empfiehlst du?',
+      options: [
+        { wineId: 'primitivo', correct: true, explanation: 'Primitivo – fruchtig, vollmundig, wenig Säure. Die dunkle Beerenfrucht harmoniert perfekt mit dem rauchigen Pulled Pork!' },
+        { wineId: 'riesling', correct: false, explanation: 'Riesling ist säurebetont und weiß – genau das, was der Grillmeister NICHT will.' },
+        { wineId: 'rose_provence', correct: false, explanation: 'Rosé zum Pulled Pork? Zu leicht. Das acht Stunden Smoker-Fleisch braucht einen Wein mit Wumms.' },
+      ]
+    },
   ],
 
   besserwisser: [
@@ -134,6 +164,12 @@ QUESTIONS.steakhaus = {
       statement: 'Der ältere Geschäftsmann schwenkt sein Glas: "Merken Sie sich, junger Mann: Je dunkler der Rotwein, desto schwerer ist er. Das ist ein Naturgesetz."',
       isCorrect: false,
       correction: 'Nicht immer! Nebbiolo (Barolo) ist relativ hell aber sehr kraftvoll. Und ein junger Malbec kann tiefschwarz, aber fruchtig-weich sein. Farbe ≠ Gewicht!'
+    },
+    {
+      id: 'bw_1_5', guestId: 'stammgast_jens', mood: '🍷',
+      statement: 'Jens kippt seinen Primitivo und sagt: "Weißt du was, Primitivo heißt so, weil er primitiv hergestellt wird – einfach Trauben pressen und fertig. Deswegen ist der auch so günstig!"',
+      isCorrect: false,
+      correction: 'Der Name "Primitivo" kommt vom lateinischen "primativus" – er reift früh (primitiv = "der Erste"). Die Traube wird als eine der ersten im Jahr gelesen. Mit primitiver Herstellung hat das nichts zu tun!'
     },
   ],
 
@@ -192,6 +228,17 @@ QUESTIONS.steakhaus = {
         { text: 'Die Flaschenform', correct: false },
       ],
       explanation: '"Körper" beschreibt das Mundgefühl: von leicht (wie Wasser) bis voll/schwer (wie Milch). Beeinflusst durch Alkohol, Tannine, Extrakt und Glycerin.'
+    },
+    {
+      id: 'ww_1_6', guestId: 'der_amerikaner', mood: '🇺🇸',
+      question: 'Der Amerikaner zeigt auf sein Glas Primitivo: "Hey, in Kalifornien trinken wir Zinfandel – und der schmeckt genau so! Sind das die gleichen Trauben?"',
+      options: [
+        { text: 'Ja – Primitivo und Zinfandel sind genetisch identisch', correct: true },
+        { text: 'Nein, komplett verschiedene Rebsorten', correct: false },
+        { text: 'Zinfandel ist eine Kreuzung aus Primitivo und Merlot', correct: false },
+        { text: 'Nur der Name ist gleich, die Trauben sind anders', correct: false },
+      ],
+      explanation: 'DNA-Analysen haben bewiesen: Primitivo (IT) = Zinfandel (USA) = Crljenak Kaštelanski (Kroatien). Die gleiche Traube reiste über Jahrhunderte durch die Welt und bekam überall einen anderen Namen!'
     },
   ],
 };

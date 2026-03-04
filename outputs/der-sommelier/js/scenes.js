@@ -16,6 +16,7 @@ function render() {
       case 'map': html = renderMap(); break;
       case 'restaurant': html = renderRestaurant(); break;
       case 'region': html = renderRegion(); break;
+      case 'minigame': html = renderMiniGame(); break;
     }
   }
   root.innerHTML = html;
@@ -369,6 +370,7 @@ function renderRestaurantLobby() {
         <div class="restaurant-bg">
           <div class="rest-layer rest-bg-layer" style="background-image:url('assets/${lv.bgKey}/hintergrund.png')"></div>
           <div class="rest-layer rest-fg-layer" style="background-image:url('assets/${lv.bgKey}/theke.png')"></div>
+          ${lv.id === 'steakhaus' ? '<div class="skull-easter-egg" onclick="handleSkullClick()" title="💀"></div>' : ''}
           <div class="rest-ui-overlay">
             <div class="lobby-card">
               ${chef ? `<img class="lobby-chef-mini" src="${chef.sprite}" alt="${chef.name}" onerror="this.style.display='none'">` : ''}
@@ -444,6 +446,18 @@ function renderQuestion() {
     </div>`;
 }
 
+function renderHintArea(q) {
+  if (q.answered !== undefined) return '';
+  if (q.hintUsed) {
+    return `<div class="chef-hint-box">
+      <span class="chef-hint-icon">👨‍🍳</span>
+      <span class="chef-hint-text">${q.chefHint}</span>
+      <span class="chef-hint-cost">halbes Trinkgeld</span>
+    </div>`;
+  }
+  return `<button class="btn btn-chef-hint" onclick="askChefForHelp()">👨‍🍳 Frag den Chef</button>`;
+}
+
 function renderPairingQ(q) {
   const answered = q.answered !== undefined;
   const guest = state.currentGuest;
@@ -455,8 +469,9 @@ function renderPairingQ(q) {
       if (opt.correct) cls += ' correct';
       else if (i === q.answered && !opt.correct) cls += ' wrong';
     }
+    if (q.eliminatedOption === i) cls += ' eliminated';
     const dot = wine ? (wine.color === 'rot' ? '🔴' : wine.color === 'weiss' ? '⚪' : '🩷') : '';
-    return `<button class="${cls}" ${answered ? 'disabled' : ''} onclick="answerQuestion(${i})">
+    return `<button class="${cls}" ${answered || q.eliminatedOption === i ? 'disabled' : ''} onclick="answerQuestion(${i})">
       <span class="choice-wine">${dot} ${wine ? wine.name : '???'}</span>
       <span class="choice-detail">${wine ? wine.sweetness + ' · ' + wine.flavors.slice(0,2).join(', ') : ''}</span>
     </button>`;
@@ -472,6 +487,7 @@ function renderPairingQ(q) {
         <p class="dialog-scenario">${q.data.scenario}</p>
         <p class="dialog-question">${q.data.question}</p>
       </div>
+      ${renderHintArea(q)}
       <div class="dialog-choices">
         ${optionsHtml}
       </div>
@@ -513,6 +529,7 @@ function renderBesserwisserQ(q) {
       <div class="dialog-body">
         <p class="dialog-scenario bw-statement">${data.statement}</p>
       </div>
+      ${renderHintArea(q)}
       ${responseHtml}
     </div>`;
 }
@@ -528,7 +545,8 @@ function renderWeinwissenQ(q) {
       if (opt.correct) cls += ' correct';
       else if (i === q.answered && !opt.correct) cls += ' wrong';
     }
-    return `<button class="${cls}" ${answered ? 'disabled' : ''} onclick="answerWeinwissen(${i})">
+    if (q.eliminatedOption === i) cls += ' eliminated';
+    return `<button class="${cls}" ${answered || q.eliminatedOption === i ? 'disabled' : ''} onclick="answerWeinwissen(${i})">
       <span class="choice-wine">${opt.text}</span>
     </button>`;
   }).join('');
@@ -542,6 +560,7 @@ function renderWeinwissenQ(q) {
       <div class="dialog-body">
         <p class="dialog-scenario">${data.question}</p>
       </div>
+      ${renderHintArea(q)}
       <div class="dialog-choices">
         ${optionsHtml}
       </div>
@@ -567,7 +586,8 @@ function renderBlindtastingQ(q) {
       if (opt.correct) cls += ' correct';
       else if (i === q.answered && !opt.correct) cls += ' wrong';
     }
-    return `<button class="${cls}" ${answered ? 'disabled' : ''} onclick="answerBlindtasting(${i})">
+    if (q.eliminatedOption === i) cls += ' eliminated';
+    return `<button class="${cls}" ${answered || q.eliminatedOption === i ? 'disabled' : ''} onclick="answerBlindtasting(${i})">
       <span class="choice-wine">${wine ? wine.name : '???'}</span>
       <span class="choice-detail">${wine ? wine.region ? (REGIONS[wine.region]?.flag || '') + ' ' + (REGIONS[wine.region]?.name || '') : '' : ''}</span>
     </button>`;
@@ -583,6 +603,7 @@ function renderBlindtastingQ(q) {
         <p class="dialog-scenario">Ein geheimnisvoller Wein im Glas – was könnten Sie hier vor sich haben?</p>
         ${cluesHtml}
       </div>
+      ${renderHintArea(q)}
       <div class="dialog-choices">
         ${optionsHtml}
       </div>
@@ -594,6 +615,17 @@ function renderFeedbackOverlay() {
   const d = state.overlayData;
   const revealHtml = d.revealWine ? `<p class="fb-reveal">Der richtige Wein war: <strong>${WINES[d.revealWine]?.name || ''}</strong></p>` : '';
 
+  // Chef comment (30% chance on correct, always on wrong, always on beer threshold)
+  let chefHtml = '';
+  const showComment = !d.correct || state.consecutiveWrong >= 5 || Math.random() < 0.3;
+  if (showComment) {
+    const comment = getChefComment(d.correct);
+    if (comment) {
+      const isBeer = state.consecutiveWrong >= 5;
+      chefHtml = `<div class="fb-chef-comment ${isBeer ? 'fb-beer' : d.correct ? 'fb-chef-praise' : 'fb-chef-stress'}">${comment}</div>`;
+    }
+  }
+
   return `
     <div class="overlay-backdrop" onclick="nextQuestion()">
       <div class="feedback-card ${d.correct ? 'fb-correct' : 'fb-wrong'}" onclick="event.stopPropagation()">
@@ -602,7 +634,8 @@ function renderFeedbackOverlay() {
         <p class="fb-explanation">${d.explanation}</p>
         ${revealHtml}
         ${d.funFact ? `<p class="fb-funfact">💡 ${d.funFact}</p>` : ''}
-        <div class="fb-tips">+${d.tips}€ Trinkgeld</div>
+        ${chefHtml}
+        <div class="fb-tips">+${d.tips}€ Trinkgeld${d.hintUsed ? ' (Chef-Tipp: halbes TG)' : ''}</div>
         <button class="btn btn-primary" onclick="nextQuestion()">Weiter →</button>
       </div>
     </div>`;
@@ -613,6 +646,15 @@ function renderShiftEnd() {
   const shift = state.currentShift;
   const lv = getLevel();
   const accuracy = shift.total > 0 ? Math.round((shift.correct / shift.total) * 100) : 0;
+
+  // Chef end-of-shift comment
+  let endComment = '';
+  const comments = CHEF_COMMENTS[lv.id];
+  if (comments) {
+    if (accuracy >= 80) endComment = pick(comments.praise);
+    else if (accuracy <= 20) endComment = comments.beerComment;
+    else if (accuracy < 50) endComment = pick(comments.stress);
+  }
 
   return `
     <div class="scene scene-restaurant active">
@@ -630,6 +672,7 @@ function renderShiftEnd() {
                 <div class="summary-stat"><div class="stat-num">${accuracy}%</div><div class="stat-label">Quote</div></div>
                 <div class="summary-stat"><div class="stat-num tips">+${shift.tipsEarned}€</div><div class="stat-label">Trinkgeld</div></div>
               </div>
+              ${endComment ? `<div class="shift-chef-comment">${endComment}</div>` : ''}
               <div class="summary-buttons">
                 <button class="btn btn-primary" onclick="startShift()">🔄 Nächste Schicht</button>
                 <button class="btn btn-secondary" onclick="endShift()">🏠 Zurück</button>
@@ -730,6 +773,37 @@ function renderStarsSmall(rep) {
   return '<span class="stars">' +
     Array.from({length: 5}, (_, i) => `<span class="star ${i < full ? 'full' : 'empty'}">${i < full ? '★' : '☆'}</span>`).join('') +
     '</span>';
+}
+
+// ===== MINI-GAME SCENE =====
+function renderMiniGame() {
+  return `
+    <div class="scene scene-minigame active">
+      <div class="minigame-wrapper">
+        <canvas id="minigame-canvas"></canvas>
+      </div>
+      ${state.overlay === 'minigameEnd' ? renderMiniGameEnd() : ''}
+    </div>`;
+}
+
+function renderMiniGameEnd() {
+  const score = state.overlayData?.score || 0;
+  let ratingText = '';
+  if (score >= 100) ratingText = '🏆 Wein-Cowboy-Legende!';
+  else if (score >= 60) ratingText = '🤠 Solider Flaschenschütze!';
+  else if (score >= 30) ratingText = '🍷 Ausbaufähig...';
+  else ratingText = '🐄 Die Kühe haben gewonnen!';
+
+  return `
+    <div class="overlay-backdrop">
+      <div class="minigame-end-card">
+        <h2 style="font-family:var(--font-pixel);color:var(--c-accent);margin-bottom:8px">GAME OVER</h2>
+        <div style="font-size:48px;margin:12px 0">🍷🤠</div>
+        <div style="font-family:var(--font-pixel);font-size:24px;color:var(--c-gold);margin-bottom:8px">${score} Punkte</div>
+        <p style="color:var(--c-muted);margin-bottom:20px">${ratingText}</p>
+        <button class="btn btn-primary" onclick="closeMiniGame()">Zurück zum Restaurant</button>
+      </div>
+    </div>`;
 }
 
 // ===== EVENT DELEGATION =====

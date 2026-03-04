@@ -65,6 +65,16 @@ QUESTIONS.gutbuergerlich = {
         { wineId: 'imiglykos', correct: false, explanation: 'Imiglykos ist süßlich – zur Meeresküche passt ein trockener, frischer Weißer besser.' },
       ]
     },
+    {
+      id: 'fp_2_7', guestId: 'frau_doktor', mood: '🍽️',
+      scenario: 'Frau Doktor hat heute ihren freien Tag und gönnt sich Schweinebraten mit Semmelknödeln und Blaukraut. "Nach einer Woche Klinik brauche ich Soulfood! Und einen passenden Roten – nicht zu leicht, der soll zum Braten stehen können."',
+      question: 'Was empfiehlst du?',
+      options: [
+        { wineId: 'zweigelt', correct: true, explanation: 'Zweigelt – kirschfruchtig, mittelschwer, mit sanften Tanninen. Passt wunderbar zum deftigen Schweinebraten ohne ihn zu erschlagen!' },
+        { wineId: 'pinot_grigio', correct: false, explanation: 'Pinot Grigio ist ein leichter Weißer – zum kräftigen Schweinebraten zu zart.' },
+        { wineId: 'vinho_verde', correct: false, explanation: 'Vinho Verde ist leicht und spritzig – nichts für Soulfood mit Knödeln und Blaukraut.' },
+      ]
+    },
   ],
 
   preference: [
@@ -108,6 +118,16 @@ QUESTIONS.gutbuergerlich = {
         { wineId: 'rose_provence', correct: false, explanation: 'Ein französischer Rosé für spanische Gäste? Da gibt es bessere diplomatische Optionen.' },
       ]
     },
+    {
+      id: 'pref_2_5', guestId: 'der_jaeger', mood: '🌲',
+      scenario: 'Der Jäger lehnt sich zurück und seufzt zufrieden: "Heute kein Wild – heute will ich einfach nur einen guten Roten trinken. Kräftig, mit Charakter, aus einem warmen Land. Etwas für den Feierabend nach dem Ansitz."',
+      question: 'Was empfiehlst du?',
+      options: [
+        { wineId: 'rioja_crianza', correct: true, explanation: 'Rioja Crianza – gereift, kräftig, mit warmen Vanille- und Kirscharomen. Genau der Feierabend-Wein für einen Jäger mit Geschmack!' },
+        { wineId: 'vinho_verde', correct: false, explanation: 'Vinho Verde ist leicht und jung – das Gegenteil von kräftig und charaktervoll.' },
+        { wineId: 'pinot_grigio', correct: false, explanation: 'Pinot Grigio ist ein milder Weißer – der Jäger will einen kräftigen Roten.' },
+      ]
+    },
   ],
 
   besserwisser: [
@@ -134,6 +154,12 @@ QUESTIONS.gutbuergerlich = {
       statement: 'Der Bürgermeister erzählt stolz: "Zweigelt – das ist eine Rebsorte aus der Schweiz! Hab ich bei einer Delegationsreise gelernt."',
       isCorrect: false,
       correction: 'Zweigelt kommt aus Österreich! Gezüchtet 1922 von Prof. Friedrich Zweigelt an der Höheren Bundeslehranstalt Klosterneuburg aus Blaufränkisch × St. Laurent.'
+    },
+    {
+      id: 'bw_2_5', guestId: 'oma_hildegard', mood: '👵',
+      statement: 'Oma Hildegard tippt auf ihr Glas Gewürztraminer: "Kindchen, das schmeckt so blumig – da sind bestimmt Rosenblüten mit reingekommen beim Keltern. Früher hat man das so gemacht!"',
+      isCorrect: false,
+      correction: 'Die Rosen- und Blütenaromen im Gewürztraminer sind natürliche Aromastoffe der Traube! Terpene heißen diese Verbindungen – sie entstehen in der Beerenhaut und sind genetisch bedingt. Da kommt kein einziges Blütenblatt in den Wein!'
     },
   ],
 
@@ -192,6 +218,17 @@ QUESTIONS.gutbuergerlich = {
         { text: 'Er wächst nur auf grünen Hügeln', correct: false },
       ],
       explanation: '"Verde" (grün) steht für jung/frisch – der Wein wird im Jahr nach der Ernte getrunken. Die leichte Spritzigkeit kommt von natürlicher CO₂-Restgärung.'
+    },
+    {
+      id: 'ww_2_6', guestId: 'wandergruppe', mood: '🥾',
+      question: 'Ein Wanderer aus der Gruppe fragt neugierig: "Wir trinken gerade Gewürztraminer. Woher kommt der eigentlich – aus Tramin in Südtirol, oder?"',
+      options: [
+        { text: 'Ja – der Name verweist auf den Ort Tramin in Südtirol', correct: true },
+        { text: 'Aus der Pfalz in Deutschland', correct: false },
+        { text: 'Aus dem Elsass in Frankreich', correct: false },
+        { text: 'Aus der Wachau in Österreich', correct: false },
+      ],
+      explanation: 'Der Name "Traminer" verweist tatsächlich auf den Ort Tramin (Termeno) in Südtirol! Heute wird Gewürztraminer vor allem im Elsass, in Deutschland und in der Pfalz angebaut – aber die Wiege liegt in Südtirol.'
     },
   ],
 };

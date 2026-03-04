@@ -31,8 +31,7 @@ const CONFIG = {
       description: 'Blindverkostung, perfekte Menü-Begleitung, Profi-Vokabular.' },
   ],
   questionsPerShift: 5,
-  tipPerCorrect: 12,    // Trinkgeld bei richtiger Empfehlung
-  tipPerWrong: 3,       // Mitleids-Trinkgeld bei falscher
+  // Trinkgeld: Würfelsystem in engine.js (richtig: 4+1W6, falsch: 1W3, ×Level-Multiplikator)
   repPerCorrect: 8,
   repPerWrong: -3,
 };
@@ -548,6 +547,114 @@ const CHEFS = {
   },
 };
 
+// ===== CHEF STRESS COMMENTS =====
+const CHEF_COMMENTS = {
+  imbiss: {
+    stress: [
+      'Kostas ruft aus der Küche: "Malaka! Was war DAS denn?!"',
+      'Kostas schüttelt den Kopf: "Mein Gyros verdient besseren Wein-Service..."',
+      'Kostas murmelt: "Vielleicht sollte ich doch einen Getränkeautomaten aufstellen..."',
+      'Kostas wirft ein Handtuch: "Nicht mal mein Onkel auf Kreta macht solche Fehler!"',
+    ],
+    praise: [
+      'Kostas strahlt: "BRAVO! Das ist mein Sommelier!"',
+      'Kostas klatscht: "Opa! Dafür kriegst du extra Tzatziki!"',
+      'Kostas ruft: "So macht man das! Der Laden läuft!"',
+    ],
+    beerComment: 'Kostas kratzt sich am Kopf: "Weißt du was... vielleicht servierst du erstmal nur Bier. Ist einfacher. 🍺"',
+  },
+  steakhaus: {
+    stress: [
+      'Mike flucht leise: "Dude, das Steak ist perfekter als dein Weinvorschlag..."',
+      'Mike schüttelt den Kopf: "Bro, meine Grillkohle hat mehr Weinwissen als du gerade."',
+      'Mike seufzt: "Ich hätte den Sommelier-Job doch besser selbst gemacht..."',
+      'Mike guckt dich an: "Alter, nicht dein Ernst. Nochmal."',
+    ],
+    praise: [
+      'Mike gibt dir ein High-Five: "YEAH! So muss das!"',
+      'Mike grinst: "Du wirst noch zum Steak-Flüsterer!"',
+      'Mike nickt anerkennend: "Respect, Bro. Der Gast ist happy."',
+    ],
+    beerComment: 'Mike lehnt sich an die Theke: "Hey Alter... soll ich dir erstmal ein Bier zapfen? Dann reden wir nochmal über Wein. 🍺"',
+  },
+  gutbuergerlich: {
+    stress: [
+      'Frau Lindner seufzt: "Kindchen, das hätte meine Oma besser gewusst..."',
+      'Frau Lindner schüttelt den Kopf: "Das erzähle ich besser nicht dem Stammtisch..."',
+      'Frau Lindner murmelt: "Na, wird schon noch. Übung macht den Meister."',
+      'Frau Lindner tippt auf den Tisch: "Das war nix. Nochmal nachdenken!"',
+    ],
+    praise: [
+      'Frau Lindner strahlt: "Wunderbar! Das hätte dem seligen Herrn Lindner gefallen!"',
+      'Frau Lindner nickt: "So ist es richtig. Ein guter Griff!"',
+      'Frau Lindner klatscht: "Bravo! Der Stammtisch wird begeistert sein!"',
+    ],
+    beerComment: 'Frau Lindner seufzt mütterlich: "Kindchen... vielleicht fängst du erstmal mit dem Bier-Service an. Da kann man weniger falsch machen. 🍺"',
+  },
+  gehoben: {
+    stress: [
+      'Laurent hebt eine Augenbraue: "Monsieur... das war unter Ihrem Niveau."',
+      'Laurent flüstert: "In Frankreich würde man Sie dafür in den Keller schicken."',
+      'Laurent schließt die Augen: "Bitte... denken Sie nach bevor Sie antworten."',
+      'Laurent zückt diskret ein Taschentuch: "Mon Dieu..."',
+    ],
+    praise: [
+      'Laurent lächelt: "Magnifique! Sie entwickeln ein feines Gaumen-Gedächtnis."',
+      'Laurent nickt: "Très bien. Das war die Empfehlung eines echten Sommeliers."',
+      'Laurent hebt sein Glas: "Bravo! Sie machen Le Vignoble stolz."',
+    ],
+    beerComment: 'Laurent wischt sich die Stirn: "Vielleicht... sollten wir Sie erstmal an die Bier-Karte setzen. Weniger Schaden möglich. 🍺"',
+  },
+  sterne: {
+    stress: [
+      'Chef Beaumont starrt: "...Sind Sie sicher, dass Sie hier richtig sind?"',
+      'Chef Beaumont atmet tief ein: "Ein Michelin-Stern weniger. Ihretwegen."',
+      'Chef Beaumont murmelt: "Das war ein unverzeihlicher Fehler."',
+      'Chef Beaumont schließt kurz die Augen: "Wir reden später."',
+    ],
+    praise: [
+      'Chef Beaumont nickt fast unmerklich: "Akzeptabel. Gut gemacht."',
+      'Chef Beaumont hebt eine Augenbraue: "Ich bin... beeindruckt."',
+      'Chef Beaumont lächelt (selten!): "DAS war Sterne-Niveau."',
+    ],
+    beerComment: 'Chef Beaumont massiert seine Schläfen: "Vielleicht... eine Karriere in der Getränkeindustrie? Bier braucht weniger Expertise. 🍺"',
+  },
+};
+
+// ===== CHEF HINT INTROS (Frag den Chef) =====
+const CHEF_HINT_INTROS = {
+  imbiss: [
+    'Kostas flüstert dir zu:',
+    'Kostas zwinkert:',
+    'Kostas lehnt sich über die Theke:',
+    'Kostas kratzt sich am Bart:',
+  ],
+  steakhaus: [
+    'Mike raunt dir zu:',
+    'Mike grinst und sagt:',
+    'Mike tippt dir auf die Schulter:',
+    'Mike flüstert hinter vorgehaltener Hand:',
+  ],
+  gutbuergerlich: [
+    'Frau Lindner flüstert mütterlich:',
+    'Frau Lindner beugt sich vor:',
+    'Frau Lindner lächelt wissend:',
+    'Frau Lindner tippt sich an die Nase:',
+  ],
+  gehoben: [
+    'Laurent murmelt diskret:',
+    'Laurent hebt eine Augenbraue:',
+    'Laurent flüstert auf Französisch... ähm, Deutsch:',
+    'Laurent neigt leicht den Kopf:',
+  ],
+  sterne: [
+    'Chef Beaumont seufzt und gibt nach:',
+    'Chef Beaumont flüstert fast unhörbar:',
+    'Chef Beaumont blickt zur Seite:',
+    'Chef Beaumont zückt ein Notizbuch:',
+  ],
+};
+
 // ===== LEVEL INTROS (Lehrgang-Einführungen) =====
 const LEVEL_INTROS = {
   imbiss: {
@@ -565,6 +672,10 @@ const LEVEL_INTROS = {
         icon: '🍽️', heading: 'Dein erster Pairing-Tipp',
         text: 'Die goldene Grundregel: <strong>Leichtes Essen → leichter Wein, kräftiges Essen → kräftiger Wein.</strong><br><br>Zum Salat eher Weißwein, zum Steak eher Rotwein. Fisch und Geflügel vertragen sich gut mit Weißwein. Und im Zweifel: Frag den Gast, was er mag!'
       },
+      {
+        icon: '🧊', heading: 'Serviertemperatur & Weinmythen',
+        text: '<strong>Serviertemperatur:</strong> "Zimmertemperatur" für Rotwein meinte früher 16-18°C, nicht unsere heutigen 22°C! Leichte Rote bei 14-16°C, kräftige bei 16-18°C, Weißwein bei 8-12°C servieren.<br><br><strong>Schraubverschluss ≠ billiger Wein!</strong> Viele Top-Weingüter (besonders in Australien und Neuseeland) nutzen Schraubverschlüsse, weil sie vor Korkfehler (TCA) schützen – dem muffigen Geschmack, der durch einen defekten Korken entsteht.<br><br><strong>Sulfite und Kopfschmerzen:</strong> Sulfite im Wein verursachen selten Kopfschmerzen – Histamine, Tannine oder einfach zu viel Alkohol sind häufiger schuld. In Trockenfrüchten stecken viel mehr Sulfite als im Wein!<br><br><strong>Kalorien:</strong> Die Kalorien im Wein kommen vom Alkohol und Zucker, nicht von der Farbe. Ein süßer Weißwein kann mehr Kalorien haben als ein trockener Rotwein.<br><br><strong>Pinot Grigio = Grauburgunder:</strong> Dieselbe Traube, nur auf Italienisch bzw. Deutsch! (Auch: Pinot Gris auf Französisch). Im Wein gibt es viele solche Doppelnamen.'
+      },
     ],
     recap: [
       '🔴 <strong>Rotwein</strong>: Rote Trauben, MIT Schalen vergoren → Farbe, Tannine, Körper',
@@ -572,6 +683,8 @@ const LEVEL_INTROS = {
       '🩷 <strong>Rosé</strong>: Kurzer Hautkontakt → rosa Farbe, NICHT gemischt!',
       '🏜️ <strong>Trocken</strong> = wenig Zucker, <strong>Lieblich</strong> = süßer',
       '🍽️ Leichtes Essen → leichter Wein, kräftiges Essen → kräftiger Wein',
+      '🧊 Rotwein bei 14-18°C, nicht bei Zimmertemperatur (22°C)!',
+      '🍾 <strong>Schraubverschluss ≠ billig</strong>, schützt vor Korkfehler (TCA)',
     ]
   },
   steakhaus: {
@@ -587,7 +700,7 @@ const LEVEL_INTROS = {
       },
       {
         icon: '💪', heading: 'Körper: leicht, mittel, voll',
-        text: 'Der "Körper" eines Weins beschreibt, wie schwer er sich im Mund anfühlt – wie Milch (leicht) vs. Sahne (voll).<br><br><strong>Leicht</strong>: Müller-Thurgau, Vinho Verde, Lambrusco<br><strong>Mittel</strong>: Riesling, Chianti, Rosé<br><strong>Voll</strong>: Primitivo, Barolo, Malbec<br><br>Zum Steak willst du einen vollmundigen Wein, der gegen das kräftige Fleisch bestehen kann!'
+        text: 'Der "Körper" eines Weins beschreibt, wie schwer er sich im Mund anfühlt – wie Milch (leicht) vs. Sahne (voll).<br><br><strong>Leicht</strong>: Müller-Thurgau, Vinho Verde, Lambrusco<br><strong>Mittel</strong>: Riesling, Chianti, Rosé<br><strong>Voll</strong>: Primitivo, Barolo, Malbec<br><br><strong>Achtung:</strong> Die Farbe sagt nicht immer etwas über den Körper! Ein dunkler Wein kann leicht sein, ein heller kraftvoll. Spätburgunder zum Beispiel ist oft hell, aber überraschend komplex.<br><br>Zum Steak willst du einen vollmundigen Wein, der gegen das kräftige Fleisch bestehen kann!<br><br>Übrigens: Der Name <strong>Primitivo</strong> klingt lustig, kommt aber von "primativus" (der Erste) – die Traube reift und wird früher geerntet als andere. Hat nichts mit primitiver Herstellung zu tun!'
       },
     ],
     recap: [
@@ -611,7 +724,7 @@ const LEVEL_INTROS = {
       },
       {
         icon: '🇪🇸🇵🇹', heading: 'Neue Weinländer: Spanien & Portugal',
-        text: 'Spanien hat die größte Rebfläche der Welt! Rioja ist das bekannteste Gebiet – Tempranillo-Weine werden jahrelang in Eichenfässern gereift (Crianza, Reserva, Gran Reserva).<br><br>Portugal überrascht mit Vinho Verde – jung, frisch, leicht prickelnd. Perfekt im Sommer! Und natürlich Portwein, der berühmteste Dessertwein der Welt.'
+        text: 'Spanien hat die größte Rebfläche der Welt! Rioja ist das bekannteste Gebiet – Tempranillo-Weine werden jahrelang in Eichenfässern gereift (Crianza, Reserva, Gran Reserva).<br><br>Portugal überrascht mit Vinho Verde – jung, frisch, leicht prickelnd. Perfekt im Sommer! Und natürlich Portwein, der berühmteste Dessertwein der Welt.<br><br><strong>Schaumwein-Wissen:</strong> Crémant und Champagner werden beide durch <strong>Flaschengärung</strong> (Méthode Traditionnelle) hergestellt – die zweite Gärung findet direkt in der Flasche statt, dadurch entsteht die natürliche Kohlensäure. Kein CO2 wird reingepumpt! Der Unterschied: Champagner darf nur aus der Region Champagne kommen.'
       },
     ],
     recap: [
@@ -631,7 +744,7 @@ const LEVEL_INTROS = {
       },
       {
         icon: '🪵', heading: 'Eiche, Stahl & Reifung',
-        text: 'Im <strong>Edelstahltank</strong> bleibt der Wein frisch und fruchtig – reine Traubenaromen.<br><br>Im <strong>Eichenfass</strong> (Barrique) bekommt der Wein Vanille-, Toast- und Gewürznoten. Je neuer das Fass, desto stärker der Effekt.<br><br><strong>Reifung</strong>: Manche Weine (Barolo, Rioja Gran Reserva) brauchen Jahre, um ihr Potenzial zu entfalten. Andere (Vinho Verde) trinkt man jung und frisch.'
+        text: 'Im <strong>Edelstahltank</strong> bleibt der Wein frisch und fruchtig – reine Traubenaromen.<br><br>Im <strong>Eichenfass</strong> (Barrique) bekommt der Wein Vanille-, Toast- und Gewürznoten. Je neuer das Fass, desto stärker der Effekt.<br><br><strong>Reifung</strong>: Manche Weine (Barolo, Rioja Gran Reserva) brauchen Jahre, um ihr Potenzial zu entfalten. Andere (Vinho Verde) trinkt man jung und frisch.<br><br><strong>Cuvée</strong> (frz. Verschnitt): Ein Wein aus mehreren Rebsorten, die der Winzer perfekt aufeinander abstimmt. Berühmtes Beispiel: Saint-Émilion (Merlot + Cabernet Franc) oder viele Champagner.<br><br><strong>Deutsche Prädikate:</strong> <em>Spätlese</em> bedeutet "spät gelesene Trauben" – sie hängen länger am Stock und werden besonders reif und aromatisch. Die Stufen: Kabinett → Spätlese → Auslese → Beerenauslese → Eiswein.'
       },
       {
         icon: '🌍', heading: 'Neue Welt: Argentinien & Südafrika',
@@ -661,12 +774,18 @@ const LEVEL_INTROS = {
         icon: '👅', heading: 'Am Gaumen: Die Verkostungssprache',
         text: 'Profis beschreiben Wein mit einem systematischen Ansatz:<br><br><strong>Antrunk:</strong> Der erste Eindruck – frisch? Weich? Spritzig?<br><strong>Mittelteil:</strong> Körper und Textur – wie fühlt sich der Wein im Mund an?<br><strong>Abgang:</strong> Was bleibt nach dem Schlucken? Langer Abgang = guter Wein.<br><br>Tannine (von Schalen und Eiche) geben das trockene, pelzige Gefühl im Mund. Säure lässt einem das Wasser im Mund zusammenlaufen.'
       },
+      {
+        icon: '🎓', heading: 'Der Sommelier – mehr als ein Kellner',
+        text: '<strong>Ein Sommelier</strong> (frz., von "sommier" = Lasttier, das Wein transportierte) ist der offizielle <strong>Weinberater und -experte im Restaurant</strong>. Er berät die Gäste, pflegt die Weinkarte, verhandelt mit Winzern und sorgt für perfekten Service.<br><br><strong>Champagner vs. Sekt:</strong> Champagner kommt NUR aus der Champagne und hat die strengsten Produktionsregeln aller Schaumweine – Kreideböden, bestimmte Rebsorten (Chardonnay, Pinot Noir, Pinot Meunier), mindestens 15 Monate Hefelager. Sekt ist der deutsche Oberbegriff für Schaumwein.<br><br><strong>Eiswein weltweit:</strong> Eiswein wird nicht nur in Deutschland gemacht! <strong>Kanada</strong> (Ontario, British Columbia) produziert hervorragenden "Icewine" – sogar in größeren Mengen. Auch <strong>Österreich</strong> macht Eiswein. Die Trauben müssen bei mindestens -7°C am Stock gefrieren.'
+      },
     ],
     recap: [
       '👁️ <strong>Aussehen:</strong> Farbe, Klarheit, Tränen (Kirchenfenster)',
       '👃 <strong>Nase:</strong> Primär (Frucht), Sekundär (Gärung), Tertiär (Reifung)',
       '👅 <strong>Gaumen:</strong> Antrunk → Mittelteil → Abgang',
       '📏 Langer <strong>Abgang</strong> = Qualitätsmerkmal',
+      '🎓 <strong>Sommelier</strong> = Weinberater & Experte im Restaurant',
+      '🍾 <strong>Champagner</strong> nur aus der Champagne, strenge Regeln (15 Mon. Hefelager)',
       '🏆 Der systematische Ansatz macht den Profi-Sommelier!',
     ]
   },

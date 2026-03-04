@@ -55,6 +55,16 @@ QUESTIONS.gehoben = {
         { wineId: 'sekt', correct: false, explanation: 'Sekt zum Steak wäre eine Stilbruch – Herr Tanakas Vertrauen wäre enttäuscht.' },
       ]
     },
+    {
+      id: 'fp_3_6', guestId: 'influencerin', mood: '📸',
+      scenario: 'Die Influencerin filmt schon den Tisch: "OMG, ich mache heute einen Reel über \'Wine & Dine\'! Ich hab das Thunfisch-Tatar bestellt – jetzt brauche ich einen Weißen, der fotogen UND lecker ist. Meine Community erwartet Content!"',
+      question: 'Was empfiehlst du?',
+      options: [
+        { wineId: 'chablis_premier_cru', correct: true, explanation: 'Chablis Premier Cru – mineralisch, elegant, goldschimmernd im Glas. Perfekt zum Thunfisch-Tatar und garantiert Instagram-tauglich!' },
+        { wineId: 'dornfelder', correct: false, explanation: 'Dornfelder ist ein Rotwein – zum rohen Thunfisch ein geschmackliches No-Go und auch kein guter Content.' },
+        { wineId: 'lambrusco', correct: false, explanation: 'Lambrusco zum Thunfisch-Tatar im gehobenen Restaurant? Ihre Follower würden sie auslachen.' },
+      ]
+    },
   ],
 
   preference: [
@@ -115,6 +125,12 @@ QUESTIONS.gehoben = {
       isCorrect: false,
       correction: 'Zu viel Holz überdeckt den Eigencharakter des Weins! Balance ist entscheidend. Ein Chablis z.B. wird bewusst ohne Holz ausgebaut – die Mineralität wäre sonst verloren. "Mehr" ist nicht immer "besser".'
     },
+    {
+      id: 'bw_3_5', guestId: 'diplomatenpaar', mood: '🌍',
+      statement: 'Die Diplomatin wendet sich an ihren Mann: "Schatz, Saint-Émilion ist doch ein reiner Cabernet-Sauvignon-Wein. Das Rechte Ufer von Bordeaux ist berühmt dafür."',
+      isCorrect: false,
+      correction: 'Umgekehrt! Am Rechten Ufer (Rive Droite) von Bordeaux – wozu Saint-Émilion gehört – dominiert Merlot, nicht Cabernet Sauvignon. Cabernet Sauvignon ist die Hauptrebsorte am Linken Ufer (Médoc, Graves). Ein feiner, aber wichtiger Unterschied!'
+    },
   ],
 
   weinwissen: [
@@ -172,6 +188,17 @@ QUESTIONS.gehoben = {
         { text: 'Eine Gärungsmethode', correct: false },
       ],
       explanation: 'Cuvée = Verschnitt/Assemblage aus mehreren Rebsorten. Saint-Émilion z.B. kombiniert meist Merlot + Cabernet Franc. Der Winzer sucht die beste Balance – wie ein Komponist!'
+    },
+    {
+      id: 'ww_3_6', guestId: 'influencerin', mood: '📱',
+      question: 'Die Influencerin will ein Quiz für ihre Story machen: "Okay, schnelle Frage für meine Follower – was bedeutet \'Spätlese\' bei deutschem Wein? Ist das spät am Tag gelesen?"',
+      options: [
+        { text: 'Spät im Herbst geerntete, besonders reife Trauben', correct: true },
+        { text: 'Trauben die spät am Tag, bei Sonnenuntergang, gelesen werden', correct: false },
+        { text: 'Wein der erst spät, nach Jahren, getrunken werden sollte', correct: false },
+        { text: 'Eine Methode bei der die Lese besonders langsam erfolgt', correct: false },
+      ],
+      explanation: '"Spätlese" bedeutet: Die Trauben werden später als normal geerntet – sie sind dadurch reifer und konzentrierter. Das Mostgewicht muss mindestens 76° Oechsle betragen. Der Wein kann trocken oder restsüß sein!'
     },
   ],
 
