@@ -5,22 +5,27 @@
 const CONFIG = {
   levels: [
     { id: 'imbiss', name: 'Imbiss "Zum Goldenen Gyros"', shortName: 'Goldener Gyros', icon: '🌯',
+      logo: 'assets/restaurants/imbiss_logo.png',
       xpNeeded: 0, xpToNext: 80, unlockRegions: ['deutschland', 'italien', 'griechenland'],
       bgKey: 'imbiss', themeLabel: 'Basics & Weinstile',
       description: 'Dein erster Job! Rot, Weiß, Rosé – mehr brauchst du hier erstmal nicht.' },
     { id: 'steakhaus', name: 'Steakhaus "Black Angus"', shortName: 'Black Angus', icon: '🥩',
+      logo: 'assets/restaurants/steakhaus_logo.png',
       xpNeeded: 80, xpToNext: 200, unlockRegions: ['oesterreich', 'frankreich'],
       bgKey: 'steakhaus', themeLabel: 'Rebsorten & Charakter',
       description: 'Kräftige Rote zum Steak – und die ersten edleren Tropfen.' },
     { id: 'gutbuergerlich', name: 'Gasthaus "Zur Linde"', shortName: 'Zur Linde', icon: '🍽️',
+      logo: 'assets/restaurants/gutbuergerlich_logo.png',
       xpNeeded: 200, xpToNext: 400, unlockRegions: ['spanien', 'portugal'],
       bgKey: 'gutbuergerlich', themeLabel: 'Wein & Essen',
       description: 'Regionale Küche, Food Pairing und die Kunst der richtigen Empfehlung.' },
     { id: 'gehoben', name: 'Restaurant "Le Vignoble"', shortName: 'Le Vignoble', icon: '🍷',
+      logo: 'assets/restaurants/gehoben_logo.png',
       xpNeeded: 400, xpToNext: 700, unlockRegions: ['argentinien', 'suedafrika'],
       bgKey: 'gehoben', themeLabel: 'Terroir & Weinbereitung',
       description: 'Terroir, Jahrgänge, Grand Cru – jetzt wird es anspruchsvoll.' },
     { id: 'sterne', name: 'Sterne-Restaurant "Étoile"', shortName: 'Étoile', icon: '⭐',
+      logo: 'assets/restaurants/sterne_logo.png',
       xpNeeded: 700, xpToNext: 999, unlockRegions: [],
       bgKey: 'sterne', themeLabel: 'Verkostung & Weinsprache',
       description: 'Blindverkostung, perfekte Menü-Begleitung, Profi-Vokabular.' },
@@ -498,23 +503,172 @@ const GUESTS = {
 const CHEFS = {
   imbiss: {
     name: 'Kostas', sprite: 'assets/chefs/chef_imbiss.png',
-    intro: 'Willkommen in meinem Imbiss, mein Freund! Ich bin Kostas. Hier ist es einfach – die Leute wollen was Gutes trinken zum Essen. Komm, ich zeig dir unseren kleinen Weinkeller!'
+    intro: [
+      'Malaka! Endlich kommt Hilfe! Ich bin Kostas, und das hier ist der beste Imbiss der Stadt.',
+      'Die Leute kommen für mein Gyros, aber sie fragen auch nach Wein! Und ich... naja, ich kenne mich da nicht so aus. Deswegen brauche ich DICH.',
+      'Hier kommen alle rein: Studenten, Frau Müller von nebenan, der Stavros mit seinen Kumpels... Die wollen keinen Château-irgendwas. Die wollen einfach was Leckeres zum Essen.',
+      'Erstmal zeig ich dir unsere Weine. Rot, Weiß, die Basics eben. Dann übst du mit den Gästen!'
+    ]
   },
   steakhaus: {
     name: 'Mike', sprite: 'assets/chefs/chef_steakhaus.png',
-    intro: 'Hey, willkommen im Black Angus! Ich bin Mike. Bei uns dreht sich alles ums Fleisch – und der richtige Wein macht den Unterschied. Let\'s go!'
+    intro: [
+      'Hey! Ich bin Mike, Grillmeister und Chef vom Black Angus. Nice, dass du aufsteigst!',
+      'Bei uns geht es um kräftiges Essen – Steaks, Ribs, Burger. Die Gäste hier sind anspruchsvoller als im Imbiss. Die wollen wissen, WARUM ein bestimmter Wein zum Steak passt.',
+      'Wir haben Geschäftsleute, den Marco aus Italien, und Jens – der wechselt gerade von Bier zu Wein, haha.',
+      'Du lernst jetzt Rebsorten kennen und verstehst, was Wein seinen Charakter gibt. Let\'s go!'
+    ]
   },
   gutbuergerlich: {
     name: 'Frau Lindner', sprite: 'assets/chefs/chef_gasthaus.png',
-    intro: 'Grüß Gott und herzlich willkommen! Ich bin die Lindner. Bei uns kommen Stammgäste seit Generationen. Die erwarten Qualität – und die richtige Weinempfehlung!'
+    intro: [
+      'Grüß Gott! Ich bin die Lindner, und das hier ist mein Gasthaus. Seit drei Generationen in Familienhand.',
+      'Bei uns kommen Stammgäste, Wandergruppen, das Brautpaar von nebenan, der Pfarrer nach der Sonntagsmesse... Die erwarten regionale Küche und den passenden Wein dazu.',
+      'Hier geht es um Food Pairing – welcher Wein passt zu Schnitzel, welcher zum Sonntagsbraten? Das musst du können.',
+      'Wir haben jetzt auch Spanien und Portugal im Keller. Die Karte wächst!'
+    ]
   },
   gehoben: {
     name: 'Monsieur Laurent', sprite: 'assets/chefs/chef_gehoben.png',
-    intro: 'Bienvenue! Ich bin Laurent, Chefsommelier des Vignoble. Unsere Gäste erwarten Perfektion – jeder Wein muss zum Gericht und zum Anlass passen.'
+    intro: [
+      'Bienvenue dans Le Vignoble! Ich bin Laurent, Chefsommelier. Hier wird es ernst.',
+      'Unsere Gäste sind Bankiers, Diplomaten, Professoren. Die reden über Terroir, Jahrgänge und Grand Cru. Da muss man mithalten können.',
+      'Wir arbeiten jetzt mit Weinen aus der ganzen Welt – Argentinien, Südafrika. Und ab jetzt gibt es Blindverkostungen.',
+      'Vertrauen Sie Ihrer Nase, Ihrem Gaumen. Das unterscheidet einen guten Sommelier von einem großartigen.'
+    ]
   },
   sterne: {
     name: 'Chef Beaumont', sprite: 'assets/chefs/chef_sterne.png',
-    intro: 'Willkommen in der Étoile. Ich bin Chef Beaumont. Dies ist die höchste Stufe – Blindverkostung, perfekte Paarungen, Profi-Vokabular. Zeigen Sie, was Sie können.'
+    intro: [
+      'Willkommen in der Étoile. Ich bin Chef Beaumont. Zwei Michelin-Sterne, und wir arbeiten am dritten.',
+      'Hier sitzt der Scheich neben der Opernsängerin, der Michelin-Tester neben dem Promi-Paar. Jeder Fehler kostet uns einen Stern.',
+      'Profi-Vokabular, perfekte Menü-Begleitung, Blindverkostung auf höchstem Niveau. Das ist Ihre Prüfung.',
+      'Zeigen Sie mir, dass Sie der beste Sommelier in der Stadt werden können.'
+    ]
+  },
+};
+
+// ===== LEVEL INTROS (Lehrgang-Einführungen) =====
+const LEVEL_INTROS = {
+  imbiss: {
+    title: 'Weinwissen Basics: Rot, Weiß & Rosé',
+    sections: [
+      {
+        icon: '🎨', heading: 'Die drei Farben des Weins',
+        text: '<strong>Rotwein</strong> wird aus roten Trauben hergestellt – und zwar MIT den Schalen. Die geben Farbe, Tannine (dieses leicht pelzige Mundgefühl) und viel Geschmack ab. Je länger die Schalen dabei sind, desto dunkler und kräftiger der Wein.<br><br><strong>Weißwein</strong> wird ohne Schalen vergoren – daher die helle Farbe. Er kann aus weißen ODER sogar aus roten Trauben gemacht werden (dann wird nur der Saft verwendet). Weißwein ist meistens frischer und leichter.<br><br><strong>Rosé</strong> entsteht durch kurzen Hautkontakt mit roten Trauben – nur ein paar Stunden statt Tage. Daher die rosa Farbe. Rosé wird NICHT aus Rot- und Weißwein gemischt (das ist in der EU sogar verboten, außer bei Champagner)!'
+      },
+      {
+        icon: '💧', heading: 'Geschmacksrichtungen: trocken bis süß',
+        text: '<strong>Trocken</strong> bedeutet wenig Restzucker (unter 9 g/l) – der Wein schmeckt nicht süß. Das hat nichts mit dem Alkoholgehalt zu tun!<br><br><strong>Halbtrocken</strong> hat etwas mehr Restzucker (bis 18 g/l) – leicht rundlich, aber nicht wirklich süß.<br><br><strong>Lieblich</strong> ist deutlich süßer. Perfekt für Einsteiger und zu bestimmten Gerichten.<br><br><strong>Süß</strong> (wie Eiswein oder Dessertwein) – da schmeckt man den Zucker richtig.'
+      },
+      {
+        icon: '🍽️', heading: 'Dein erster Pairing-Tipp',
+        text: 'Die goldene Grundregel: <strong>Leichtes Essen → leichter Wein, kräftiges Essen → kräftiger Wein.</strong><br><br>Zum Salat eher Weißwein, zum Steak eher Rotwein. Fisch und Geflügel vertragen sich gut mit Weißwein. Und im Zweifel: Frag den Gast, was er mag!'
+      },
+    ],
+    recap: [
+      '🔴 <strong>Rotwein</strong>: Rote Trauben, MIT Schalen vergoren → Farbe, Tannine, Körper',
+      '⚪ <strong>Weißwein</strong>: Ohne Schalen vergoren → hell, frisch, leichter',
+      '🩷 <strong>Rosé</strong>: Kurzer Hautkontakt → rosa Farbe, NICHT gemischt!',
+      '🏜️ <strong>Trocken</strong> = wenig Zucker, <strong>Lieblich</strong> = süßer',
+      '🍽️ Leichtes Essen → leichter Wein, kräftiges Essen → kräftiger Wein',
+    ]
+  },
+  steakhaus: {
+    title: 'Rebsorten & Charakter',
+    sections: [
+      {
+        icon: '🍇', heading: 'Rebsorten – die DNA des Weins',
+        text: 'Die Rebsorte bestimmt den Grundcharakter eines Weins. <strong>Pinot Noir</strong> (= Spätburgunder!) macht elegante, helle Rotweine. <strong>Primitivo</strong> macht kraftvolle Fruchtbomben. <strong>Riesling</strong> macht mineralische Weiße mit Säure.<br><br>Gleiche Traube, anderer Name: Spätburgunder = Pinot Noir (FR) = Pinot Nero (IT). Grauburgunder = Pinot Grigio = Pinot Gris. Klingt verwirrend, ist aber immer die gleiche Traube!'
+      },
+      {
+        icon: '🌡️', heading: 'Klima macht den Charakter',
+        text: 'Kühles Klima (Deutschland, Burgund): Weine mit mehr Säure, weniger Alkohol, feinere Aromen.<br><br>Warmes Klima (Süditalien, Argentinien): Weine mit mehr Alkohol, reiferer Frucht, üppigerem Körper.<br><br>Das erklärt, warum ein deutscher Spätburgunder zarter schmeckt als ein australischer Pinot Noir – gleiche Traube, anderes Klima!'
+      },
+      {
+        icon: '💪', heading: 'Körper: leicht, mittel, voll',
+        text: 'Der "Körper" eines Weins beschreibt, wie schwer er sich im Mund anfühlt – wie Milch (leicht) vs. Sahne (voll).<br><br><strong>Leicht</strong>: Müller-Thurgau, Vinho Verde, Lambrusco<br><strong>Mittel</strong>: Riesling, Chianti, Rosé<br><strong>Voll</strong>: Primitivo, Barolo, Malbec<br><br>Zum Steak willst du einen vollmundigen Wein, der gegen das kräftige Fleisch bestehen kann!'
+      },
+    ],
+    recap: [
+      '🍇 Die <strong>Rebsorte</strong> bestimmt den Grundcharakter des Weins',
+      '🔄 Gleiche Traube, andere Namen: Spätburgunder = Pinot Noir = Pinot Nero',
+      '🌡️ <strong>Kühles Klima</strong> → mehr Säure, feiner. <strong>Warmes Klima</strong> → mehr Körper, üppiger',
+      '💪 <strong>Körper</strong>: leicht (Müller-Thurgau) → mittel (Chianti) → voll (Primitivo)',
+      '🥩 Kräftiges Essen braucht vollmundigen Wein!',
+    ]
+  },
+  gutbuergerlich: {
+    title: 'Wein & Essen: Food Pairing',
+    sections: [
+      {
+        icon: '🤝', heading: 'Die Grundregeln des Food Pairings',
+        text: '<strong>Ergänzen:</strong> Ähnliche Geschmäcker verbinden – z.B. ein fruchtiger Wein zu fruchtigem Dessert.<br><br><strong>Kontrastieren:</strong> Gegensätze ziehen sich an – z.B. ein säurebetonter Wein schneidet durch fettiges Essen.<br><br><strong>Regional:</strong> Was zusammen wächst, passt zusammen! Chianti zu Pasta, Grüner Veltliner zu Schnitzel, Riesling zu Spargel.'
+      },
+      {
+        icon: '⚖️', heading: 'Gewicht gegen Gewicht',
+        text: 'Das wichtigste Prinzip: Der Wein sollte das gleiche "Gewicht" haben wie das Essen.<br><br>Leichter Salat → leichter Weißwein (Vinho Verde)<br>Geschmortes Rindfleisch → kräftiger Rotwein (Rioja)<br>Scharfes Essen → Restsüße hilft! (Gewürztraminer)<br>Fettiges Essen → Säure schneidet durch (Riesling zu Schnitzel!)'
+      },
+      {
+        icon: '🇪🇸🇵🇹', heading: 'Neue Weinländer: Spanien & Portugal',
+        text: 'Spanien hat die größte Rebfläche der Welt! Rioja ist das bekannteste Gebiet – Tempranillo-Weine werden jahrelang in Eichenfässern gereift (Crianza, Reserva, Gran Reserva).<br><br>Portugal überrascht mit Vinho Verde – jung, frisch, leicht prickelnd. Perfekt im Sommer! Und natürlich Portwein, der berühmteste Dessertwein der Welt.'
+      },
+    ],
+    recap: [
+      '🤝 <strong>Ergänzen</strong> oder <strong>Kontrastieren</strong> – beides funktioniert!',
+      '🌍 Was zusammen wächst, passt zusammen (regional pairing)',
+      '⚖️ Gleiches <strong>Gewicht</strong>: leichtes Essen → leichter Wein',
+      '🍋 <strong>Säure</strong> schneidet durch Fett (Riesling + Schnitzel!)',
+      '🌶️ <strong>Restsüße</strong> zähmt Schärfe (Gewürztraminer + Curry)',
+    ]
+  },
+  gehoben: {
+    title: 'Terroir & Weinbereitung',
+    sections: [
+      {
+        icon: '🏔️', heading: 'Terroir – der Boden macht den Wein',
+        text: 'Terroir ist das französische Konzept, dass Boden, Klima, Lage und Tradition zusammen den einzigartigen Charakter eines Weins formen.<br><br>Gleiche Traube, anderer Boden = anderer Wein. Ein Chardonnay aus Chablis (Kalkstein) schmeckt völlig anders als einer aus Kalifornien (warmes Klima, Eichenfass).<br><br>Grand Cru, Premier Cru – das sind die besten Lagen in Burgund und im Elsass. Der Boden dort ist so besonders, dass die Weine ein Vielfaches kosten.'
+      },
+      {
+        icon: '🪵', heading: 'Eiche, Stahl & Reifung',
+        text: 'Im <strong>Edelstahltank</strong> bleibt der Wein frisch und fruchtig – reine Traubenaromen.<br><br>Im <strong>Eichenfass</strong> (Barrique) bekommt der Wein Vanille-, Toast- und Gewürznoten. Je neuer das Fass, desto stärker der Effekt.<br><br><strong>Reifung</strong>: Manche Weine (Barolo, Rioja Gran Reserva) brauchen Jahre, um ihr Potenzial zu entfalten. Andere (Vinho Verde) trinkt man jung und frisch.'
+      },
+      {
+        icon: '🌍', heading: 'Neue Welt: Argentinien & Südafrika',
+        text: 'Argentiniens Malbec kommt aus Mendoza, am Fuß der Anden – Weinberge auf bis zu 3.000m Höhe! Der Malbec kam ursprünglich aus Frankreich (Cahors), aber Argentinien hat ihn perfektioniert.<br><br>Südafrikas Pinotage ist eine echte Erfindung: 1925 kreuzte man Pinot Noir mit Cinsaut. Das gibt es nur hier! Stellenbosch ist das Zentrum des südafrikanischen Weinbaus.'
+      },
+    ],
+    recap: [
+      '🏔️ <strong>Terroir</strong>: Boden + Klima + Lage + Tradition = einzigartiger Charakter',
+      '🏆 <strong>Grand Cru</strong>: Die besten Lagen in Burgund/Elsass',
+      '🪵 <strong>Eichenfass</strong> → Vanille, Toast. <strong>Stahltank</strong> → frisch, fruchtig',
+      '⏳ Manche Weine brauchen <strong>Reifung</strong> (Barolo), andere trinkt man jung (Vinho Verde)',
+      '🇦🇷 Malbec aus Mendoza, 🇿🇦 Pinotage aus Stellenbosch',
+    ]
+  },
+  sterne: {
+    title: 'Verkostung & Weinsprache',
+    sections: [
+      {
+        icon: '👁️', heading: 'Das Auge trinkt mit',
+        text: 'Bevor du riechst oder schmeckst: <strong>Schau den Wein an.</strong> Halte das Glas gegen weißes Licht.<br><br>Die Farbe verrät viel: Junger Rotwein ist rubinrot, alter wird ziegelrot/braun am Rand. Junger Weißwein ist hellgelb, gereifter wird goldgelb.<br><br>Schwenke das Glas: Dicke, langsame "Tränen" (Kirchenfenster) deuten auf hohen Alkohol oder Restzucker hin.'
+      },
+      {
+        icon: '👃', heading: 'Die Nase – das wichtigste Werkzeug',
+        text: 'Erst riechen, dann schmecken! Die Nase erkennt hunderte Aromen, die Zunge nur süß/sauer/salzig/bitter/umami.<br><br><strong>Primäraromen:</strong> Von der Traube – Frucht, Blumen<br><strong>Sekundäraromen:</strong> Von der Gärung – Hefe, Butter, Brioche<br><strong>Tertiäraromen:</strong> Von der Reifung – Leder, Tabak, Nüsse, Vanille<br><br>Profi-Tipp: Erst ohne Schwenken riechen (feine Aromen), dann mit Schwenken (kräftigere Aromen).'
+      },
+      {
+        icon: '👅', heading: 'Am Gaumen: Die Verkostungssprache',
+        text: 'Profis beschreiben Wein mit einem systematischen Ansatz:<br><br><strong>Antrunk:</strong> Der erste Eindruck – frisch? Weich? Spritzig?<br><strong>Mittelteil:</strong> Körper und Textur – wie fühlt sich der Wein im Mund an?<br><strong>Abgang:</strong> Was bleibt nach dem Schlucken? Langer Abgang = guter Wein.<br><br>Tannine (von Schalen und Eiche) geben das trockene, pelzige Gefühl im Mund. Säure lässt einem das Wasser im Mund zusammenlaufen.'
+      },
+    ],
+    recap: [
+      '👁️ <strong>Aussehen:</strong> Farbe, Klarheit, Tränen (Kirchenfenster)',
+      '👃 <strong>Nase:</strong> Primär (Frucht), Sekundär (Gärung), Tertiär (Reifung)',
+      '👅 <strong>Gaumen:</strong> Antrunk → Mittelteil → Abgang',
+      '📏 Langer <strong>Abgang</strong> = Qualitätsmerkmal',
+      '🏆 Der systematische Ansatz macht den Profi-Sommelier!',
+    ]
   },
 };
 

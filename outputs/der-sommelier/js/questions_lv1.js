@@ -73,9 +73,9 @@ QUESTIONS.steakhaus = {
       scenario: 'Stammgast Jens, ehemaliger Handballspieler, lässt sich auf seinen Platz fallen. "So, heute will ich mal was anderes als Bier. Richtig kräftigen Roten! Vollmundig, fruchtig – nix für Weicheier!"',
       question: 'Was empfiehlst du?',
       options: [
-        { wineId: 'primitivo', correct: true, explanation: 'Primitivo – kräftig, fruchtig, vollmundig. Genau der Powerwein für die Siegerfeier!' },
-        { wineId: 'mueller_thurgau', correct: false, explanation: 'Ein milder Weißer für Rugby-Spieler nach dem Sieg? Eher nicht.' },
-        { wineId: 'rose_provence', correct: false, explanation: 'Rosé ist zu leicht für drei durstige Rugby-Sieger.' },
+        { wineId: 'primitivo', correct: true, explanation: 'Primitivo – kräftig, fruchtig, vollmundig. Genau der Powerwein für einen Ex-Handballer, der vom Bier auf Wein umsteigt!' },
+        { wineId: 'mueller_thurgau', correct: false, explanation: 'Ein milder Weißer für einen Sportler, der "nix für Weicheier" will? Eher nicht.' },
+        { wineId: 'rose_provence', correct: false, explanation: 'Rosé ist zu leicht für Jens – der will was mit Wumms.' },
       ]
     },
     {

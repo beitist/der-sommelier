@@ -51,6 +51,10 @@ function renderChefIntro() {
   const chef = CHEFS[lv.id];
   if (!chef) { dismissChefIntro(); return ''; }
 
+  const introText = Array.isArray(chef.intro)
+    ? chef.intro.map(p => `<p>${p}</p>`).join('')
+    : `<p>${chef.intro}</p>`;
+
   return `
     <div class="scene scene-restaurant active">
       ${renderSidebar()}
@@ -58,16 +62,20 @@ function renderChefIntro() {
         <div class="restaurant-bg">
           <div class="rest-layer rest-bg-layer" style="background-image:url('assets/${lv.bgKey}/hintergrund.png')"></div>
           <div class="rest-layer rest-fg-layer" style="background-image:url('assets/${lv.bgKey}/theke.png')"></div>
-          <div class="rest-ui-overlay">
-            <div class="chef-intro-card">
-              <img class="chef-portrait" src="${chef.sprite}" alt="${chef.name}" onerror="this.style.display='none'">
-              <h2 class="chef-name">${chef.name}</h2>
-              <div class="chef-restaurant">${lv.icon} ${lv.name}</div>
-              <div class="chef-theme">${lv.themeLabel}</div>
-              <p class="chef-intro-text">"${chef.intro}"</p>
-              <div class="chef-intro-buttons">
-                <button class="btn btn-secondary" onclick="dismissChefIntro();goToScene('map')">🗺️ Länderinfo anschauen</button>
-                <button class="btn btn-primary btn-large" onclick="dismissChefIntro()">🍽️ Los geht's!</button>
+          <div class="chef-intro-scene">
+            <div class="chef-sprite-area">
+              <img src="${chef.sprite}" alt="${chef.name}" onerror="this.style.display='none'">
+            </div>
+            <div class="chef-dialog-area">
+              <div class="chef-intro-card">
+                <h2 class="chef-name">${chef.name}</h2>
+                <div class="chef-restaurant">${lv.icon} ${lv.name}</div>
+                <div class="chef-theme">Thema: ${lv.themeLabel}</div>
+                <div class="chef-intro-text">${introText}</div>
+                <div class="chef-intro-buttons">
+                  <button class="btn btn-primary btn-large" onclick="dismissChefIntro()">📚 Zum Lehrgang!</button>
+                  <button class="btn btn-secondary" onclick="dismissChefIntro();goToScene('map')">🗺️ Erst Länderinfo</button>
+                </div>
               </div>
             </div>
           </div>
@@ -81,6 +89,10 @@ function renderChefIntro() {
 function renderExplorer() {
   const wines = getExplorerWines();
   if (wines.length === 0) return renderRestaurant();
+
+  // Intro page (explorerWineIndex === -1)
+  if (state.explorerWineIndex === -1) return renderExplorerIntro(wines);
+
   const wine = wines[state.explorerWineIndex];
   const region = REGIONS[wine.region];
   const progress = `${state.explorerWineIndex + 1} / ${wines.length}`;
@@ -164,6 +176,53 @@ function renderExplorer() {
     </div>`;
 }
 
+// ===== EXPLORER INTRO =====
+function renderExplorerIntro(wines) {
+  const lv = getLevel();
+  const intro = LEVEL_INTROS[lv.id];
+  if (!intro) { state.explorerWineIndex = 0; return renderExplorer(); }
+
+  const sectionsHtml = intro.sections.map(s => `
+    <div class="intro-section">
+      <h3>${s.icon} ${s.heading}</h3>
+      <p>${s.text}</p>
+    </div>
+  `).join('');
+
+  const recapHtml = intro.recap ? `
+    <div class="intro-recap">
+      <h3>📋 Zusammenfassung</h3>
+      <ul>${intro.recap.map(r => `<li>${r}</li>`).join('')}</ul>
+    </div>` : '';
+
+  return `
+    <div class="scene scene-explorer active">
+      ${renderSidebar()}
+      <div class="main-area">
+        <div class="explorer-bg" style="background:linear-gradient(135deg, #2a1a3a, #1a1a2e)">
+          <div class="explorer-header">
+            <div class="explorer-title">
+              <span class="explorer-badge">📚 LEHRGANG</span>
+              <span class="explorer-level">${lv.name}</span>
+            </div>
+            <div class="explorer-progress">Einführung</div>
+          </div>
+          <div class="explorer-intro">
+            <h2>${intro.title}</h2>
+            ${sectionsHtml}
+            ${recapHtml}
+          </div>
+          <div class="explorer-nav">
+            <div></div>
+            <button class="btn btn-ghost" onclick="explorerSkip()">Überspringen →→</button>
+            <button class="btn btn-primary" onclick="explorerNext()">Weiter zu den Weinen →</button>
+          </div>
+        </div>
+      </div>
+      ${renderBottomBar()}
+    </div>`;
+}
+
 // ===== MAP =====
 function renderMap() {
   const unlocked = getUnlockedRegionIds();
@@ -211,7 +270,7 @@ function renderRegion() {
     const w = WINES[wId];
     if (!w) return '';
     const dot = w.color === 'rot' ? '🔴' : w.color === 'weiss' ? '⚪' : '🩷';
-    return `<div class="region-wine-card">
+    return `<div class="region-wine-card" onclick="showWineDetail('${w.id}')" style="cursor:pointer">
       <img class="rwc-img" src="${w.label}" alt="${w.name}" onerror="this.style.display='none'">
       <div class="rwc-info">
         <div class="rwc-name">${dot} ${w.name}</div>
@@ -250,6 +309,41 @@ function renderRegion() {
         </div>
       </div>
       ${renderBottomBar()}
+      ${state.overlay === 'wineDetail' ? renderWineDetailOverlay() : ''}
+    </div>`;
+}
+
+function renderWineDetailOverlay() {
+  const w = WINES[state.overlayData?.wineId];
+  if (!w) return '';
+  const region = REGIONS[w.region];
+  const dot = w.color === 'rot' ? '🔴' : w.color === 'weiss' ? '⚪' : '🩷';
+
+  return `
+    <div class="overlay-backdrop" onclick="hideWineDetail()">
+      <div class="wine-detail-card" onclick="event.stopPropagation()">
+        <div class="wine-detail-bottle">
+          <img src="${w.label}" alt="${w.name}" onerror="this.style.display='none'">
+        </div>
+        <div class="wine-detail-info">
+          <h3>${dot} ${w.name}</h3>
+          <div class="wine-meta">
+            <span class="wine-price">${w.price}</span>
+            <span class="wine-grape">${w.grape}</span>
+          </div>
+          <p>${w.description}</p>
+          <div class="wine-details" style="margin-bottom:12px">
+            <div class="detail-row"><span class="detail-label">Farbe</span><span class="detail-value">${w.color === 'rot' ? 'Rot' : w.color === 'weiss' ? 'Weiß' : 'Rosé'}</span></div>
+            <div class="detail-row"><span class="detail-label">Geschmack</span><span class="detail-value">${w.sweetness}</span></div>
+            <div class="detail-row"><span class="detail-label">Körper</span><span class="detail-value">${w.body}</span></div>
+            <div class="detail-row"><span class="detail-label">Region</span><span class="detail-value">${region ? region.flag + ' ' + region.name : ''}</span></div>
+            <div class="detail-row"><span class="detail-label">Aromen</span><span class="detail-value">${w.flavors.join(', ')}</span></div>
+            <div class="detail-row"><span class="detail-label">Passt zu</span><span class="detail-value">${w.pairings.join(', ')}</span></div>
+          </div>
+          <div class="wine-funfact"><span class="funfact-icon">💡</span><span>${w.funFact}</span></div>
+          <button class="btn btn-secondary btn-small" style="margin-top:12px" onclick="hideWineDetail()">Schließen</button>
+        </div>
+      </div>
     </div>`;
 }
 
@@ -564,7 +658,7 @@ function renderLevelUpOverlay() {
           <h4>Neue Weinländer:</h4>
           ${newRegions.map(r => `<span class="lu-region">${r.flag} ${r.name}</span>`).join('')}
         </div>` : ''}
-        <button class="btn btn-primary btn-large" onclick="state.overlay=null;state.overlayData=null;goToScene('explorer',{explorerWineIndex:0})">
+        <button class="btn btn-primary btn-large" onclick="state.overlay=null;state.overlayData=null;checkChefIntro();if(!state.showChefIntro)goToScene('explorer',{explorerWineIndex:-1})">
           🍷 Neue Weine kennenlernen!
         </button>
       </div>
@@ -580,10 +674,13 @@ function renderSidebar() {
     const isCurrent = i === current;
     const isUnlocked = i <= current;
     const rep = state.player.reputation[i];
+    const iconHtml = lv.logo
+      ? `<img class="sidebar-logo" src="${lv.logo}" alt="${lv.shortName}" onerror="this.outerHTML='<div class=\\'sidebar-icon\\'>${lv.icon}</div>'">`
+      : `<div class="sidebar-icon">${lv.icon}</div>`;
     return `
       <div class="sidebar-item ${isCurrent ? 'current' : ''} ${isUnlocked ? 'unlocked' : 'locked'}"
            ${isUnlocked ? `onclick="state.player.level=${i};goToScene('restaurant')"` : ''}>
-        <div class="sidebar-icon">${lv.icon}</div>
+        ${iconHtml}
         <div class="sidebar-label">${lv.shortName}</div>
         ${isCurrent ? '<div class="sidebar-arrow">◄</div>' : ''}
         ${isUnlocked ? `<div class="sidebar-stars">${renderStarsSmall(rep)}</div>` : '<div class="sidebar-lock">🔒</div>'}

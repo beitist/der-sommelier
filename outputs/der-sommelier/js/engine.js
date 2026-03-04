@@ -125,7 +125,8 @@ function dismissChefIntro() {
   state.player.chefIntroSeen[state.player.level] = true;
   state.showChefIntro = false;
   saveGame();
-  render();
+  // After chef intro → go to explorer (with intro page)
+  goToScene('explorer', { explorerWineIndex: -1 });
 }
 
 // ===== GUEST ASSIGNMENT =====
@@ -156,7 +157,7 @@ function getRandomGuest(level) {
 // ===== GAME ACTIONS =====
 function startNewGame() {
   state = {
-    scene: 'explorer',
+    scene: 'restaurant',
     player: {
       level: 0, tips: 0,
       reputation: [0, 0, 0, 0, 0],
@@ -169,8 +170,8 @@ function startNewGame() {
     currentQuestion: null,
     currentGuest: null,
     selectedRegion: null,
-    explorerWineIndex: 0,
-    showChefIntro: false,
+    explorerWineIndex: -1,
+    showChefIntro: true,  // Chef intro first, then explorer
     overlay: null,
     overlayData: null,
   };
@@ -207,14 +208,21 @@ function getExplorerWines() {
 
 function explorerNext() {
   const wines = getExplorerWines();
+  // From intro page → first wine
+  if (state.explorerWineIndex === -1) {
+    state.explorerWineIndex = 0;
+    state.player.discoveredWines.add(wines[0].id);
+    saveGame();
+    render();
+    return;
+  }
   if (state.explorerWineIndex < wines.length - 1) {
     state.explorerWineIndex++;
     state.player.discoveredWines.add(wines[state.explorerWineIndex].id);
     saveGame();
   } else {
-    // Explorer done → check chef intro, then restaurant
+    // Explorer done → restaurant
     goToScene('restaurant');
-    checkChefIntro();
     return;
   }
   render();
@@ -232,7 +240,6 @@ function explorerSkip() {
   wines.forEach(w => state.player.discoveredWines.add(w.id));
   saveGame();
   goToScene('restaurant');
-  checkChefIntro();
 }
 
 // ===== SHIFT SYSTEM =====
@@ -395,5 +402,18 @@ function endShift() {
   state.currentQuestion = null;
   state.currentGuest = null;
   state.overlay = null;
+  render();
+}
+
+// ===== WINE DETAIL (Region view) =====
+function showWineDetail(wineId) {
+  state.overlay = 'wineDetail';
+  state.overlayData = { wineId };
+  render();
+}
+
+function hideWineDetail() {
+  state.overlay = null;
+  state.overlayData = null;
   render();
 }
