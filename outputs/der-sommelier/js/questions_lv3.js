@@ -10,8 +10,8 @@ QUESTIONS.gehoben = {
       scenario: 'Der Bankier legt seine Goldmanschettenknöpfe zurecht und bestellt Rinderfilet mit schwarzem Trüffel. "Nur das Beste. Preis spielt keine Rolle – aber die Qualität muss stimmen. Was haben Sie aus Bordeaux?"',
       question: 'Was empfiehlst du?',
       options: [
-        { wineId: 'saint_emilion', correct: true, explanation: 'Saint-Émilion Grand Cru – eleganter Bordeaux mit Tiefe und Komplexität. Die Merlot-dominante Cuvée harmoniert wunderbar mit Trüffel und Rindfleisch.' },
-        { wineId: 'imiglykos', correct: false, explanation: 'Imiglykos zum Trüffel-Rinderfilet? Das wäre ein schwerer diplomatischer Fehler im Le Vignoble.' },
+        { wineId: 'saint_emilion', correct: true, favorite: true, explanation: 'Saint-Émilion Grand Cru – eleganter Bordeaux mit Tiefe und Komplexität. Die Merlot-dominante Cuvée harmoniert wunderbar mit Trüffel und Rindfleisch.' },
+        { wineId: 'barolo', correct: true, explanation: 'Barolo ist ein kraftvoller Begleiter zu Trüffel und Rindfleisch – allerdings hat der Bankier explizit nach Bordeaux gefragt, und da führt kein Weg am Saint-Émilion vorbei.' },
         { wineId: 'vinho_verde', correct: false, explanation: 'Vinho Verde ist leicht und spritzig – dem kräftigen Gericht in keiner Weise gewachsen.' },
       ]
     },
@@ -20,8 +20,8 @@ QUESTIONS.gehoben = {
       scenario: 'Madame Dupont bestellt mit ihrem typisch kritischen Blick: "Coq au Vin – und bitte einen Weißwein dazu, der beweist, dass Deutschland mehr kann als Riesling. Etwas Burgundisches vielleicht?"',
       question: 'Was empfiehlst du?',
       options: [
-        { wineId: 'chablis_premier_cru', correct: true, explanation: 'Chablis Premier Cru – mineralischer Chardonnay aus dem Burgund, ohne Holz. Elegant genug für Madame und perfekt zum Coq au Vin!' },
-        { wineId: 'lambrusco', correct: false, explanation: 'Lambrusco zur gehobenen französischen Küche? Madame Dupont würde die Augenbraue bis zum Haaransatz heben.' },
+        { wineId: 'chablis_premier_cru', correct: true, favorite: true, explanation: 'Chablis Premier Cru – mineralischer Chardonnay aus dem Burgund, ohne Holz. Elegant genug für Madame und perfekt zum Coq au Vin!' },
+        { wineId: 'riesling_spaetlese', correct: true, explanation: 'Die Spätlese hat genug Substanz für den Coq au Vin und die Restsüße kontrastiert die Sauce schön – aber Madame wollte ausdrücklich etwas Burgundisches, kein Deutscher Wein.' },
         { wineId: 'sekt', correct: false, explanation: 'Sekt zum Hauptgang? Das wäre ein Affront für eine französische Feinschmeckerin.' },
       ]
     },
@@ -30,8 +30,8 @@ QUESTIONS.gehoben = {
       scenario: 'Das Diplomatenpaar bestellt japanisches Wagyu-Beef – zart, marmoriert, perfekt gegart. "Ein Wein mit Tiefe und Struktur bitte – der diesem außergewöhnlichen Fleisch ebenbürtig ist."',
       question: 'Was empfiehlst du?',
       options: [
-        { wineId: 'barolo', correct: true, explanation: 'Barolo – der "König der Weine". Seine Tannine und Komplexität stehen dem edlen Wagyu in nichts nach. Eine würdige Paarung!' },
-        { wineId: 'mueller_thurgau', correct: false, explanation: 'Müller-Thurgau ist ein einfacher Weißer – dem Wagyu in keiner Weise gewachsen.' },
+        { wineId: 'barolo', correct: true, favorite: true, explanation: 'Barolo – der "König der Weine". Seine Tannine und Komplexität stehen dem edlen Wagyu in nichts nach. Eine würdige Paarung!' },
+        { wineId: 'saint_emilion', correct: true, explanation: 'Saint-Émilion bringt Struktur und Eleganz mit – ein solider Begleiter zum Wagyu, aber der Barolo ist hier die Königsklasse.' },
         { wineId: 'rose_provence', correct: false, explanation: 'Rosé zum Wagyu? Zu leicht, zu unambitioniert für dieses Premium-Fleisch.' },
       ]
     },
@@ -40,7 +40,7 @@ QUESTIONS.gehoben = {
       scenario: 'Die Professorin bestellt eine Käseplatte mit gereiftem Comté, Roquefort und Époisses. "Ich hätte gerne etwas, das den Käse nicht erschlägt – elegant, restsüß, mit guter Säure als Gegengewicht."',
       question: 'Was empfiehlst du?',
       options: [
-        { wineId: 'riesling_spaetlese', correct: true, explanation: 'Riesling Spätlese – die Restsüße und die lebendige Säure bilden einen perfekten Kontrast zu kräftigem Käse. Klassische Pairing-Regel!' },
+        { wineId: 'riesling_spaetlese', correct: true, favorite: true, explanation: 'Riesling Spätlese – die Restsüße und die lebendige Säure bilden einen perfekten Kontrast zu kräftigem Käse. Klassische Pairing-Regel!' },
         { wineId: 'malbec', correct: false, explanation: 'Malbec ist kräftig und trocken – er würde mit dem intensiven Roquefort konkurrieren statt harmonieren.' },
         { wineId: 'pinot_grigio', correct: false, explanation: 'Pinot Grigio ist zu neutral und leicht für eine so kraftvolle Käseauswahl.' },
       ]
@@ -50,8 +50,8 @@ QUESTIONS.gehoben = {
       scenario: 'Herr Tanaka bestellt mit ruhiger Stimme: "Ein argentinisches Steak, medium – wie ich es in Buenos Aires kennengelernt habe. Und den passenden Wein dazu, bitte. Ich vertraue Ihrem Urteil."',
       question: 'Was empfiehlst du?',
       options: [
-        { wineId: 'malbec', correct: true, explanation: 'Malbec – DER argentinische Steak-Wein! Kraftvoll, fruchtig, mit weichen Tanninen. Herr Tanaka wird sich an Buenos Aires erinnert fühlen.' },
-        { wineId: 'retsina', correct: false, explanation: 'Retsina zum argentinischen Steak? Eine sehr unorthodoxe Kombination, die nicht funktioniert.' },
+        { wineId: 'malbec', correct: true, favorite: true, explanation: 'Malbec – DER argentinische Steak-Wein! Kraftvoll, fruchtig, mit weichen Tanninen. Herr Tanaka wird sich an Buenos Aires erinnert fühlen.' },
+        { wineId: 'pinotage', correct: true, explanation: 'Pinotage ist kräftig und rauchig – ein guter Steak-Begleiter. Aber Herr Tanaka erinnert sich an Buenos Aires, da gehört Malbec dazu!' },
         { wineId: 'sekt', correct: false, explanation: 'Sekt zum Steak wäre eine Stilbruch – Herr Tanakas Vertrauen wäre enttäuscht.' },
       ]
     },
@@ -60,9 +60,50 @@ QUESTIONS.gehoben = {
       scenario: 'Die Influencerin filmt schon den Tisch: "OMG, ich mache heute einen Reel über \'Wine & Dine\'! Ich hab das Thunfisch-Tatar bestellt – jetzt brauche ich einen Weißen, der fotogen UND lecker ist. Meine Community erwartet Content!"',
       question: 'Was empfiehlst du?',
       options: [
-        { wineId: 'chablis_premier_cru', correct: true, explanation: 'Chablis Premier Cru – mineralisch, elegant, goldschimmernd im Glas. Perfekt zum Thunfisch-Tatar und garantiert Instagram-tauglich!' },
+        { wineId: 'chablis_premier_cru', correct: true, favorite: true, explanation: 'Chablis Premier Cru – mineralisch, elegant, goldschimmernd im Glas. Perfekt zum Thunfisch-Tatar und garantiert Instagram-tauglich!' },
+        { wineId: 'riesling_spaetlese', correct: true, explanation: 'Riesling Spätlese ist frisch und fotogen – die Restsüße kontrastiert den rohen Fisch schön. Aber Chablis ist die klassischere Wahl zum Thunfisch-Tatar und bringt die mineralische Eleganz mit, die hier den Unterschied macht.' },
         { wineId: 'dornfelder', correct: false, explanation: 'Dornfelder ist ein Rotwein – zum rohen Thunfisch ein geschmackliches No-Go und auch kein guter Content.' },
         { wineId: 'lambrusco', correct: false, explanation: 'Lambrusco zum Thunfisch-Tatar im gehobenen Restaurant? Ihre Follower würden sie auslachen.' },
+      ]
+    },
+    {
+      id: 'fp_3_7', guestId: 'weinhaendler', mood: '🍖',
+      scenario: 'Der Weinhändler studiert die Karte mit dem Auge des Profis: "Springbok-Carpaccio mit Rooibos-Jus und gerösteten Macadamias – das klingt nach Kapstadt. Geben Sie mir etwas vom gleichen Kontinent, das die rauchige Sauce unterstreicht."',
+      question: 'Welchen Wein empfiehlst du?',
+      options: [
+        { wineId: 'pinotage', correct: true, favorite: true, explanation: 'Pinotage aus Südafrika – gleicher Kontinent, und die Rauch- und Kaffeenoten greifen den Rooibos-Jus perfekt auf. Terroir-Harmonie vom Kap!' },
+        { wineId: 'malbec', correct: false, explanation: 'Malbec ist kraftvoll, aber aus Argentinien – der Weinhändler wollte explizit etwas vom selben Kontinent wie das Springbok.' },
+        { wineId: 'saint_emilion', correct: false, explanation: 'Saint-Émilion ist ein eleganter Bordeaux, aber weder afrikanisch noch rauchig genug für dieses Gericht.' },
+      ]
+    },
+    {
+      id: 'fp_3_8', guestId: 'diplomatenpaar', mood: '🦪',
+      scenario: 'Das Diplomatenpaar kommt gerade von einer Konferenz in Genf. Die Diplomatin bestellt: "Frische Austern mit Zitrone und Meersalz – ganz klassisch. Dazu einen Wein, der nach Meer schmeckt. Kennen Sie das Konzept?"',
+      question: 'Welchen Wein empfiehlst du?',
+      options: [
+        { wineId: 'chablis_premier_cru', correct: true, favorite: true, explanation: 'Chablis Premier Cru! Der Kimmeridge-Kalkboden enthält fossile Austernschalen – der Wein hat buchstäblich Meeresmineralik. Die klassischste Austern-Begleitung überhaupt.' },
+        { wineId: 'riesling_spaetlese', correct: false, explanation: 'Riesling Spätlese hat zu viel Restsüße für die puristischen Austern – die salzige Frische geht verloren.' },
+        { wineId: 'barolo', correct: false, explanation: 'Barolo zu Austern wäre ein Fauxpas der Extraklasse – die mächtigen Tannine erschlagen die zarten Schalentiere.' },
+      ]
+    },
+    {
+      id: 'fp_3_9', guestId: 'der_komponist', mood: '🎼',
+      scenario: 'Der Komponist bestellt mit geschlossenen Augen: "Gebratene Entenbrust mit Kirschsauce und Trüffelpüree. Ich brauche einen Wein, der dieses Crescendo mitmacht – etwas Italienisches, mit Rosenduft und Tiefe."',
+      question: 'Welchen Wein empfiehlst du?',
+      options: [
+        { wineId: 'barolo', correct: true, favorite: true, explanation: 'Barolo – mit seinen Aromen von Rose, Kirsche und Teer das perfekte Crescendo zur Entenbrust! Die Tannine schneiden durch das Fett, die Kirschnoten umarmen die Sauce.' },
+        { wineId: 'saint_emilion', correct: true, explanation: 'Saint-Émilion hat die nötige Struktur für die Ente – aber der Komponist bat ausdrücklich um etwas Italienisches mit Rosenduft. Da ist Barolo die einzig wahre Antwort.' },
+        { wineId: 'chablis_premier_cru', correct: false, explanation: 'Chablis ist ein Weißwein – zur kräftigen Entenbrust mit Kirschsauce fehlt ihm schlicht die Substanz.' },
+      ]
+    },
+    {
+      id: 'fp_3_10', guestId: 'lisa', mood: '🍽️',
+      scenario: 'Lisa, deine Kollegin, bittet dich leise um Rat: "Am Tisch 7 sitzt ein Stammgast mit Foie Gras und Feigensenf. Er will keinen Sauternes, er will \'etwas Deutsches mit Süße und Säure\'. Ich bin unsicher – was würdest du sagen?"',
+      question: 'Welchen Wein empfiehlst du?',
+      options: [
+        { wineId: 'riesling_spaetlese', correct: true, favorite: true, explanation: 'Riesling Spätlese – die Restsüße umschmeichelt die Foie Gras, die lebendige Säure schneidet durch das Fett, und die Honig-Pfirsich-Aromen ergänzen den Feigensenf. Ein Klassiker!' },
+        { wineId: 'chablis_premier_cru', correct: false, explanation: 'Chablis ist trocken und französisch – der Gast wollte ausdrücklich etwas Deutsches mit Süße.' },
+        { wineId: 'pinotage', correct: false, explanation: 'Pinotage zur Foie Gras? Die rauchigen Noten würden die zarte Gänseleber überfordern.' },
       ]
     },
   ],
@@ -73,8 +114,8 @@ QUESTIONS.gehoben = {
       scenario: 'Der Komponist starrt verträumt in die Ferne: "Ich suche einen Wein, der wie eine Symphonie ist – komplex, mit vielen Schichten, der sich im Glas entwickelt. Etwas zum Nachdenken."',
       question: 'Was empfiehlst du?',
       options: [
-        { wineId: 'barolo', correct: true, explanation: 'Barolo – eine Symphonie im Glas! Teer, Rosen, Kirschen, Lakritz – er braucht Zeit und belohnt Geduld. Genau der Nachdenkwein.' },
-        { wineId: 'dornfelder', correct: false, explanation: 'Dornfelder ist unkompliziert – eher ein Pop-Song als eine Symphonie.' },
+        { wineId: 'barolo', correct: true, favorite: true, explanation: 'Barolo – eine Symphonie im Glas! Teer, Rosen, Kirschen, Lakritz – er braucht Zeit und belohnt Geduld. Genau der Nachdenkwein.' },
+        { wineId: 'saint_emilion', correct: true, explanation: 'Saint-Émilion hat durchaus Tiefe und Schichten – ein guter Bordeaux entwickelt sich wunderbar im Glas. Aber an die orchestrale Wucht eines Barolo kommt er nicht heran.' },
         { wineId: 'lambrusco', correct: false, explanation: 'Lambrusco ist fröhlich und einfach – die Tiefe, die der Komponist sucht, fehlt.' },
       ]
     },
@@ -83,8 +124,8 @@ QUESTIONS.gehoben = {
       scenario: '"Ich suche einen kräftigen Roten aus der Neuen Welt," sagt die Influencerin und hält das Handy bereit. "Etwas Exotisches für meine Follower – \'Wine Wednesday\' hat 50k Views letzte Woche!"',
       question: 'Was empfiehlst du?',
       options: [
-        { wineId: 'malbec', correct: true, explanation: 'Malbec aus Argentinien – exotisch, kraftvoll und Instagram-tauglich! Die Influencerin wird begeistert sein.' },
-        { wineId: 'chianti', correct: false, explanation: 'Chianti ist italienisch – Alte Welt, nicht Neue Welt.' },
+        { wineId: 'malbec', correct: true, favorite: true, explanation: 'Malbec aus Argentinien – exotisch, kraftvoll und Instagram-tauglich! Die Influencerin wird begeistert sein.' },
+        { wineId: 'pinotage', correct: true, explanation: 'Pinotage aus Südafrika ist definitiv exotisch und Neue Welt – aber Malbec hat den besseren "Wow-Faktor" für Social Media und ist der bekanntere Neue-Welt-Star.' },
         { wineId: 'chablis_premier_cru', correct: false, explanation: 'Chablis ist ein weißer Burgunder – weder Neue Welt noch kräftiger Roter.' },
       ]
     },
@@ -93,9 +134,59 @@ QUESTIONS.gehoben = {
       scenario: 'Der Weinhändler schaut kritisch in die Karte: "Haben Sie etwas Ungewöhnliches? Einen Roten mit Rauch, Erde, etwas das man nicht jeden Tag trinkt? Überraschen Sie mich!"',
       question: 'Was empfiehlst du?',
       options: [
-        { wineId: 'pinotage', correct: true, explanation: 'Pinotage aus Südafrika – rauchig, erdig, einzigartig! Die eigene Rebsorte des Kaps. Genau die Überraschung, die der Weinhändler sucht.' },
-        { wineId: 'mueller_thurgau', correct: false, explanation: 'Müller-Thurgau ist mild und alltäglich – das Gegenteil einer Überraschung.' },
+        { wineId: 'pinotage', correct: true, favorite: true, explanation: 'Pinotage aus Südafrika – rauchig, erdig, einzigartig! Die eigene Rebsorte des Kaps. Genau die Überraschung, die der Weinhändler sucht.' },
+        { wineId: 'malbec', correct: true, explanation: 'Malbec hat dunkle, erdige Noten und ist durchaus ungewöhnlich – aber für echten Rauch und Lagerfeuer-Charakter ist Pinotage die unschlagbare Wahl.' },
         { wineId: 'cremant', correct: false, explanation: 'Crémant ist elegant, aber nicht der rauchig-erdige Rote, den er sucht.' },
+      ]
+    },
+    {
+      id: 'pref_3_4', guestId: 'die_professorin', mood: '🔬',
+      scenario: 'Die Professorin nimmt ihre Brille ab und reibt sich die Schläfen: "Ich habe gerade eine dreistündige Vorlesung über Geomorphologie gehalten. Ich brauche etwas Mineralisches, Klares – einen Wein, den man schmecken UND analysieren kann. Kein Fruchtbomber."',
+      question: 'Was empfiehlst du?',
+      options: [
+        { wineId: 'chablis_premier_cru', correct: true, favorite: true, explanation: 'Chablis Premier Cru – mineralisch, klar, analytisch! Die Kreide- und Feuersteinnoten sind ein Geologen-Traum im Glas. Perfekt für die Professorin.' },
+        { wineId: 'riesling_spaetlese', correct: false, explanation: 'Riesling Spätlese hat zwar Mineralik, aber die Restsüße und Fruchtnoten sind genau das, was die Professorin heute NICHT möchte – sie will klar und analytisch, keinen Fruchtbomber.' },
+        { wineId: 'malbec', correct: false, explanation: 'Malbec ist ein üppiger Fruchtbomber – das Gegenteil von dem, was die Professorin sucht.' },
+      ]
+    },
+    {
+      id: 'pref_3_5', guestId: 'herr_tanaka', mood: '🧘',
+      scenario: 'Herr Tanaka faltet nachdenklich seine Serviette: "In Japan sagen wir \'Wabi-Sabi\' – die Schönheit des Unvollkommenen. Ich suche einen Wein mit Charakter, Ecken und Kanten. Nicht glatt, nicht gefällig – ehrlich und authentisch."',
+      question: 'Was empfiehlst du?',
+      options: [
+        { wineId: 'barolo', correct: true, favorite: true, explanation: 'Barolo ist Wabi-Sabi im Glas! Tannine wie raue Seide, Aromen von Teer und verwelkten Rosen – nicht sofort gefällig, aber von überwältigender Ehrlichkeit und Tiefe.' },
+        { wineId: 'pinotage', correct: true, explanation: 'Pinotage hat definitiv Ecken und Kanten – Rauch, Erde, Wildheit. Aber Barolo vereint die Spannung zwischen Rauheit und Eleganz auf einem noch höheren Niveau.' },
+        { wineId: 'chablis_premier_cru', correct: false, explanation: 'Chablis ist elegant und klar, aber eher "Zen-Garten" als "Wabi-Sabi" – zu geschliffen für das, was Herr Tanaka sucht.' },
+      ]
+    },
+    {
+      id: 'pref_3_6', guestId: 'bergmann', mood: '👔',
+      scenario: 'Herr Bergmann, inzwischen im Maßanzug statt Bergmannskluft, grinst verlegen: "Mensch, als ich das erste Mal hier war, hab ich noch nach Radler gefragt. Heute will ich einen Roten, der zeigt, dass sich die Reise gelohnt hat. Etwas aus Frankreich – das Beste vom Besten."',
+      question: 'Was empfiehlst du?',
+      options: [
+        { wineId: 'saint_emilion', correct: true, favorite: true, explanation: 'Saint-Émilion Grand Cru – der krönende Beweis für Bergmanns Weinreise! Von der Imbissbude zum Bordeaux-Genießer. Chapeau, Herr Bergmann!' },
+        { wineId: 'barolo', correct: false, explanation: 'Barolo ist großartig, aber aus Italien – Herr Bergmann wollte ausdrücklich Frankreich. Seine Weinreise hat ihn gelehrt, präzise zu bestellen!' },
+        { wineId: 'malbec', correct: false, explanation: 'Malbec ist Argentinien, nicht Frankreich. Bergmanns Geschmack hat sich entwickelt, aber die Geografie muss stimmen.' },
+      ]
+    },
+    {
+      id: 'pref_3_7', guestId: 'madame_dupont', mood: '🌙',
+      scenario: 'Madame Dupont lehnt sich zurück und seufzt ungewohnt sanft: "Heute Abend kein Duell, keine Kritik. Ich möchte einen Wein, der mich an die Sonntagnachmittage meiner Kindheit in der Dordogne erinnert – halbtrocken, golden, duftend nach reifen Früchten."',
+      question: 'Was empfiehlst du?',
+      options: [
+        { wineId: 'riesling_spaetlese', correct: true, favorite: true, explanation: 'Riesling Spätlese – golden, duftend nach Pfirsich und Honig, halbtrocken. Die sanfte Süße weckt Kindheitserinnerungen, die Säure hält die Nostalgie lebendig.' },
+        { wineId: 'chablis_premier_cru', correct: false, explanation: 'Chablis ist trocken und mineralisch – zu streng für Madame Duponts seltenen sentimentalen Moment.' },
+        { wineId: 'pinotage', correct: false, explanation: 'Ein rauchiger südafrikanischer Rotwein passt nicht zu goldenen Kindheitserinnerungen in der Dordogne.' },
+      ]
+    },
+    {
+      id: 'pref_3_8', guestId: 'der_bankier', mood: '🏦',
+      scenario: 'Der Bankier telefoniert hektisch, legt auf und sagt: "Deal geplatzt. Ich brauche jetzt einen Wein, der nach Gewinner schmeckt – vollmundig, trocken, aus einer Region die für Exzellenz steht. Und zwar sofort."',
+      question: 'Was empfiehlst du?',
+      options: [
+        { wineId: 'saint_emilion', correct: true, favorite: true, explanation: 'Saint-Émilion Grand Cru – Bordeaux ist die Benchmark für Prestige-Wein weltweit. Vollmundig, komplex, ein Statement. Der Bankier wird den nächsten Deal mit neuem Selbstbewusstsein angehen.' },
+        { wineId: 'barolo', correct: true, explanation: 'Barolo ist der "König der Weine" und steht absolut für Exzellenz – aber wenn ein Bankier nach Prestige verlangt, ist Bordeaux die Währung, die jeder kennt.' },
+        { wineId: 'riesling_spaetlese', correct: false, explanation: 'Halbtrocken und mittelschwer – nicht das Powerstatement, das der Bankier gerade braucht.' },
       ]
     },
   ],
@@ -130,6 +221,36 @@ QUESTIONS.gehoben = {
       statement: 'Die Diplomatin wendet sich an ihren Mann: "Schatz, Saint-Émilion ist doch ein reiner Cabernet-Sauvignon-Wein. Das Rechte Ufer von Bordeaux ist berühmt dafür."',
       isCorrect: false,
       correction: 'Umgekehrt! Am Rechten Ufer (Rive Droite) von Bordeaux – wozu Saint-Émilion gehört – dominiert Merlot, nicht Cabernet Sauvignon. Cabernet Sauvignon ist die Hauptrebsorte am Linken Ufer (Médoc, Graves). Ein feiner, aber wichtiger Unterschied!'
+    },
+    {
+      id: 'bw_3_6', guestId: 'weinclub', mood: '🤓',
+      statement: 'Der Weinclub-Vorsitzende hebt sein Glas: "Champagner darf nur aus der Champagne kommen – das ist streng geschützt. Alles andere ist Schaumwein, egal wie gut es ist."',
+      isCorrect: true,
+      correction: 'Absolut korrekt! Die Appellation d\'Origine Contrôlée (AOC) schützt den Namen "Champagner" streng. Nur Schaumwein aus der Region Champagne, hergestellt nach der Méthode Champenoise mit zugelassenen Rebsorten, darf sich so nennen. Selbst identisch hergestellter Schaumwein aus anderen Regionen ist "nur" Crémant oder Sekt.'
+    },
+    {
+      id: 'bw_3_7', guestId: 'professorin', mood: '🤓',
+      statement: 'Die Professorin schwenkt ihren Wein und sagt: "Wussten Sie, dass Barrique-Fässer dem Wein Vanille-Aromen verleihen? Das kommt vom Toasten des Holzes bei der Fassherstellung."',
+      isCorrect: true,
+      correction: 'Wissenschaftlich korrekt! Beim Toasten (Erhitzen) der Eichenfässer entsteht der Aromastoff Vanillin – das gleiche Molekül, das auch in der Vanilleschote vorkommt. Je stärker das Toasting, desto intensiver die Vanille-, Karamell- und Röstnoten im Wein. Neues Holz gibt mehr Aromen ab als gebrauchtes.'
+    },
+    {
+      id: 'bw_3_8', guestId: 'kuenstler', mood: '🤓',
+      statement: 'Der Künstler betrachtet die Farbe im Glas und philosophiert: "Alte Reben sollen konzentrierteren Wein produzieren. Je älter der Weinstock, desto weniger Trauben, aber desto intensiver der Geschmack."',
+      isCorrect: true,
+      correction: 'Eine Wahrheit, die Winzer weltweit schätzen! Alte Reben (Vieilles Vignes, ab ca. 30-40 Jahren) haben tiefere Wurzeln und tragen weniger Trauben. Die geringere Menge bedeutet mehr Konzentration von Aromen und Mineralstoffen pro Beere. Manche Reben in der Barossa Valley in Australien sind über 170 Jahre alt!'
+    },
+    {
+      id: 'bw_3_9', guestId: 'startup_gruender', mood: '🤓',
+      statement: 'Der Startup-Gründer zeigt auf die Weinkarte und sagt: "Ich hab mal recherchiert: Ein Chablis wird ohne Holzfass-Reifung hergestellt. Deswegen schmeckt er so mineralisch und klar – kein Vanille-Gedöns."',
+      isCorrect: true,
+      correction: 'Gut recherchiert! Klassischer Chablis wird im Edelstahltank ausgebaut, um die reine Mineralität des Kimmeridge-Kalkbodens zu bewahren. Nur einige Premier und Grand Cru Chablis sehen Eichenfässer – aber auch dann dezent. Der mineralische, "stahlige" Charakter ist das Markenzeichen!'
+    },
+    {
+      id: 'bw_3_10', guestId: 'food_bloggerin', mood: '🤓',
+      statement: 'Die Food-Bloggerin tippt auf ihr Handy und erklärt: "Für meinen Blog: In Bordeaux werden fast alle Weine als Cuvée hergestellt – also ein Verschnitt aus mehreren Rebsorten. Reinsortige Bordeaux-Weine sind extrem selten."',
+      isCorrect: true,
+      correction: 'Das gibt Content! In Bordeaux ist die Assemblage (Verschnitt) tatsächlich die Regel. Am Linken Ufer dominiert Cabernet Sauvignon, ergänzt durch Merlot und Cabernet Franc. Am Rechten Ufer führt Merlot, begleitet von Cabernet Franc. Reinsortige Bordeaux-Weine sind absolute Ausnahmen – die Kunst liegt im Blend!'
     },
   ],
 
@@ -200,6 +321,50 @@ QUESTIONS.gehoben = {
       ],
       explanation: '"Spätlese" bedeutet: Die Trauben werden später als normal geerntet – sie sind dadurch reifer und konzentrierter. Das Mostgewicht muss mindestens 76° Oechsle betragen. Der Wein kann trocken oder restsüß sein!'
     },
+    {
+      id: 'ww_3_7', guestId: 'weinhaendler', mood: '🪵',
+      question: 'Der Weinhändler klopft auf den Tisch: "Mein Lieferant bietet mir Barrique-Fässer an – 225 Liter. Was ist der Unterschied zwischen neuem und gebrauchtem Barrique für den Wein?"',
+      options: [
+        { text: 'Neues Holz gibt mehr Vanille und Röstaromen ab, gebrauchtes ist dezenter', correct: true },
+        { text: 'Gebrauchtes Holz macht den Wein süßer als neues', correct: false },
+        { text: 'Es gibt keinen geschmacklichen Unterschied', correct: false },
+        { text: 'Neues Holz macht den Wein säuerlicher', correct: false },
+      ],
+      explanation: 'Neues Barrique gibt starke Vanille-, Toast- und Karamellaromen an den Wein ab. Mit jeder Benutzung nehmen diese Aromen ab – ein "3rd fill" Fass ist quasi neutral und dient nur noch der Mikro-Oxidation. Viele Top-Winzer nutzen bewusst eine Mischung aus neuem und gebrauchtem Holz!'
+    },
+    {
+      id: 'ww_3_8', guestId: 'der_komponist', mood: '🧪',
+      question: 'Der Komponist betrachtet die Tränen am Glasrand: "Diese Schlieren – manche Weine haben dicke, langsam laufende Tropfen, andere dünne. Was sagt mir das über den Wein?"',
+      options: [
+        { text: 'Dickere, langsamere Tränen deuten auf höheren Alkohol- oder Zuckergehalt hin', correct: true },
+        { text: 'Schnelle Tränen bedeuten höhere Qualität', correct: false },
+        { text: 'Die Tränen zeigen das Alter des Weins an', correct: false },
+        { text: 'Es ist nur ein optischer Effekt ohne Bedeutung', correct: false },
+      ],
+      explanation: 'Die "Kirchenfenster" oder "Tränen" entstehen durch den Marangoni-Effekt: Alkohol verdunstet am Glasrand schneller als Wasser, die Oberflächenspannung ändert sich und der Wein fließt in Tropfen zurück. Dickere, langsamere Tränen = mehr Alkohol oder Restzucker. Kein Qualitätsmerkmal, aber ein physikalisches Schauspiel!'
+    },
+    {
+      id: 'ww_3_9', guestId: 'madame_dupont', mood: '🏰',
+      question: 'Madame Dupont hebt eine Augenbraue: "Sie haben Chablis auf der Karte. Können Sie mir sagen, was den Boden in Chablis so besonders macht? Ich teste Ihre geologischen Kenntnisse."',
+      options: [
+        { text: 'Kimmeridge-Kalk mit fossilen Austernschalen aus dem Jura-Zeitalter', correct: true },
+        { text: 'Vulkangestein aus dem Tertiär', correct: false },
+        { text: 'Roter Sandstein wie in Bordeaux', correct: false },
+        { text: 'Schieferböden wie an der Mosel', correct: false },
+      ],
+      explanation: 'Der Boden in Chablis besteht aus Kimmeridge-Kalkstein – benannt nach Kimmeridge Bay in England. Er entstand im Jura-Zeitalter und enthält fossile Austernschalen, die über 150 Millionen Jahre alt sind. Diese einzigartige Geologie gibt dem Chablis seine berühmte Mineralität und den Hauch von Salz!'
+    },
+    {
+      id: 'ww_3_10', guestId: 'die_professorin', mood: '📊',
+      question: 'Die Professorin zückt ihren Notizblock: "Malolaktische Gärung – können Sie mir erklären, was da passiert und warum man das bei manchen Weinen bewusst macht?"',
+      options: [
+        { text: 'Apfelsäure wird in mildere Milchsäure umgewandelt – macht den Wein weicher', correct: true },
+        { text: 'Der Alkohol wird in Zucker zurückverwandelt', correct: false },
+        { text: 'Es werden Tannine abgebaut, um den Wein fruchtiger zu machen', correct: false },
+        { text: 'Es ist eine zweite alkoholische Gärung zur Erhöhung des Alkoholgehalts', correct: false },
+      ],
+      explanation: 'Bei der malolaktischen Gärung (auch "biologischer Säureabbau") wandeln Milchsäurebakterien die scharfe Apfelsäure in mildere Milchsäure um. Das macht den Wein weicher und cremiger. Bei Rotweinen fast immer erwünscht, bei Weißweinen situationsabhängig – ein Chablis wird z.B. bewusst OHNE Malo ausgebaut, um die knackige Säure zu bewahren!'
+    },
   ],
 
   blindtasting: [
@@ -211,7 +376,7 @@ QUESTIONS.gehoben = {
         palate: 'Kraftvoll und vollmundig, mit markanten Tanninen und langem, warmem Abgang'
       },
       options: [
-        { wineId: 'malbec', correct: true },
+        { wineId: 'malbec', correct: true, favorite: true },
         { wineId: 'riesling_spaetlese', correct: false },
         { wineId: 'vinho_verde', correct: false },
         { wineId: 'rose_provence', correct: false },
@@ -226,7 +391,7 @@ QUESTIONS.gehoben = {
         palate: 'Straff und mineralisch, lebendige Säure, eleganter trockener Abgang mit salziger Note'
       },
       options: [
-        { wineId: 'chablis_premier_cru', correct: true },
+        { wineId: 'chablis_premier_cru', correct: true, favorite: true },
         { wineId: 'lambrusco', correct: false },
         { wineId: 'primitivo', correct: false },
         { wineId: 'imiglykos', correct: false },
@@ -241,12 +406,42 @@ QUESTIONS.gehoben = {
         palate: 'Mittelschwer, leicht erdig, mit einem typischen "Lagerfeuer"-Charakter'
       },
       options: [
-        { wineId: 'pinotage', correct: true },
+        { wineId: 'pinotage', correct: true, favorite: true },
         { wineId: 'champagner', correct: false },
         { wineId: 'gruener_veltliner', correct: false },
         { wineId: 'chianti', correct: false },
       ],
       explanation: 'Rauch + Kaffee + Erde + "Lagerfeuer" = Pinotage aus Südafrika! Diese Aromen sind typisch für die Rebsorte und machen sie unverwechselbar.'
+    },
+    {
+      id: 'bt_3_4', guestId: 'madame_dupont', mood: '👃',
+      clues: {
+        appearance: 'Intensives Granatrot mit orangefarbenem Rand – deutet auf Reife und Alterungspotential hin',
+        nose: 'Verwelkte Rosen, Teer, dunkle Kirschen, ein Hauch Lakritz und getrocknete Kräuter',
+        palate: 'Straffe, körnige Tannine, voller Körper, enorme Länge im Abgang mit Noten von Tabak und Leder'
+      },
+      options: [
+        { wineId: 'barolo', correct: true, favorite: true },
+        { wineId: 'saint_emilion', correct: false },
+        { wineId: 'malbec', correct: false },
+        { wineId: 'pinotage', correct: false },
+      ],
+      explanation: 'Verwelkte Rosen + Teer + körnige Tannine + orangefarbener Rand = der unverkennbare Barolo! Nebbiolo hat trotz heller Farbe (Granat statt Tiefschwarz) enorme Tanninkraft. Die Rose-Teer-Kombination ist sein Fingerabdruck. "König der Weine, Wein der Könige"!'
+    },
+    {
+      id: 'bt_3_5', guestId: 'der_bankier', mood: '🔍',
+      clues: {
+        appearance: 'Leuchtendes Strohgold mit leichtem Grünschimmer, erstaunlich viskos für einen Weißwein',
+        nose: 'Reifer Pfirsich, Akazienhonig, etwas Quitte und ein feiner mineralischer Unterton',
+        palate: 'Halbtrocken mit lebendiger Säure, mittlerer Körper, langer Abgang mit Honig- und Steinobstnoten'
+      },
+      options: [
+        { wineId: 'riesling_spaetlese', correct: true, favorite: true },
+        { wineId: 'chablis_premier_cru', correct: false },
+        { wineId: 'barolo', correct: false },
+        { wineId: 'pinotage', correct: false },
+      ],
+      explanation: 'Pfirsich + Honig + halbtrocken + lebendige Säure = Riesling Spätlese! Das Zusammenspiel von Restsüße und rassiger Säure ist das Markenzeichen deutscher Spätlese-Rieslinge. Der Chablis wäre trocken und mineralischer, ohne die Honignoten.'
     },
   ],
 };

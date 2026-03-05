@@ -11,23 +11,27 @@ const CONFIG = {
       description: 'Dein erster Job! Rot, Weiß, Rosé – mehr brauchst du hier erstmal nicht.' },
     { id: 'steakhaus', name: 'Steakhaus "Black Angus"', shortName: 'Black Angus', icon: '🥩',
       logo: 'assets/restaurants/steakhaus_logo.png',
-      xpNeeded: 80, xpToNext: 200, unlockRegions: ['oesterreich', 'frankreich'],
+      xpNeeded: 80, xpToNext: 240, unlockRegions: ['oesterreich', 'frankreich'],
       bgKey: 'steakhaus', themeLabel: 'Rebsorten & Charakter',
+      levelCode: 'RIESLING',
       description: 'Kräftige Rote zum Steak – und die ersten edleren Tropfen.' },
     { id: 'gutbuergerlich', name: 'Gasthaus "Zur Linde"', shortName: 'Zur Linde', icon: '🍽️',
       logo: 'assets/restaurants/gutbuergerlich_logo.png',
-      xpNeeded: 200, xpToNext: 400, unlockRegions: ['spanien', 'portugal'],
+      xpNeeded: 240, xpToNext: 480, unlockRegions: ['spanien', 'portugal'],
       bgKey: 'gutbuergerlich', themeLabel: 'Wein & Essen',
+      levelCode: 'TERROIR',
       description: 'Regionale Küche, Food Pairing und die Kunst der richtigen Empfehlung.' },
     { id: 'gehoben', name: 'Restaurant "Le Vignoble"', shortName: 'Le Vignoble', icon: '🍷',
       logo: 'assets/restaurants/gehoben_logo.png',
-      xpNeeded: 400, xpToNext: 700, unlockRegions: ['argentinien', 'suedafrika'],
+      xpNeeded: 480, xpToNext: 800, unlockRegions: ['argentinien', 'suedafrika'],
       bgKey: 'gehoben', themeLabel: 'Terroir & Weinbereitung',
+      levelCode: 'BARRIQUE',
       description: 'Terroir, Jahrgänge, Grand Cru – jetzt wird es anspruchsvoll.' },
     { id: 'sterne', name: 'Sterne-Restaurant "Étoile"', shortName: 'Étoile', icon: '⭐',
       logo: 'assets/restaurants/sterne_logo.png',
-      xpNeeded: 700, xpToNext: 999, unlockRegions: [],
+      xpNeeded: 800, xpToNext: 1200, unlockRegions: [],
       bgKey: 'sterne', themeLabel: 'Verkostung & Weinsprache',
+      levelCode: 'SOMMELIER',
       description: 'Blindverkostung, perfekte Menü-Begleitung, Profi-Vokabular.' },
   ],
   questionsPerShift: 5,
@@ -323,8 +327,8 @@ const WINES = {
 const REGIONS = {
   deutschland: {
     id: 'deutschland', name: 'Deutschland', flag: '🇩🇪',
-    mapX: 52, mapY: 28,
-    description: 'Berühmt für Riesling und eine Vielfalt an Weißweinen. 13 Anbaugebiete von Mosel bis Baden.',
+    mapX: 51, mapY: 26,
+    description: 'Deutschland ist das Land des Rieslings – keine andere Rebsorte bringt hier so elegante, mineralische Weißweine hervor. Mit 13 Anbaugebieten von der steilen Mosel bis zum sonnigen Baden gibt es eine enorme Vielfalt. Rund 65% der Rebfläche ist mit weißen Sorten bepflanzt, aber auch der Spätburgunder hat sich international einen Namen gemacht.',
     mainRegions: 'Mosel, Rheingau, Pfalz, Baden, Württemberg',
     keyFacts: [
       'Größte Rebsorten: Riesling (weiß) und Spätburgunder (rot)',
@@ -336,8 +340,8 @@ const REGIONS = {
   },
   italien: {
     id: 'italien', name: 'Italien', flag: '🇮🇹',
-    mapX: 54, mapY: 36,
-    description: 'Größter Weinproduzent der Welt! Von Südtirol bis Sizilien.',
+    mapX: 52, mapY: 33,
+    description: 'Italien ist der größte Weinproduzent der Welt – und das mit über 500 einheimischen Rebsorten, die es sonst nirgends gibt. Von den leichten Weißen Südtirols über den spritzigen Lambrusco der Emilia-Romagna bis zum mächtigen Barolo aus dem Piemont: Jede Region hat ihren eigenen Charakter. Wein gehört hier zum Essen wie Olivenöl zum Brot.',
     mainRegions: 'Toskana, Piemont, Venetien, Apulien, Sizilien',
     keyFacts: [
       'Qualitätsstufen: Vino da Tavola → IGT → DOC → DOCG',
@@ -348,8 +352,8 @@ const REGIONS = {
   },
   griechenland: {
     id: 'griechenland', name: 'Griechenland', flag: '🇬🇷',
-    mapX: 58, mapY: 42,
-    description: 'Eines der ältesten Weinbauländer – Wiege des europäischen Weinbaus!',
+    mapX: 56, mapY: 37,
+    description: 'Griechenland ist die Wiege des europäischen Weinbaus – hier wird seit über 4.000 Jahren Wein gemacht. Bekannt ist vor allem der Retsina, der mit Kiefernharz aromatisiert wird – eine Tradition aus der Antike. Aber auch moderne griechische Weine von Santorin oder dem Peloponnes überraschen mit eigenständigen Rebsorten wie Assyrtiko und Agiorgitiko.',
     mainRegions: 'Attika, Peloponnes, Kreta, Santorin',
     keyFacts: [
       'Weinbau-Tradition seit über 4000 Jahren',
@@ -360,8 +364,8 @@ const REGIONS = {
   },
   oesterreich: {
     id: 'oesterreich', name: 'Österreich', flag: '🇦🇹',
-    mapX: 55, mapY: 30,
-    description: 'Klein aber fein! Grüner Veltliner und elegante Rotweine.',
+    mapX: 53, mapY: 28,
+    description: 'Klein aber fein: Österreich hat mit dem Grünen Veltliner einen echten Paradewein, der über 30% der gesamten Rebfläche ausmacht. Pfeffrig, frisch und unglaublich vielseitig zum Essen. Im Burgenland entstehen dazu kräftige Rotweine aus Zweigelt und Blaufränkisch. Die Wachau an der Donau gilt als eines der schönsten Weinbaugebiete Europas.',
     mainRegions: 'Wachau, Kamptal, Burgenland, Weinviertel',
     keyFacts: [
       'Paradewein: Grüner Veltliner (über 30% der Rebfläche)',
@@ -372,8 +376,8 @@ const REGIONS = {
   },
   frankreich: {
     id: 'frankreich', name: 'Frankreich', flag: '🇫🇷',
-    mapX: 46, mapY: 32,
-    description: 'Die Wiege der modernen Weinkultur – von Bordeaux bis Champagne.',
+    mapX: 48, mapY: 30,
+    description: 'Frankreich ist die Wiege der modernen Weinkultur. Begriffe wie Terroir, Cuvée und Appellation wurden hier geprägt. Von Bordeaux über Burgund bis in die Champagne – französische Weine setzen weltweit den Maßstab. Das AOC-System, das Herkunft und Qualität schützt, wurde zum Vorbild für alle europäischen Weinländer.',
     mainRegions: 'Bordeaux, Burgund, Champagne, Rhône, Loire, Elsass, Provence',
     keyFacts: [
       'AOC/AOP-System als Vorbild für alle Weinländer',
@@ -385,8 +389,8 @@ const REGIONS = {
   },
   spanien: {
     id: 'spanien', name: 'Spanien', flag: '🇪🇸',
-    mapX: 42, mapY: 38,
-    description: 'Größte Rebfläche der Welt! Rioja, Ribera del Duero und mehr.',
+    mapX: 45, mapY: 35,
+    description: 'Spanien besitzt die größte Rebfläche der Welt – und hat mit dem Reifesystem von Joven bis Gran Reserva eine ganz eigene Weinphilosophie. Tempranillo ist der Star unter den Rebsorten, vor allem in Rioja und Ribera del Duero. Spanische Weine bieten oft ein unschlagbares Preis-Genuss-Verhältnis, weil die Weingüter den Wein erst nach Jahren Fassreife auf den Markt bringen.',
     mainRegions: 'Rioja, Ribera del Duero, Priorat, Rueda, Penedès',
     keyFacts: [
       'Reifestufen: Joven → Crianza → Reserva → Gran Reserva',
@@ -397,8 +401,8 @@ const REGIONS = {
   },
   portugal: {
     id: 'portugal', name: 'Portugal', flag: '🇵🇹',
-    mapX: 38, mapY: 38,
-    description: 'Kleine Fläche, große Vielfalt – von Vinho Verde bis Portwein.',
+    mapX: 43, mapY: 36,
+    description: 'Portugal ist ein kleines Land mit einer riesigen Weinvielfalt – über 250 einheimische Rebsorten sorgen dafür, dass es hier immer etwas Neues zu entdecken gibt. Berühmt ist der Portwein aus dem Douro-Tal, aber auch der leichte, prickelnde Vinho Verde aus dem Norden hat sich zum Exportschlager entwickelt. In keinem Land Europas trinkt man pro Kopf mehr Wein.',
     mainRegions: 'Minho (Vinho Verde), Douro, Alentejo, Dão',
     keyFacts: [
       'Über 250 einheimische Rebsorten',
@@ -409,8 +413,8 @@ const REGIONS = {
   },
   argentinien: {
     id: 'argentinien', name: 'Argentinien', flag: '🇦🇷',
-    mapX: 28, mapY: 72,
-    description: 'Fünftgrößter Weinproduzent – Heimat des Malbec.',
+    mapX: 30, mapY: 75,
+    description: 'Argentinien ist der fünftgrößte Weinproduzent der Welt und die unbestrittene Heimat des Malbec. Die Rebsorte kam einst aus Frankreich, wurde dort aber fast bedeutungslos – in den Höhenlagen von Mendoza auf bis zu 3.000 Metern fand sie ihre perfekte zweite Heimat. Kräftig, samtig und dunkelviolett: So schmeckt Argentinien.',
     mainRegions: 'Mendoza, Salta, Patagonien',
     keyFacts: [
       'Mendoza: 70% der argentinischen Weinproduktion',
@@ -421,8 +425,8 @@ const REGIONS = {
   },
   suedafrika: {
     id: 'suedafrika', name: 'Südafrika', flag: '🇿🇦',
-    mapX: 54, mapY: 74,
-    description: 'Weinbau seit 350 Jahren – Pinotage als einzigartige Schöpfung.',
+    mapX: 55, mapY: 73,
+    description: 'Südafrika macht seit über 350 Jahren Wein und hat mit Pinotage eine Rebsorte, die es nur hier gibt – 1925 aus Pinot Noir und Cinsault gekreuzt. Die Weinregion um Stellenbosch und Franschhoek zählt zu den schönsten der Welt. Das Zusammenspiel aus kühlem Atlantikwind und heißer Sonne gibt den Weinen einen unverwechselbaren Charakter.',
     mainRegions: 'Stellenbosch, Paarl, Franschhoek, Swartland',
     keyFacts: [
       'Pinotage: 1925 in Stellenbosch gezüchtet',

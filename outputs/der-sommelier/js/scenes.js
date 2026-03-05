@@ -19,8 +19,15 @@ function render() {
       case 'minigame': html = renderMiniGame(); break;
     }
   }
+  // Global overlays (can appear on any scene)
+  if (state.overlay === 'downgrade') html += renderDowngradeOverlay();
+
   root.innerHTML = html;
   attachEvents();
+
+  // Auto-scroll beratung chat history
+  const berHist = document.getElementById('ber-history');
+  if (berHist) berHist.scrollTop = berHist.scrollHeight;
 }
 
 // ===== TITLE =====
@@ -40,6 +47,16 @@ function renderTitle() {
           <div class="title-buttons">
             <button class="btn btn-primary" onclick="startNewGame()">🍷 Neues Spiel</button>
             ${hasSave() ? '<button class="btn btn-secondary" onclick="continueGame()">📂 Weiterspielen</button>' : ''}
+            <button class="btn btn-ghost" onclick="showLevelCodeInput()">🔑 Levelcode eingeben</button>
+          </div>
+          <div id="levelcode-input" style="display:none; margin-top:20px;">
+            <div style="display:flex; gap:8px; justify-content:center; align-items:center;">
+              <input id="levelcode-field" type="text" placeholder="Code eingeben..."
+                style="padding:10px 16px; font-size:16px; font-family:var(--font-ui); background:var(--c-card); color:var(--c-text); border:2px solid var(--c-purple); border-radius:6px; text-transform:uppercase; width:200px; text-align:center;"
+                onkeydown="if(event.key==='Enter')tryLevelCode()">
+              <button class="btn btn-primary btn-small" onclick="tryLevelCode()">ENTER</button>
+            </div>
+            <p id="levelcode-error" style="color:var(--c-danger); font-size:13px; margin-top:8px; display:none;">Unbekannter Code!</p>
           </div>
         </div>
       </div>
@@ -112,7 +129,7 @@ function renderExplorer() {
           <div class="explorer-header">
             <div class="explorer-title">
               <span class="explorer-badge">📚 LEHRGANG</span>
-              <span class="explorer-level">${getLevel().name}</span>
+              <span class="explorer-level">${LEVELS[wine.level].name}</span>
             </div>
             <div class="explorer-progress">${progress}</div>
           </div>
@@ -415,6 +432,7 @@ function renderQuestion() {
     case 'besserwisser': dialogContent = renderBesserwisserQ(q); break;
     case 'weinwissen': dialogContent = renderWeinwissenQ(q); break;
     case 'blindtasting': dialogContent = renderBlindtastingQ(q); break;
+    case 'beratung': dialogContent = renderBeratungQ(q); break;
     default: dialogContent = renderPairingQ(q); break;
   }
 
@@ -610,6 +628,81 @@ function renderBlindtastingQ(q) {
     </div>`;
 }
 
+// ===== BERATUNG RENDERING =====
+function renderBeratungQ(q) {
+  const data = q.data;
+  const guest = state.currentGuest;
+  const answered = q.answered !== undefined;
+
+  // Initialize beratung state if needed
+  if (!state.beratungState) {
+    state.beratungState = {
+      stepIndex: 0,
+      dialogHistory: [{ speaker: 'guest', text: data.intro }],
+      bonusAccumulated: 0,
+    };
+  }
+
+  const bs = state.beratungState;
+  const stepIndex = bs.stepIndex;
+  const step = data.steps[stepIndex];
+
+  // Render chat history
+  const historyHtml = bs.dialogHistory.map(entry => {
+    const isGuest = entry.speaker === 'guest';
+    return `<div class="ber-bubble ${isGuest ? 'ber-guest' : 'ber-player'}">
+      <span class="ber-speaker">${isGuest ? (guest ? guest.name : 'Gast') : 'Du'}</span>
+      <span class="ber-text">${entry.text}</span>
+    </div>`;
+  }).join('');
+
+  // Render current step choices
+  let choicesHtml = '';
+  if (stepIndex < 2 && !answered) {
+    // Text choices for clarifying steps
+    choicesHtml = step.choices.map((c, i) => {
+      return `<button class="dialog-choice ber-choice" onclick="answerBeratungStep(${i})">
+        <span class="choice-wine">${c.text}</span>
+      </button>`;
+    }).join('');
+  } else if (stepIndex === 2 && !answered) {
+    // Wine choices for final step
+    choicesHtml = step.options.map((opt, i) => {
+      const wine = WINES[opt.wineId];
+      let cls = 'dialog-choice';
+      if (q.eliminatedOption === i) cls += ' eliminated';
+      const dot = wine ? (wine.color === 'rot' ? '\u{1F534}' : wine.color === 'weiss' ? '\u26AA' : '\u{1FA77}') : '';
+      return `<button class="${cls}" ${q.eliminatedOption === i ? 'disabled' : ''} onclick="answerBeratungStep(${i})">
+        <span class="choice-wine">${dot} ${wine ? wine.name : '???'}</span>
+        <span class="choice-detail">${wine ? wine.sweetness + ' \u00B7 ' + wine.flavors.slice(0, 2).join(', ') : ''}</span>
+      </button>`;
+    }).join('');
+  }
+
+  const stepLabel = stepIndex < 2
+    ? `Schritt ${stepIndex + 1}/3: Frage stellen`
+    : 'Schritt 3/3: Wein empfehlen';
+
+  const hintHtml = stepIndex === 2 ? renderHintArea(q) : '';
+
+  return `
+    <div class="dialog-box dialog-beratung">
+      <div class="dialog-header">
+        <span class="dialog-guest">${data.mood || '\u{1F4AC}'} ${guest ? guest.name : ''}</span>
+        <span class="ber-badge">\u{1F91D} BERATUNG</span>
+      </div>
+      <div class="ber-step-indicator">${stepLabel}</div>
+      <div class="ber-history" id="ber-history">
+        ${historyHtml}
+      </div>
+      ${step.prompt ? `<div class="ber-prompt">${step.prompt}</div>` : ''}
+      ${hintHtml}
+      <div class="dialog-choices">
+        ${choicesHtml}
+      </div>
+    </div>`;
+}
+
 // ===== FEEDBACK OVERLAY =====
 function renderFeedbackOverlay() {
   const d = state.overlayData;
@@ -627,16 +720,41 @@ function renderFeedbackOverlay() {
   }
 
   return `
-    <div class="overlay-backdrop" onclick="nextQuestion()">
+    <div class="overlay-backdrop feedback-backdrop" onclick="nextQuestion()">
       <div class="feedback-card ${d.correct ? 'fb-correct' : 'fb-wrong'}" onclick="event.stopPropagation()">
-        <div class="fb-icon">${d.correct ? '✅' : '❌'}</div>
-        <h3>${d.correct ? 'Richtig!' : 'Nicht ganz...'}</h3>
+        <div class="fb-icon">${d.correct ? (d.favorite ? '🌟' : '✅') : '❌'}</div>
+        <h3>${d.correct ? (d.favorite ? 'Perfekt! Beste Wahl!' : 'Gute Wahl!') : 'Nicht ganz...'}</h3>
         <p class="fb-explanation">${d.explanation}</p>
         ${revealHtml}
         ${d.funFact ? `<p class="fb-funfact">💡 ${d.funFact}</p>` : ''}
         ${chefHtml}
-        <div class="fb-tips">+${d.tips}€ Trinkgeld${d.hintUsed ? ' (Chef-Tipp: halbes TG)' : ''}</div>
+        <div class="fb-tips">+${d.tips}€ Trinkgeld${d.favorite ? ' (inkl. 3€ Bonus!)' : ''}${d.beratungBonus ? ` (inkl. ${d.beratungBonus}€ Beratungsbonus!)` : ''}${d.hintUsed ? ' (Chef-Tipp: halbes TG)' : ''}</div>
+        ${d.beratungSummary ? `<div class="fb-beratung-summary">\u{1F4A1} ${d.beratungSummary}</div>` : ''}
         <button class="btn btn-primary" onclick="nextQuestion()">Weiter →</button>
+      </div>
+    </div>`;
+}
+
+// ===== DOWNGRADE OVERLAY =====
+function renderDowngradeOverlay() {
+  const d = state.overlayData;
+  if (!d) return '';
+  const targetLv = CONFIG.levels[d.targetLevel];
+  const currentLv = getLevel();
+  return `
+    <div class="overlay-backdrop" onclick="cancelDowngrade()">
+      <div class="feedback-card fb-downgrade" onclick="event.stopPropagation()">
+        <div class="fb-icon">\u{1F6AA}</div>
+        <h3>K\u00FCndigung einreichen?</h3>
+        <p class="fb-explanation">
+          Du willst deine Stelle im <strong>${currentLv.name}</strong> aufgeben und bei <strong>${targetLv.name}</strong> anfangen?
+          <br><br>
+          Dein Trinkgeld wird auf <strong>${targetLv.xpNeeded}\u20AC</strong> zur\u00FCckgesetzt und dein Ruf im ${targetLv.shortName} startet bei Null. Du musst dich dort wieder hocharbeiten!
+        </p>
+        <div class="summary-buttons" style="margin-top:16px">
+          <button class="btn btn-primary" onclick="confirmDowngrade(${d.targetLevel})">\u{2705} Ja, k\u00FCndigen!</button>
+          <button class="btn btn-secondary" onclick="cancelDowngrade()">\u274C Nein, bleiben</button>
+        </div>
       </div>
     </div>`;
 }
@@ -701,6 +819,11 @@ function renderLevelUpOverlay() {
           <h4>Neue Weinländer:</h4>
           ${newRegions.map(r => `<span class="lu-region">${r.flag} ${r.name}</span>`).join('')}
         </div>` : ''}
+        ${d.newLevel.levelCode ? `<div style="margin:16px 0; padding:12px 18px; background:rgba(240,230,140,0.1); border:1px solid rgba(240,230,140,0.25); border-radius:8px;">
+          <div style="font-size:13px; color:var(--c-muted); margin-bottom:4px;">Dein Levelcode:</div>
+          <div style="font-family:var(--font-pixel); font-size:20px; color:var(--c-gold); letter-spacing:4px;">${d.newLevel.levelCode}</div>
+          <div style="font-size:12px; color:var(--c-muted); margin-top:4px;">Merke ihn dir, um später direkt hier einzusteigen!</div>
+        </div>` : ''}
         <button class="btn btn-primary btn-large" onclick="state.overlay=null;state.overlayData=null;checkChefIntro();if(!state.showChefIntro)goToScene('explorer',{explorerWineIndex:-1})">
           🍷 Neue Weine kennenlernen!
         </button>
@@ -722,7 +845,7 @@ function renderSidebar() {
       : `<div class="sidebar-icon">${lv.icon}</div>`;
     return `
       <div class="sidebar-item ${isCurrent ? 'current' : ''} ${isUnlocked ? 'unlocked' : 'locked'}"
-           ${isUnlocked ? `onclick="state.player.level=${i};goToScene('restaurant')"` : ''}>
+           ${isUnlocked ? (i < current ? `onclick="switchRestaurant(${i})"` : `onclick="goToScene('restaurant')"`) : ''}>
         ${iconHtml}
         <div class="sidebar-label">${lv.shortName}</div>
         ${isCurrent ? '<div class="sidebar-arrow">◄</div>' : ''}
@@ -735,6 +858,10 @@ function renderSidebar() {
       <div class="sidebar-title">🍷</div>
       ${items}
       <div class="sidebar-spacer"></div>
+      <div class="sidebar-item" onclick="goToScene('explorer',{explorerWineIndex:-1})">
+        <div class="sidebar-icon">📖</div>
+        <div class="sidebar-label">Buch</div>
+      </div>
       <div class="sidebar-item map-btn" onclick="goToScene('map')">
         <div class="sidebar-icon">🗺️</div>
         <div class="sidebar-label">Karte</div>
@@ -754,7 +881,7 @@ function renderBottomBar() {
         <div class="xp-bar">
           <div class="xp-fill" style="width:${tipProg}%"></div>
         </div>
-        <span class="xp-text">${state.player.tips}€ ${next ? `/ ${next.xpNeeded}€` : '(MAX)'}</span>
+        <span class="xp-text">${state.player.tips}€ / ${lv.xpToNext}€</span>
       </div>
       <div class="bb-stats">
         <span>🍷 ${state.player.discoveredWines.size} Weine</span>
