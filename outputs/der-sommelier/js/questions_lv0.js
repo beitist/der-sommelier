@@ -11,8 +11,8 @@ QUESTIONS.imbiss = {
       question: 'Welchen Wein empfiehlst du?',
       options: [
         { wineId: 'imiglykos', correct: true, favorite: true, explanation: 'Perfekt! Imiglykos passt hervorragend zur griechischen Küche – süffig und unkompliziert zum deftigen Gyros.' },
+        { wineId: 'retsina', correct: true, explanation: 'Retsina zum Gyros ist ein Klassiker! Der harzige Charakter passt super zu gegrilltem Fleisch und Tsatsiki. Aber Stavros mag es lieber süffig – da ist Imiglykos seine erste Wahl.' },
         { wineId: 'riesling', correct: false, explanation: 'Riesling wäre zu säurebetont für das herzhafte Gyros mit Tsatsiki.' },
-        { wineId: 'lambrusco', correct: false, explanation: 'Lambrusco passt eher zur italienischen Küche. Zum Gyros lieber was Griechisches!' },
       ]
     },
     {
@@ -33,6 +33,7 @@ QUESTIONS.imbiss = {
         { wineId: 'pinot_grigio', correct: false, explanation: 'Pinot Grigio ist leicht und frisch, aber den haben wir erst ab Level 2 im Keller. Müller-Thurgau ist die bessere Wahl!' },
         { wineId: 'mueller_thurgau', correct: true, favorite: true, explanation: 'Genau! Müller-Thurgau ist mild, blumig und leicht – perfekt zu Geflügel mit Salat. Und zum ersten Date passt die sanfte Art.' },
         { wineId: 'dornfelder', correct: false, explanation: 'Dornfelder hat zu viel Körper – nicht das, was man unter "leicht" versteht.' },
+        { wineId: 'riesling', acceptable: true, explanation: 'Riesling geht zum Geflügel, klar – aber die kräftige Säure ist nicht gerade das "Leichte", das sich das nervöse Pärchen wünscht. Müller-Thurgau ist sanfter und passender fürs erste Date.' },
       ]
     },
     {
@@ -73,6 +74,7 @@ QUESTIONS.imbiss = {
         { wineId: 'riesling', correct: true, favorite: true, explanation: 'Riesling zum Leberkäse – ein ehrlicher deutscher Wein zum ehrlichen deutschen Essen. Die Säure schneidet schön durch das Fett!' },
         { wineId: 'retsina', correct: false, explanation: 'Retsina ist für Werner definitiv "neumodischer Kram" – griechischer Harzwein zum Leberkäse? Da dreht er sich um.' },
         { wineId: 'imiglykos', correct: false, explanation: 'Ein lieblicher Grieche zum Leberkäse? Onkel Werner will was Bodenständiges, nicht was Süßes.' },
+        { wineId: 'mueller_thurgau', acceptable: true, explanation: 'Müller-Thurgau ist weiß und bodenständig – passt vom Stil. Aber zum fetten Leberkäse fehlt ihm die Säure, die das Fett aufbricht. Riesling macht das deutlich besser!' },
       ]
     },
     {

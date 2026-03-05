@@ -717,10 +717,12 @@ body {
 }
 @keyframes popIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 .fb-correct { border-color: var(--c-success); }
+.fb-acceptable { border-color: #e0a030; }
 .fb-wrong { border-color: var(--c-danger); }
 .fb-icon { font-size: 48px; margin-bottom: 8px; }
 .feedback-card h3 { font-size: 18pt; margin-bottom: 12px; }
 .fb-correct h3 { color: var(--c-success); }
+.fb-acceptable h3 { color: #e0a030; }
 .fb-wrong h3 { color: var(--c-danger); }
 .fb-explanation {
   font-size: 14pt; color: var(--c-muted);

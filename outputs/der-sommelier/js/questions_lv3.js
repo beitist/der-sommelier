@@ -13,6 +13,7 @@ QUESTIONS.gehoben = {
         { wineId: 'saint_emilion', correct: true, favorite: true, explanation: 'Saint-Émilion Grand Cru – eleganter Bordeaux mit Tiefe und Komplexität. Die Merlot-dominante Cuvée harmoniert wunderbar mit Trüffel und Rindfleisch.' },
         { wineId: 'barolo', correct: true, explanation: 'Barolo ist ein kraftvoller Begleiter zu Trüffel und Rindfleisch – allerdings hat der Bankier explizit nach Bordeaux gefragt, und da führt kein Weg am Saint-Émilion vorbei.' },
         { wineId: 'vinho_verde', correct: false, explanation: 'Vinho Verde ist leicht und spritzig – dem kräftigen Gericht in keiner Weise gewachsen.' },
+        { wineId: 'malbec', acceptable: true, explanation: 'Malbec hat die nötige Kraft für Rinderfilet – aber der Bankier hat explizit nach Bordeaux gefragt, und Malbec kommt aus Argentinien. Außerdem fehlt ihm die Finesse für den schwarzen Trüffel, die Saint-Émilion mitbringt.' },
       ]
     },
     {
@@ -53,6 +54,7 @@ QUESTIONS.gehoben = {
         { wineId: 'malbec', correct: true, favorite: true, explanation: 'Malbec – DER argentinische Steak-Wein! Kraftvoll, fruchtig, mit weichen Tanninen. Herr Tanaka wird sich an Buenos Aires erinnert fühlen.' },
         { wineId: 'pinotage', correct: true, explanation: 'Pinotage ist kräftig und rauchig – ein guter Steak-Begleiter. Aber Herr Tanaka erinnert sich an Buenos Aires, da gehört Malbec dazu!' },
         { wineId: 'sekt', correct: false, explanation: 'Sekt zum Steak wäre eine Stilbruch – Herr Tanakas Vertrauen wäre enttäuscht.' },
+        { wineId: 'barolo', acceptable: true, explanation: 'Barolo ist ein großartiger Steak-Wein mit Tiefe und Struktur – aber Herr Tanaka erinnert sich an Buenos Aires, und da gehört ein argentinischer Malbec einfach dazu. Barolo ist Piemont, nicht Pampa.' },
       ]
     },
     {
@@ -104,6 +106,37 @@ QUESTIONS.gehoben = {
         { wineId: 'riesling_spaetlese', correct: true, favorite: true, explanation: 'Riesling Spätlese – die Restsüße umschmeichelt die Foie Gras, die lebendige Säure schneidet durch das Fett, und die Honig-Pfirsich-Aromen ergänzen den Feigensenf. Ein Klassiker!' },
         { wineId: 'chablis_premier_cru', correct: false, explanation: 'Chablis ist trocken und französisch – der Gast wollte ausdrücklich etwas Deutsches mit Süße.' },
         { wineId: 'pinotage', correct: false, explanation: 'Pinotage zur Foie Gras? Die rauchigen Noten würden die zarte Gänseleber überfordern.' },
+      ]
+    },
+    {
+      id: 'fp_3_11', guestId: 'kuenstler', mood: '🍄',
+      scenario: 'Der Künstler bestellt Steinpilzrisotto mit Trüffelöl und geriebenem Parmesan. "Das Risotto ist wie ein Gemälde – erdige Töne, cremige Textur. Ich brauche einen Wein, der dieses Kunstwerk ergänzt, nicht übermalt."',
+      question: 'Was empfiehlst du?',
+      options: [
+        { wineId: 'barolo', correct: true, favorite: true, explanation: 'Barolo – seine Aromen von Teer, Rosen und getrockneten Kräutern sind wie ein Meisterwerk zum Meisterwerk. Die eleganten Tannine rahmen das Risotto ein, ohne es zu überdecken.' },
+        { wineId: 'saint_emilion', correct: true, explanation: 'Saint-Émilion bringt Eleganz und Struktur mit – ein guter Begleiter zum Risotto. Aber Barolo mit seinen erdigen Noten und der piemontesischen Trüffel-Verwandtschaft ist die perfekte Harmonie.' },
+        { wineId: 'chablis_premier_cru', correct: false, explanation: 'Chablis ist mineralisch und schlank – dem cremigen, erdigen Steinpilzrisotto fehlt hier der passende Partner in Gewicht und Charakter.' },
+        { wineId: 'malbec', acceptable: true, explanation: 'Malbec hat genug Kraft für das Risotto und überrollt es nicht – aber ihm fehlen die erdigen, trüffeligen Noten, die den Barolo als piemontesischen Bruder des Risottos zum perfekten Partner machen.' },
+      ]
+    },
+    {
+      id: 'fp_3_12', guestId: 'food_bloggerin', mood: '📱',
+      scenario: 'Die Food-Bloggerin fotografiert schon den Teller: "Geschmorter Ochsenschwanz mit Rotwein-Jus und Wurzelgemüse – das muss auf meinen Blog! Und der Wein dazu soll genauso beeindruckend sein. Etwas Französisches mit Tiefgang."',
+      question: 'Welchen Wein empfiehlst du?',
+      options: [
+        { wineId: 'saint_emilion', correct: true, favorite: true, explanation: 'Saint-Émilion Grand Cru – ein Bordeaux mit Tiefgang und Eleganz, der die Rotwein-Jus des Ochsenschwanzes spiegelt. Blog-Content mit Substanz!' },
+        { wineId: 'barolo', correct: true, explanation: 'Barolo hat die Kraft und Komplexität für den Ochsenschwanz – aber die Bloggerin wollte explizit etwas Französisches, und da ist Saint-Émilion die erste Adresse.' },
+        { wineId: 'chablis_premier_cru', correct: false, explanation: 'Chablis zum geschmorten Ochsenschwanz? Der mineralische Weißwein hat nicht annähernd genug Gewicht für das kräftige Schmorgericht.' },
+      ]
+    },
+    {
+      id: 'fp_3_13', guestId: 'weinclub', mood: '🧀',
+      scenario: 'Der Weinclub-Vorsitzende bestellt eine Platte mit gereiftem Bergkäse, Walnüssen und Feigensenf. "Eine Blindverkostung für den Club – welcher Wein hält dem kräftigen Bergkäse stand, ohne ihn zu überrollen? Ich erwarte eine fundierte Empfehlung."',
+      question: 'Welchen Wein empfiehlst du?',
+      options: [
+        { wineId: 'riesling_spaetlese', correct: true, favorite: true, explanation: 'Riesling Spätlese – die perfekte Balance aus Restsüße und Säure kontrastiert den salzigen Bergkäse brillant, und die Honigaromen ergänzen den Feigensenf. Fundiert genug für jeden Weinclub!' },
+        { wineId: 'barolo', correct: true, explanation: 'Barolo hat die Struktur für kräftigen Käse – aber die Tannine und der Käse können sich beißen. Die Riesling Spätlese löst das eleganter durch Süße-Säure-Kontrast.' },
+        { wineId: 'chablis_premier_cru', correct: false, explanation: 'Chablis ist trocken und mineralisch – dem kräftigen Bergkäse mit Feigensenf hat er nicht genug entgegenzusetzen.' },
       ]
     },
   ],
@@ -189,6 +222,46 @@ QUESTIONS.gehoben = {
         { wineId: 'riesling_spaetlese', correct: false, explanation: 'Halbtrocken und mittelschwer – nicht das Powerstatement, das der Bankier gerade braucht.' },
       ]
     },
+    {
+      id: 'pref_3_9', guestId: 'kuenstler', mood: '🎨',
+      scenario: 'Der Künstler schaut in sein leeres Glas wie in eine Leinwand: "Ich male gerade eine Serie in Schwarz und Dunkelrot. Ich brauche Inspiration – den dunkelsten, intensivsten Rotwein, den Sie haben. Farbe ist Emotion!"',
+      question: 'Was empfiehlst du?',
+      options: [
+        { wineId: 'malbec', correct: true, favorite: true, explanation: 'Malbec – tintenschwarz, fast opak, mit Aromen von dunklen Beeren und Schokolade. Die dunkelste Farbe aller Rotweine, perfekte Inspiration für die Leinwand!' },
+        { wineId: 'pinotage', correct: true, explanation: 'Pinotage ist dunkel und intensiv mit rauchigen Noten – ein starker Charakter. Aber für pure Farbintensität ist Malbec mit seiner fast schwarzen Robe unschlagbar.' },
+        { wineId: 'riesling_spaetlese', correct: false, explanation: 'Ein goldgelber Weißwein? Der Künstler malt in Schwarz und Dunkelrot – da braucht er Inspiration im Glas, nicht auf der Palette.' },
+      ]
+    },
+    {
+      id: 'pref_3_10', guestId: 'startup_gruender', mood: '🚀',
+      scenario: 'Der Startup-Gründer tippt auf seinem Laptop und bestellt nebenbei: "Ich brauch einen Wein, der disruptiv ist – kein Mainstream, kein Bordeaux, kein Burgund. Etwas, das die Industrie aufgemischt hat. Innovation im Glas!"',
+      question: 'Was empfiehlst du?',
+      options: [
+        { wineId: 'pinotage', correct: true, favorite: true, explanation: 'Pinotage – eine im Labor gezüchtete Kreuzung aus Pinot Noir und Cinsault, 1925 in Südafrika erschaffen. Buchstäblich ein Startup unter den Rebsorten: Innovation, die eine ganze Weinnation definiert hat!' },
+        { wineId: 'malbec', correct: true, explanation: 'Malbec hat Argentinien auf die Wein-Weltkarte gebracht – ein Game Changer. Aber Pinotage ist noch disruptiver: eine komplett neue Rebsorte, erschaffen durch Kreuzung. Das ist echte Innovation!' },
+        { wineId: 'barolo', correct: false, explanation: 'Barolo ist ein jahrhundertealter Klassiker aus dem Piemont – großartig, aber das Gegenteil von disruptiv.' },
+      ]
+    },
+    {
+      id: 'pref_3_11', guestId: 'food_bloggerin', mood: '🧀',
+      scenario: 'Die Food-Bloggerin plant ihren nächsten Post: "Ich mache eine \'Wine & Cheese Night\' für meinen Blog – mit gereiftem Comté und Roquefort. Ich brauch einen Wein, der beide Käse kann. Was ist Ihr Geheimtipp?"',
+      question: 'Was empfiehlst du?',
+      options: [
+        { wineId: 'riesling_spaetlese', correct: true, favorite: true, explanation: 'Riesling Spätlese – die Restsüße umschmeichelt den salzigen Roquefort, die lebendige Säure kontrastiert den nussigen Comté. Ein Geheimtipp, der die Community begeistern wird!' },
+        { wineId: 'saint_emilion', correct: true, explanation: 'Saint-Émilion ist ein eleganter Begleiter zu Käse – aber die Kombination Restsüße + Säure der Riesling Spätlese ist die harmonischere Brücke zwischen den zwei sehr unterschiedlichen Käsesorten.' },
+        { wineId: 'pinotage', correct: false, explanation: 'Pinotage mit seinen rauchigen Noten zum feinen Käse? Die Lagerfeuer-Aromatik würde den Roquefort dominieren statt ergänzen.' },
+      ]
+    },
+    {
+      id: 'pref_3_12', guestId: 'weinclub', mood: '🏰',
+      scenario: 'Der Weinclub-Vorsitzende richtet sich auf: "Wir veranstalten nächsten Monat einen Themenabend: \'Die großen Rotweine Europas\'. Ich suche den krönenden Abschluss – den König aller europäischen Rotweine. Was sagen Sie?"',
+      question: 'Was empfiehlst du?',
+      options: [
+        { wineId: 'barolo', correct: true, favorite: true, explanation: 'Barolo – der "König der Weine und Wein der Könige"! Nebbiolo aus dem Piemont mit enormer Alterungsfähigkeit und Komplexität. Der perfekte krönende Abschluss!' },
+        { wineId: 'saint_emilion', correct: true, explanation: 'Saint-Émilion Grand Cru ist zweifellos ein großer europäischer Rotwein – aber als krönenden Abschluss hat Barolo den historischen Titel: "König der Weine" seit dem 19. Jahrhundert.' },
+        { wineId: 'malbec', correct: false, explanation: 'Malbec ist ein großartiger Wein, stammt aber in seiner bekanntesten Form aus Argentinien – nicht Europa. Für einen Themenabend "Große Rotweine Europas" keine passende Wahl.' },
+      ]
+    },
   ],
 
   besserwisser: [
@@ -229,7 +302,7 @@ QUESTIONS.gehoben = {
       correction: 'Absolut korrekt! Die Appellation d\'Origine Contrôlée (AOC) schützt den Namen "Champagner" streng. Nur Schaumwein aus der Region Champagne, hergestellt nach der Méthode Champenoise mit zugelassenen Rebsorten, darf sich so nennen. Selbst identisch hergestellter Schaumwein aus anderen Regionen ist "nur" Crémant oder Sekt.'
     },
     {
-      id: 'bw_3_7', guestId: 'professorin', mood: '🤓',
+      id: 'bw_3_7', guestId: 'die_professorin', mood: '🤓',
       statement: 'Die Professorin schwenkt ihren Wein und sagt: "Wussten Sie, dass Barrique-Fässer dem Wein Vanille-Aromen verleihen? Das kommt vom Toasten des Holzes bei der Fassherstellung."',
       isCorrect: true,
       correction: 'Wissenschaftlich korrekt! Beim Toasten (Erhitzen) der Eichenfässer entsteht der Aromastoff Vanillin – das gleiche Molekül, das auch in der Vanilleschote vorkommt. Je stärker das Toasting, desto intensiver die Vanille-, Karamell- und Röstnoten im Wein. Neues Holz gibt mehr Aromen ab als gebrauchtes.'
@@ -364,6 +437,17 @@ QUESTIONS.gehoben = {
         { text: 'Es ist eine zweite alkoholische Gärung zur Erhöhung des Alkoholgehalts', correct: false },
       ],
       explanation: 'Bei der malolaktischen Gärung (auch "biologischer Säureabbau") wandeln Milchsäurebakterien die scharfe Apfelsäure in mildere Milchsäure um. Das macht den Wein weicher und cremiger. Bei Rotweinen fast immer erwünscht, bei Weißweinen situationsabhängig – ein Chablis wird z.B. bewusst OHNE Malo ausgebaut, um die knackige Säure zu bewahren!'
+    },
+    {
+      id: 'ww_3_11', guestId: 'startup_gruender', mood: '🧬',
+      question: 'Der Startup-Gründer ist fasziniert: "Moment, Pinotage ist eine Kreuzung? Wie ein Merger zweier Unternehmen! Welche beiden Rebsorten wurden da zusammengebracht?"',
+      options: [
+        { text: 'Pinot Noir und Cinsault (Hermitage)', correct: true },
+        { text: 'Pinot Noir und Cabernet Sauvignon', correct: false },
+        { text: 'Syrah und Grenache', correct: false },
+        { text: 'Merlot und Cabernet Franc', correct: false },
+      ],
+      explanation: 'Professor Abraham Izak Perold kreuzte 1925 an der Uni Stellenbosch Pinot Noir mit Cinsault (damals in Südafrika "Hermitage" genannt). Pinot + Hermitage = Pinotage! Das Ergebnis: eine einzigartige Rebsorte mit Rauch, Kaffee und Beerenaromen – ein echter Startup-Erfolg.'
     },
   ],
 

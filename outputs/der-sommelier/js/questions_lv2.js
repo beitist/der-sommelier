@@ -23,6 +23,7 @@ QUESTIONS.gutbuergerlich = {
         { wineId: 'zweigelt', correct: true, favorite: true, explanation: 'Zweigelt – kirschfruchtig mit weichen Tanninen. Aus Österreich, passt wunderbar zu Wild mit Preiselbeeren!' },
         { wineId: 'spaetburgunder', correct: true, explanation: 'Spätburgunder zum Reh ist ein Klassiker – die feinen Beerenaromen ergänzen das Wild elegant. Nicht ganz so regional wie Zweigelt, aber ein Profi-Pairing!' },
         { wineId: 'pinot_grigio', correct: false, explanation: 'Pinot Grigio ist zu leicht für Wild. Zum Reh braucht es einen Roten mit Substanz.' },
+        { wineId: 'rioja_crianza', acceptable: true, explanation: 'Rioja hat die Kraft fürs Wild, keine Frage – aber der Jäger wollte "aus der Region". Ein spanischer Crianza ist nicht gerade die Nachbarschaft. Der Zweigelt aus Österreich trifft den Wunsch besser.' },
       ]
     },
     {
@@ -43,6 +44,7 @@ QUESTIONS.gutbuergerlich = {
         { wineId: 'rioja_crianza', correct: true, favorite: true, explanation: 'Rioja Crianza – mit Vanillenoten vom Eichenfass und reifen Kirscharomen. Genau die Reife, die zum Sauerbraten passt!' },
         { wineId: 'spaetburgunder', correct: true, explanation: 'Spätburgunder zum Sauerbraten – ein bewährtes deutsches Pairing! Die Frucht harmoniert mit der Soße, aber ihm fehlt die Fassreife, die der Pfarrer sich wünscht.' },
         { wineId: 'retsina', correct: false, explanation: 'Retsina zum Sauerbraten? Der Harzgeschmack würde alles erschlagen.' },
+        { wineId: 'zweigelt', acceptable: true, explanation: 'Zweigelt ist ein solider Roter zum Braten – kirschfruchtig und saftig. Aber dem Pfarrer fehlt die Fassreife: Vanille, Eiche, die Patina eines gereiften Weins. Da hat der Rioja Crianza die Nase vorn.' },
       ]
     },
     {
@@ -93,6 +95,7 @@ QUESTIONS.gutbuergerlich = {
         { wineId: 'gewuerztraminer', correct: true, favorite: true, explanation: 'Gewürztraminer ist DER Asia-Wein! Die exotische Frucht und die leichte Restsüße bändigen die Schärfe, und die Litschi-Aromen ergänzen die Kokosmilch wunderbar.' },
         { wineId: 'pinot_grigio', correct: false, explanation: 'Pinot Grigio ist zu neutral und leicht für ein scharfes Thai-Curry – die Schärfe würde den Wein überrollen.' },
         { wineId: 'rioja_crianza', correct: false, explanation: 'Rotwein und scharfes Curry ist keine gute Idee – die Tannine verstärken die Schärfe und der Alkohol brennt zusätzlich. Hier braucht es einen aromatischen Weißen!' },
+        { wineId: 'vinho_verde', acceptable: true, explanation: 'Vinho Verde ist leicht und frisch – er verstärkt die Schärfe zumindest nicht. Aber ihm fehlen die exotischen Aromen, die das Curry wirklich ergänzen. Der Gewürztraminer spielt hier in einer anderen Liga.' },
       ]
     },
     {

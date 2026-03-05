@@ -186,7 +186,7 @@ const WINES = {
     id: 'rioja_crianza', name: 'Rioja Crianza', region: 'spanien', level: 2,
     color: 'rot', body: 'mittel', sweetness: 'trocken', price: '€€', grape: 'Tempranillo',
     flavors: ['Kirsche', 'Vanille', 'Holz'],
-    pairings: ['Tapas', 'Lamm', 'Käse', 'Chorizo'],
+    pairings: ['Tapas', 'Lamm', 'Wild', 'Käse', 'Chorizo', 'Schmorgerichte'],
     description: 'Spanischer Klassiker – mindestens 24 Monate gereift, davon 12 im Fass.',
     funFact: 'Crianza, Reserva, Gran Reserva – die Stufen zeigen die Reifezeit im Holzfass.',
     label: 'assets/wines/rioja_reserva.png'
@@ -251,7 +251,7 @@ const WINES = {
     id: 'chablis_premier_cru', name: 'Chablis Premier Cru', region: 'frankreich', level: 3,
     color: 'weiss', body: 'mittel', sweetness: 'trocken', price: '€€€', grape: 'Chardonnay',
     flavors: ['Zitrus', 'Feuerstein', 'mineralisch'],
-    pairings: ['Austern', 'Fisch', 'Meeresfrüchte'],
+    pairings: ['Austern', 'Fisch', 'Meeresfrüchte', 'Geflügel'],
     description: 'Mineralischer Chardonnay aus dem Burgund – ohne Holz, pure Eleganz.',
     funFact: 'Chablis-Böden enthalten fossile Austernschalen – man schmeckt das Meer!',
     label: 'assets/wines/chablis.png'
@@ -468,6 +468,9 @@ const GUESTS = {
       { id: 'die_veganerin', name: 'Die Veganerin', sprite: 'assets/guests/die_veganerin.png', facing: 'left' },
       { id: 'marco', name: 'Marco', sprite: 'assets/guests/marco.png', facing: 'right' },
       { id: 'stammgast_jens', name: 'Stammgast Jens', sprite: 'assets/guests/stammgast_jens.png', facing: 'left' },
+      { id: 'der_trucker', name: 'Der Trucker', sprite: 'assets/guests/der_trucker.png', facing: 'left' },
+      { id: 'claudia', name: 'Claudia', sprite: 'assets/guests/claudia.png', facing: 'left' },
+      { id: 'die_nachbarin', name: 'Die Nachbarin', sprite: 'assets/guests/die_nachbarin.png', facing: 'left' },
     ],
     2: [
       { id: 'wandergruppe', name: 'Die Wandergruppe', sprite: 'assets/guests/wandergruppe.png', facing: 'left' },
@@ -488,6 +491,10 @@ const GUESTS = {
       { id: 'herr_tanaka', name: 'Herr Tanaka', sprite: 'assets/guests/herr_tanaka.png', facing: 'left' },
       { id: 'influencerin', name: 'Die Influencerin', sprite: 'assets/guests/influencerin.png', facing: 'left' },
       { id: 'weinhaendler', name: 'Der Weinhändler', sprite: 'assets/guests/weinhaendler.png', facing: 'left' },
+      { id: 'kuenstler', name: 'Der Künstler', sprite: 'assets/guests/kuenstler.png', facing: 'left' },
+      { id: 'startup_gruender', name: 'Der Startup-Gründer', sprite: 'assets/guests/startup_gruender.png', facing: 'left' },
+      { id: 'food_bloggerin', name: 'Die Food-Bloggerin', sprite: 'assets/guests/food_bloggerin.png', facing: 'left' },
+      { id: 'weinclub', name: 'Der Weinclub-Vorsitzende', sprite: 'assets/guests/weinclub.png', facing: 'left' },
     ],
     4: [
       { id: 'michelin_tester', name: 'Der Michelin-Tester', sprite: 'assets/guests/michelin_tester.png', facing: 'left' },

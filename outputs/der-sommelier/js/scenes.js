@@ -129,7 +129,7 @@ function renderExplorer() {
           <div class="explorer-header">
             <div class="explorer-title">
               <span class="explorer-badge">📚 LEHRGANG</span>
-              <span class="explorer-level">${LEVELS[wine.level].name}</span>
+              <span class="explorer-level">${CONFIG.levels[wine.level].name}</span>
             </div>
             <div class="explorer-progress">${progress}</div>
           </div>
@@ -721,9 +721,9 @@ function renderFeedbackOverlay() {
 
   return `
     <div class="overlay-backdrop feedback-backdrop" onclick="nextQuestion()">
-      <div class="feedback-card ${d.correct ? 'fb-correct' : 'fb-wrong'}" onclick="event.stopPropagation()">
-        <div class="fb-icon">${d.correct ? (d.favorite ? '🌟' : '✅') : '❌'}</div>
-        <h3>${d.correct ? (d.favorite ? 'Perfekt! Beste Wahl!' : 'Gute Wahl!') : 'Nicht ganz...'}</h3>
+      <div class="feedback-card ${d.correct ? 'fb-correct' : d.acceptable ? 'fb-acceptable' : 'fb-wrong'}" onclick="event.stopPropagation()">
+        <div class="fb-icon">${d.correct ? (d.favorite ? '🌟' : '✅') : d.acceptable ? '🤷' : '❌'}</div>
+        <h3>${d.correct ? (d.favorite ? 'Perfekt! Beste Wahl!' : 'Gute Wahl!') : d.acceptable ? 'Geht gerade noch...' : 'Nicht ganz...'}</h3>
         <p class="fb-explanation">${d.explanation}</p>
         ${revealHtml}
         ${d.funFact ? `<p class="fb-funfact">💡 ${d.funFact}</p>` : ''}

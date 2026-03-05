@@ -13,6 +13,7 @@ QUESTIONS.steakhaus = {
         { wineId: 'chianti', correct: true, favorite: true, explanation: 'Chianti mit seiner Kirsche und den Tanninen hält dem saftigen T-Bone stand – ein Klassiker zu Steak!' },
         { wineId: 'primitivo', correct: true, explanation: 'Primitivo hat ordentlich Wumms und passt zu Steak – aber dem T-Bone medium rare fehlt mit Primitivo die feine Tanninstruktur, die Chianti mitbringt.' },
         { wineId: 'rose_provence', correct: false, explanation: 'Rosé zum Steak? Zu leicht. Der Grillmeister will Wumms.' },
+        { wineId: 'spaetburgunder', acceptable: true, explanation: 'Spätburgunder ist ein feiner Roter und funktioniert zum Steak – aber für ein saftiges T-Bone medium rare ist er etwas zu leicht und elegant. Dem Grillmeister fehlt der Wumms.' },
       ]
     },
     {
@@ -33,6 +34,7 @@ QUESTIONS.steakhaus = {
         { wineId: 'gruener_veltliner', correct: true, favorite: true, explanation: 'Grüner Veltliner – pfeffrig, frisch und leicht. Perfekt zur gesunden Hähnchenbrust!' },
         { wineId: 'rose_provence', correct: true, explanation: 'Rosé de Provence ist leicht und frisch – passt zum Salat, aber die pfeffrige Note des Veltliners harmoniert besser mit dem Hähnchen.' },
         { wineId: 'imiglykos', correct: false, explanation: 'Lieblicher Roter zum Fitness-Salat? Das passt geschmacklich nicht zusammen.' },
+        { wineId: 'sekt', acceptable: true, explanation: 'Gut gekühlter Sekt zur leichten Hähnchenbrust ist nicht verkehrt – die Kohlensäure erfrischt. Aber als Essensbegleiter fehlt ihm die Würze und Substanz, die der Grüne Veltliner mitbringt.' },
       ]
     },
     {
@@ -103,6 +105,37 @@ QUESTIONS.steakhaus = {
         { wineId: 'spaetburgunder', correct: true, favorite: true, explanation: 'Spätburgunder ist der perfekte Kompromiss – leicht genug für den Lachs, aber mit genügend Frucht und Struktur für das Entrecôte. Der Diplomat unter den Rotweinen!' },
         { wineId: 'chianti', correct: true, explanation: 'Chianti funktioniert gut zum Entrecôte – aber für Frau Kochs Lachs ist er schon etwas dominant. Spätburgunder ist die elegantere Brücke zwischen beiden Gerichten.' },
         { wineId: 'sekt', correct: false, explanation: 'Sekt als Essensbegleiter zum Entrecôte? Da fehlt es an Substanz für das Fleisch.' },
+        { wineId: 'rose_provence', acceptable: true, explanation: 'Rosé de Provence ist trocken und leicht – zum Wildlachssalat von Frau Koch geht das, aber für Herrn Kochs Entrecôte fehlt die Substanz. Spätburgunder schafft die Brücke zwischen beiden besser.' },
+      ]
+    },
+    {
+      id: 'fp_1_11', guestId: 'der_trucker', mood: '🥩',
+      scenario: 'Der Trucker parkt seinen 40-Tonner und kommt rein: "So, Feierabend! Wiener Schnitzel mit Kartoffelsalat, bitte. Und dazu einen Weißen – aber keinen süßen Kinderwein, sondern was Ordentliches."',
+      question: 'Was empfiehlst du?',
+      options: [
+        { wineId: 'gruener_veltliner', correct: true, favorite: true, explanation: 'Grüner Veltliner – der Klassiker zum Wiener Schnitzel! Die pfeffrige Frische und die knackige Säure schneiden perfekt durch das panierte Fleisch.' },
+        { wineId: 'mueller_thurgau', correct: true, explanation: 'Müller-Thurgau ist mild und unkompliziert – passt zum Schnitzel, aber dem Grünen Veltliner fehlt nichts: seine Pfeffernote und der Biss machen ihn zum ultimativen Schnitzelwein.' },
+        { wineId: 'primitivo', correct: false, explanation: 'Primitivo zum Wiener Schnitzel? Der wuchtige Rote erschlägt das zarte Kalbfleisch unter der Panade.' },
+      ]
+    },
+    {
+      id: 'fp_1_12', guestId: 'claudia', mood: '🥗',
+      scenario: 'Claudia bestellt einen Ziegenkäse-Salat mit Honig-Walnuss-Dressing. "Und dazu einen Weißwein, der nicht zu neutral ist – ich mag es, wenn der Wein auch was zu sagen hat. Etwas mit Charakter!"',
+      question: 'Was empfiehlst du?',
+      options: [
+        { wineId: 'gruener_veltliner', correct: true, favorite: true, explanation: 'Grüner Veltliner – die pfeffrige Würze und die frische Säure harmonieren wunderbar mit dem cremigen Ziegenkäse und kontrastieren das süße Honig-Dressing. Ein Wein mit Charakter!' },
+        { wineId: 'mueller_thurgau', correct: false, explanation: 'Müller-Thurgau ist mild und zurückhaltend – genau das Neutrale, das Claudia nicht haben will. Dem fehlt der Charakter für den kräftigen Ziegenkäse.' },
+        { wineId: 'dornfelder', correct: false, explanation: 'Dornfelder ist ein milder Roter – zum Ziegenkäse-Salat mit Honig fehlt ihm die frische Säure, die das Gericht braucht.' },
+      ]
+    },
+    {
+      id: 'fp_1_13', guestId: 'die_nachbarin', mood: '🍝',
+      scenario: 'Die Nachbarin bestellt Spaghetti Carbonara: "Wissen Sie, mit richtig viel Parmesan und Speck – so wie beim Italiener um die Ecke. Und einen Weißwein dazu, bitte. Mein Sohn, der Weinbau studiert, sagt, zu Carbonara passt ein trockener Weißer am besten."',
+      question: 'Welchen Wein empfiehlst du?',
+      options: [
+        { wineId: 'gruener_veltliner', correct: true, favorite: true, explanation: 'Grüner Veltliner – die pfeffrige Würze und die frische Säure schneiden perfekt durch die cremige Ei-Käse-Sauce. Ihr Sohn hat recht: ein trockener Weißer ist hier Gold wert!' },
+        { wineId: 'rose_provence', correct: true, explanation: 'Rosé de Provence ist leicht und trocken genug für Carbonara – aber der Grüne Veltliner hat mehr Biss und Würze, die der cremigen Sauce besser Paroli bieten.' },
+        { wineId: 'imiglykos', correct: false, explanation: 'Ein lieblicher griechischer Rotwein zur Carbonara? Die Süße und die cremige Ei-Sauce würden sich gegenseitig erschlagen.' },
       ]
     },
   ],
@@ -186,6 +219,36 @@ QUESTIONS.steakhaus = {
         { wineId: 'gruener_veltliner', correct: true, favorite: true, explanation: 'Grüner Veltliner – trocken, charaktervoll mit seiner typischen Pfeffernote, und weiß genug für jedes Kleid. Ein Wein, der so selbstbewusst ist wie die Geschäftsfrau!' },
         { wineId: 'rose_provence', correct: true, explanation: 'Rosé de Provence ist trocken und hat Charakter – aber sie hat explizit "nichts Rotes" gesagt, und manche rechnen Rosé dazu. Der Grüne Veltliner ist die sichere, charakterstarke Wahl in Weiß.' },
         { wineId: 'chianti', correct: false, explanation: 'Chianti ist ein Rotwein – weißes Kleid plus Rotwein ist eine gefährliche Kombination, das weiß sie selbst am besten.' },
+      ]
+    },
+    {
+      id: 'pref_1_9', guestId: 'der_trucker', mood: '🍺',
+      scenario: 'Der Trucker kratzt sich am Kopf: "Also, normalerweise trink ich Bier. Aber meine Frau hat gesagt, ich soll mal was Neues probieren. Haben Sie so einen Anfängerwein? Nicht sauer, nicht kompliziert – einfach lecker."',
+      question: 'Was empfiehlst du?',
+      options: [
+        { wineId: 'dornfelder', correct: true, favorite: true, explanation: 'Dornfelder – mild, fruchtig, wenig Tannine. Der perfekte Einstiegswein für Biertrinker: unkompliziert und mit einer Beerenfrucht, die sofort schmeckt!' },
+        { wineId: 'spaetburgunder', correct: true, explanation: 'Spätburgunder ist elegant und zugänglich – aber für einen Biertrinker-Neuling ist Dornfelder noch unkomplizierter und fruchtiger, der ideale erste Schritt in die Weinwelt.' },
+        { wineId: 'chianti', correct: false, explanation: 'Chianti hat markante Säure und Tannine – für einen Weinanfänger eher abschreckend als einladend.' },
+      ]
+    },
+    {
+      id: 'pref_1_10', guestId: 'claudia', mood: '☀️',
+      scenario: 'Claudia blättert durch die Karte und seufzt: "Es ist so ein schöner Abend, ich sitze auf der Terrasse und will einfach einen leichten, frischen Wein genießen. Trocken, bitte – und am besten was Sommerliches."',
+      question: 'Was empfiehlst du?',
+      options: [
+        { wineId: 'rose_provence', correct: true, favorite: true, explanation: 'Rosé de Provence – DER Terrassenwein schlechthin! Trocken, leicht und mit zarten Fruchtaromen perfekt für einen lauen Sommerabend.' },
+        { wineId: 'gruener_veltliner', correct: true, explanation: 'Grüner Veltliner ist frisch und trocken – ein guter Terrassenwein, aber für das sommerliche Feeling hat Rosé de Provence einfach das gewisse Etwas.' },
+        { wineId: 'primitivo', correct: false, explanation: 'Primitivo auf der Sommerterrasse? Viel zu wuchtig und warm für einen leichten Abend draußen.' },
+      ]
+    },
+    {
+      id: 'pref_1_11', guestId: 'die_nachbarin', mood: '📖',
+      scenario: 'Die Nachbarin strahlt: "Unser Buchclub liest gerade einen Toskana-Roman! Da möchte ich passend dazu einen italienischen Rotwein. Nichts zu Schweres – etwas Klassisches zum Schwelgen."',
+      question: 'Was empfiehlst du?',
+      options: [
+        { wineId: 'chianti', correct: true, favorite: true, explanation: 'Chianti – das Herz der Toskana! Sangiovese mit Kirschfrucht und mediterranem Charme. Die Nachbarin wird sich beim nächsten Buchclub wie in der Toskana fühlen!' },
+        { wineId: 'spaetburgunder', correct: true, explanation: 'Spätburgunder ist elegant und nicht zu schwer – aber die Nachbarin will ausdrücklich nach Italien reisen, und da ist Chianti die erste Adresse.' },
+        { wineId: 'primitivo', correct: false, explanation: 'Primitivo ist zwar italienisch, aber aus Apulien – kein Toskana-Feeling. Und zum gemütlichen Buchclub-Abend ist er etwas zu wuchtig.' },
       ]
     },
   ],

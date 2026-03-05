@@ -36,6 +36,7 @@ QUESTIONS.sterne = {
         { wineId: 'barolo', correct: true, explanation: 'Barolo ist ebenfalls ein großer Italiener mit der nötigen Struktur für Ossobuco. Aber Amarone mit seinen konzentrierten Rosinenaromen spiegelt die Schmorküche noch intensiver wider – und genau diese Opulenz erwartet Prof. Weinstein.' },
         { wineId: 'sancerre', correct: false, explanation: 'Sancerre ist ein französischer Weißer – weder italienisch noch kräftig genug für Ossobuco.' },
         { wineId: 'sekt', correct: false, explanation: 'Deutscher Sekt zum Ossobuco? Prof. Weinstein würde Sie nie mehr ernst nehmen.' },
+        { wineId: 'chateauneuf', acceptable: true, explanation: 'Châteauneuf hat die Kraft und Tiefe für Ossobuco – keine Frage. Aber der Professor wollte "etwas Italienisches", und ein französischer Südrhône ist nicht die Antwort, die er erwartet. Auf diesem Niveau ignoriert man den Herkunftswunsch nicht.' },
       ]
     },
     {
@@ -57,6 +58,7 @@ QUESTIONS.sterne = {
         { wineId: 'tempranillo_gran_reserva', correct: true, explanation: 'Tempranillo Gran Reserva hat die Kraft und Würze fürs Lamm – Leder, Vanille und dunkle Frucht passen gut. Aber die Kunstsammlerin fragte nach dem Rhône-Tal, und da ist Châteauneuf die unangefochtene Antwort.' },
         { wineId: 'vinho_verde', correct: false, explanation: 'Vinho Verde zum kräftigen Lamm? Wie ein Aquarell neben einem Ölgemälde – zu zart.' },
         { wineId: 'mueller_thurgau', correct: false, explanation: 'Müller-Thurgau zum Lammkarree? Das Fleisch würde den Wein komplett überdecken.' },
+        { wineId: 'amarone', acceptable: true, explanation: 'Amarone hat die Power fürs Lamm – aber seine Rosinen-Opulenz erschlägt die feine Kräuterkruste. Und "Rhône-Tal" war der ausdrückliche Wunsch. Châteauneuf-du-Pape trifft Gericht UND Herkunft.' },
       ]
     },
     {
@@ -110,6 +112,7 @@ QUESTIONS.sterne = {
         { wineId: 'tempranillo_gran_reserva', correct: true, explanation: 'Tempranillo Gran Reserva hat die Kraft und dunkle Frucht für Wild – Leder und Gewürze passen zum Wacholder. Aber Châteauneuf bringt mit seinen Garrigue-Kräutern die perfekte aromatische Brücke zum Wacholder, die den Unterschied macht. Lisa notiert: "Guter Gedanke, aber beim Wacholder-Argument hat Châteauneuf die Nase vorn."' },
         { wineId: 'eiswein', correct: false, explanation: 'Eiswein zum Wildragout? Die Süße kollidiert frontal mit den herben Wacholderbeeren und der kräftigen Sauce. Lisa schüttelt den Kopf: "Das hätte ich in der Prüfung nicht geschrieben."' },
         { wineId: 'sancerre', correct: false, explanation: 'Sancerre – leicht, mineralisch, frisch – gegen ein dunkles Wildragout? Der Wein geht unter wie ein Ruderboot im Sturm. Lisa kichert: "Den Fehler hätte ich im ersten Lehrjahr gemacht."' },
+        { wineId: 'amarone', acceptable: true, explanation: 'Amarone hält dem Wild stand – dunkle Frucht und Kraft passen. Aber die Rosinensüße kollidiert mit dem herben Wacholder, und die Garrigue-Kräuter des Châteauneuf bilden die deutlich elegantere aromatische Brücke. Lisa notiert: "Nicht falsch, aber auch nicht die Prüfungsantwort."' },
       ]
     },
   ],

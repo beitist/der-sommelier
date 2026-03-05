@@ -369,21 +369,30 @@ function startShift() {
 // ===== SHARED TIP/REP LOGIC =====
 function rollDice(sides) { return Math.floor(Math.random() * sides) + 1; }
 
-function applyTipAndRep(isCorrect, isFavorite) {
+function applyTipAndRep(isCorrect, isFavorite, isAcceptable) {
   const q = state.currentQuestion;
-  let tipGain = isCorrect ? (4 + rollDice(6)) : rollDice(3);  // richtig: 5-10€, falsch: 1-3€
-  if (isFavorite) tipGain += 3;  // Bonus für beste Wahl
+  let tipGain;
+  if (isCorrect) {
+    tipGain = 4 + rollDice(6);  // richtig: 5-10€
+    if (isFavorite) tipGain += 3;  // Bonus für beste Wahl
+  } else if (isAcceptable) {
+    tipGain = Math.max(1, Math.round((4 + rollDice(6)) / 3));  // akzeptabel: ~2-3€ (Faktor ×⅓)
+  } else {
+    tipGain = rollDice(3);  // falsch: 1-3€
+  }
   // Level-Multiplikator: höheres Level = bessere Gäste = mehr Trinkgeld
   const lvMult = 1 + state.player.level;  // x1, x2, x3, x4, x5
   tipGain = Math.round(tipGain * lvMult);
   if (q && q.hintUsed) tipGain = Math.ceil(tipGain / 2);
-  const repGain = isCorrect ? CONFIG.repPerCorrect : CONFIG.repPerWrong;
+  const repGain = isCorrect ? CONFIG.repPerCorrect :
+                  isAcceptable ? Math.ceil(CONFIG.repPerCorrect / 2) :
+                  CONFIG.repPerWrong;
 
   state.player.tips += tipGain;
   state.player.reputation[state.player.level] = Math.max(0, Math.min(100,
     state.player.reputation[state.player.level] + repGain));
   state.currentShift.tipsEarned += tipGain;
-  if (isCorrect) { state.currentShift.correct++; state.consecutiveWrong = 0; }
+  if (isCorrect || isAcceptable) { state.currentShift.correct++; state.consecutiveWrong = 0; }
   else { state.currentShift.wrong++; state.consecutiveWrong++; }
   state.currentShift.total++;
 
@@ -419,25 +428,27 @@ function expandWineOptions(q, level) {
     if (!finalStep.options) return;
     const cIds = new Set(finalStep.options.filter(o => o.correct).map(o => o.wineId));
     const fIds = new Set(finalStep.options.filter(o => o.favorite).map(o => o.wineId));
+    const aIds = new Set(finalStep.options.filter(o => o.acceptable).map(o => o.wineId));
     if (cIds.size === 0) return;
     const eMap = {};
     finalStep.options.forEach(o => { eMap[o.wineId] = o.explanation; });
     const anyExpl = finalStep.options.find(o => o.correct)?.explanation || '';
     const lvWines = Object.values(WINES).filter(w => w.level === level);
     const pool = [...lvWines];
-    for (const cId of cIds) {
+    for (const cId of [...cIds, ...aIds]) {
       if (!pool.find(w => w.id === cId)) { const wine = WINES[cId]; if (wine) pool.push(wine); }
     }
     finalStep.options = shuffle(pool.map(w => ({
-      wineId: w.id, correct: cIds.has(w.id), favorite: fIds.has(w.id),
+      wineId: w.id, correct: cIds.has(w.id), favorite: fIds.has(w.id), acceptable: aIds.has(w.id),
       explanation: eMap[w.id] || (cIds.has(w.id) ? anyExpl : `${w.name} wäre hier nicht die passendste Empfehlung.`),
     })));
     return;
   }
 
-  // Collect ALL correct wine IDs and favorite IDs from original options
+  // Collect ALL correct, favorite and acceptable wine IDs from original options
   const correctIds = new Set(q.data.options.filter(o => o.correct).map(o => o.wineId));
   const favoriteIds = new Set(q.data.options.filter(o => o.favorite).map(o => o.wineId));
+  const acceptableIds = new Set(q.data.options.filter(o => o.acceptable).map(o => o.wineId));
   if (correctIds.size === 0) return;
 
   // Build a map of existing explanations
@@ -451,8 +462,8 @@ function expandWineOptions(q, level) {
   const levelWines = Object.values(WINES).filter(w => w.level === level);
   const winePool = [...levelWines];
 
-  // Ensure all correct wines are in the pool (even if from different level)
-  for (const cId of correctIds) {
+  // Ensure all correct/acceptable wines are in the pool (even if from different level)
+  for (const cId of [...correctIds, ...acceptableIds]) {
     if (!winePool.find(w => w.id === cId)) {
       const wine = WINES[cId];
       if (wine) winePool.push(wine);
@@ -463,6 +474,7 @@ function expandWineOptions(q, level) {
     wineId: w.id,
     correct: correctIds.has(w.id),
     favorite: favoriteIds.has(w.id),
+    acceptable: acceptableIds.has(w.id),
     explanation: explMap[w.id] || (correctIds.has(w.id)
       ? anyCorrectExpl
       : `${w.name} wäre hier nicht die passendste Wahl.`),
@@ -563,20 +575,21 @@ function answerQuestion(index) {
   q.answered = index;
   const opt = q.data.options[index];
   const isCorrect = opt.correct;
+  const isAcceptable = !isCorrect && !!opt.acceptable;
   const wine = WINES[opt.wineId];
 
   const isFavorite = isCorrect && !!opt.favorite;
-  const tipGain = applyTipAndRep(isCorrect, isFavorite);
+  const tipGain = applyTipAndRep(isCorrect, isFavorite, isAcceptable);
 
   // Track wine knowledge
   if (opt.wineId) {
     if (!state.player.wineKnowledge[opt.wineId]) state.player.wineKnowledge[opt.wineId] = { seen: 0, correct: 0 };
     state.player.wineKnowledge[opt.wineId].seen++;
-    if (isCorrect) state.player.wineKnowledge[opt.wineId].correct++;
+    if (isCorrect || isAcceptable) state.player.wineKnowledge[opt.wineId].correct++;
   }
 
   state.overlay = 'feedback';
-  state.overlayData = { correct: isCorrect, favorite: isFavorite, explanation: opt.explanation, funFact: wine ? wine.funFact : '', tips: tipGain, hintUsed: !!q.hintUsed };
+  state.overlayData = { correct: isCorrect, acceptable: isAcceptable, favorite: isFavorite, explanation: opt.explanation, funFact: wine ? wine.funFact : '', tips: tipGain, hintUsed: !!q.hintUsed };
   saveGame();
   render();
 }
@@ -617,14 +630,16 @@ function answerBlindtasting(index) {
   q.answered = index;
   const opt = q.data.options[index];
   const isCorrect = opt.correct;
+  const isAcceptable = !isCorrect && !!opt.acceptable;
   const isFavorite = isCorrect && !!opt.favorite;
   const wine = WINES[opt.wineId];
 
-  const tipGain = applyTipAndRep(isCorrect, isFavorite);
+  const tipGain = applyTipAndRep(isCorrect, isFavorite, isAcceptable);
 
   state.overlay = 'feedback';
   state.overlayData = {
     correct: isCorrect,
+    acceptable: isAcceptable,
     favorite: isFavorite,
     explanation: q.data.explanation,
     funFact: wine ? wine.funFact : '',
@@ -666,10 +681,11 @@ function answerBeratungStep(index) {
     q.answered = index;
     const opt = step.options[index];
     const isCorrect = opt.correct;
+    const isAcceptable = !isCorrect && !!opt.acceptable;
     const isFavorite = isCorrect && !!opt.favorite;
     const wine = WINES[opt.wineId];
 
-    const tipGain = applyTipAndRep(isCorrect, isFavorite);
+    const tipGain = applyTipAndRep(isCorrect, isFavorite, isAcceptable);
 
     // Add accumulated bonus from good questions
     const bonus = bs.bonusAccumulated;
@@ -680,12 +696,13 @@ function answerBeratungStep(index) {
     if (opt.wineId) {
       if (!state.player.wineKnowledge[opt.wineId]) state.player.wineKnowledge[opt.wineId] = { seen: 0, correct: 0 };
       state.player.wineKnowledge[opt.wineId].seen++;
-      if (isCorrect) state.player.wineKnowledge[opt.wineId].correct++;
+      if (isCorrect || isAcceptable) state.player.wineKnowledge[opt.wineId].correct++;
     }
 
     state.overlay = 'feedback';
     state.overlayData = {
       correct: isCorrect,
+      acceptable: isAcceptable,
       favorite: isFavorite,
       explanation: opt.explanation,
       funFact: wine ? wine.funFact : '',
