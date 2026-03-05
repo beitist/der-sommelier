@@ -602,7 +602,10 @@ function answerBesserwisser(value) {
   q.answered = playerSaidTrue;
   const isCorrect = (playerSaidTrue === q.data.isCorrect);
 
-  applyTipAndRep(isCorrect);
+  const tipGain = applyTipAndRep(isCorrect);
+
+  state.overlay = 'feedback';
+  state.overlayData = { correct: isCorrect, explanation: q.data.correction, funFact: '', tips: tipGain, hintUsed: !!q.hintUsed };
   saveGame();
   render();
 }

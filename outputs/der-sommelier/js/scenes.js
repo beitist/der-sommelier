@@ -523,8 +523,6 @@ function renderBesserwisserQ(q) {
     responseHtml = `
       <div class="bw-result ${wasRight ? 'correct' : 'wrong'}">
         <div class="bw-verdict">${wasRight ? '✅ Richtig erkannt!' : '❌ Leider daneben!'}</div>
-        <p class="bw-correction">${data.correction}</p>
-        <button class="btn btn-primary" onclick="nextQuestion()">Weiter →</button>
       </div>`;
   } else {
     responseHtml = `
