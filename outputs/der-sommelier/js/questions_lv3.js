@@ -11,7 +11,7 @@ QUESTIONS.gehoben = {
       question: 'Was empfiehlst du?',
       options: [
         { wineId: 'saint_emilion', correct: true, favorite: true, explanation: 'Saint-Émilion Grand Cru – eleganter Bordeaux mit Tiefe und Komplexität. Die Merlot-dominante Cuvée harmoniert wunderbar mit Trüffel und Rindfleisch.' },
-        { wineId: 'barolo', correct: true, explanation: 'Barolo ist ein kraftvoller Begleiter zu Trüffel und Rindfleisch – allerdings hat der Bankier explizit nach Bordeaux gefragt, und da führt kein Weg am Saint-Émilion vorbei.' },
+        { wineId: 'barolo', correct: false, explanation: 'Barolo passt geschmacklich zu Trüffel und Rindfleisch – aber er kommt aus dem Piemont, nicht aus Bordeaux! Der Bankier hat explizit nach Bordeaux gefragt.' },
         { wineId: 'vinho_verde', correct: false, explanation: 'Vinho Verde ist leicht und spritzig – dem kräftigen Gericht in keiner Weise gewachsen.' },
         { wineId: 'malbec', acceptable: true, explanation: 'Malbec hat die nötige Kraft für Rinderfilet – aber der Bankier hat explizit nach Bordeaux gefragt, und Malbec kommt aus Argentinien. Außerdem fehlt ihm die Finesse für den schwarzen Trüffel, die Saint-Émilion mitbringt.' },
       ]

@@ -44,6 +44,7 @@ body {
   position: relative;
   background: var(--c-bg);
   transform-origin: center center;
+  overflow: hidden;
   /* scaled via JS */
 }
 
@@ -335,7 +336,6 @@ body {
 .wine-bottle-img {
   max-height: 380px;
   max-width: 200px;
-  image-rendering: pixelated;
   filter: drop-shadow(0 8px 24px rgba(0,0,0,0.5));
 }
 .wine-meta {
@@ -711,7 +711,7 @@ body {
   padding: 28px 36px;
   text-align: center;
   max-width: 540px;
-  max-height: 85vh;
+  max-height: 900px;
   overflow-y: auto;
   animation: popIn 0.3s ease;
 }
@@ -828,7 +828,6 @@ body {
   max-width: 860px;
   max-height: 1274px;
   object-fit: contain;
-  image-rendering: pixelated;
   filter: drop-shadow(0 6px 24px rgba(0,0,0,0.5));
 }
 .chef-dialog-area {
@@ -946,7 +945,6 @@ body {
 }
 .wine-detail-bottle img {
   max-height: 280px;
-  image-rendering: pixelated;
   filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
 }
 .wine-detail-info { flex: 1; }
@@ -975,7 +973,6 @@ body {
   max-width: 860px;
   max-height: 1183px;
   object-fit: contain;
-  image-rendering: pixelated;
   filter: drop-shadow(0 6px 20px rgba(0,0,0,0.6));
 }
 
@@ -985,7 +982,6 @@ body {
   border-radius: 50%;
   border: 3px solid var(--c-gold);
   object-fit: cover;
-  image-rendering: pixelated;
   margin-bottom: 8px;
 }
 
@@ -1064,7 +1060,6 @@ body {
 .rwc-img {
   width: 48px; height: 72px;
   object-fit: contain;
-  image-rendering: pixelated;
   flex-shrink: 0;
   filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4));
 }
@@ -1276,11 +1271,11 @@ body {
   align-self: flex-end;
 }
 .ber-speaker {
-  display: block; font-size: 11pt; font-weight: 700; margin-bottom: 2px;
+  display: block; font-size: 13pt; font-weight: 700; margin-bottom: 2px;
 }
 .ber-guest .ber-speaker { color: var(--c-accent); }
 .ber-player .ber-speaker { color: #4a9; }
-.ber-text { font-size: 13pt; color: var(--c-text); }
+.ber-text { font-size: 15pt; color: var(--c-text); }
 .ber-prompt {
   font-size: 14pt; color: #4a9; font-weight: 600; margin-bottom: 8px;
 }

@@ -187,7 +187,7 @@ QUESTIONS.steakhaus = {
       question: 'Was empfiehlst du?',
       options: [
         { wineId: 'primitivo', correct: true, favorite: true, explanation: 'Primitivo – fruchtig, vollmundig, wenig Säure. Die dunkle Beerenfrucht harmoniert perfekt mit dem rauchigen Pulled Pork!' },
-        { wineId: 'chianti', correct: true, explanation: 'Chianti hat genug Substanz für Pulled Pork – aber Sangiovese bringt mehr Säure mit, und der Grillmeister wollte explizit "nix Säuerliches". Primitivo ist hier die bessere Wahl.' },
+        { wineId: 'chianti', correct: true, explanation: 'Chianti hat genug Substanz für Pulled Pork – aber als Sangiovese-Wein bringt er von Natur aus mehr Säure mit, und der Grillmeister wollte explizit "nix Säuerliches". Primitivo ist hier die fruchtigere Wahl.' },
         { wineId: 'rose_provence', correct: false, explanation: 'Rosé zum Pulled Pork? Zu leicht. Das acht Stunden Smoker-Fleisch braucht einen Wein mit Wumms.' },
       ]
     },

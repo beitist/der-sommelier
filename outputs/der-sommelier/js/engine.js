@@ -128,8 +128,8 @@ function dismissChefIntro() {
   state.player.chefIntroSeen[state.player.level] = true;
   state.showChefIntro = false;
   saveGame();
-  // After chef intro → go to explorer (with intro page)
-  goToScene('explorer', { explorerWineIndex: -1 });
+  // After chef intro → go to explorer (only new wines for this level)
+  goToScene('explorer', { explorerWineIndex: -1, explorerNewOnly: true });
 }
 
 // ===== GUEST ASSIGNMENT =====
@@ -275,13 +275,18 @@ function goToScene(scene, data) {
   state.overlay = null;
   state.overlayData = null;
   state.showChefIntro = false;
+  state.explorerNewOnly = false;
   if (data) Object.assign(state, data);
   render();
 }
 
 // ===== EXPLORER MODE =====
 function getExplorerWines() {
-  // Show wines for current level and all previous levels, sorted by level
+  // After level-up: show only new wines for the current level
+  if (state.explorerNewOnly) {
+    return Object.values(WINES).filter(w => w.level === state.player.level).sort((a, b) => a.id.localeCompare(b.id));
+  }
+  // Manual "Weine wiederholen": show all unlocked wines
   return Object.values(WINES).filter(w => w.level <= state.player.level).sort((a, b) => a.level - b.level);
 }
 

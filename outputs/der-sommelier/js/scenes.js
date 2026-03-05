@@ -822,7 +822,7 @@ function renderLevelUpOverlay() {
           <div style="font-family:var(--font-pixel); font-size:20px; color:var(--c-gold); letter-spacing:4px;">${d.newLevel.levelCode}</div>
           <div style="font-size:12px; color:var(--c-muted); margin-top:4px;">Merke ihn dir, um später direkt hier einzusteigen!</div>
         </div>` : ''}
-        <button class="btn btn-primary btn-large" onclick="state.overlay=null;state.overlayData=null;checkChefIntro();if(!state.showChefIntro)goToScene('explorer',{explorerWineIndex:-1})">
+        <button class="btn btn-primary btn-large" onclick="state.currentShift=null;state.overlay=null;state.overlayData=null;checkChefIntro();if(!state.showChefIntro)goToScene('explorer',{explorerWineIndex:-1,explorerNewOnly:true})">
           🍷 Neue Weine kennenlernen!
         </button>
       </div>
