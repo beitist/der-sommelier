@@ -35,6 +35,8 @@ const CONFIG = {
       description: 'Blindverkostung, perfekte Menü-Begleitung, Profi-Vokabular.' },
   ],
   questionsPerShift: 5,
+  optionsPerQuestion: 5,     // Antwortmöglichkeiten bei Weinfragen (eigene Optionen + zufällige Füller)
+  maxPerTypePerShift: 2,     // höchstens so viele Fragen desselben Typs pro Schicht
   // Trinkgeld: Würfelsystem in engine.js (richtig: 4+1W6, falsch: 1W3, ×Level-Multiplikator)
   repPerCorrect: 8,
   repPerWrong: -3,

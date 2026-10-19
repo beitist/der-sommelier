@@ -68,20 +68,43 @@ function saveGame() {
   } catch(e) { console.warn('Save failed', e); }
 }
 
+// Spielstand prüfen und bereinigen: kaputte oder manipulierte Werte dürfen
+// weder abstürzen lassen noch als HTML im Spiel landen.
+function sanitizePlayer(p) {
+  const n = CONFIG.levels.length;
+  const num = (v, min, max) => (typeof v === 'number' && isFinite(v)) ? Math.max(min, Math.min(max, Math.round(v))) : min;
+  const arr = (a, fn) => Array.from({ length: n }, (_, i) => fn(Array.isArray(a) ? a[i] : undefined));
+  const counts = (src, keys) => {
+    const out = {};
+    if (src && typeof src === 'object') {
+      for (const [id, v] of Object.entries(src)) {
+        if (!v || typeof v !== 'object') continue;
+        out[id] = {};
+        keys.forEach(k => { out[id][k] = num(v[k], 0, 1e6); });
+      }
+    }
+    return out;
+  };
+  return {
+    level: num(p.level, 0, n - 1),
+    tips: num(p.tips !== undefined ? p.tips : p.xp, 0, 1e7),
+    reputation: arr(p.reputation, v => num(v, 0, 100)),
+    wineKnowledge: Object.fromEntries(Object.entries(counts(p.wineKnowledge, ['seen', 'correct'])).filter(([id]) => WINES[id])),
+    discoveredWines: new Set((Array.isArray(p.discoveredWines) ? p.discoveredWines : []).filter(id => WINES[id])),
+    chefIntroSeen: arr(p.chefIntroSeen, v => v === true),
+    shiftsCompleted: arr(p.shiftsCompleted, v => num(v, 0, 1e6)),
+    questionHistory: counts(p.questionHistory, ['seen', 'correct', 'wrong']),
+  };
+}
+
 function loadGame() {
   try {
     // Try v3 first
     let raw = localStorage.getItem('sommelier_v3');
     if (raw) {
       const data = JSON.parse(raw);
-      if (data.version === 3) {
-        state.player = data.player;
-        state.player.discoveredWines = new Set(data.player.discoveredWines || []);
-        // Ensure new fields exist
-        if (!state.player.chefIntroSeen) state.player.chefIntroSeen = [false, false, false, false, false];
-        if (!state.player.shiftsCompleted) state.player.shiftsCompleted = [0, 0, 0, 0, 0];
-        if (!state.player.questionHistory) state.player.questionHistory = {};
-        if (state.player.tips === undefined) state.player.tips = state.player.xp || 0;
+      if (data && data.version === 3 && data.player) {
+        state.player = sanitizePlayer(data.player);
         return true;
       }
     }
@@ -89,18 +112,16 @@ function loadGame() {
     raw = localStorage.getItem('sommelier_v2');
     if (raw) {
       const data = JSON.parse(raw);
-      if (data.version === 2) {
-        state.player = data.player;
-        state.player.discoveredWines = new Set(data.player.discoveredWines || []);
-        state.player.tips = data.player.xp || 0;
-        state.player.chefIntroSeen = [false, false, false, false, false];
-        state.player.shiftsCompleted = [0, 0, 0, 0, 0];
-        state.player.questionHistory = {};
+      if (data && data.version === 2 && data.player) {
+        state.player = sanitizePlayer({
+          ...data.player,
+          tips: data.player.xp || 0,
+          chefIntroSeen: [], shiftsCompleted: [], questionHistory: {},
+        });
         // Mark current level's chef as seen if player has progressed
         for (let i = 0; i < state.player.level; i++) {
           state.player.chefIntroSeen[i] = true;
         }
-        delete state.player.xp;
         saveGame(); // Save as v3
         return true;
       }
@@ -110,7 +131,9 @@ function loadGame() {
 }
 
 function hasSave() {
-  return !!(localStorage.getItem('sommelier_v3') || localStorage.getItem('sommelier_v2'));
+  try {
+    return !!(localStorage.getItem('sommelier_v3') || localStorage.getItem('sommelier_v2'));
+  } catch(e) { return false; }
 }
 
 // ===== CHEF INTRO =====
@@ -158,6 +181,18 @@ function getRandomGuest(level) {
 }
 
 // ===== GAME ACTIONS =====
+// "Neues Spiel" bei vorhandenem Spielstand erst bestätigen lassen
+function requestNewGame() {
+  if (!hasSave()) { startNewGame(); return; }
+  state.overlay = 'confirmNewGame';
+  render();
+}
+
+function cancelNewGame() {
+  state.overlay = null;
+  render();
+}
+
 function startNewGame() {
   state = {
     scene: 'restaurant',
@@ -216,6 +251,8 @@ function startFromCode(code) {
   state.player.level = lvIndex;
   state.player.tips = CONFIG.levels[lvIndex].xpNeeded;
   for (let i = 0; i < lvIndex; i++) state.player.chefIntroSeen[i] = true;
+  // Weine der übersprungenen Level gelten als bekannt
+  Object.values(WINES).filter(w => w.level < lvIndex).forEach(w => state.player.discoveredWines.add(w.id));
   state.showChefIntro = true;
   saveGame();
   render();
@@ -351,10 +388,24 @@ function startShift() {
   // Priority: unseen → wrong → seen (least-seen first)
   seen.sort((a, b) => (hist[a.data.id]?.seen || 0) - (hist[b.data.id]?.seen || 0));
   const prioritized = [...unseen, ...wrong, ...seen];
-  const selected = prioritized.slice(0, CONFIG.questionsPerShift);
 
-  // Expand wine options to full cellar + assign guests
+  // Fragetypen mischen: erst höchstens maxPerTypePerShift pro Typ, dann auffüllen
+  const selected = [];
+  const perType = {};
+  for (const q of prioritized) {
+    if (selected.length >= CONFIG.questionsPerShift) break;
+    if ((perType[q.type] || 0) >= CONFIG.maxPerTypePerShift) continue;
+    perType[q.type] = (perType[q.type] || 0) + 1;
+    selected.push(q);
+  }
+  for (const q of prioritized) {
+    if (selected.length >= CONFIG.questionsPerShift) break;
+    if (!selected.includes(q)) selected.push(q);
+  }
+
+  // Kopie der Fragedaten (Originale bleiben unverändert), Weinoptionen auffüllen, Gäste zuweisen
   selected.forEach(q => {
+    q.data = structuredClone(q.data);
     expandWineOptions(q, level);
     q.guest = assignGuestToQuestion(q, level);
   });
@@ -406,7 +457,8 @@ function applyTipAndRep(isCorrect, isFavorite, isAcceptable) {
   if (qId) {
     if (!state.player.questionHistory[qId]) state.player.questionHistory[qId] = { seen: 0, correct: 0, wrong: 0 };
     state.player.questionHistory[qId].seen++;
-    if (isCorrect) state.player.questionHistory[qId].correct++;
+    // "Akzeptabel" zählt wie in der Schicht als richtig
+    if (isCorrect || isAcceptable) state.player.questionHistory[qId].correct++;
     else state.player.questionHistory[qId].wrong++;
   }
 
@@ -423,67 +475,48 @@ function getChefComment(isCorrect) {
 }
 
 // ===== DYNAMIC WINE OPTIONS =====
+// Die geschriebenen Antworten bleiben erhalten (inkl. Erklärungen). Aufgefüllt wird
+// mit zufälligen Weinen aus ALLEN freigeschalteten Levels – so verrät die Herkunft
+// eines Weins (alt/neu) nicht mehr die richtige Antwort.
 function expandWineOptions(q, level) {
   // Only for question types with wine options
   if (q.type === 'besserwisser' || q.type === 'weinwissen') return;
 
-  // Beratung: expand only the final step's wine options
   if (q.type === 'beratung') {
     const finalStep = q.data.steps[q.data.steps.length - 1];
-    if (!finalStep.options) return;
-    const cIds = new Set(finalStep.options.filter(o => o.correct).map(o => o.wineId));
-    const fIds = new Set(finalStep.options.filter(o => o.favorite).map(o => o.wineId));
-    const aIds = new Set(finalStep.options.filter(o => o.acceptable).map(o => o.wineId));
-    if (cIds.size === 0) return;
-    const eMap = {};
-    finalStep.options.forEach(o => { eMap[o.wineId] = o.explanation; });
-    const anyExpl = finalStep.options.find(o => o.correct)?.explanation || '';
-    const lvWines = Object.values(WINES).filter(w => w.level === level);
-    const pool = [...lvWines];
-    for (const cId of [...cIds, ...aIds]) {
-      if (!pool.find(w => w.id === cId)) { const wine = WINES[cId]; if (wine) pool.push(wine); }
-    }
-    finalStep.options = shuffle(pool.map(w => ({
-      wineId: w.id, correct: cIds.has(w.id), favorite: fIds.has(w.id), acceptable: aIds.has(w.id),
-      explanation: eMap[w.id] || (cIds.has(w.id) ? anyExpl : `${w.name} wäre hier nicht die passendste Empfehlung.`),
-    })));
+    if (finalStep.options) finalStep.options = buildWineOptions(finalStep.options, level);
     return;
   }
+  q.data.options = buildWineOptions(q.data.options, level);
+}
 
-  // Collect ALL correct, favorite and acceptable wine IDs from original options
-  const correctIds = new Set(q.data.options.filter(o => o.correct).map(o => o.wineId));
-  const favoriteIds = new Set(q.data.options.filter(o => o.favorite).map(o => o.wineId));
-  const acceptableIds = new Set(q.data.options.filter(o => o.acceptable).map(o => o.wineId));
-  if (correctIds.size === 0) return;
+function buildWineOptions(options, level) {
+  // Falsche Optionen mit noch unbekannten Weinen fallen weg; richtige/akzeptable bleiben immer
+  const kept = options.filter(o => WINES[o.wineId] && (o.correct || o.acceptable || WINES[o.wineId].level <= level));
+  const correctWines = kept.filter(o => o.correct).map(o => WINES[o.wineId]);
+  if (correctWines.length === 0) return shuffle(kept);
 
-  // Build a map of existing explanations
-  const explMap = {};
-  q.data.options.forEach(o => { explMap[o.wineId] = o.explanation; });
+  const anyCorrectExpl = kept.find(o => o.correct && o.explanation)?.explanation || '';
+  const result = kept.map(o => ({
+    ...o,
+    explanation: o.explanation || (o.correct ? anyCorrectExpl : wineMismatchText(WINES[o.wineId])),
+  }));
 
-  // Fallback explanation for correct wines without custom text
-  const anyCorrectExpl = q.data.options.find(o => o.correct)?.explanation || '';
-
-  // Get all wines of this level
-  const levelWines = Object.values(WINES).filter(w => w.level === level);
-  const winePool = [...levelWines];
-
-  // Ensure all correct/acceptable wines are in the pool (even if from different level)
-  for (const cId of [...correctIds, ...acceptableIds]) {
-    if (!winePool.find(w => w.id === cId)) {
-      const wine = WINES[cId];
-      if (wine) winePool.push(wine);
-    }
+  // Füller: nicht schon vorhanden und kein "Zwilling" eines richtigen Weins
+  // (gleiche Farbe, Süße und Körper wäre womöglich ebenfalls richtig)
+  const used = new Set(result.map(o => o.wineId));
+  const isTwin = w => correctWines.some(c => c.color === w.color && c.sweetness === w.sweetness && c.body === w.body);
+  const fillers = shuffle(Object.values(WINES).filter(w => w.level <= level && !used.has(w.id) && !isTwin(w)));
+  for (const w of fillers) {
+    if (result.length >= CONFIG.optionsPerQuestion) break;
+    result.push({ wineId: w.id, correct: false, explanation: wineMismatchText(w) });
   }
+  return shuffle(result);
+}
 
-  q.data.options = shuffle(winePool.map(w => ({
-    wineId: w.id,
-    correct: correctIds.has(w.id),
-    favorite: favoriteIds.has(w.id),
-    acceptable: acceptableIds.has(w.id),
-    explanation: explMap[w.id] || (correctIds.has(w.id)
-      ? anyCorrectExpl
-      : `${w.name} wäre hier nicht die passendste Wahl.`),
-  })));
+function wineMismatchText(w) {
+  const color = w.color === 'rot' ? 'Rotwein' : w.color === 'weiss' ? 'Weißwein' : 'Rosé';
+  return `${w.name} (${color}, ${w.sweetness}, Körper ${w.body}) wäre hier nicht die passendste Wahl.`;
 }
 
 // ===== CHEF HINT SYSTEM =====
@@ -510,7 +543,7 @@ function askChefForHelp() {
         ];
         hintText = pick(hints);
       }
-      const wrongIndices = q.data.options.map((o, i) => o.correct ? -1 : i).filter(i => i >= 0);
+      const wrongIndices = q.data.options.map((o, i) => (o.correct || o.acceptable) ? -1 : i).filter(i => i >= 0);
       if (wrongIndices.length > 1) eliminatedIndex = pick(wrongIndices);
       break;
     }
@@ -540,7 +573,7 @@ function askChefForHelp() {
         ];
         hintText = pick(hints);
       }
-      const wrongBt = q.data.options.map((o, i) => o.correct ? -1 : i).filter(i => i >= 0);
+      const wrongBt = q.data.options.map((o, i) => (o.correct || o.acceptable) ? -1 : i).filter(i => i >= 0);
       if (wrongBt.length > 1) eliminatedIndex = pick(wrongBt);
       break;
     }
@@ -560,7 +593,7 @@ function askChefForHelp() {
         ];
         hintText = pick(hints);
       }
-      const wrongBer = finalStep.options.map((o, i) => o.correct ? -1 : i).filter(i => i >= 0);
+      const wrongBer = finalStep.options.map((o, i) => (o.correct || o.acceptable) ? -1 : i).filter(i => i >= 0);
       if (wrongBer.length > 1) eliminatedIndex = pick(wrongBer);
       break;
     }

@@ -21,8 +21,10 @@ function render() {
   }
   // Global overlays (can appear on any scene)
   if (state.overlay === 'downgrade') html += renderDowngradeOverlay();
+  if (state.overlay === 'confirmNewGame') html += renderConfirmNewGameOverlay();
 
   root.innerHTML = html;
+  lockInput();
   attachEvents();
 
   // Auto-scroll beratung chat history
@@ -45,7 +47,7 @@ function renderTitle() {
           <h1 class="title-text">DER SOMMELIER</h1>
           <p class="title-sub">Ein Wein-Abenteuer für angehende Gastro-Profis</p>
           <div class="title-buttons">
-            <button class="btn btn-primary" onclick="startNewGame()">🍷 Neues Spiel</button>
+            <button class="btn btn-primary" onclick="requestNewGame()">🍷 Neues Spiel</button>
             ${hasSave() ? '<button class="btn btn-secondary" onclick="continueGame()">📂 Weiterspielen</button>' : ''}
             <button class="btn btn-ghost" onclick="showLevelCodeInput()">🔑 Levelcode eingeben</button>
           </div>
@@ -379,6 +381,11 @@ function renderRestaurantLobby() {
   const rep = state.player.reputation[state.player.level];
   const stars = renderStars(rep);
   const shifts = state.player.shiftsCompleted[state.player.level];
+  // Lehrgang noch nicht (ganz) gemacht, z.B. nach "Erst Länderinfo"? Dann hervorheben.
+  const newWinesOpen = Object.values(WINES).some(w => w.level === state.player.level && !state.player.discoveredWines.has(w.id));
+  const lehrgangBtn = newWinesOpen
+    ? `<button class="btn btn-primary" onclick="goToScene('explorer', {explorerWineIndex:-1, explorerNewOnly:true})">📚 Lehrgang: neue Weine!</button>`
+    : `<button class="btn btn-secondary" onclick="goToScene('explorer', {explorerWineIndex:0})">📚 Weine wiederholen</button>`;
 
   return `
     <div class="scene scene-restaurant active">
@@ -410,7 +417,7 @@ function renderRestaurantLobby() {
               </div>
               <div class="lobby-buttons">
                 <button class="btn btn-primary btn-large" onclick="startShift()">🍽️ Schicht starten</button>
-                <button class="btn btn-secondary" onclick="goToScene('explorer', {explorerWineIndex:0})">📚 Weine wiederholen</button>
+                ${lehrgangBtn}
                 <button class="btn btn-ghost" onclick="goToScene('map')">🗺️ Länderinfo</button>
               </div>
             </div>
@@ -718,7 +725,7 @@ function renderFeedbackOverlay() {
   }
 
   return `
-    <div class="overlay-backdrop feedback-backdrop" onclick="nextQuestion()">
+    <div class="overlay-backdrop feedback-backdrop">
       <div class="feedback-card ${d.correct ? 'fb-correct' : d.acceptable ? 'fb-acceptable' : 'fb-wrong'}" onclick="event.stopPropagation()">
         <div class="fb-icon">${d.correct ? (d.favorite ? '🌟' : '✅') : d.acceptable ? '🤷' : '❌'}</div>
         <h3>${d.correct ? (d.favorite ? 'Perfekt! Beste Wahl!' : 'Gute Wahl!') : d.acceptable ? 'Geht gerade noch...' : 'Nicht ganz...'}</h3>
@@ -752,6 +759,22 @@ function renderDowngradeOverlay() {
         <div class="summary-buttons" style="margin-top:16px">
           <button class="btn btn-primary" onclick="confirmDowngrade(${d.targetLevel})">\u{2705} Ja, k\u00FCndigen!</button>
           <button class="btn btn-secondary" onclick="cancelDowngrade()">\u274C Nein, bleiben</button>
+        </div>
+      </div>
+    </div>`;
+}
+
+// ===== CONFIRM NEW GAME OVERLAY =====
+function renderConfirmNewGameOverlay() {
+  return `
+    <div class="overlay-backdrop" onclick="cancelNewGame()">
+      <div class="feedback-card fb-downgrade" onclick="event.stopPropagation()">
+        <div class="fb-icon">⚠️</div>
+        <h3>Neues Spiel starten?</h3>
+        <p class="fb-explanation">Dein bisheriger Spielstand wird dabei <strong>überschrieben</strong> – Trinkgeld, Ruf und Fortschritt sind dann weg.</p>
+        <div class="summary-buttons" style="margin-top:16px">
+          <button class="btn btn-primary" onclick="startNewGame()">🍷 Ja, neu anfangen</button>
+          <button class="btn btn-secondary" onclick="cancelNewGame()">❌ Abbrechen</button>
         </div>
       </div>
     </div>`;
@@ -930,6 +953,23 @@ function renderMiniGameEnd() {
       </div>
     </div>`;
 }
+
+// ===== INPUT LOCK =====
+// Nach jedem Neuaufbau kurz keine Klicks annehmen: Sonst trifft ein schnelles
+// Doppeltippen (iPad!) den Button, der danach an derselben Stelle erscheint.
+const INPUT_LOCK_MS = 350;
+let inputLockedUntil = 0;
+
+function lockInput() {
+  inputLockedUntil = performance.now() + INPUT_LOCK_MS;
+}
+
+document.addEventListener('click', e => {
+  if (performance.now() < inputLockedUntil && !e.target.closest('#minigame-canvas, input')) {
+    e.stopImmediatePropagation();
+    e.preventDefault();
+  }
+}, true);
 
 // ===== EVENT DELEGATION =====
 function attachEvents() {
