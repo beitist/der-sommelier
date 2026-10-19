@@ -1648,3 +1648,18 @@ body {
 .lobby-buttons { gap: 14px; }
 .lobby-buttons .btn { font-size: 16.8pt; padding: 14px 34px; min-height: 76px; }
 .lobby-buttons .btn-large { font-size: 19.6pt; padding: 18px 50px; min-height: 86px; }
+
+/* Aufstieg ×1,4 */
+.levelup-card { padding: 66px 80px; max-width: 1000px; }
+.lu-stars { font-size: 50px; margin-bottom: 12px; }
+.levelup-card h2 { font-size: 45px; margin-bottom: 18px; }
+.lu-new-title { font-size: 25.2pt; margin-bottom: 16px; }
+.lu-desc { font-size: 18.2pt; margin-bottom: 22px; }
+.lu-regions { margin-bottom: 28px; }
+.lu-regions h4 { font-size: 16.8pt; margin-bottom: 12px; }
+.lu-region { font-size: 16.8pt; padding: 6px 18px; margin: 4px; }
+.lu-code { margin: 22px 0; padding: 18px 26px; background: rgba(240,230,140,0.1); border: 1px solid rgba(240,230,140,0.25); border-radius: 10px; }
+.lu-code-label { font-size: 17pt; color: var(--c-muted); margin-bottom: 6px; }
+.lu-code-value { font-family: var(--font-pixel); font-size: 28px; color: var(--c-gold); letter-spacing: 6px; }
+.lu-code-hint { font-size: 15.4pt; color: var(--c-muted); margin-top: 6px; }
+.levelup-card .btn-large { font-size: 19.6pt; padding: 18px 50px; min-height: 86px; }

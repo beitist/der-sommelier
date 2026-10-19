@@ -904,10 +904,10 @@ function renderLevelUpOverlay() {
           <h4>Neue Weinländer:</h4>
           ${newRegions.map(r => `<span class="lu-region">${r.flag} ${r.name}</span>`).join('')}
         </div>` : ''}
-        ${d.newLevel.levelCode ? `<div style="margin:16px 0; padding:12px 18px; background:rgba(240,230,140,0.1); border:1px solid rgba(240,230,140,0.25); border-radius:8px;">
-          <div style="font-size:13px; color:var(--c-muted); margin-bottom:4px;">Dein Levelcode:</div>
-          <div style="font-family:var(--font-pixel); font-size:20px; color:var(--c-gold); letter-spacing:4px;">${d.newLevel.levelCode}</div>
-          <div style="font-size:12px; color:var(--c-muted); margin-top:4px;">Merke ihn dir, um später direkt hier einzusteigen!</div>
+        ${d.newLevel.levelCode ? `<div class="lu-code">
+          <div class="lu-code-label">Dein Levelcode:</div>
+          <div class="lu-code-value">${d.newLevel.levelCode}</div>
+          <div class="lu-code-hint">Merke ihn dir, um später direkt hier einzusteigen!</div>
         </div>` : ''}
         <button class="btn btn-primary btn-large" onclick="state.currentShift=null;state.overlay=null;state.overlayData=null;checkChefIntro();if(!state.showChefIntro)goToScene('explorer',{explorerWineIndex:-1,explorerNewOnly:true})">
           🍷 Neue Weine kennenlernen!
