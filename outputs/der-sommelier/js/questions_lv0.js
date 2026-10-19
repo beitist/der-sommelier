@@ -263,7 +263,7 @@ QUESTIONS.imbiss = {
       id: 'bw_0_12', guestId: 'stavros', mood: '🤓',
       statement: 'Stavros zeigt stolz auf den Imiglykos: "Weißt du, in Griechenland wird seit über 6.000 Jahren Wein angebaut! Wir Griechen haben das quasi erfunden – lange vor den Franzosen!"',
       isCorrect: true,
-      correction: 'Stimmt! Griechenland gehört zu den ältesten Weinbaukulturen der Welt. Archäologische Funde belegen Weinbau seit mindestens 4.500 v. Chr. Die alten Griechen hatten sogar einen eigenen Gott des Weins – Dionysos!'
+      correction: 'Stimmt! Griechenland gehört zu den ältesten Weinbaukulturen der Welt. Archäologische Funde belegen Weinbau seit mindestens 4.500 v. Chr. Die alten Griechen hatten sogar einen eigenen Gott des Weins – Dionysos! Erfunden hat ihn aber wohl der Kaukasus – in Georgien wird seit rund 8.000 Jahren Wein gemacht!'
     },
     {
       id: 'bw_0_13', guestId: 'onkel_werner', mood: '🤓',
@@ -320,7 +320,7 @@ QUESTIONS.imbiss = {
         { text: 'Wenig Alkohol', correct: false },
         { text: 'Kurze Reifezeit', correct: false },
       ],
-      explanation: '"Trocken" bedeutet wenig Restzucker (unter 9g/l). Der Wein schmeckt nicht süß. Das Gegenteil wäre "lieblich" oder "süß".'
+      explanation: '"Trocken" bedeutet wenig Restzucker (vereinfacht: bis 9 g/l). Der Wein schmeckt nicht süß. Das Gegenteil wäre "lieblich" oder "süß".'
     },
     {
       id: 'ww_0_4', guestId: 'studenten', mood: '🤷',
@@ -370,7 +370,7 @@ QUESTIONS.imbiss = {
         { text: 'Ein Wein, der nur halb so lange gelagert wurde', correct: false },
         { text: 'Ein Wein aus halb reifen Trauben', correct: false },
       ],
-      explanation: '"Halbtrocken" bedeutet, dass der Wein leicht spürbare Süße hat (bis 18 g/l Restzucker). Er schmeckt milder als trockener Wein, aber deutlich weniger süß als lieblicher. Dornfelder und Müller-Thurgau sind bei uns halbtrocken!'
+      explanation: '"Halbtrocken" bedeutet, dass der Wein leicht spürbare Süße hat (vereinfacht: bis 18 g/l Restzucker). Er schmeckt milder als trockener Wein, aber deutlich weniger süß als lieblicher. Dornfelder und Müller-Thurgau sind bei uns halbtrocken!'
     },
     {
       id: 'ww_0_9', guestId: 'bergmann', mood: '🤨',
@@ -380,7 +380,7 @@ QUESTIONS.imbiss = {
         { text: 'Eine Kreuzung aus den Rebsorten Müller und Thurgau', correct: false },
         { text: 'Benannt nach dem Weingut Müller im Ort Thurgau', correct: false },
       ],
-      explanation: 'Die Rebsorte ist nach dem Schweizer Botaniker Professor Hermann Müller benannt, der aus dem Kanton Thurgau stammte. Er züchtete sie 1882 in Geisenheim als Kreuzung aus Riesling und Madeleine Royale. In Österreich heißt sie übrigens "Rivaner"!'
+      explanation: 'Die Rebsorte ist nach dem Schweizer Botaniker Professor Hermann Müller benannt, der aus dem Kanton Thurgau stammte. Er züchtete sie 1882 in Geisenheim als Kreuzung aus Riesling und Madeleine Royale. In Luxemburg und oft auch bei uns heißt sie übrigens "Rivaner"!'
     },
     {
       id: 'ww_0_10', guestId: 'onkel_werner', mood: '🍇',

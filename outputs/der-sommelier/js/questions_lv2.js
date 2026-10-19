@@ -49,7 +49,7 @@ QUESTIONS.gutbuergerlich = {
     },
     {
       id: 'fp_2_5', guestId: 'wandergruppe', mood: '🥾',
-      scenario: 'Die Wandergruppe kommt herein, die Wangen rot vom Wind. "Eine große Vesperplatte für alle bitte! Schinken, Käse, Essiggurken, Bauernbrot." Sie wollen einen leichten Weißwein, der zum Vesper passt.',
+      scenario: 'Die Wandergruppe kommt herein, die Wangen rot vom Wind. "Eine große Vesperplatte für alle bitte! Schinken, Käse, Essiggurken, Bauernbrot." Sie wollen einen aromatischen Weißwein, der zum Vesper passt.',
       question: 'Was empfiehlst du?',
       options: [
         { wineId: 'gewuerztraminer', correct: true, favorite: true, explanation: 'Gewürztraminer – aromatisch, leicht halbtrocken, passt großartig zu Schinken und Käse. Ein Klassiker zum Vesper!' },
@@ -198,7 +198,7 @@ QUESTIONS.gutbuergerlich = {
       id: 'bw_2_1', guestId: 'der_pfarrer', mood: '🍷',
       statement: 'Der Pfarrer doziert am Tisch: "Gewürztraminer heißt so, weil er nach Gewürzen schmeckt – Nelke, Zimt und so weiter. Das ist ja wie Glühwein!"',
       isCorrect: true,
-      correction: 'Stimmt im Kern! Der Name kommt zwar vom Ort Tramin in Südtirol, aber die Rebsorte ist tatsächlich für ihre intensiven Gewürzaromen bekannt: Litschi, Rosenblüte, Gewürznelke.'
+      correction: 'Stimmt im Kern! "Gewürz-" kennzeichnet die besonders aromatische Spielart der Traminer-Familie – das Bukett erinnert an Rosen, Litschi und Gewürze wie Nelke. Mit Zimt und Glühwein hat er aber wenig zu tun. Der Name "Traminer" kommt übrigens vom Ort Tramin in Südtirol.'
     },
     {
       id: 'bw_2_2', guestId: 'wandergruppe', mood: '🧐',
@@ -238,9 +238,9 @@ QUESTIONS.gutbuergerlich = {
     },
     {
       id: 'bw_2_8', guestId: 'wandergruppe', mood: '🤓',
-      statement: 'Ein Wanderer aus der Gruppe behauptet: "Gewürztraminer kommt ursprünglich aus Südtirol – aus dem Ort Tramin! Daher hat er ja auch seinen Namen."',
+      statement: 'Ein Wanderer aus der Gruppe behauptet: "Gewürztraminer hat seinen Namen vom Ort Tramin in Südtirol!"',
       isCorrect: true,
-      correction: 'Richtig gewandert, richtig gewusst! Der Name "Traminer" leitet sich tatsächlich vom Ort Tramin (italienisch: Termeno) in Südtirol ab. Von dort hat sich die Rebsorte über das Elsass, Deutschland und die ganze Welt verbreitet. Das "Gewürz-" im Namen verweist auf die intensiven Gewürzaromen.'
+      correction: 'Richtig gewandert, richtig gewusst! Der Name "Traminer" leitet sich tatsächlich vom Ort Tramin (italienisch: Termeno) in Südtirol ab. Dort sind Traminer-Weine seit dem 11. Jahrhundert belegt. Die Rebe selbst stammt laut Genanalysen aber wohl von nördlich der Alpen – berühmt wurde sie vor allem im Elsass und in Deutschland. Das "Gewürz-" im Namen verweist auf die intensiven Gewürzaromen.'
     },
     {
       id: 'bw_2_9', guestId: 'der_jaeger', mood: '🤓',
@@ -252,7 +252,7 @@ QUESTIONS.gutbuergerlich = {
       id: 'bw_2_10', guestId: 'buergermeister', mood: '🤓',
       statement: 'Der Bürgermeister erklärt seinem spanischen Gast: "In der Rioja-Region wird der Wein in Eichenfässern gereift – und je nach Reifezeit bekommt er einen anderen Namen: Crianza, Reserva, Gran Reserva."',
       isCorrect: true,
-      correction: 'Diplomatisch korrekt! Das spanische Reifesystem ist streng geregelt: Crianza = mind. 24 Monate (12 im Fass), Reserva = mind. 36 Monate (12 im Fass), Gran Reserva = mind. 60 Monate (18 im Fass). Je länger die Reifung, desto komplexer und eleganter der Wein!'
+      correction: 'Diplomatisch korrekt! Das spanische Reifesystem ist streng geregelt: Crianza = mind. 24 Monate (12 im Fass), Reserva = mind. 36 Monate (12 im Fass), Gran Reserva = mind. 60 Monate (in Rioja 24 im Fass). Je länger die Reifung, desto komplexer und eleganter der Wein!'
     },
   ],
 
@@ -310,18 +310,18 @@ QUESTIONS.gutbuergerlich = {
         { text: 'Der Wein hat eine grüne Farbe', correct: false },
         { text: 'Er wächst nur auf grünen Hügeln', correct: false },
       ],
-      explanation: '"Verde" (grün) steht für jung/frisch – der Wein wird im Jahr nach der Ernte getrunken. Die leichte Spritzigkeit kommt von natürlicher CO₂-Restgärung.'
+      explanation: '"Verde" (grün) steht für jung/frisch – der Wein wird im Jahr nach der Ernte getrunken. Die leichte Spritzigkeit kam früher von einer Nachgärung – heute wird meist etwas Kohlensäure zugesetzt.'
     },
     {
       id: 'ww_2_6', guestId: 'wandergruppe', mood: '🥾',
-      question: 'Ein Wanderer aus der Gruppe fragt neugierig: "Wir trinken gerade Gewürztraminer. Woher kommt der eigentlich – aus Tramin in Südtirol, oder?"',
+      question: 'Ein Wanderer aus der Gruppe fragt neugierig: "Wir trinken gerade Gewürztraminer. Woher hat der eigentlich seinen Namen – von Tramin in Südtirol, oder?"',
       options: [
         { text: 'Ja – der Name verweist auf den Ort Tramin in Südtirol', correct: true },
         { text: 'Aus der Pfalz in Deutschland', correct: false },
         { text: 'Aus dem Elsass in Frankreich', correct: false },
         { text: 'Aus der Wachau in Österreich', correct: false },
       ],
-      explanation: 'Der Name "Traminer" verweist tatsächlich auf den Ort Tramin (Termeno) in Südtirol! Heute wird Gewürztraminer vor allem im Elsass, in Deutschland und in der Pfalz angebaut – aber die Wiege liegt in Südtirol.'
+      explanation: 'Der Name "Traminer" verweist tatsächlich auf den Ort Tramin (Termeno) in Südtirol! Heute wird Gewürztraminer vor allem im Elsass, in Deutschland und in der Pfalz angebaut – die Rebe selbst stammt laut Genanalysen aber wohl von nördlich der Alpen.'
     },
     {
       id: 'ww_2_7', guestId: 'buergermeister', mood: '🧐',
@@ -331,7 +331,7 @@ QUESTIONS.gutbuergerlich = {
         { text: 'Der Wein wurde nur halb so lange gelagert wie trocken', correct: false },
         { text: 'Die Trauben waren bei der Ernte nur halb reif', correct: false },
       ],
-      explanation: 'Halbtrocken bedeutet, dass der Wein eine leichte Restsüße hat – zwischen 9 und 18 Gramm Zucker pro Liter. Die Gärung wird gestoppt, bevor aller Zucker in Alkohol umgewandelt ist. Das macht den Wein weicher und fruchtiger als einen trockenen.'
+      explanation: 'Halbtrocken bedeutet, dass der Wein eine leichte Restsüße hat – vereinfacht zwischen 9 und 18 Gramm Zucker pro Liter. Die Gärung wird gestoppt, bevor aller Zucker in Alkohol umgewandelt ist. Das macht den Wein weicher und fruchtiger als einen trockenen.'
     },
     {
       id: 'ww_2_8', guestId: 'frau_doktor', mood: '🔬',
@@ -545,13 +545,13 @@ QUESTIONS.gutbuergerlich = {
         {
           prompt: 'Welchen Wein empfiehlst du?',
           options: [
-            { wineId: 'gewuerztraminer', correct: true, favorite: true, explanation: 'Perfekte Empfehlung! Der Gewürztraminer aus dem Elsass hat die ideale Geschichte: Eine Rebsorte, die ihren Ursprung in Südtirol hat, im Elsass – der Grenzregion zwischen Deutschland und Frankreich – ihre Heimat fand. Beeindruckende Aromatik von Litschi und Rosenblüte, die selbst französische Weinkenner zum Staunen bringt. Und er ist bezahlbar!' },
+            { wineId: 'gewuerztraminer', correct: true, favorite: true, explanation: 'Perfekte Empfehlung! Ein Pfälzer Gewürztraminer hat die ideale Geschichte: Der Name verweist auf Tramin in Südtirol, berühmt wurde die Rebsorte im Elsass – und die Pfalz liegt direkt an dieser Grenze zwischen Deutschland und Frankreich. Beeindruckende Aromatik von Litschi und Rosenblüte, die selbst französische Weinkenner zum Staunen bringt. Und er ist bezahlbar!' },
             { wineId: 'cremant', correct: true, explanation: 'Crémant d\'Alsace ist eine nette Idee – prickelnd, aus dem Elsass, und gut gemacht. Aber eine französische Weinfamilie kennt Crémant bereits gut. Der Überraschungseffekt fehlt – für ein echtes "Oh là là" braucht es etwas Aromatischeres!' },
             { wineId: 'pinot_grigio', correct: false, explanation: 'Pinot Grigio aus Italien für eine französische Weinfamilie? Das ist zu generisch und hat keine besondere Geschichte. Papas Weinkenner-Nase würde enttäuscht schnüffeln – damit beeindruckt man niemanden in Lyon!' },
           ]
         }
       ],
-      summary: 'Das beste Weingeschenk erzählt eine Geschichte. Gewürztraminer aus dem Elsass verbindet deutsche und französische Weinkultur und beeindruckt mit einzigartiger Aromatik – perfekt, um Weinkenner zu überraschen.'
+      summary: 'Das beste Weingeschenk erzählt eine Geschichte. Ein Pfälzer Gewürztraminer – direkt an der Grenze zum Elsass – verbindet deutsche und französische Weinkultur und beeindruckt mit einzigartiger Aromatik – perfekt, um Weinkenner zu überraschen.'
     },
 
     // ---- Beratung 5: Wandergruppe – Wein für die Hütten-Feier ----

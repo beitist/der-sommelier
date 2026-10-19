@@ -79,7 +79,7 @@ QUESTIONS.steakhaus = {
     },
     {
       id: 'fp_1_8', guestId: 'fitnesstrainerin', mood: '🥗',
-      scenario: 'Die Fitnesstrainerin ist heute mit einer Kollegin da. "Zwei Mal gegrillten Lachs mit Zitrone und Dill bitte! Und dazu einen Weißwein – trocken, nicht zu viel Alkohol. Wir müssen morgen früh raus zum Bootcamp."',
+      scenario: 'Die Fitnesstrainerin ist heute mit einer Kollegin da. "Zwei Mal gegrillten Lachs mit Zitrone und Dill bitte! Und dazu einen Weißwein – leicht und nicht zu viel Alkohol. Wir müssen morgen früh raus zum Bootcamp."',
       question: 'Was empfiehlst du?',
       options: [
         { wineId: 'mueller_thurgau', correct: true, favorite: true, explanation: 'Müller-Thurgau ist mild, leicht und hat moderate 11-12% Alkohol – perfekt zum Lachs und für den Bootcamp-Morgen!' },
@@ -270,7 +270,7 @@ QUESTIONS.steakhaus = {
       id: 'bw_1_3', guestId: 'grillmeister', mood: '🍺',
       statement: 'Der Grillmeister prostet mit seinem Sekt: "Weißt du, Sekt ist eigentlich ein französisches Produkt – wird doch alles in der Champagne gemacht, oder?"',
       isCorrect: false,
-      correction: 'Nein! Sekt ist ein deutsches Produkt und darf überall hergestellt werden. Nur "Champagner" darf ausschließlich aus der Champagne kommen – streng geschützte Herkunft!'
+      correction: 'Nein! "Sekt" ist keine geschützte Herkunft – Sekt darf auch außerhalb Deutschlands hergestellt werden (nur "Deutscher Sekt" muss aus deutschen Trauben sein). Nur "Champagner" darf ausschließlich aus der Champagne kommen – streng geschützte Herkunft!'
     },
     {
       id: 'bw_1_4', guestId: 'business_duo', mood: '🧐',
@@ -306,7 +306,7 @@ QUESTIONS.steakhaus = {
       id: 'bw_1_9', guestId: 'claudia', mood: '🤓',
       statement: 'Claudia schaut nachdenklich auf den Rosé de Provence und sagt: "Ich hab gelesen, dass Chardonnay die verbreitetste weiße Rebsorte der Welt ist. Die wächst doch wirklich überall, oder?"',
       isCorrect: true,
-      correction: 'Stimmt! Chardonnay ist die meistangebaute weiße Rebsorte weltweit – von Burgund über Kalifornien bis Australien. Sie ist extrem anpassungsfähig und kann völlig unterschiedliche Stile hervorbringen: vom schlanken Chablis bis zum buttrigen kalifornischen Chardonnay.'
+      correction: 'Stimmt! Chardonnay ist eine der meistangebauten weißen Rebsorten weltweit (nur die spanische Airén kommt auf ähnlich viel Fläche) – von Burgund über Kalifornien bis Australien. Sie ist extrem anpassungsfähig und kann völlig unterschiedliche Stile hervorbringen: vom schlanken Chablis bis zum buttrigen kalifornischen Chardonnay.'
     },
     {
       id: 'bw_1_10', guestId: 'die_nachbarin', mood: '🤓',
@@ -370,7 +370,7 @@ QUESTIONS.steakhaus = {
         { text: 'Den Alkoholgehalt allein', correct: false },
         { text: 'Die Flaschenform', correct: false },
       ],
-      explanation: '"Körper" beschreibt das Mundgefühl: von leicht (wie Wasser) bis voll/schwer (wie Milch). Beeinflusst durch Alkohol, Tannine, Extrakt und Glycerin.'
+      explanation: '"Körper" beschreibt das Mundgefühl: von leicht (wie Magermilch) bis voll (wie Sahne). Beeinflusst durch Alkohol, Tannine, Extrakt und Glycerin.'
     },
     {
       id: 'ww_1_6', guestId: 'der_amerikaner', mood: '🇺🇸',
@@ -401,7 +401,7 @@ QUESTIONS.steakhaus = {
         { text: 'Das bedeutet, der Wein ist schlecht geworden', correct: false },
         { text: 'Das hat mit der Glasform zu tun, nicht mit dem Wein', correct: false },
       ],
-      explanation: 'Die "Kirchenfenster" oder "Tränen" an der Glaswand entstehen durch den Marangoni-Effekt: Je mehr Alkohol und Glycerin im Wein, desto langsamer und dicker laufen die Schlieren herunter. Ein kraftvoller Primitivo zeigt das deutlicher als ein leichter Spätburgunder!'
+      explanation: 'Die "Kirchenfenster" oder "Tränen" an der Glaswand entstehen durch den Marangoni-Effekt: Je mehr Alkohol (und Restzucker) im Wein, desto langsamer und dicker laufen die Schlieren herunter. Ein kraftvoller Primitivo zeigt das deutlicher als ein leichter Spätburgunder!'
     },
     {
       id: 'ww_1_9', guestId: 'stammgast_jens', mood: '🤨',
@@ -431,7 +431,7 @@ QUESTIONS.steakhaus = {
       clues: {
         appearance: 'Sattes Kirschrot, fast undurchsichtig, mit einem violetten Rand – dunkler als die meisten Rotweine auf der Karte.',
         nose: 'Sofort reife Brombeeren und Pflaumenmus. Dahinter Gewürznelke, ein Hauch Vanille und etwas Süßholz. Warm und einladend.',
-        palate: 'Vollmundig und samtig. Dunkle Beerenfrucht, weiche Tannine und eine leichte Restsüße. Langer, warmer Abgang mit Gewürznoten.'
+        palate: 'Vollmundig und samtig. Dunkle Beerenfrucht, weiche Tannine und reife, fast süß wirkende Frucht. Langer, warmer Abgang mit Gewürznoten.'
       },
       options: [
         { wineId: 'primitivo', correct: true, favorite: true },
@@ -439,7 +439,7 @@ QUESTIONS.steakhaus = {
         { wineId: 'chianti', correct: false },
         { wineId: 'rose_provence', correct: false },
       ],
-      explanation: 'Dunkle Farbe, Brombeer-Pflaumen-Aromatik, voller Körper und leichte Restsüße – das schreit nach Primitivo di Manduria! Spätburgunder wäre heller und eleganter, Chianti hätte mehr Sauerkirsche und Säure.'
+      explanation: 'Dunkle Farbe, Brombeer-Pflaumen-Aromatik, voller Körper und fast marmeladige Frucht – das schreit nach Primitivo di Manduria! Spätburgunder wäre heller und eleganter, Chianti hätte mehr Sauerkirsche und Säure.'
     },
     {
       id: 'bt_1_2', guestId: 'ehepaar_koch', mood: '👃',

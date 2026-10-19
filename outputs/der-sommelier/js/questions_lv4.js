@@ -143,8 +143,8 @@ QUESTIONS.sterne = {
       scenario: 'Der Sternekoch-Kollege lehnt sich vor: "Ich suche einen spanischen Roten – lang gereift, komplex, mit Geschichte. Etwas, das man meditativ trinkt, nicht einfach runterschluckt."',
       question: 'Was empfiehlst du?',
       options: [
-        { wineId: 'tempranillo_gran_reserva', correct: true, favorite: true, explanation: 'Tempranillo Gran Reserva – 60+ Monate gereift, nur in großen Jahrgängen. Leder, Tabak, reife Kirschen. Ein meditativer Tropfen mit Geschichte.' },
-        { wineId: 'rioja_crianza', correct: true, explanation: 'Rioja Crianza ist spanisch und hat schon erste Reifenoten – aber erst 12 Monate im Fass statt 60+ bei der Gran Reserva. Für "lang gereift und komplex" fehlt hier noch die Tiefe, die jahrelange Fassreifung bringt.' },
+        { wineId: 'tempranillo_gran_reserva', correct: true, favorite: true, explanation: 'Tempranillo Gran Reserva – 60+ Monate gereift, traditionell nur in großen Jahrgängen. Leder, Tabak, reife Kirschen. Ein meditativer Tropfen mit Geschichte.' },
+        { wineId: 'rioja_crianza', correct: true, explanation: 'Rioja Crianza ist spanisch und hat schon erste Reifenoten – aber nur 12 Monate im Fass – die Gran Reserva hat 24 Monate Fass und 60 Monate Gesamtreife. Für "lang gereift und komplex" fehlt hier noch die Tiefe, die jahrelange Fassreifung bringt.' },
         { wineId: 'lambrusco', correct: false, explanation: 'Lambrusco ist jung und spritzig – das Gegenteil von meditativ und gereift.' },
       ]
     },
@@ -194,7 +194,7 @@ QUESTIONS.sterne = {
       scenario: 'Herr Bergmann wartet auf seinen Geschäftspartner, der sich verspätet. Er trommelt nachdenklich auf den Tisch. "Wissen Sie was, schenken Sie mir schon mal etwas ein. Etwas Kräftiges, Komplexes, das ich in Ruhe studieren kann. Ein Wein mit Geschichte – etwas, worüber man reden kann, wenn der Gesprächsstoff knapp wird."',
       question: 'Was empfiehlst du?',
       options: [
-        { wineId: 'tempranillo_gran_reserva', correct: true, favorite: true, explanation: 'Tempranillo Gran Reserva – ein Wein mit eingebauter Konversation! Über 60 Monate Reifung, nur in großen Jahrgängen, mit einer Geschichte, die von Rioja bis zum Mittelalter reicht. Die Leder- und Vanillenoten entwickeln sich im Glas weiter. Herr Bergmann schwenkt, riecht, nickt: "Jetzt kann der Partner ruhig noch zehn Minuten brauchen."' },
+        { wineId: 'tempranillo_gran_reserva', correct: true, favorite: true, explanation: 'Tempranillo Gran Reserva – ein Wein mit eingebauter Konversation! Über 60 Monate Reifung, traditionell nur in großen Jahrgängen, mit einer Geschichte, die von Rioja bis zum Mittelalter reicht. Die Leder- und Vanillenoten entwickeln sich im Glas weiter. Herr Bergmann schwenkt, riecht, nickt: "Jetzt kann der Partner ruhig noch zehn Minuten brauchen."' },
         { wineId: 'sancerre', correct: false, explanation: 'Sancerre ist unkompliziert und frisch – perfekt als Aperitif, aber nicht der komplexe Gesprächswein, den Herr Bergmann sucht.' },
         { wineId: 'champagner', correct: false, explanation: 'Champagner alleine am Tisch? Das wirkt weniger nach Studium als nach einsamer Feier. Herr Bergmann braucht einen Wein zum Nachdenken, nicht zum Anstoßen.' },
       ]
@@ -206,7 +206,7 @@ QUESTIONS.sterne = {
       id: 'bw_4_1', guestId: 'promi_paar', mood: '🥂',
       statement: 'Er flüstert seiner Partnerin zu (laut genug, dass du es hörst): "Champagner ist im Grunde einfach nur teurer Sekt. Die Franzosen verlangen halt mehr wegen des Namens."',
       isCorrect: false,
-      correction: 'Champagner darf NUR aus der Region Champagne kommen – mit den strengsten Produktionsregeln der Weinwelt! Kreideböden, spezielle Rebsorten, mindestens 15 Monate Hefelager. Der Preis hat seinen Grund.'
+      correction: 'Champagner darf NUR aus der Region Champagne kommen – mit den strengsten Produktionsregeln der Weinwelt! Kreideböden, spezielle Rebsorten, mindestens 15 Monate Reife (davon 12 auf der Hefe). Der Preis hat seinen Grund.'
     },
     {
       id: 'bw_4_2', guestId: 'prof_weinstein', mood: '🍇',
@@ -234,13 +234,13 @@ QUESTIONS.sterne = {
     },
     {
       id: 'bw_4_6', guestId: 'michelin_tester', mood: '🤓',
-      statement: 'Der Michelin-Tester bemerkt beiläufig: "Eiswein muss bei mindestens minus sieben Grad Celsius gelesen werden. Die Trauben müssen am Stock gefroren sein – das ist gesetzlich vorgeschrieben."',
+      statement: 'Der Michelin-Tester bemerkt beiläufig: "Eiswein-Trauben müssen gefroren am Stock hängen und gefroren gelesen werden – in der Praxis braucht es dafür minus sieben Grad oder kälter."',
       isCorrect: true,
-      correction: 'Exakt richtig! Laut deutschem Weingesetz müssen die Trauben bei mindestens -7°C gefroren am Stock hängen und in gefrorenem Zustand gelesen und gepresst werden. Das Wasser bleibt als Eis in der Traube zurück, nur der hochkonzentrierte Saft wird gewonnen – daher die extreme Süße und Intensität.'
+      correction: 'Exakt richtig! Laut deutschem Weingesetz müssen die Trauben bei Lese und Kelterung gefroren sein – dafür braucht es in der Praxis etwa -7°C oder kälter. Das Wasser bleibt als Eis in der Traube zurück, nur der hochkonzentrierte Saft wird gewonnen – daher die extreme Süße und Intensität.'
     },
     {
       id: 'bw_4_7', guestId: 'kunstsammlerin', mood: '🤓',
-      statement: 'Die Kunstsammlerin hebt den Châteauneuf-du-Pape und sagt: "Wussten Sie, dass in Châteauneuf-du-Pape 13 verschiedene Rebsorten zugelassen sind? Das ist einzigartig in der Weinwelt."',
+      statement: 'Die Kunstsammlerin hebt den Châteauneuf-du-Pape und sagt: "Wussten Sie, dass in Châteauneuf-du-Pape 13 verschiedene Rebsorten zugelassen sind? Das ist für eine französische Appellation ungewöhnlich viel."',
       isCorrect: true,
       correction: 'Perfekt! Die Appellation Châteauneuf-du-Pape erlaubt tatsächlich 13 Rebsorten: Grenache, Syrah, Mourvèdre, Cinsault, Muscardin, Counoise, Clairette, Bourboulenc, Roussanne, Picpoul, Picardan, Vaccarèse und Terret Noir. Die meisten Winzer nutzen 3-5 davon, manche verwenden tatsächlich alle 13!'
     },
@@ -254,7 +254,7 @@ QUESTIONS.sterne = {
       id: 'bw_4_9', guestId: 'der_scheich', mood: '🤓',
       statement: 'Der Scheich lächelt wissend: "Man sagt, die besten Champagner lagern mindestens drei Jahre auf der Hefe, manche sogar sieben oder zehn. Das gibt ihnen diese unvergleichlichen Brioche-Noten."',
       isCorrect: true,
-      correction: 'Sehr kenntnisreich! Gesetzlich sind mindestens 15 Monate Hefelager für Non-Vintage und 36 Monate für Vintage-Champagner vorgeschrieben. Aber Prestige-Cuvées wie Dom Pérignon lagern 7-10 Jahre auf der Hefe! Die Autolyse (Auflösung der Hefezellen) gibt dem Champagner seine komplexen Brioche-, Mandel- und Biskuit-Aromen.'
+      correction: 'Sehr kenntnisreich! Gesetzlich sind mindestens 15 Monate Reife für Non-Vintage (davon 12 auf der Hefe) und 3 Jahre für Vintage-Champagner vorgeschrieben. Aber Prestige-Cuvées wie Dom Pérignon lagern 7-10 Jahre auf der Hefe! Die Autolyse (Auflösung der Hefezellen) gibt dem Champagner seine komplexen Brioche-, Mandel- und Biskuit-Aromen.'
     },
     {
       id: 'bw_4_10', guestId: 'botschafterin', mood: '🤓',
@@ -289,14 +289,14 @@ QUESTIONS.sterne = {
     },
     {
       id: 'ww_4_3', guestId: 'michelin_tester', mood: '🧊',
-      question: 'Der Michelin-Tester fragt beiläufig: "Bei welcher Temperatur müssen Eiswein-Trauben gelesen werden?"',
+      question: 'Der Michelin-Tester fragt beiläufig: "Bei welcher Temperatur werden Eiswein-Trauben in der Praxis gelesen?"',
       options: [
-        { text: 'Mindestens minus 7°C', correct: true },
+        { text: 'Bei etwa minus 7°C oder kälter', correct: true },
         { text: 'Bei 0°C', correct: false },
         { text: 'Mindestens minus 15°C', correct: false },
         { text: 'Die Temperatur ist egal', correct: false },
       ],
-      explanation: 'Gesetzlich vorgeschrieben: mindestens -7°C bei der Lese! Die Trauben müssen am Stock gefrieren. Dadurch wird das Wasser als Eis zurückgehalten und nur der konzentrierte Saft wird gepresst.'
+      explanation: 'In der Praxis bei etwa -7°C oder kälter! Gesetzlich vorgeschrieben ist, dass die Trauben bei Lese und Kelterung gefroren sind (Kanada schreibt sogar -8°C vor). Das Wasser bleibt als Eis zurück, nur der konzentrierte Saft wird gepresst.'
     },
     {
       id: 'ww_4_4', guestId: 'lisa', mood: '🎓',
@@ -324,12 +324,12 @@ QUESTIONS.sterne = {
       id: 'ww_4_6', guestId: 'kunstsammlerin', mood: '🖼️',
       question: 'Die Kunstsammlerin betrachtet die Schlieren am Glas wie ein Gemälde: "Diese Tränen am Glas – manche sagen, je mehr Schlieren, desto besser der Wein. Was sagen sie wirklich aus?"',
       options: [
-        { text: 'Den Alkohol- und Glyceringehalt des Weins', correct: true },
+        { text: 'Vor allem den Alkoholgehalt des Weins', correct: true },
         { text: 'Die Qualitätsstufe und den Preis', correct: false },
         { text: 'Ob der Wein biologisch angebaut wurde', correct: false },
         { text: 'Das Alter des Weins in Jahren', correct: false },
       ],
-      explanation: 'Die "Kirchenfenster" oder "Tränen" (frz. "larmes") entstehen durch den Marangoni-Effekt: Alkohol verdunstet am Glasrand schneller als Wasser, was zu Schlieren führt. Mehr Schlieren = mehr Alkohol und Glycerin – aber nicht automatisch mehr Qualität!'
+      explanation: 'Die "Kirchenfenster" oder "Tränen" (frz. "larmes") entstehen durch den Marangoni-Effekt: Alkohol verdunstet am Glasrand schneller als Wasser, was zu Schlieren führt. Mehr Schlieren = mehr Alkohol (oder Restzucker) – aber nicht automatisch mehr Qualität!'
     },
     {
       id: 'ww_4_7', guestId: 'michelin_tester', mood: '🧪',
@@ -387,7 +387,7 @@ QUESTIONS.sterne = {
         { wineId: 'vinho_verde', correct: false },
         { wineId: 'eiswein', correct: false },
       ],
-      explanation: 'Brioche + Mandeln + Kreide + feine Perlage = Champagner! Die lange Hefelagerung (min. 15 Monate, oft 3+ Jahre) gibt die typischen Brioche- und Hefenoten. Die Kreide kommt vom Kreideboden der Champagne.'
+      explanation: 'Brioche + Mandeln + Kreide + feine Perlage = Champagner! Die lange Hefelagerung (min. 12 Monate, oft 3+ Jahre) gibt die typischen Brioche- und Hefenoten. Die Kreide kommt vom Kreideboden der Champagne.'
     },
     {
       id: 'bt_4_2', guestId: 'sternekoch', mood: '🍷',
@@ -580,7 +580,7 @@ QUESTIONS.sterne = {
         {
           prompt: 'Welchen Wein empfiehlst du?',
           options: [
-            { wineId: 'eiswein', correct: true, favorite: true, explanation: 'Eiswein – ein Meisterstück der Empfehlung! Einzigartig deutsch, unglaublich selten (nur in wenigen Jahrgängen möglich), mit einer faszinierenden Entstehungsgeschichte: bei -7°C geerntete gefrorene Trauben, wenige Tropfen pro Beere. In Japan wird Eiswein verehrt – die Verbindung von Naturgewalt und Handwerkskunst spricht die japanische Ästhetik direkt an. Die Botschafterin lächelt: "Perfekt. Eine Geschichte, die es wert ist, erzählt zu werden."' },
+            { wineId: 'eiswein', correct: true, favorite: true, explanation: 'Eiswein – ein Meisterstück der Empfehlung! Eine große deutsche Tradition, unglaublich selten (nur in wenigen Jahrgängen möglich), mit einer faszinierenden Entstehungsgeschichte: bei -7°C oder kälter geerntete gefrorene Trauben, wenige Tropfen pro Beere. In Japan wird Eiswein verehrt – die Verbindung von Naturgewalt und Handwerkskunst spricht die japanische Ästhetik direkt an. Die Botschafterin lächelt: "Perfekt. Eine Geschichte, die es wert ist, erzählt zu werden."' },
             { wineId: 'champagner', correct: true, explanation: 'Champagner ist universelles Prestige – ein sicherer, respektabler Griff. Aber als Einzelgeschenk für einen kultivierten japanischen Diplomaten fehlt das Überraschungsmoment. Champagner kennt jeder. Die Botschafterin nickt: "Solide – aber nicht außergewöhnlich genug für diesen Anlass."' },
             { wineId: 'tempranillo_gran_reserva', correct: false, explanation: 'Tempranillo Gran Reserva ist ein großartiger Wein – aber als diplomatisches Geschenk fehlt ihm das Alleinstellungsmerkmal. Spanische Gran Reserva gibt es viele. Die Botschafterin schüttelt den Kopf: "Respektabel, aber nicht einzigartig genug. Ein Geschenk muss eine Geschichte erzählen, die nur dieser Wein erzählen kann."' },
           ]
@@ -648,7 +648,7 @@ QUESTIONS.sterne = {
         {
           prompt: 'Welchen Wein empfiehlst du?',
           options: [
-            { wineId: 'amarone', correct: true, favorite: true, explanation: 'Ein Meisterstück! Amarone della Valpolicella ist selbst ein Kunstwerk: aus getrockneten Trauben (Appassimento), Monate auf Rosinenbetten gereift, mit Aromen von dunkler Schokolade, Kaffee und Rosinen. Intensiv, unkonventionell, polarisierend – genau wie avantgardistische Kunst. Die Kunstsammlerin hebt das Glas ans Licht: "Dieser Wein ist ein Caravaggio – dunkel, dramatisch, unvergesslich. PERFEKT."' },
+            { wineId: 'amarone', correct: true, favorite: true, explanation: 'Ein Meisterstück! Amarone della Valpolicella ist selbst ein Kunstwerk: aus getrockneten Trauben (Appassimento), monatelang getrocknet, bevor sie gepresst werden, mit Aromen von dunkler Schokolade, Kaffee und Rosinen. Intensiv, unkonventionell, polarisierend – genau wie avantgardistische Kunst. Die Kunstsammlerin hebt das Glas ans Licht: "Dieser Wein ist ein Caravaggio – dunkel, dramatisch, unvergesslich. PERFEKT."' },
             { wineId: 'champagner', correct: true, explanation: 'Champagner bei einer Vernissage ist klassisch und sicher – das Prickeln sorgt für Stimmung. Aber für eine Kunstsammlerin, die "keine Mainstream-Weine" will, ist Champagner zu erwartbar. Es ist wie ein Monet in einer Galerie für zeitgenössische Kunst – schön, aber nicht überraschend.' },
             { wineId: 'sancerre', correct: false, explanation: 'Sancerre – frisch, leicht, unkompliziert – zu einer avantgardistischen Vernissage mit Foie-Gras-Pralinés und dunkler Schokolade? Das ist wie ein Aquarell neben einer Skulptur von Jeff Koons. Zu brav, zu leise. Die Kunstsammlerin würde den Sommelier aus der Galerie werfen.' },
           ]
@@ -717,7 +717,7 @@ QUESTIONS.sterne = {
           prompt: 'Welchen Wein empfiehlst du?',
           options: [
             { wineId: 'champagner', correct: true, favorite: true, explanation: 'Es gibt keinen anderen Wein für diesen Moment. Champagner ist nicht nur ein Getränk – es ist ein Versprechen. Die goldene Farbe, die aufsteigenden Perlen wie kleine Glücksmomente, der erste Schluck, der auf der Zunge tanzt... und dann sieht sie den Ring. Er erzählt ihr die Geschichte: "Beim ersten Date sagtest du: Irgendwann Champagner. Heute ist irgendwann." Sie weint. Er weint. Du weinst. Sogar der Koch weint. DAS ist Sommelier-Kunst auf höchstem Niveau.' },
-            { wineId: 'eiswein', correct: false, explanation: 'Eiswein ist süß, konzentriert und besonders – aber für einen Heiratsantrag beim Anstoßen fehlen die Perlen, die goldene Farbe im Glas, das festliche Prickeln. Eiswein trinkt man in kleinen Schlucken zum Dessert, nicht beim großen Geste-Moment. Er flüstert enttäuscht: "Das fühlt sich nicht nach \'Ich will dich für immer\' an."' },
+            { wineId: 'eiswein', correct: false, explanation: 'Eiswein ist süß, konzentriert und besonders – aber für einen Heiratsantrag beim Anstoßen fehlen die Perlen und das festliche Prickeln. Eiswein trinkt man in kleinen Schlucken zum Dessert, nicht beim großen Geste-Moment. Er flüstert enttäuscht: "Das fühlt sich nicht nach \'Ich will dich für immer\' an."' },
             { wineId: 'sancerre', correct: false, explanation: 'Sancerre – ein trockener, stiller Weißwein für den wichtigsten Moment seines Lebens? Keine Perlen, keine Magie, keine Geschichte. Das ist, als würde man den Ring in einer Plastiktüte überreichen. Er schaut dich an: "Das ist... nett. Aber ich brauche mehr als nett. Ich brauche unvergesslich."' },
           ]
         }

@@ -86,8 +86,8 @@ const WINES = {
     color: 'rot', body: 'leicht', sweetness: 'lieblich', price: '€', grape: 'Agiorgitiko',
     flavors: ['Kirsche', 'Pflaume', 'süß'],
     pairings: ['Gyros', 'Souvlaki', 'Moussaka'],
-    description: 'Die "Mädchentraube" – lieblich, süffig, griechisch.',
-    funFact: '"Imiglykos" heißt wörtlich "halbtrocken" – obwohl er eher lieblich schmeckt!',
+    description: 'Lieblich, süffig, griechisch – aus der Agiorgitiko-Traube.',
+    funFact: '"Imiglykos" heißt wörtlich "halbsüß" – und genau so schmeckt er auch!',
     label: 'assets/wines/imiglykos.png'
   },
   retsina: {
@@ -163,7 +163,7 @@ const WINES = {
     flavors: ['Litschi', 'Rosenblüte', 'Gewürze'],
     pairings: ['Asiatische Küche', 'Käse', 'Vesper'],
     description: 'Aromatischer Weißwein mit intensivem Duft – unverwechselbar.',
-    funFact: 'Der Name kommt von "Tramin" in Südtirol – dem Ursprungsort der Rebsorte.',
+    funFact: 'Der Name kommt von "Tramin" in Südtirol, wo Traminer-Weine seit dem Mittelalter belegt sind – die Rebe selbst stammt aber wohl von nördlich der Alpen.',
     label: 'assets/wines/gewuerztraminer.png'
   },
   pinot_grigio: {
@@ -199,7 +199,7 @@ const WINES = {
     flavors: ['Apfel', 'Birne', 'Blüten'],
     pairings: ['Aperitif', 'Fisch', 'Hochzeiten'],
     description: 'Französischer Schaumwein – gleiche Methode wie Champagner, halber Preis.',
-    funFact: 'Crémant darf überall in Frankreich produziert werden – nur nicht in der Champagne!',
+    funFact: 'Crémant gibt es aus 8 französischen Regionen – z.B. Elsass, Burgund, Loire – aber nie aus der Champagne!',
     label: 'assets/wines/cremant.png'
   },
   vinho_verde: {
@@ -293,7 +293,7 @@ const WINES = {
     flavors: ['Rosinen', 'Schokolade', 'Süßkirsche', 'Mokka'],
     pairings: ['Ossobuco', 'Wildbraten', 'reifer Käse'],
     description: 'Opulenter italienischer Rotwein aus angetrockneten Trauben.',
-    funFact: 'Appassimento: Die Trauben werden 3-4 Monate auf Strohmatten getrocknet!',
+    funFact: 'Appassimento: Die Trauben werden 3-4 Monate auf Schilf- oder Bambusgestellen (Arele) getrocknet!',
     label: 'assets/wines/amarone.png'
   },
   eiswein: {
@@ -302,7 +302,7 @@ const WINES = {
     flavors: ['Honig', 'Aprikose', 'Mango', 'Karamell'],
     pairings: ['Desserts', 'Foie Gras', 'Blauschimmelkäse'],
     description: 'Seltener Dessertwein – die Trauben werden gefroren gelesen.',
-    funFact: 'Die Trauben müssen bei mindestens -7°C am Stock gefrieren – ein riskantes Warten!',
+    funFact: 'Die Trauben müssen am Stock gefrieren – meist erst bei -7°C oder kälter. Ein riskantes Warten!',
     label: 'assets/wines/eiswein.png'
   },
   sancerre: {
@@ -320,7 +320,7 @@ const WINES = {
     flavors: ['Leder', 'Tabak', 'reife Kirschen', 'Vanille'],
     pairings: ['Lamm', 'gereifter Käse', 'Festmenü'],
     description: 'Spaniens Krönung – mindestens 60 Monate gereift, davon 24 im Fass.',
-    funFact: 'Gran Reserva wird nur in herausragenden Jahrgängen produziert!',
+    funFact: 'Gran Reserva wird traditionell nur in herausragenden Jahrgängen produziert!',
     label: 'assets/wines/tempranillo_gran_reserva.png'
   },
 };
@@ -334,9 +334,9 @@ const REGIONS = {
     mainRegions: 'Mosel, Rheingau, Pfalz, Baden, Württemberg',
     keyFacts: [
       'Größte Rebsorten: Riesling (weiß) und Spätburgunder (rot)',
-      'Qualitätsstufen: Tafelwein → Landwein → QbA → Prädikatswein',
+      'Qualitätsstufen: Deutscher Wein → Landwein → Qualitätswein (QbA) → Prädikatswein',
       'Ca. 100.000 Hektar Rebfläche – 65% Weißwein',
-      'Prädikate: Kabinett, Spätlese, Auslese, Beerenauslese, Eiswein',
+      'Prädikate: Kabinett, Spätlese, Auslese, Beerenauslese, Trockenbeerenauslese, Eiswein',
     ],
     wines: ['dornfelder', 'mueller_thurgau', 'riesling', 'spaetburgunder', 'sekt', 'gewuerztraminer', 'riesling_spaetlese', 'eiswein'],
   },
@@ -355,10 +355,10 @@ const REGIONS = {
   griechenland: {
     id: 'griechenland', name: 'Griechenland', flag: '🇬🇷',
     mapX: 56, mapY: 37,
-    description: 'Griechenland ist die Wiege des europäischen Weinbaus – hier wird seit über 4.000 Jahren Wein gemacht. Bekannt ist vor allem der Retsina, der mit Kiefernharz aromatisiert wird – eine Tradition aus der Antike. Aber auch moderne griechische Weine von Santorin oder dem Peloponnes überraschen mit eigenständigen Rebsorten wie Assyrtiko und Agiorgitiko.',
+    description: 'Griechenland ist die Wiege des europäischen Weinbaus – hier wird seit über 6.000 Jahren Wein gemacht. Bekannt ist vor allem der Retsina, der mit Kiefernharz aromatisiert wird – eine Tradition aus der Antike. Aber auch moderne griechische Weine von Santorin oder dem Peloponnes überraschen mit eigenständigen Rebsorten wie Assyrtiko und Agiorgitiko.',
     mainRegions: 'Attika, Peloponnes, Kreta, Santorin',
     keyFacts: [
-      'Weinbau-Tradition seit über 4000 Jahren',
+      'Weinbau-Tradition seit über 6.000 Jahren',
       'Bekannte Rebsorten: Assyrtiko, Agiorgitiko, Moschofilero',
       'Retsina – seit der Antike mit Kiefernharz versetzt',
     ],
@@ -372,7 +372,7 @@ const REGIONS = {
     keyFacts: [
       'Paradewein: Grüner Veltliner (über 30% der Rebfläche)',
       'DAC-System ähnlich wie französische AOC',
-      'Burgenland: Heimat von Zweigelt und Blaufränkisch',
+      'Burgenland: Rotwein-Hochburg mit Blaufränkisch und Zweigelt',
     ],
     wines: ['gruener_veltliner', 'zweigelt'],
   },
@@ -416,7 +416,7 @@ const REGIONS = {
   argentinien: {
     id: 'argentinien', name: 'Argentinien', flag: '🇦🇷',
     mapX: 30, mapY: 75,
-    description: 'Argentinien ist der fünftgrößte Weinproduzent der Welt und die unbestrittene Heimat des Malbec. Die Rebsorte kam einst aus Frankreich, wurde dort aber fast bedeutungslos – in den Höhenlagen von Mendoza auf bis zu 3.000 Metern fand sie ihre perfekte zweite Heimat. Kräftig, samtig und dunkelviolett: So schmeckt Argentinien.',
+    description: 'Argentinien ist der fünftgrößte Weinproduzent der Welt und die unbestrittene Heimat des Malbec. Die Rebsorte kam einst aus Frankreich, wurde dort aber fast bedeutungslos – in den Höhenlagen von Mendoza auf bis zu 2.000 Metern fand sie ihre perfekte zweite Heimat. Kräftig, samtig und dunkelviolett: So schmeckt Argentinien.',
     mainRegions: 'Mendoza, Salta, Patagonien',
     keyFacts: [
       'Mendoza: 70% der argentinischen Weinproduktion',
@@ -428,7 +428,7 @@ const REGIONS = {
   suedafrika: {
     id: 'suedafrika', name: 'Südafrika', flag: '🇿🇦',
     mapX: 55, mapY: 73,
-    description: 'Südafrika macht seit über 350 Jahren Wein und hat mit Pinotage eine Rebsorte, die es nur hier gibt – 1925 aus Pinot Noir und Cinsault gekreuzt. Die Weinregion um Stellenbosch und Franschhoek zählt zu den schönsten der Welt. Das Zusammenspiel aus kühlem Atlantikwind und heißer Sonne gibt den Weinen einen unverwechselbaren Charakter.',
+    description: 'Südafrika macht seit über 350 Jahren Wein und hat mit Pinotage eine Rebsorte, die hier erfunden wurde – 1925 aus Pinot Noir und Cinsault gekreuzt. Die Weinregion um Stellenbosch und Franschhoek zählt zu den schönsten der Welt. Das Zusammenspiel aus kühlem Atlantikwind und heißer Sonne gibt den Weinen einen unverwechselbaren Charakter.',
     mainRegions: 'Stellenbosch, Paarl, Franschhoek, Swartland',
     keyFacts: [
       'Pinotage: 1925 in Stellenbosch gezüchtet',
@@ -679,7 +679,7 @@ const LEVEL_INTROS = {
       },
       {
         icon: '💧', heading: 'Geschmacksrichtungen: trocken bis süß',
-        text: '<strong>Trocken</strong> bedeutet wenig Restzucker (unter 9 g/l) – der Wein schmeckt nicht süß. Das hat nichts mit dem Alkoholgehalt zu tun!<br><br><strong>Halbtrocken</strong> hat etwas mehr Restzucker (bis 18 g/l) – leicht rundlich, aber nicht wirklich süß.<br><br><strong>Lieblich</strong> ist deutlich süßer. Perfekt für Einsteiger und zu bestimmten Gerichten.<br><br><strong>Süß</strong> (wie Eiswein oder Dessertwein) – da schmeckt man den Zucker richtig.'
+        text: '<strong>Trocken</strong> bedeutet wenig Restzucker (vereinfacht: bis 9 g/l) – der Wein schmeckt nicht süß. Das hat nichts mit dem Alkoholgehalt zu tun!<br><br><strong>Halbtrocken</strong> hat etwas mehr Restzucker (vereinfacht: bis 18 g/l) – leicht rundlich, aber nicht wirklich süß.<br><br><strong>Lieblich</strong> ist deutlich süßer. Perfekt für Einsteiger und zu bestimmten Gerichten.<br><br><strong>Süß</strong> (wie Eiswein oder Dessertwein) – da schmeckt man den Zucker richtig.'
       },
       {
         icon: '🍽️', heading: 'Dein erster Pairing-Tipp',
@@ -713,7 +713,7 @@ const LEVEL_INTROS = {
       },
       {
         icon: '💪', heading: 'Körper: leicht, mittel, voll',
-        text: 'Der "Körper" eines Weins beschreibt, wie schwer er sich im Mund anfühlt – wie Milch (leicht) vs. Sahne (voll).<br><br><strong>Leicht</strong>: Müller-Thurgau, Vinho Verde, Lambrusco<br><strong>Mittel</strong>: Riesling, Chianti, Rosé<br><strong>Voll</strong>: Primitivo, Barolo, Malbec<br><br><strong>Achtung:</strong> Die Farbe sagt nicht immer etwas über den Körper! Ein dunkler Wein kann leicht sein, ein heller kraftvoll. Spätburgunder zum Beispiel ist oft hell, aber überraschend komplex.<br><br>Zum Steak willst du einen vollmundigen Wein, der gegen das kräftige Fleisch bestehen kann!<br><br>Übrigens: Der Name <strong>Primitivo</strong> klingt lustig, kommt aber von "primativus" (der Erste) – die Traube reift und wird früher geerntet als andere. Hat nichts mit primitiver Herstellung zu tun!'
+        text: 'Der "Körper" eines Weins beschreibt, wie schwer er sich im Mund anfühlt – wie Magermilch (leicht), Vollmilch (mittel) und Sahne (voll).<br><br><strong>Leicht</strong>: Müller-Thurgau, Riesling, Lambrusco, Rosé<br><strong>Mittel</strong>: Chianti, Spätburgunder, Grüner Veltliner<br><strong>Voll</strong>: Primitivo, Barolo, Malbec<br><br><strong>Achtung:</strong> Die Farbe sagt nicht immer etwas über den Körper! Ein dunkler Wein kann leicht sein, ein heller kraftvoll. Spätburgunder zum Beispiel ist oft hell, aber überraschend komplex.<br><br>Zum Steak willst du einen vollmundigen Wein, der gegen das kräftige Fleisch bestehen kann!<br><br>Übrigens: Der Name <strong>Primitivo</strong> klingt lustig, kommt aber von "primativus" (der Erste) – die Traube reift und wird früher geerntet als andere. Hat nichts mit primitiver Herstellung zu tun!'
       },
     ],
     recap: [
@@ -761,7 +761,7 @@ const LEVEL_INTROS = {
       },
       {
         icon: '🌍', heading: 'Neue Welt: Argentinien & Südafrika',
-        text: 'Argentiniens Malbec kommt aus Mendoza, am Fuß der Anden – Weinberge auf bis zu 3.000m Höhe! Der Malbec kam ursprünglich aus Frankreich (Cahors), aber Argentinien hat ihn perfektioniert.<br><br>Südafrikas Pinotage ist eine echte Erfindung: 1925 kreuzte man Pinot Noir mit Cinsaut. Das gibt es nur hier! Stellenbosch ist das Zentrum des südafrikanischen Weinbaus.'
+        text: 'Argentiniens Malbec kommt aus Mendoza, am Fuß der Anden – Weinberge auf bis zu 2.000m Höhe – im Norden (Salta) sogar über 3.000m! Der Malbec kam ursprünglich aus Frankreich (Cahors), aber Argentinien hat ihn perfektioniert.<br><br>Südafrikas Pinotage ist eine echte Erfindung: 1925 kreuzte man Pinot Noir mit Cinsaut. Südafrikas ganz eigene Rebsorte! Stellenbosch ist das Zentrum des südafrikanischen Weinbaus.'
       },
     ],
     recap: [
@@ -781,7 +781,7 @@ const LEVEL_INTROS = {
       },
       {
         icon: '👃', heading: 'Die Nase – das wichtigste Werkzeug',
-        text: 'Erst riechen, dann schmecken! Die Nase erkennt hunderte Aromen, die Zunge nur süß/sauer/salzig/bitter/umami.<br><br><strong>Primäraromen:</strong> Von der Traube – Frucht, Blumen<br><strong>Sekundäraromen:</strong> Von der Gärung – Hefe, Butter, Brioche<br><strong>Tertiäraromen:</strong> Von der Reifung – Leder, Tabak, Nüsse, Vanille<br><br>Profi-Tipp: Erst ohne Schwenken riechen (feine Aromen), dann mit Schwenken (kräftigere Aromen).'
+        text: 'Erst riechen, dann schmecken! Die Nase erkennt hunderte Aromen, die Zunge nur süß/sauer/salzig/bitter/umami.<br><br><strong>Primäraromen:</strong> Von der Traube – Frucht, Blumen<br><strong>Sekundäraromen:</strong> Von Gärung und Ausbau – Hefe, Butter, Brioche, Vanille (Holzfass)<br><strong>Tertiäraromen:</strong> Von der Reifung – Leder, Tabak, Nüsse, Pilze<br><br>Profi-Tipp: Erst ohne Schwenken riechen (feine Aromen), dann mit Schwenken (kräftigere Aromen).'
       },
       {
         icon: '👅', heading: 'Am Gaumen: Die Verkostungssprache',
@@ -789,16 +789,16 @@ const LEVEL_INTROS = {
       },
       {
         icon: '🎓', heading: 'Der Sommelier – mehr als ein Kellner',
-        text: '<strong>Ein Sommelier</strong> (frz., von "sommier" = Lasttier, das Wein transportierte) ist der offizielle <strong>Weinberater und -experte im Restaurant</strong>. Er berät die Gäste, pflegt die Weinkarte, verhandelt mit Winzern und sorgt für perfekten Service.<br><br><strong>Champagner vs. Sekt:</strong> Champagner kommt NUR aus der Champagne und hat die strengsten Produktionsregeln aller Schaumweine – Kreideböden, bestimmte Rebsorten (Chardonnay, Pinot Noir, Pinot Meunier), mindestens 15 Monate Hefelager. Sekt ist der deutsche Oberbegriff für Schaumwein.<br><br><strong>Eiswein weltweit:</strong> Eiswein wird nicht nur in Deutschland gemacht! <strong>Kanada</strong> (Ontario, British Columbia) produziert hervorragenden "Icewine" – sogar in größeren Mengen. Auch <strong>Österreich</strong> macht Eiswein. Die Trauben müssen bei mindestens -7°C am Stock gefrieren.'
+        text: '<strong>Ein Sommelier</strong> (frz., von "sommier" = Lasttier, das Wein transportierte) ist der offizielle <strong>Weinberater und -experte im Restaurant</strong>. Er berät die Gäste, pflegt die Weinkarte, verhandelt mit Winzern und sorgt für perfekten Service.<br><br><strong>Champagner vs. Sekt:</strong> Champagner kommt NUR aus der Champagne und hat die strengsten Produktionsregeln aller Schaumweine – Kreideböden, bestimmte Rebsorten (Chardonnay, Pinot Noir, Pinot Meunier), mindestens 15 Monate Reife (davon 12 auf der Hefe). Sekt ist die deutsche Bezeichnung für Qualitätsschaumwein.<br><br><strong>Eiswein weltweit:</strong> Eiswein wird nicht nur in Deutschland gemacht! <strong>Kanada</strong> (Ontario, British Columbia) produziert hervorragenden "Icewine" – sogar in größeren Mengen. Auch <strong>Österreich</strong> macht Eiswein. Die Trauben müssen bei mindestens -7°C am Stock gefrieren.'
       },
     ],
     recap: [
       '👁️ <strong>Aussehen:</strong> Farbe, Klarheit, Tränen (Kirchenfenster)',
-      '👃 <strong>Nase:</strong> Primär (Frucht), Sekundär (Gärung), Tertiär (Reifung)',
+      '👃 <strong>Nase:</strong> Primär (Frucht), Sekundär (Gärung & Holzfass), Tertiär (Reifung)',
       '👅 <strong>Gaumen:</strong> Antrunk → Mittelteil → Abgang',
       '📏 Langer <strong>Abgang</strong> = Qualitätsmerkmal',
       '🎓 <strong>Sommelier</strong> = Weinberater & Experte im Restaurant',
-      '🍾 <strong>Champagner</strong> nur aus der Champagne, strenge Regeln (15 Mon. Hefelager)',
+      '🍾 <strong>Champagner</strong> nur aus der Champagne, strenge Regeln (mind. 15 Mon. Reife, davon 12 auf der Hefe)',
       '🏆 Der systematische Ansatz macht den Profi-Sommelier!',
     ]
   },

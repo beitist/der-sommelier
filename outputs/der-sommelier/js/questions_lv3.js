@@ -18,11 +18,11 @@ QUESTIONS.gehoben = {
     },
     {
       id: 'fp_3_2', guestId: 'madame_dupont', mood: '🇫🇷',
-      scenario: 'Madame Dupont bestellt mit ihrem typisch kritischen Blick: "Coq au Vin – und bitte einen Weißwein dazu, der beweist, dass Deutschland mehr kann als Riesling. Etwas Burgundisches vielleicht?"',
+      scenario: 'Madame Dupont bestellt mit ihrem typisch kritischen Blick: "Coq au Vin – heute in der Variante mit Weißwein. Und bitte keinen Riesling, den bekomme ich in Deutschland überall. Etwas Burgundisches!"',
       question: 'Was empfiehlst du?',
       options: [
         { wineId: 'chablis_premier_cru', correct: true, favorite: true, explanation: 'Chablis Premier Cru – mineralischer Chardonnay aus dem Burgund, ohne Holz. Elegant genug für Madame und perfekt zum Coq au Vin!' },
-        { wineId: 'riesling_spaetlese', correct: true, explanation: 'Die Spätlese hat genug Substanz für den Coq au Vin und die Restsüße kontrastiert die Sauce schön – aber Madame wollte ausdrücklich etwas Burgundisches, kein Deutscher Wein.' },
+        { wineId: 'riesling_spaetlese', correct: true, explanation: 'Die Spätlese hat genug Substanz für den Coq au Vin und die Restsüße kontrastiert die Sauce schön – aber Madame wollte ausdrücklich etwas Burgundisches, keinen deutschen Wein.' },
         { wineId: 'sekt', correct: false, explanation: 'Sekt zum Hauptgang? Das wäre ein Affront für eine französische Feinschmeckerin.' },
       ]
     },
@@ -207,7 +207,7 @@ QUESTIONS.gehoben = {
       scenario: 'Madame Dupont lehnt sich zurück und seufzt ungewohnt sanft: "Heute Abend kein Duell, keine Kritik. Ich möchte einen Wein, der mich an die Sonntagnachmittage meiner Kindheit in der Dordogne erinnert – halbtrocken, golden, duftend nach reifen Früchten."',
       question: 'Was empfiehlst du?',
       options: [
-        { wineId: 'riesling_spaetlese', correct: true, favorite: true, explanation: 'Riesling Spätlese – golden, duftend nach Pfirsich und Honig, halbtrocken. Die sanfte Süße weckt Kindheitserinnerungen, die Säure hält die Nostalgie lebendig.' },
+        { wineId: 'riesling_spaetlese', correct: true, favorite: true, explanation: 'Riesling Spätlese – golden, duftend nach Pfirsich und Honig, fruchtig-süß. Die sanfte Süße weckt Kindheitserinnerungen, die Säure hält die Nostalgie lebendig.' },
         { wineId: 'chablis_premier_cru', correct: false, explanation: 'Chablis ist trocken und mineralisch – zu streng für Madame Duponts seltenen sentimentalen Moment.' },
         { wineId: 'pinotage', correct: false, explanation: 'Ein rauchiger südafrikanischer Rotwein passt nicht zu goldenen Kindheitserinnerungen in der Dordogne.' },
       ]
@@ -219,7 +219,7 @@ QUESTIONS.gehoben = {
       options: [
         { wineId: 'saint_emilion', correct: true, favorite: true, explanation: 'Saint-Émilion Grand Cru – Bordeaux ist die Benchmark für Prestige-Wein weltweit. Vollmundig, komplex, ein Statement. Der Bankier wird den nächsten Deal mit neuem Selbstbewusstsein angehen.' },
         { wineId: 'barolo', correct: true, explanation: 'Barolo ist der "König der Weine" und steht absolut für Exzellenz – aber wenn ein Bankier nach Prestige verlangt, ist Bordeaux die Währung, die jeder kennt.' },
-        { wineId: 'riesling_spaetlese', correct: false, explanation: 'Halbtrocken und mittelschwer – nicht das Powerstatement, das der Bankier gerade braucht.' },
+        { wineId: 'riesling_spaetlese', correct: false, explanation: 'Restsüß und mittelschwer – nicht das Powerstatement, das der Bankier gerade braucht.' },
       ]
     },
     {
@@ -227,7 +227,7 @@ QUESTIONS.gehoben = {
       scenario: 'Der Künstler schaut in sein leeres Glas wie in eine Leinwand: "Ich male gerade eine Serie in Schwarz und Dunkelrot. Ich brauche Inspiration – den dunkelsten, intensivsten Rotwein, den Sie haben. Farbe ist Emotion!"',
       question: 'Was empfiehlst du?',
       options: [
-        { wineId: 'malbec', correct: true, favorite: true, explanation: 'Malbec – tintenschwarz, fast opak, mit Aromen von dunklen Beeren und Schokolade. Die dunkelste Farbe aller Rotweine, perfekte Inspiration für die Leinwand!' },
+        { wineId: 'malbec', correct: true, favorite: true, explanation: 'Malbec – tintenschwarz, fast opak, mit Aromen von dunklen Beeren und Schokolade. Eine der dunkelsten Farben aller Rotweine, perfekte Inspiration für die Leinwand!' },
         { wineId: 'pinotage', correct: true, explanation: 'Pinotage ist dunkel und intensiv mit rauchigen Noten – ein starker Charakter. Aber für pure Farbintensität ist Malbec mit seiner fast schwarzen Robe unschlagbar.' },
         { wineId: 'riesling_spaetlese', correct: false, explanation: 'Ein goldgelber Weißwein? Der Künstler malt in Schwarz und Dunkelrot – da braucht er Inspiration im Glas, nicht auf der Palette.' },
       ]
@@ -269,7 +269,7 @@ QUESTIONS.gehoben = {
       id: 'bw_3_1', guestId: 'der_bankier', mood: '💎',
       statement: 'Der Bankier belehrt seinen Tischnachbarn: "Grand Cru bedeutet, dass der Wein besonders alt ist. Je älter, desto Grand Cru – so einfach ist das."',
       isCorrect: false,
-      correction: 'Grand Cru beschreibt die Lage, nicht das Alter! Es ist die höchste Klassifikation eines Weinbergs – der Boden und das Mikroklima bestimmen den Status, nicht die Reifezeit.'
+      correction: 'Grand Cru beschreibt die Lage, nicht das Alter! Im Burgund, Elsass und in der Champagne ist es die höchste Klassifikation eines Weinbergs – Boden und Mikroklima bestimmen den Status, nicht die Reifezeit. (In Saint-Émilion ist "Grand Cru" dagegen eine breitere Qualitätsstufe.)'
     },
     {
       id: 'bw_3_2', guestId: 'die_professorin', mood: '📚',
@@ -352,14 +352,14 @@ QUESTIONS.gehoben = {
     },
     {
       id: 'ww_3_3', guestId: 'die_professorin', mood: '🏆',
-      question: 'Die Professorin testet dich: "Grand Cru und Premier Cru – was ist höher eingestuft?"',
+      question: 'Die Professorin testet dich: "Im Burgund gibt es Grand Cru und Premier Cru – was ist höher eingestuft?"',
       options: [
         { text: 'Grand Cru ist die höchste Stufe', correct: true },
         { text: 'Premier Cru ist höher', correct: false },
         { text: 'Beide sind gleichwertig', correct: false },
-        { text: 'Kommt auf die Region an', correct: false },
+        { text: 'Kommt auf den Jahrgang an', correct: false },
       ],
-      explanation: 'Grand Cru = "Großes Gewächs" = höchste Stufe! Premier Cru = "Erstes Gewächs" = zweithöchste. Im Burgund gibt es nur 33 Grand Cru Lagen – die besten Weinberge der Welt.'
+      explanation: 'Grand Cru = "Großes Gewächs" = höchste Stufe! Premier Cru = "Erstes Gewächs" = zweithöchste. Im Burgund gibt es nur 33 Grand Cru Lagen – die besten Weinberge der Welt. Vorsicht: In Bordeaux gelten andere Regeln – dort ist z.B. "Premier Grand Cru Classé" die Spitze.'
     },
     {
       id: 'ww_3_4', guestId: 'weinhaendler', mood: '🇿🇦',
@@ -370,7 +370,7 @@ QUESTIONS.gehoben = {
         { text: 'Chile', correct: false },
         { text: 'Neuseeland', correct: false },
       ],
-      explanation: 'Pinotage wurde 1925 an der Universität Stellenbosch in Südafrika gezüchtet – eine Kreuzung aus Pinot Noir und Cinsault. Es gibt sie nur dort!'
+      explanation: 'Pinotage wurde 1925 an der Universität Stellenbosch in Südafrika gezüchtet – eine Kreuzung aus Pinot Noir und Cinsault. Sie ist bis heute Südafrikas Signature-Rebsorte!'
     },
     {
       id: 'ww_3_5', guestId: 'diplomatenpaar', mood: '🍷',
@@ -436,7 +436,7 @@ QUESTIONS.gehoben = {
         { text: 'Es werden Tannine abgebaut, um den Wein fruchtiger zu machen', correct: false },
         { text: 'Es ist eine zweite alkoholische Gärung zur Erhöhung des Alkoholgehalts', correct: false },
       ],
-      explanation: 'Bei der malolaktischen Gärung (auch "biologischer Säureabbau") wandeln Milchsäurebakterien die scharfe Apfelsäure in mildere Milchsäure um. Das macht den Wein weicher und cremiger. Bei Rotweinen fast immer erwünscht, bei Weißweinen situationsabhängig – ein Chablis wird z.B. bewusst OHNE Malo ausgebaut, um die knackige Säure zu bewahren!'
+      explanation: 'Bei der malolaktischen Gärung (auch "biologischer Säureabbau") wandeln Milchsäurebakterien die scharfe Apfelsäure in mildere Milchsäure um. Das macht den Wein weicher und cremiger. Bei Rotweinen fast immer erwünscht, bei Weißweinen situationsabhängig – viele deutsche Rieslinge werden z.B. bewusst OHNE Malo ausgebaut, um die knackige Säure zu bewahren!'
     },
     {
       id: 'ww_3_11', guestId: 'startup_gruender', mood: '🧬',
@@ -517,7 +517,7 @@ QUESTIONS.gehoben = {
       clues: {
         appearance: 'Leuchtendes Strohgold mit leichtem Grünschimmer, erstaunlich viskos für einen Weißwein',
         nose: 'Reifer Pfirsich, Akazienhonig, etwas Quitte und ein feiner mineralischer Unterton',
-        palate: 'Halbtrocken mit lebendiger Säure, mittlerer Körper, langer Abgang mit Honig- und Steinobstnoten'
+        palate: 'Fruchtsüß mit lebendiger Säure, mittlerer Körper, langer Abgang mit Honig- und Steinobstnoten'
       },
       options: [
         { wineId: 'riesling_spaetlese', correct: true, favorite: true },
@@ -525,7 +525,7 @@ QUESTIONS.gehoben = {
         { wineId: 'barolo', correct: false },
         { wineId: 'pinotage', correct: false },
       ],
-      explanation: 'Pfirsich + Honig + halbtrocken + lebendige Säure = Riesling Spätlese! Das Zusammenspiel von Restsüße und rassiger Säure ist das Markenzeichen deutscher Spätlese-Rieslinge. Der Chablis wäre trocken und mineralischer, ohne die Honignoten.'
+      explanation: 'Pfirsich + Honig + Restsüße + lebendige Säure = Riesling Spätlese! Das Zusammenspiel von Restsüße und rassiger Säure ist das Markenzeichen deutscher Spätlese-Rieslinge. Der Chablis wäre trocken und mineralischer, ohne die Honignoten.'
     },
   ],
 };
