@@ -441,6 +441,7 @@ const REGIONS = {
 
 // ===== GUESTS =====
 // facing: 'left' = default (guckt zum Spieler), 'right' = muss gespiegelt werden
+// shiftX: optionale Verschiebung in % der Bildbreite (negativ = nach links), z.B. wenn ein Gast in die Fragebox ragt
 const GUESTS = {
   recurring: [
     { id: 'bergmann', name: 'Herr Bergmann', facing: 'right',
@@ -465,10 +466,10 @@ const GUESTS = {
       { id: 'grillmeister', name: 'Der Grillmeister', sprite: 'assets/guests/grillmeister.png', facing: 'right' },
       { id: 'business_duo', name: 'Die Geschäftsleute', sprite: 'assets/guests/business_duo.png', facing: 'right' },
       { id: 'fitnesstrainerin', name: 'Die Fitnesstrainerin', sprite: 'assets/guests/fitnesstrainerin.png', facing: 'right' },
-      { id: 'ehepaar_koch', name: 'Ehepaar Koch', sprite: 'assets/guests/ehepaar_koch.png', facing: 'right' },
+      { id: 'ehepaar_koch', name: 'Ehepaar Koch', sprite: 'assets/guests/ehepaar_koch.png', facing: 'right', shiftX: -6 },
       { id: 'der_amerikaner', name: 'Der Amerikaner', sprite: 'assets/guests/der_amerikaner.png', facing: 'right' },
       { id: 'die_veganerin', name: 'Die Veganerin', sprite: 'assets/guests/die_veganerin.png', facing: 'left' },
-      { id: 'marco', name: 'Marco', sprite: 'assets/guests/marco.png', facing: 'right' },
+      { id: 'marco', name: 'Marco', sprite: 'assets/guests/marco.png', facing: 'left' },
       { id: 'stammgast_jens', name: 'Stammgast Jens', sprite: 'assets/guests/stammgast_jens.png', facing: 'right' },
       { id: 'der_trucker', name: 'Der Trucker', sprite: 'assets/guests/der_trucker.png', facing: 'right' },
       { id: 'claudia', name: 'Claudia', sprite: 'assets/guests/claudia.png', facing: 'right' },
@@ -823,11 +824,11 @@ Object.values(WINES).forEach(w => {
 function getGuestInfo(guestId, level) {
   // Recurring guests
   const rec = GUESTS.recurring.find(g => g.id === guestId);
-  if (rec) return { name: rec.name, sprite: rec.sprites[level] || rec.sprites[0], facing: rec.facing || 'left' };
+  if (rec) return { name: rec.name, sprite: rec.sprites[level] || rec.sprites[0], facing: rec.facing || 'left', shiftX: rec.shiftX || 0 };
   // Level guests
   for (const lv of Object.keys(GUESTS.byLevel)) {
     const g = GUESTS.byLevel[lv].find(g => g.id === guestId);
-    if (g) return { name: g.name, sprite: g.sprite, facing: g.facing || 'left' };
+    if (g) return { name: g.name, sprite: g.sprite, facing: g.facing || 'left', shiftX: g.shiftX || 0 };
   }
   return null;
 }

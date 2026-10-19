@@ -1666,3 +1666,13 @@ body {
 
 /* Zweiter Stierschädel (rechts neben dem ersten) */
 .skull-easter-egg.skull-2 { left: 21%; }
+
+/* TESTWEISE sichtbar: Easter-Egg-Klickflächen (später wieder entfernen) */
+.skull-easter-egg { opacity: 1; outline: 5px solid #7fff00; outline-offset: -5px; background: rgba(127,255,0,0.12); }
+
+/* Chef-Intro- und Lehrgangs-Knöpfe ×1,4 */
+.chef-intro-buttons { gap: 14px; }
+.chef-intro-buttons .btn { font-size: 16.8pt; padding: 14px 34px; min-height: 80px; }
+.chef-intro-buttons .btn-large { font-size: 19.6pt; padding: 18px 44px; }
+.explorer-nav { padding: 22px 56px; }
+.explorer-nav .btn { font-size: 16.8pt; padding: 14px 36px; min-height: 80px; }

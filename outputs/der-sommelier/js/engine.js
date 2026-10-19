@@ -175,12 +175,12 @@ function getRandomGuest(level) {
   const pool = [];
   // Add recurring guests (with level-appropriate sprite)
   GUESTS.recurring.forEach(g => {
-    pool.push({ name: g.name, sprite: g.sprites[level] || g.sprites[0], facing: g.facing || 'left' });
+    pool.push({ name: g.name, sprite: g.sprites[level] || g.sprites[0], facing: g.facing || 'left', shiftX: g.shiftX || 0 });
   });
   // Add level-specific guests
   const levelGuests = GUESTS.byLevel[level] || [];
   levelGuests.forEach(g => {
-    pool.push({ name: g.name, sprite: g.sprite, facing: g.facing || 'left' });
+    pool.push({ name: g.name, sprite: g.sprite, facing: g.facing || 'left', shiftX: g.shiftX || 0 });
   });
   return pick(pool);
 }

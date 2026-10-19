@@ -459,7 +459,8 @@ function renderQuestion() {
 
   const guest = state.currentGuest;
   const flipStyle = guest && guest.facing === 'right' ? ' style="transform:scaleX(-1)"' : '';
-  const guestHtml = guest ? `<div class="guest-sprite-area"><img class="guest-sprite" src="${guest.sprite}" alt="${guest.name}"${flipStyle} onerror="this.style.display='none'"></div>` : '';
+  const shiftStyle = guest && guest.shiftX ? ` style="margin-left:${guest.shiftX}%"` : '';
+  const guestHtml = guest ? `<div class="guest-sprite-area"${shiftStyle}><img class="guest-sprite" src="${guest.sprite}" alt="${guest.name}"${flipStyle} onerror="this.style.display='none'"></div>` : '';
 
   return `
     <div class="scene scene-restaurant active">
