@@ -1626,3 +1626,12 @@ body {
 .fb-beratung-summary { font-size: 20.4pt; }
 .feedback-card .btn { font-size: 20pt; padding: 16px 44px; }
 .fb-tips { font-size: 21pt; }   /* Pixelschrift: ×1,7 bricht sonst um */
+
+/* "Schicht geschafft" ×1,4 */
+.shift-summary-card { padding: 50px 68px; }
+.shift-summary-card h2 { font-size: 25.2pt; margin-bottom: 34px; }
+.summary-stats { gap: 46px; margin-bottom: 34px; }
+.stat-num { font-size: 30.8pt; }
+.stat-label { font-size: 15.4pt; }
+.shift-chef-comment { font-size: 19.6pt; padding: 16px 24px; }
+.shift-summary-card .btn { font-size: 16.8pt; padding: 14px 34px; min-height: 76px; }
