@@ -9,13 +9,16 @@ Jede Szene hat ihren eigenen „Radiosender“:
 
 ## So fügst du Lieder hinzu
 
-1. Lege die Datei in einen Unterordner von `music/`, z. B. `music/imbiss/sirtaki-sunset.m4a`.
-2. Trage sie in [`playlist.js`](playlist.js) bei der passenden Szene ein:
-   ```js
-   imbiss: [
-     { file: 'imbiss/sirtaki-sunset.m4a', title: 'Sirtaki Sunset', artist: 'Max Muster', license: 'CC BY 4.0', url: 'https://…' },
-   ],
-   ```
+1. Leg die MP3s mitsamt den Pixabay-Lizenzzertifikaten (`*-license.txt`) und den Infodateien (`*.rtf`, „Music by … from Pixabay“) in den passenden Ordner von `audio-inbox/`:
+   `titel`, `level1` (Imbiss) … `level5` (Étoile), `game` (Minispiel) und `sounds` (Effekte).
+2. Starte `.venv/bin/python tools/import_audio.py`. Das Skript macht Folgendes:
+   - Es wandelt alles nach M4A um (96 kbit/s, gleiche Lautheit).
+   - Es liest Titel und Künstler aus den Lizenz- und Infodateien.
+   - Es kopiert die Lizenzen nach `licenses/`.
+   - Es schreibt [`playlist.js`](playlist.js) neu.
+3. Stimmt ein Name nicht, trag ihn in `ID_OVERRIDES` bzw. `UPLOADER_NAMES` im Skript ein und starte es noch einmal. Bereits umgewandelte Dateien werden dabei übersprungen.
+
+`audio-inbox/`, `music/` und `sfx/` sind nicht im Repo (siehe Lizenzen unten). `playlist.js` und `licenses/` sind im Repo.
 
 | Szene in `playlist.js` | Wo sie läuft | Stil-Idee |
 |---|---|---|

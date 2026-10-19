@@ -24,3 +24,7 @@ outputs/der-sommelier/assets/audio/music/*
 !outputs/der-sommelier/assets/audio/music/.gitkeep
 outputs/der-sommelier/assets/audio/sfx/
 audio-inbox/
+
+# Capacitor / Node
+node_modules/
+.cache/

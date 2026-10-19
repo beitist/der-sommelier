@@ -17,16 +17,21 @@ function render() {
       case 'restaurant': html = renderRestaurant(); break;
       case 'region': html = renderRegion(); break;
       case 'minigame': html = renderMiniGame(); break;
+      case 'ending': html = renderEnding(); break;
+      case 'highscore': html = renderHighscore(); break;
     }
   }
   // Global overlays (can appear on any scene)
   if (state.overlay === 'downgrade') html += renderDowngradeOverlay();
   if (state.overlay === 'confirmNewGame') html += renderConfirmNewGameOverlay();
   if (state.overlay === 'about') html += renderAboutOverlay();
+  if (state.overlay === 'examReady') html += renderExamReadyOverlay();
+  if (state.overlay === 'examResult') html += renderExamResultOverlay();
 
   root.innerHTML = html;
   lockInput();
-  Sound.setTrack(state.scene === 'title' ? 'title' : state.scene === 'minigame' ? 'minigame' : getLevel().id);
+  const TRACK_FOR_SCENE = { title: 'title', ending: 'title', minigame: 'minigame', highscore: 'minigame' };
+  Sound.setTrack(TRACK_FOR_SCENE[state.scene] || getLevel().id);
   attachEvents();
 
   // Auto-scroll beratung chat history
@@ -53,6 +58,7 @@ function renderTitle() {
             <button class="btn btn-primary" onclick="requestNewGame()">🍷 Neues Spiel</button>
             ${hasSave() ? '<button class="btn btn-secondary" onclick="continueGame()">📂 Weiterspielen</button>' : ''}
             <button class="btn btn-ghost" onclick="showLevelCodeInput()">🔑 Levelcode eingeben</button>
+            <button class="btn btn-ghost" onclick="goToScene('highscore')">🏆 Bestenliste</button>
             <button class="btn btn-ghost" onclick="state.overlay='about';render()">ℹ️ Über das Spiel</button>
           </div>
           <div id="levelcode-input" style="display:none; margin-top:20px;">
@@ -423,6 +429,8 @@ function renderRestaurantLobby() {
               </div>
               <div class="lobby-buttons">
                 <button class="btn btn-primary btn-large" onclick="startShift()">🍽️ Schicht starten</button>
+                ${isExamEligible() ? `<button class="btn btn-primary btn-large btn-exam" onclick="startExam()">🎓 Abschlussprüfung</button>` : ''}
+                ${state.player.examPassed ? `<button class="btn btn-secondary" onclick="goToScene('highscore')">🏆 Bestenliste</button>` : ''}
                 ${lehrgangBtn}
                 <button class="btn btn-ghost" onclick="goToScene('map')">🗺️ Länderinfo</button>
               </div>
@@ -463,7 +471,7 @@ function renderQuestion() {
           <div class="rest-layer rest-fg-layer" style="background-image:url('assets/${lv.bgKey}/theke.png')"></div>
 
           <div class="shift-hud">
-            <div class="hud-item">Gast ${shift.questionIndex + 1}/${CONFIG.questionsPerShift}</div>
+            <div class="hud-item">${shift.isExam ? '🎓 Prüfung · ' : ''}Gast ${shift.questionIndex + 1}/${shift.questions.length}</div>
             <div class="hud-item hud-score">✅ ${shift.correct} ❌ ${shift.wrong}</div>
           </div>
 
@@ -479,6 +487,7 @@ function renderQuestion() {
 
 function renderHintArea(q) {
   if (q.answered !== undefined) return '';
+  if (state.currentShift && state.currentShift.isExam) return '';   // in der Prüfung hilft der Chef nicht
   if (q.hintUsed) {
     return `<div class="chef-hint-box">
       <span class="chef-hint-icon">👨‍🍳</span>

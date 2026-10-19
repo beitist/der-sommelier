@@ -1,0 +1,21 @@
+{
+  "name": "der-sommelier",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Der Sommelier – Wein-RPG als iPad-App (Capacitor)",
+  "scripts": {
+    "validate": "node tools/validate.js",
+    "sync": "node tools/validate.js && npx cap sync ios",
+    "open": "npx cap open ios",
+    "ios": "npm run sync && npx cap open ios"
+  },
+  "license": "CC-BY-4.0",
+  "dependencies": {
+    "@capacitor/core": "^8.5.3",
+    "@capacitor/ios": "^8.5.3",
+    "@capacitor/preferences": "^8.0.1"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^8.5.3"
+  }
+}

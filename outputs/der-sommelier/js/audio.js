@@ -49,7 +49,10 @@ const Sound = (() => {
   let seq = null;               // laufender Platzhalter-Sequencer
   const nowPlayingListeners = [];
 
-  try { Object.assign(settings, JSON.parse(localStorage.getItem(SETTINGS_KEY)) || {}); } catch (e) {}
+  function loadSettings() {
+    try { Object.assign(settings, JSON.parse(localStorage.getItem(SETTINGS_KEY)) || {}); } catch (e) {}
+  }
+  loadSettings();
   function saveSettings() { try { localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings)); } catch (e) {} }
 
   function ensureContext() {
@@ -271,6 +274,10 @@ const Sound = (() => {
     play,
     answer(correct, favorite, acceptable) {
       play(correct ? (favorite ? 'pling' : 'cork') : acceptable ? 'clank' : 'wrong');
+    },
+    reloadSettings() {
+      loadSettings();
+      if (sfxGain) sfxGain.gain.value = settings.sfx ? SFX_VOL : 0;
     },
     get musicOn() { return settings.music; },
     // "♪ Titel – Künstler" fürs Radio (null beim Platzhalter)

@@ -1,0 +1,11 @@
+{
+  "appId": "de.beitist.sommelier",
+  "appName": "Der Sommelier",
+  "webDir": "outputs/der-sommelier",
+  "ios": {
+    "contentInset": "never",
+    "backgroundColor": "#000000",
+    "scrollEnabled": false,
+    "limitsNavigationsToAppBoundDomains": false
+  }
+}

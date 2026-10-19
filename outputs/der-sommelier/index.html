@@ -11,6 +11,7 @@
 <body>
   <div id="game-root"></div>
 
+  <script src="js/native.js"></script>
   <script src="js/data.js"></script>
   <script src="js/questions_lv0.js"></script>
   <script src="js/questions_lv1.js"></script>
@@ -21,6 +22,7 @@
   <script src="js/audio.js"></script>
   <script src="js/engine.js"></script>
   <script src="js/scenes.js"></script>
+  <script src="js/ending.js"></script>
   <script>
     // Viewport scaler: fit 1920×1440 (4:3, iPad) game to any screen,
     // ohne Safe Areas (Home-Indikator, Notch) zu überdecken
@@ -43,8 +45,8 @@
       window.addEventListener('resize', scaleGame);
       window.addEventListener('orientationchange', scaleGame);
     })();
-    // Boot the game
-    render();
+    // Boot the game (auf dem iPad erst den nativ gesicherten Spielstand zurückholen)
+    NativeStore.restore().then(() => { Sound.reloadSettings(); render(); });
   </script>
 </body>
 </html>

@@ -94,6 +94,11 @@ function sanitizePlayer(p) {
     chefIntroSeen: arr(p.chefIntroSeen, v => v === true),
     shiftsCompleted: arr(p.shiftsCompleted, v => num(v, 0, 1e6)),
     questionHistory: counts(p.questionHistory, ['seen', 'correct', 'wrong']),
+    // Karriere-Statistik & Spielende
+    stats: counts({ s: p.stats }, ['answered', 'correct', 'favorites', 'tipsTotal']).s || { answered: 0, correct: 0, favorites: 0, tipsTotal: 0 },
+    examPassed: p.examPassed === true,
+    examAttempts: num(p.examAttempts, 0, 1e4),
+    highscoreEntered: p.highscoreEntered === true,
   };
 }
 
@@ -204,6 +209,8 @@ function startNewGame() {
       chefIntroSeen: [false, false, false, false, false],
       shiftsCompleted: [0, 0, 0, 0, 0],
       questionHistory: {},
+      stats: { answered: 0, correct: 0, favorites: 0, tipsTotal: 0 },
+      examPassed: false, examAttempts: 0, highscoreEntered: false,
     },
     currentShift: null,
     currentQuestion: null,
@@ -313,6 +320,7 @@ function goToScene(scene, data) {
   state.overlayData = null;
   state.showChefIntro = false;
   state.explorerNewOnly = false;
+  state.highscoreMode = null;
   if (data) Object.assign(state, data);
   render();
 }
@@ -454,6 +462,14 @@ function applyTipAndRep(isCorrect, isFavorite, isAcceptable) {
     if (state.consecutiveWrong === 5) Sound.play('beer', 0.5);   // Chef geht ein Bier zapfen
   }
   state.currentShift.total++;
+  if (state.currentShift.isExam && isCorrect) state.currentShift.examCorrect++;   // Prüfung: nur "richtig" zählt
+
+  // Karriere-Statistik (Abspann & Bestenliste)
+  const st = state.player.stats;
+  st.answered++;
+  if (isCorrect || isAcceptable) st.correct++;
+  if (isFavorite) st.favorites++;
+  st.tipsTotal += tipGain;
 
   // Track question history for smart rotation
   const qId = q && q.data ? q.data.id : null;
@@ -740,6 +756,7 @@ function answerBeratungStep(index) {
     const bonus = bs.bonusAccumulated;
     state.player.tips += bonus;
     state.currentShift.tipsEarned += bonus;
+    state.player.stats.tipsTotal += bonus;
 
     // Track wine knowledge
     if (opt.wineId) {
@@ -776,6 +793,7 @@ function nextQuestion() {
     state.currentQuestion = null;
     state.currentGuest = null;
     state.player.shiftsCompleted[state.player.level]++;
+    if (shift.isExam) { finishExam(); return; }
 
     // Check level up
     const lv = getLevel();
@@ -786,6 +804,9 @@ function nextQuestion() {
       state.overlayData = { newLevel: CONFIG.levels[state.player.level] };
       Sound.play('cork2');
       Sound.play('fanfare', 0.35);
+    } else if (isExamEligible()) {
+      // Genug Trinkgeld im Étoile → der Michelin-Tester wartet
+      state.overlay = 'examReady';
     }
     saveGame();
     render();
