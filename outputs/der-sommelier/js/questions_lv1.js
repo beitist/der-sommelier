@@ -33,7 +33,9 @@ QUESTIONS.steakhaus = {
       options: [
         { wineId: 'gruener_veltliner', correct: true, favorite: true, explanation: 'Grüner Veltliner – pfeffrig, frisch und leicht. Perfekt zur gesunden Hähnchenbrust!' },
         { wineId: 'rose_provence', correct: true, explanation: 'Rosé de Provence ist leicht und frisch – passt zum Salat, aber die pfeffrige Note des Veltliners harmoniert besser mit dem Hähnchen.' },
-        { wineId: 'imiglykos', correct: false, explanation: 'Lieblicher Roter zum Fitness-Salat? Das passt geschmacklich nicht zusammen.' },
+        { wineId: 'riesling', acceptable: true, explanation: 'Riesling trocken ist frisch und leicht – keine schlechte Idee. Aber seine kräftige Säure wirkt neben der cremigen Avocado etwas spitz. Der Veltliner ist runder und bringt die pfeffrige Würze fürs Grillhähnchen mit.' },
+        { wineId: 'mueller_thurgau', acceptable: true, explanation: 'Müller-Thurgau ist leicht, ja – aber halbtrocken und eher mild-blumig. "Frisch" trifft der trockene, pfeffrige Veltliner deutlich besser.' },
+        { wineId: 'retsina', correct: false, explanation: 'Retsina ist zwar frisch, aber der harzige Kiefernton erschlägt die feine Avocado. Den hebst du dir besser für Gyros und Feta auf.' },
         { wineId: 'sekt', acceptable: true, explanation: 'Gut gekühlter Sekt zur leichten Hähnchenbrust ist nicht verkehrt – die Kohlensäure erfrischt. Aber als Essensbegleiter fehlt ihm die Würze und Substanz, die der Grüne Veltliner mitbringt.' },
       ]
     },
