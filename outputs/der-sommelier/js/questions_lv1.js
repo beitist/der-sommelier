@@ -534,4 +534,143 @@ QUESTIONS.steakhaus = {
       explanation: 'Helle, durchscheinende Farbe, Kirsch-Erdbeer-Nase mit Waldboden und ein seidiger, eleganter Gaumen – typisch Spätburgunder (Pinot Noir)! Chianti hätte mehr Sauerkirsche und straffere Tannine, Primitivo wäre viel dunkler und kraftvoller.'
     },
   ],
+
+  beratung: [
+    {
+      id: 'ber_1_1',
+      guestId: 'der_amerikaner',
+      mood: '🍖',
+      intro: 'Der Amerikaner schiebt seine Baseball-Cap in den Nacken und seufzt ungewohnt leise. "Buddy, I\'m homesick. Heute vor einem Jahr stand ich mit meinem Dad am Smoker in Texas. Ich hab die Spareribs bestellt – und jetzt brauch ich einen Wein, der sich anfühlt wie nach Hause kommen."',
+      steps: [
+        {
+          prompt: 'Was möchtest du zuerst wissen?',
+          choices: [
+            { text: '"Wie sind die Spareribs denn zubereitet?"', good: true, bonusTip: 2, guestResponse: '"Smoked, baby! Mit süß-rauchiger BBQ-Sauce, die einem übers Kinn läuft. Und dazu Maiskolben mit Butter. Comfort Food, wie bei Dad."' },
+            { text: '"Bei uns trinkt man zu Rippchen eigentlich Bier, Sir."', good: false, bonusTip: 0, guestResponse: '"Beer? Bier bekomm ich an jeder Tankstelle, pal! Ich bin in einem Steakhaus und will WEIN. Come on!"' },
+            { text: '"Soll der Wein eher leicht oder richtig kräftig sein?"', good: true, bonusTip: 1, guestResponse: '"Big! Everything\'s bigger in Texas – auch der Wein. Leicht trinke ich nur Wasser. Und auch das nur, wenn es sein muss."' },
+          ],
+        },
+        {
+          prompt: 'Was möchtest du noch wissen?',
+          choices: [
+            { text: '"Was trinkt ihr denn zu Hause am Smoker?"', good: true, bonusTip: 2, guestResponse: '"Zinfandel, man! Aus Kalifornien. Dad schwört drauf. Dunkel, reif, ein bisschen würzig – wie Pflaumenkuchen mit Pfeffer. Gibt\'s den hier nicht, right?"' },
+            { text: '"Wie viel darf der Wein kosten?"', good: false, bonusTip: 0, guestResponse: '"Money\'s no problem, buddy! Ich will Geschmack, kein Preisschild. Frag mich lieber, was ich mag!"' },
+            { text: '"Darf der Wein reif und fruchtig sein – so richtig sonnenverwöhnt?"', good: true, bonusTip: 1, guestResponse: '"Hell yeah! Reif, saftig, viel Frucht. Sauer will ich nicht – das erinnert mich an den Zitronenkuchen meiner Ex."' },
+          ],
+        },
+        {
+          prompt: 'Welchen Wein empfiehlst du?',
+          options: [
+            { wineId: 'primitivo', correct: true, favorite: true, explanation: 'Jackpot! Primitivo und Zinfandel sind genetisch dieselbe Rebsorte – nur in Apulien statt in Kalifornien. Vollmundig, Pflaume, Schokolade, Gewürze, dazu reife Frucht aus warmem Klima. Zur rauchig-süßen BBQ-Sauce ein Traum. Der Amerikaner hat Tränen in den Augen: "It\'s like Dad\'s backyard!"' },
+            { wineId: 'dornfelder', correct: true, explanation: 'Gar nicht schlecht! Dornfelder ist fruchtig und unkompliziert, und seine leichte Restsüße passt zur süßen BBQ-Sauce. Aber er ist nur mittelkräftig – für den "Everything\'s bigger in Texas"-Gast fehlt der Wumms. Und die Zinfandel-Verbindung hat nur der Primitivo.' },
+            { wineId: 'chianti', acceptable: true, explanation: 'Chianti kann Steak, keine Frage. Aber mit Kräutern, Leder und frischer Säure ist er eher Toskana als Texas – zur süß-rauchigen Sauce weniger harmonisch, und der Gast wollte nichts Saures.' },
+            { wineId: 'riesling', correct: false, explanation: 'Ein leichter, trockener, säurebetonter Weißwein zu Smoked Ribs mit BBQ-Sauce? Der geht unter wie ein Ruderboot im Golf von Mexiko. Und "sauer" war das Zitronenkuchen-Trauma.' },
+          ],
+        },
+      ],
+      summary: 'Die Rebsorte ist die DNA des Weins – und manche Rebsorte hat mehrere Pässe: Primitivo heißt in Kalifornien Zinfandel. Wer den Lieblingswein eines Gastes kennt, findet über die Rebsorte die passende Alternative auf der eigenen Karte.',
+    },
+    {
+      id: 'ber_1_2',
+      guestId: 'marco',
+      mood: '😰',
+      intro: 'Marco kommt rein und fährt sich nervös durch die Locken. "Amico, ich bin verloren. Am Sonntag lerne ich die Eltern von meiner Freundin kennen. Der Papa ist Notar. Und er schaut mich an, als wäre ich eine Steuerprüfung. Ich muss einen Wein mitbringen – und der muss perfetto sein!"',
+      steps: [
+        {
+          prompt: 'Was möchtest du zuerst wissen?',
+          choices: [
+            { text: '"Was wird denn am Sonntag gekocht?"', good: true, bonusTip: 2, guestResponse: '"Schweinebraten mit Pilzsoße – Champignons und Pfifferlinge. Die Mama kocht. Ich darf nur Kartoffeln schälen." Er seufzt. "Mamma mia, ich schäle wie ein Weltmeister."' },
+            { text: '"Bring doch Blumen für die Mama mit, dann ist der Wein egal."', good: false, bonusTip: 0, guestResponse: '"Blumen hab ich schon! Aber die Mama ist nicht das Problem. Der PAPA ist das Problem. Und der Papa will Wein."' },
+            { text: '"Was trinkt der Papa denn gerne?"', good: true, bonusTip: 1, guestResponse: '"Nur deutschen Wein! Er sagt: \'Was über den Brenner kommt, kommt mir nicht ins Glas.\' Und ich..." Er zeigt auf sich. "...bin über den Brenner gekommen."' },
+          ],
+        },
+        {
+          prompt: 'Was möchtest du noch wissen?',
+          choices: [
+            { text: '"Mag er es eher elegant und fein oder kräftig und wuchtig?"', good: true, bonusTip: 2, guestResponse: '"Elegant! Er ist Notar – er trinkt langsam, redet langsam, unterschreibt langsam. Und bitte trocken, er sagt, Süßes ist für Kinder und Touristen."' },
+            { text: '"Nimm einfach den teuersten, dann kann nichts schiefgehen."', good: false, bonusTip: 0, guestResponse: '"Den teuersten? Ich bin Austauschstudent! Am Monatsende esse ich Nudeln mit Ketchup. Und sag das bitte NIE einem Italiener."' },
+            { text: '"Wäre es schön, wenn der Wein auch etwas mit Italien zu tun hätte?"', good: true, bonusTip: 1, guestResponse: '"Ma certo! Wenn ich dem Papa erzählen könnte, dass sein deutscher Wein heimlich auch einen italienischen Namen hat... dann hätte ich gewonnen!"' },
+          ],
+        },
+        {
+          prompt: 'Welchen Wein empfiehlst du?',
+          options: [
+            { wineId: 'spaetburgunder', correct: true, favorite: true, explanation: 'Perfetto! Spätburgunder ist deutsch, trocken und elegant – und passt mit Kirsche, Himbeere und einer erdigen Note wunderbar zu Braten mit Pilzsoße. Der Clou: Spätburgunder ist Pinot Noir, und auf Italienisch heißt er Pinot Nero. Ein deutscher Wein mit italienischem Zweitnamen – der Papa ist geschlagen.' },
+            { wineId: 'dornfelder', correct: true, explanation: 'Ein deutscher Roter, fruchtig und unkompliziert – das passt zum Schweinebraten. Aber er ist halbtrocken, und der Papa will es trocken. Außerdem fehlt die Italien-Geschichte, mit der Marco punkten wollte.' },
+            { wineId: 'chianti', acceptable: true, explanation: 'Chianti passt gut zu Braten, und Marco wäre stolz. Aber er kommt über den Brenner – und genau das will der Papa nicht im Glas. Diplomatisch eher ein Eigentor.' },
+            { wineId: 'lambrusco', correct: false, explanation: 'Lieblich, leicht und perlend? Der Papa wollte elegant und trocken – "Süßes ist für Kinder und Touristen". Und italienisch ist er obendrein. Doppeltes Eigentor!' },
+          ],
+        },
+      ],
+      summary: 'Gleiche Traube, verschiedene Namen: Spätburgunder = Pinot Noir = Pinot Nero. Wer die Synonyme kennt, kann Brücken bauen – und Gäste auch mit einer guten Geschichte überzeugen. Dazu passt Spätburgunder mit seiner erdigen Note hervorragend zu Pilzgerichten und Braten.',
+    },
+    {
+      id: 'ber_1_3',
+      guestId: 'die_veganerin',
+      mood: '🌱',
+      intro: 'Die Veganerin stellt einen Jutebeutel voller Bärlauch auf die Theke. "Ich gebe morgen einen Kochabend für Freunde – alles vegan, natürlich. Und bevor du fragst: Ja, im Steakhaus. Ihr seid die Einzigen in der Stadt, die eine anständige Weinkarte haben."',
+      steps: [
+        {
+          prompt: 'Was möchtest du zuerst wissen?',
+          choices: [
+            { text: '"Was kochst du denn?"', good: true, bonusTip: 2, guestResponse: '"Eine große Frühlings-Gemüsepfanne: Zucchini, Erbsen, grüne Bohnen, Ofenkartoffeln – und ein Kräuterdip aus Bärlauch, Petersilie und Schnittlauch. Frisch und grün."' },
+            { text: '"Wenigstens beim Wein musst du nicht verzichten, oder?"', good: false, bonusTip: 0, guestResponse: '"Verzichten? Ich verzichte auf gar nichts – außer auf Tierleid. Hast du schon mal eine gute Linsen-Bolognese gegessen? Eben."' },
+            { text: '"Kochst du eher mild oder eher würzig?"', good: true, bonusTip: 1, guestResponse: '"Würzig! Ich pfeffere wie eine Weltmeisterin. Frisch gemahlen, schwarzer Pfeffer auf allem. Meine Freunde nennen mich \'Pfeffermühle\'."' },
+          ],
+        },
+        {
+          prompt: 'Was möchtest du noch wissen?',
+          choices: [
+            { text: '"Soll der Wein trocken sein oder darf er etwas Restsüße haben?"', good: true, bonusTip: 2, guestResponse: '"Trocken, bitte! Ich hatte mal einen süßen zu Gemüse – das war wie Gummibärchen auf Brokkoli. Nie wieder."' },
+            { text: '"Nimm doch einfach Rosé, das ist ja Rot und Weiß gemischt – da ist für jeden was dabei."', good: false, bonusTip: 0, guestResponse: '"Gemischt? Rosé wird doch nicht gemischt! Der entsteht durch kurzen Kontakt mit den Traubenschalen. Das hab ich sogar schon im Imbiss gelernt!"' },
+            { text: '"Darf es auch eine Rebsorte sein, die man nicht jeden Tag trinkt?"', good: true, bonusTip: 1, guestResponse: '"Unbedingt! Ich liebe Entdeckungen – so wie Jackfruit vor fünf Jahren. Meine Freunde sollen sagen: Was ist DAS denn?"' },
+          ],
+        },
+        {
+          prompt: 'Welchen Wein empfiehlst du?',
+          options: [
+            { wineId: 'gruener_veltliner', correct: true, favorite: true, explanation: 'Volltreffer! Grüner Veltliner ist Österreichs Paradesorte – trocken, frisch und berühmt für seine Pfeffernote. Dazu Apfel und Kräuter: der perfekte Partner für Bärlauch, grüne Bohnen und frisch gemahlenen Pfeffer. Und für viele Gäste ist es eine Entdeckung. Die "Pfeffermühle" ist begeistert.' },
+            { wineId: 'riesling', correct: true, explanation: 'Trockener Riesling ist frisch und passt gut zu Gemüse – eine solide Wahl. Aber er setzt eher auf Zitrus als auf Pfeffer und Kräuter, und die meisten kennen ihn schon. Den "Was ist DAS denn?"-Moment bringt der Grüne Veltliner.' },
+            { wineId: 'mueller_thurgau', acceptable: true, explanation: 'Müller-Thurgau ist leicht und blumig und passt zu Gemüse. Aber er ist halbtrocken – die Gastgeberin wollte trocken. Und gegen ihren Pfeffer wirkt er etwas brav.' },
+            { wineId: 'primitivo', correct: false, explanation: 'Primitivo ist ein vollmundiger Roter mit Pflaume und Schokolade – der erschlägt die zarte Frühlings-Gemüsepfanne. Leichtes Essen, leichter Wein!' },
+          ],
+        },
+      ],
+      summary: 'Rebsorten haben einen Grundcharakter: Grüner Veltliner ist pfeffrig, Riesling eher zitrusfrisch, Primitivo vollmundig-fruchtig. Wer weiß, was im Essen dominiert – hier Kräuter und Pfeffer – findet die Rebsorte, die das Gericht spiegelt.',
+    },
+    {
+      id: 'ber_1_4',
+      guestId: 'bergmann',
+      mood: '🏗️',
+      intro: 'Herr Bergmann kommt in Arbeitshose rein, den Helm unterm Arm, und grinst stolz. "Du, ich brauch mal wieder deinen Rat. Der Bauherr hat gesagt, ich soll den Wein fürs Fest besorgen. ICH! Der Mann, der vor ein paar Monaten noch nach Radler gefragt hat!"',
+      steps: [
+        {
+          prompt: 'Was möchtest du zuerst wissen?',
+          choices: [
+            { text: '"Was gibt es denn zu feiern?"', good: true, bonusTip: 2, guestResponse: '"Richtfest! Das Dach ist drauf beim neuen Kindergarten in der Lindenstraße. Der Bauherr hält eine Rede, dann stoßen alle an – zwanzig Leute, im Stehen, mitten auf der Baustelle."' },
+            { text: '"Auf der Baustelle? Nehmt doch Bier, das ist eh Tradition."', good: false, bonusTip: 0, guestResponse: '"Bier haben wir genug, glaub mir! Der Bauherr hat extra gesagt: \'Heute mal was Feierliches.\' Ich will mich doch nicht blamieren."' },
+            { text: '"Was gibt es dazu zu essen?"', good: true, bonusTip: 1, guestResponse: '"Brezeln und Leberkäs-Semmeln, das Übliche. Nichts Großes – das ist eher zum Anstoßen als zum Essen."' },
+          ],
+        },
+        {
+          prompt: 'Was möchtest du noch wissen?',
+          choices: [
+            { text: '"Soll es beim Anstoßen schön prickeln?"', good: true, bonusTip: 2, guestResponse: '"Prickeln, genau! Wie bei der Schiffstaufe im Fernsehen. Nur dass wir die Flasche nicht gegen den Dachstuhl hauen – der ist frisch."' },
+            { text: '"Nimm einfach eine Kiste vom Discounter, das merkt doch keiner."', good: false, bonusTip: 0, guestResponse: '"Vom Discounter? Ich steh hier vor einem Profi und soll beim Discounter kaufen? Dann hätte ich ja gleich Radler nehmen können!"' },
+            { text: '"Trocken oder lieber süß?"', good: true, bonusTip: 1, guestResponse: '"Trocken! Der Polier sagt, Süßes klebt ihm im Schnurrbart. Und mit dem Polier will man keinen Streit, glaub mir."' },
+          ],
+        },
+        {
+          prompt: 'Welchen Wein empfiehlst du?',
+          options: [
+            { wineId: 'sekt', correct: true, favorite: true, explanation: 'Perfekt! Deutscher Sekt ist trocken, prickelnd und festlich – ideal zum Anstoßen im Stehen, zu Brezeln und Leberkäs. Oft wird er aus Riesling oder Burgundersorten gemacht. Und als größter Sekt-Konsument der Welt kann Deutschland Richtfest. Der Bauherr klopft Bergmann auf die Schulter: "Stilvoll, Bergmann!"' },
+            { wineId: 'riesling', correct: true, explanation: 'Trockener Riesling ist frisch, trocken und deutsch – und aus Riesling wird auch gern Sekt gemacht. Aber er ist ein stiller Wein: Das Schiffstaufen-Prickeln, das Bergmann sich wünscht, fehlt.' },
+            { wineId: 'mueller_thurgau', acceptable: true, explanation: 'Müller-Thurgau ist leicht und unkompliziert – geht für zwanzig Leute auf der Baustelle. Aber er ist halbtrocken, also weniger trocken als der Polier will, und er prickelt nicht.' },
+            { wineId: 'lambrusco', correct: false, explanation: 'Prickelt – ja! Aber Lambrusco ist lieblich und rot. Der Polier hätte klebrigen Schnurrbart, und rote Flecken auf dem frischen Holz will auch keiner.' },
+          ],
+        },
+      ],
+      summary: 'Der Anlass entscheidet mit: Zum Anstoßen im Stehen ist Schaumwein unschlagbar. Und weil die Rebsorte die Basis ist, schmeckt man sie auch im Sekt – deutscher Sekt wird oft aus Riesling oder Burgundersorten gemacht.',
+    },
+  ],
 };

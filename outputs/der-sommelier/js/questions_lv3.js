@@ -560,4 +560,145 @@ QUESTIONS.gehoben = {
       explanation: 'Pfirsich + Honig + Restsüße + lebendige Säure = Riesling Spätlese! Das Zusammenspiel von Restsüße und rassiger Säure ist das Markenzeichen deutscher Spätlese-Rieslinge. Der Chablis wäre trocken und mineralischer, ohne die Honignoten.'
     },
   ],
+
+  beratung: [
+    {
+      id: 'ber_3_1',
+      guestId: 'herr_tanaka',
+      mood: '🎎',
+      intro: 'Herr Tanaka verbeugt sich leicht und senkt die Stimme. "Meine Frau kommt heute Abend aus Kyoto. Wir feiern 25 Jahre Ehe. Ich habe den Steinbutt vorbestellt. Nun fehlt nur noch der Wein – und ich möchte, dass er dem Abend gerecht wird."',
+      steps: [
+        {
+          prompt: 'Was möchtest du zuerst wissen?',
+          choices: [
+            { text: '"Wie wird der Steinbutt zubereitet?"', good: true, bonusTip: 2, guestResponse: '"Nur in Butter gebraten, mit etwas Zitrone und Meersalz. Meine Frau sagt: Ein gutes Produkt braucht keine Verkleidung. Ich habe nach 25 Jahren gelernt, ihr zuzustimmen."' },
+            { text: '"Japaner trinken doch eigentlich lieber Sake, oder?"', good: false, bonusTip: 0, guestResponse: 'Er lächelt geduldig. "In Japan sagt man: Der Frosch im Brunnen kennt das große Meer nicht. Ich bin hier, um Wein zu trinken."' },
+            { text: '"Trinkt Ihre Frau lieber trocken oder mit etwas Süße?"', good: true, bonusTip: 1, guestResponse: '"Trocken. Klar wie das Wasser im Kamo-Fluss im Winter. Süße bei Wein findet sie... unaufrichtig."' },
+          ],
+        },
+        {
+          prompt: 'Was möchtest du noch wissen?',
+          choices: [
+            { text: '"Mögen Sie Weine aus dem Holzfass – mit Vanille und Toast – oder lieber pur aus dem Stahltank?"', good: true, bonusTip: 2, guestResponse: '"Kein Holz. In unserem Garten liegt ein Stein, seit 400 Jahren am selben Platz. So soll der Wein schmecken: nach Stein und nach Zeit. Nicht nach Möbeln."' },
+            { text: '"Soll ich Ihnen einfach unseren Hauswein bringen?"', good: false, bonusTip: 0, guestResponse: '"Am 25. Hochzeitstag?" Er schweigt einen Moment. "Ich glaube, dann bleibt meine Frau lieber gleich in Kyoto."' },
+            { text: '"Soll der Wein eher schlank sein oder etwas mehr Tiefe haben?"', good: true, bonusTip: 1, guestResponse: '"Tiefe, bitte. Aber leise Tiefe – wie eine Teezeremonie, nicht wie ein Feuerwerk. Und er soll das Meer kennen."' },
+          ],
+        },
+        {
+          prompt: 'Welchen Wein empfiehlst du?',
+          options: [
+            { wineId: 'chablis_premier_cru', correct: true, favorite: true, explanation: 'Vollendet! Chablis Premier Cru ist Chardonnay ohne Holz – reine Frucht, Zitrus, Feuerstein und Mineralik. Die Kalkböden von Chablis stecken voller fossiler Austernschalen: ein Wein, der "das Meer kennt". Trocken, klar, mit leiser Tiefe – zu Steinbutt in Butter ideal. Herr Tanaka verbeugt sich tiefer als sonst.' },
+            { wineId: 'riesling', correct: true, explanation: 'Trockener Riesling ist klar, mineralisch und ohne Holz – ein schöner Fischbegleiter. Für die Silberhochzeit fehlt ihm aber etwas von der "leisen Tiefe" einer Premier-Cru-Lage, und die Meeres-Geschichte erzählt der Chablis besser.' },
+            { wineId: 'pinot_grigio', acceptable: true, explanation: 'Pinot Grigio ist leicht, trocken und passt zu Fisch – aber er ist eher schlicht und unkompliziert. Die gewünschte Tiefe und das Terroir-Gefühl "nach Stein und Zeit" bietet er kaum.' },
+            { wineId: 'gewuerztraminer', correct: false, explanation: 'Gewürztraminer duftet intensiv nach Litschi und Rosen und ist halbtrocken – "ein Feuerwerk", nicht die Teezeremonie. Er überdeckt den zarten Steinbutt, und Frau Tanaka wollte trocken.' },
+            { wineId: 'rioja_crianza', correct: false, explanation: 'Rioja Crianza reift im Holzfass – Vanille und Holz sind genau die "Möbel", die Herr Tanaka nicht schmecken will. Dazu ein Rotwein zu zartem Fisch in Butter: Das passt nicht.' },
+          ],
+        },
+      ],
+      summary: 'Holz oder Stahl macht einen riesigen Unterschied: Ohne Holzfass zeigt ein Wein pur, was Rebsorte und Boden mitbringen. Chablis ist das Paradebeispiel – Chardonnay auf Kalkstein, mineralisch statt vanillig. So schmeckt Terroir.',
+    },
+    {
+      id: 'ber_3_2',
+      guestId: 'madame_dupont',
+      mood: '🎂',
+      intro: 'Madame Dupont erscheint ungewohnt nervös, in Begleitung einer zierlichen alten Dame mit Perlenkette. "Darf ich vorstellen: Maman. Sie wird heute neunzig. Und bevor Sie fragen – ja, sie ist noch strenger als ich. Ich verlasse mich auf Sie. Enttäuschen Sie uns nicht."',
+      steps: [
+        {
+          prompt: 'Was möchtest du zuerst wissen?',
+          choices: [
+            { text: '"Was haben die Damen denn bestellt?"', good: true, bonusTip: 2, guestResponse: '"Rinderfilet, rosa, mit Trüffeljus und Kartoffelgratin. Maman sagt, mit neunzig darf man sich Trüffel gönnen. Mit achtzig übrigens auch. Und mit siebzig."' },
+            { text: '"Ist ein kräftiger Wein in Ihrem Alter nicht etwas schwer?"', good: false, bonusTip: 0, guestResponse: '"PARDON?!" Madame Dupont erstarrt. Maman lacht trocken: "Junger Mann, ich trinke seit siebzig Jahren jeden Abend mein Glas Rotwein. Ich habe drei Ärzte überlebt."' },
+            { text: '"Woher stammt Ihre Familie denn ursprünglich?"', good: true, bonusTip: 1, guestResponse: '"Maman ist in der Gironde aufgewachsen, zwischen Weinbergen und alten Kirchtürmen. Bei ihr zu Hause stand nie etwas anderes als Bordeaux auf dem Tisch."' },
+          ],
+        },
+        {
+          prompt: 'Was möchtest du noch wissen?',
+          choices: [
+            { text: '"Soll der Wein aus einer einzigen Rebsorte sein – oder eine Cuvée?"', good: true, bonusTip: 2, guestResponse: '"Eine Assemblage, natürlich!" Maman nickt. "Ein Wein aus einer Traube ist ein Solo. Eine Cuvée ist ein Orchester. Und Merlot muss dabei sein – ich liebe seine Weichheit."' },
+            { text: '"Wie wäre es zur Abwechslung mit etwas aus der Neuen Welt?"', good: false, bonusTip: 0, guestResponse: '"Neue Welt? Für Maman?" Madame Dupont schüttelt den Kopf. "Sie hält schon Paris für Neue Welt."' },
+            { text: '"Soll der Wein jung und fruchtig sein oder gereift und vielschichtig?"', good: true, bonusTip: 1, guestResponse: '"Vielschichtig", sagt Maman. "Zeder, Tabak, dunkle Beeren – wie das Arbeitszimmer meines Vaters. Ich will mich erinnern, nicht überrascht werden."' },
+          ],
+        },
+        {
+          prompt: 'Welchen Wein empfiehlst du?',
+          options: [
+            { wineId: 'saint_emilion', correct: true, favorite: true, explanation: 'Magnifique! Saint-Émilion Grand Cru vom rechten Bordeaux-Ufer ist eine Cuvée aus Merlot und Cabernet Franc – das "Orchester" mit Mamans geliebter Merlot-Weichheit. Cassis, Zeder und Tabak, ein Klassiker zu Rinderfilet und Trüffel. Und ein Stück Heimat aus der Gironde. Maman hebt das Glas: "Enfin – jemand, der zuhört."' },
+            { wineId: 'barolo', correct: true, explanation: 'Barolo und Trüffel – ein großes Paar, und kräftig genug fürs Filet. Aber Barolo ist reinsortiger Nebbiolo mit straffen Tanninen, ein "Solo" statt eines Orchesters, und dazu Italiener. Maman wollte Merlot-Weichheit und Bordeaux-Heimat.' },
+            { wineId: 'malbec', acceptable: true, explanation: 'Interessanter Gedanke: Malbec stammt ursprünglich aus Cahors in Südwestfrankreich und passt gut zu Rind. Aber dieser hier kommt aus Argentinien, ist reinsortig und eher fruchtbetont – "Neue Welt" und kein Orchester. Maman runzelt die Stirn.' },
+            { wineId: 'riesling_spaetlese', correct: false, explanation: 'Eine restsüße Riesling Spätlese zu Rinderfilet mit Trüffeljus? Die Süße beißt sich mit dem Fleisch, und die Bordeaux-Tochter aus der Gironde wollte ganz sicher keinen Weißwein. Maman bestellt demonstrativ Wasser.' },
+          ],
+        },
+      ],
+      summary: 'Eine Cuvée vereint mehrere Rebsorten, die sich ergänzen – in Saint-Émilion meist Merlot und Cabernet Franc. Wer Herkunft, gewünschten Stil und Gericht zusammenbringt, findet nicht nur einen passenden Wein, sondern ein Stück Heimat im Glas.',
+    },
+    {
+      id: 'ber_3_3',
+      guestId: 'die_professorin',
+      mood: '🪨',
+      intro: 'Die Professorin legt einen Ordner mit der Aufschrift "Emeritierung Hartmann" auf den Tisch. "Mein Kollege geht nach 40 Jahren in den Ruhestand. Ich organisiere das Abschiedsessen für zwölf Personen. Er ist Geologe – und der kritischste Weintrinker, den ich kenne. Ich brauche eine wissenschaftlich fundierte Empfehlung."',
+      steps: [
+        {
+          prompt: 'Was möchtest du zuerst wissen?',
+          choices: [
+            { text: '"Was steht denn auf dem Menü?"', good: true, bonusTip: 2, guestResponse: '"Wildschweinragout, sechs Stunden geschmort, mit Pappardelle und Steinpilzen. Kräftig, dunkel, erdig. Sein Leibgericht."' },
+            { text: '"Ein Geologe? Dann schenken Sie ihm doch einfach einen schönen Stein, haha."', good: false, bonusTip: 0, guestResponse: '"Sehr witzig. Er hat bereits 3.000 Steine. Katalogisiert." Sie rückt ihre Brille zurecht. "Konzentrieren wir uns bitte auf den Wein."' },
+            { text: '"Erzählen Sie mir ein bisschen von Ihrem Kollegen?"', good: true, bonusTip: 1, guestResponse: '"Professor Hartmann hat in den Achtzigern die Mergelböden der Langhe im Piemont kartiert. Seitdem spricht er bei jeder Gelegenheit davon. Wirklich bei JEDER."' },
+          ],
+        },
+        {
+          prompt: 'Was möchtest du noch wissen?',
+          choices: [
+            { text: '"Soll der Wein zeigen, was lange Reifung bewirkt?"', good: true, bonusTip: 2, guestResponse: '"Exakt! 40 Jahre Forschung – da will ich keinen Wein, der letzten Sommer noch Traube war. Jahre im Fass und in der Flasche. Teer, Leder, getrocknete Rosen. Zeit im Glas."' },
+            { text: '"Darf ich Ihnen einfach unseren meistverkauften Wein bringen?"', good: false, bonusTip: 0, guestResponse: '"Popularität ist kein wissenschaftliches Kriterium. Bitte argumentieren Sie – Sie sind doch der Experte."' },
+            { text: '"Mag Ihr Kollege kräftige Tannine?"', good: true, bonusTip: 1, guestResponse: '"Er sagt immer: Tannin ist wie Gestein. Am Anfang hart, aber mit der Zeit schleift es sich ab. Also ja – er mag Struktur."' },
+          ],
+        },
+        {
+          prompt: 'Welchen Wein empfiehlst du?',
+          options: [
+            { wineId: 'barolo', correct: true, favorite: true, explanation: 'Q.e.d.! Barolo aus Nebbiolo wächst genau auf den Böden der Langhe, die Professor Hartmann kartiert hat. Er muss mindestens 38 Monate reifen, davon 18 im Holzfass – Teer, Rosen, Kirsche, Lakritz und kräftige Tannine. Zu Wildragout mit Steinpilzen ein Klassiker. Hartmann wird den ganzen Abend über Mergel reden. Mit Begeisterung.' },
+            { wineId: 'rioja_crianza', correct: true, explanation: 'Rioja Crianza ist eine gute, begründbare Wahl: mindestens 24 Monate gereift, davon 12 im Fass, Vanille und Kirsche, passt zu Wild und Schmorgerichten. Aber die Reife ist kürzer als beim Barolo – und mit den Böden der Langhe hat er nichts zu tun.' },
+            { wineId: 'primitivo', correct: true, explanation: 'Primitivo passt zu Wild: vollmundig, Pflaume und Gewürze. Aber er setzt auf reife Frucht aus warmem Klima statt auf Struktur und Reifearomen wie Teer und Leder. Für den Mergel-Experten fehlt die Geschichte.' },
+            { wineId: 'spaetburgunder', acceptable: true, explanation: 'Spätburgunder ist elegant, erdig und passt zu Pilzen. Aber zu sechs Stunden geschmortem Wildschwein ist er eher zart, und kräftige Tannine sowie lange Reife – das, was Hartmann sucht – bringt er kaum mit.' },
+            { wineId: 'vinho_verde', correct: false, explanation: 'Vinho Verde ist das Gegenteil von "Zeit im Glas": Er wird jung und frisch getrunken. Ein leichter, spritziger Weißwein zu Wildragout? Die Professorin notiert: "Hypothese verworfen."' },
+          ],
+        },
+      ],
+      summary: 'Terroir und Weinbereitung erzählen gemeinsam die Geschichte eines Weins: Barolo verbindet die Böden der Langhe mit langer Reifung im Fass und in der Flasche. Manche Weine brauchen Jahre – andere, wie Vinho Verde, trinkt man jung.',
+    },
+    {
+      id: 'ber_3_4',
+      guestId: 'lisa',
+      mood: '🍛',
+      intro: 'Lisa hat heute frei und sitzt ausnahmsweise auf der Gästeseite. Sie grinst etwas verlegen. "Chef, ich bräuchte mal deinen Rat – privat. Ich koche Samstag für meine Eltern. Zum ersten Mal, seit ich hier arbeite. Die erwarten jetzt natürlich, dass ich ein Weinprofi bin..."',
+      steps: [
+        {
+          prompt: 'Was möchtest du zuerst wissen?',
+          choices: [
+            { text: '"Was kochst du denn?"', good: true, bonusTip: 2, guestResponse: '"Rotes Thai-Curry mit Garnelen, Kokosmilch und Thai-Basilikum. Das hab ich im Urlaub in Bangkok gelernt. Ziemlich scharf – Papa will Feuer."' },
+            { text: '"Zu Curry? Da trinkt man doch eh Bier oder Mango-Lassi."', good: false, bonusTip: 0, guestResponse: '"Danke, Chef. Und wofür hab ich dann die ganzen Lektionen über Terroir gepaukt?" Sie verschränkt die Arme. "Komm schon, hilf mir."' },
+            { text: '"Wie scharf wird es denn?"', good: true, bonusTip: 1, guestResponse: '"Für Papa nie scharf genug. Mama trinkt allerdings schon bei Paprikachips ein Glas Wasser. Der Wein muss also irgendwie beide retten."' },
+          ],
+        },
+        {
+          prompt: 'Was möchtest du noch wissen?',
+          choices: [
+            { text: '"Darf der Wein etwas Restsüße haben – gegen die Schärfe?"', good: true, bonusTip: 2, guestResponse: '"Ohhh – stimmt ja! Restsüße zähmt Schärfe." Sie schlägt sich an die Stirn. "Ja, bitte! Aber mit Säure, sonst wird es klebrig. Mama hasst klebrig."' },
+            { text: '"Nimm einfach den teuersten, dann sind deine Eltern beeindruckt."', good: false, bonusTip: 0, guestResponse: '"Das wäre dann wohl der Barolo. Zum Thai-Curry." Sie hebt eine Augenbraue. "Chef. Ernsthaft?"' },
+            { text: '"Mögen deine Eltern eher fruchtige oder eher blumige Aromen?"', good: true, bonusTip: 1, guestResponse: '"Fruchtig! Pfirsich, Aprikose... Mama kocht jeden Sommer Aprikosenmarmelade. Blumig mag sie eher bei Seife."' },
+          ],
+        },
+        {
+          prompt: 'Welchen Wein empfiehlst du?',
+          options: [
+            { wineId: 'riesling_spaetlese', correct: true, favorite: true, explanation: 'Genau das! Die Riesling Spätlese ist restsüß – das zähmt die Schärfe – und hat die typische Riesling-Säure, damit nichts klebt. Pfirsich, Aprikose, Honig: Mamas Marmeladen-Aromen im Glas. Und Lisa kann erzählen, dass "Spätlese" eine Prädikatsstufe ist – die Trauben hängen länger am Stock und werden reifer.' },
+            { wineId: 'gewuerztraminer', correct: true, explanation: 'Gewürztraminer ist ein Klassiker zur asiatischen Küche – halbtrocken, intensiv, kommt gut mit Würze klar. Aber seine Aromen sind Litschi und Rosenblüte, also eher blumig – und blumig mag Mama "eher bei Seife". Die Spätlese trifft den Geschmack der Eltern besser.' },
+            { wineId: 'pinot_grigio', acceptable: true, explanation: 'Pinot Grigio ist leicht und passt zu Garnelen. Aber er ist trocken – ohne Restsüße brennt das Curry bei Mama weiter, und gegen die kräftigen Aromen bleibt er recht blass.' },
+            { wineId: 'barolo', correct: false, explanation: 'Kräftige Tannine plus Alkohol plus Chili – das verstärkt die Schärfe, und das Feuer brennt doppelt. Dazu erschlägt der mächtige Barolo die zarten Garnelen. Lisa hatte recht: Chef, ernsthaft?' },
+          ],
+        },
+      ],
+      summary: 'Bei scharfem Essen hilft Restsüße, Tannin und Alkohol machen es schlimmer. Deutsche Prädikate wie die Spätlese sagen dir, wie reif die Trauben bei der Lese waren – reifere Trauben bringen mehr Aroma und oft mehr Süße.',
+    },
+  ],
 };

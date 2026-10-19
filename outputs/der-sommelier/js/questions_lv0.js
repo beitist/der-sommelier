@@ -413,4 +413,143 @@ QUESTIONS.imbiss = {
       explanation: 'Sonne ist der Schlüssel! Durch die Photosynthese entsteht in den Trauben Zucker, der später zu Alkohol vergoren wird. Mehr Sonne = mehr Zucker = potenziell mehr Alkohol. Deshalb sind Weinberge oft an Südhängen angelegt, wo sie maximale Sonneneinstrahlung bekommen.'
     },
   ],
+
+  beratung: [
+    {
+      id: 'ber_0_1',
+      guestId: 'frau_mueller',
+      mood: '🃏',
+      intro: 'Frau Müller stellt ihre Handtasche auf die Theke und rückt die Lesebrille zurecht. "Junger Mann, morgen ist Rommé-Abend bei mir. Die Hilde, die Inge und die Erika kommen. Letztes Mal hat die Inge den Wein mitgebracht – seitdem redet keiner mehr mit ihr. Diesmal mach ich das. Und es muss sitzen!"',
+      steps: [
+        {
+          prompt: 'Was möchtest du zuerst wissen?',
+          choices: [
+            { text: '"Was gibt es denn bei Ihnen zum Knabbern, Frau Müller?"', good: true, bonusTip: 2, guestResponse: '"Ich hol mir bei euch zwei Bleche Mini-Pizzen – die mit Salami mag die Erika so. Und Salzstangen. Beim Kartenspielen braucht man was für die Hand, sonst schummelt die Hilde."' },
+            { text: '"Wie viel möchten Sie denn ausgeben?"', good: false, bonusTip: 0, guestResponse: '"Über Geld spricht man nicht, junger Mann. Das hat schon mein Gerhard gesagt – Gott hab ihn selig. Fragen Sie mich lieber, was uns schmeckt!"' },
+            { text: '"Mögen Ihre Freundinnen es eher süß oder eher trocken?"', good: true, bonusTip: 1, guestResponse: '"Süß natürlich! Trocken ist was für Leute, die zum Lachen in den Keller gehen. Und Rotwein – vom Weißen krieg ich Kopfweh, das wissen Sie doch."' },
+          ],
+        },
+        {
+          prompt: 'Was möchtest du noch wissen?',
+          choices: [
+            { text: '"Soll der Wein ganz ruhig sein, oder darf er ein bisschen prickeln?"', good: true, bonusTip: 2, guestResponse: '"Prickeln! Wie früher beim Tanztee im Kurhaus..." Sie seufzt verträumt. "Aber Sekt ist uns zu sauer. Ein bisschen Perlen, ein bisschen süß, das wär\'s."' },
+            { text: '"Nehmen Sie doch einfach Eierlikör, das trinken die Damen doch so gern."', good: false, bonusTip: 0, guestResponse: '"Eierlikör?! Wir sind doch nicht auf einer Kaffeefahrt! Ich will einen ordentlichen Wein, junger Mann."' },
+            { text: '"Soll es eher ein leichter Wein sein oder ein schwerer?"', good: true, bonusTip: 1, guestResponse: '"Leicht, bitte. Wir spielen bis Mitternacht – und die Erika muss noch mit dem Rollator heim."' },
+          ],
+        },
+        {
+          prompt: 'Welchen Wein empfiehlst du?',
+          options: [
+            { wineId: 'lambrusco', correct: true, favorite: true, explanation: 'Volltreffer! Lambrusco ist rot, lieblich, leicht – und perlt ganz fein. Das Tanztee-Prickeln ohne die Säure vom Sekt. Und zu Mini-Pizzen ist er sowieso ein Klassiker. Frau Müller strahlt: "Da wird die Inge grün vor Neid!"' },
+            { wineId: 'imiglykos', correct: true, explanation: 'Gute Wahl! Imiglykos ist rot, lieblich und leicht – das passt zu den Damen. Nur prickelt er nicht. Für das Tanztee-Gefühl, das sich Frau Müller wünscht, hat Lambrusco die Nase vorn.' },
+            { wineId: 'dornfelder', acceptable: true, explanation: 'Dornfelder ist rot und fruchtig und passt gut zu Pizza. Aber er ist nur halbtrocken statt lieblich, etwas kräftiger – und ohne Perlen. Den Damen wäre er wohl nicht süß genug.' },
+            { wineId: 'riesling', correct: false, explanation: 'Weiß, trocken und mit kräftiger Säure – das genaue Gegenteil von dem, was Frau Müller will. Damit landest du auf der Liste neben der Inge!' },
+          ],
+        },
+      ],
+      summary: 'Gute Beratung heißt: Stil-Wünsche herausfinden. Rot oder weiß? Süß oder trocken? Still oder perlend? Wer lieblich, leicht und ein bisschen Prickeln möchte, ist mit einem Lambrusco bestens bedient – und der passt auch noch zur Pizza.',
+    },
+    {
+      id: 'ber_0_2',
+      guestId: 'stavros',
+      mood: '🐙',
+      intro: 'Stavros kommt rein, diesmal ohne Gyros-Hunger, dafür mit Schweißperlen auf der Stirn. "Malaka, Notfall! Meine Mama kommt am Sonntag aus Thessaloniki. Ich koche für sie – zum ersten Mal! Wenn der Wein nicht passt, erzählt sie das dem ganzen Dorf. Und meinen Tanten. Und dem Popen!"',
+      steps: [
+        {
+          prompt: 'Was möchtest du zuerst wissen?',
+          choices: [
+            { text: '"Was kochst du denn für deine Mama?"', good: true, bonusTip: 2, guestResponse: '"Gegrillte Kalamari, Sardinen mit Zitrone, dazu Feta, Oliven und Bauernsalat. Wie bei uns am Hafen! Mama sagt immer: Am Sonntag gibt es Meer, nicht Fleisch."' },
+            { text: '"Schenk ihr doch lieber Blumen statt Wein."', good: false, bonusTip: 0, guestResponse: '"Blumen? Die hat einen Garten so groß wie ein Fußballfeld – mit Zitronenbäumen! Malaka, hilf mir mit dem Wein, nicht mit dem Gemüse!"' },
+            { text: '"Trinkt deine Mama lieber Rot- oder Weißwein?"', good: true, bonusTip: 1, guestResponse: '"Weiß, immer! Rotwein gibt es bei uns nur an Ostern zum Lamm. Ansonsten sagt Mama: Rot ist für Männer, die zu viel reden."' },
+          ],
+        },
+        {
+          prompt: 'Was möchtest du noch wissen?',
+          choices: [
+            { text: '"Soll der Wein nach Heimat schmecken – nach Griechenland?"', good: true, bonusTip: 2, guestResponse: '"NE! Genau! Wie im Dorf bei der Yiayia – nach Kiefernwald und Sommer. Mama riecht ein griechisches Glas aus drei Metern Entfernung, ich schwör!"' },
+            { text: '"Was darf der Wein denn kosten?"', good: false, bonusTip: 0, guestResponse: '"Für meine Mama? Ich hab extra das Bad neu gefliest, weil sie kommt! Frag mich was Gescheites, nicht nach Geld!"' },
+            { text: '"Mag sie es trocken oder lieber süß?"', good: true, bonusTip: 1, guestResponse: '"Trocken. Süß trinkt sie nur ihren Kaffee – mit drei Löffeln Zucker. Beim Wein ist sie streng."' },
+          ],
+        },
+        {
+          prompt: 'Welchen Wein empfiehlst du?',
+          options: [
+            { wineId: 'retsina', correct: true, favorite: true, explanation: 'Perfekt! Retsina ist ein trockener griechischer Weißwein mit Kiefernharz – genau das Kiefernwald-Aroma, das Mama an die Heimat erinnert. Zu gegrillten Kalamari, Feta und Oliven ein echter Klassiker. Mama wird weinen. Vor Freude.' },
+            { wineId: 'riesling', correct: true, explanation: 'Trockener Riesling zum gegrillten Fisch ist eine richtig gute Kombination – frisch, mit Zitrus und Säure. Nur schmeckt er nach Rhein statt nach Heimat. Für Mama aus Thessaloniki ist Retsina die herzlichere Wahl.' },
+            { wineId: 'mueller_thurgau', acceptable: true, explanation: 'Müller-Thurgau passt zu leichtem Fisch und Salat, keine Frage. Aber er ist halbtrocken und mild – Mama wollte trocken. Und griechisch ist er auch nicht.' },
+            { wineId: 'imiglykos', correct: false, explanation: 'Griechisch – ja. Aber lieblich und rot! Mama trinkt trocken und weiß, und zu Sardinen mit Zitrone passt ein süßer Roter nicht. Imiglykos ist eher was für den Gyrosteller.' },
+          ],
+        },
+      ],
+      summary: 'Erst das Essen, dann die Vorlieben, dann die Herkunft: Zu Fisch und Meeresfrüchten passt meist ein trockener Weißwein. Und wer Heimat im Glas sucht, bekommt Retsina – seit über 2000 Jahren mit Kiefernharz, weil die alten Griechen ihre Amphoren damit abgedichtet haben.',
+    },
+    {
+      id: 'ber_0_3',
+      guestId: 'das_paerchen',
+      mood: '🧺',
+      intro: 'Das Pärchen vom ersten Date ist wieder da – inzwischen Händchen haltend. Während sie die Karte studiert, lehnt er sich zu dir und flüstert: "Wir machen am Samstag unser erstes Picknick. Ich soll den Wein besorgen. Bitte... lass mich nicht hängen!"',
+      steps: [
+        {
+          prompt: 'Was möchtest du zuerst wissen?',
+          choices: [
+            { text: '"Was kommt denn in den Picknickkorb?"', good: true, bonusTip: 2, guestResponse: '"Putenwraps, Tomate-Mozzarella-Spieße und Erdbeeren. Lena hat dafür drei Stunden Pinterest geguckt. Alles ganz leicht und sommerlich."' },
+            { text: '"Wie lange seid ihr eigentlich schon zusammen?"', good: false, bonusTip: 0, guestResponse: '"Ähm... drei Monate. Morgen." Er wird knallrot. "Aber das hat doch nichts mit dem Wein zu tun, oder?!"' },
+            { text: '"Wo soll das Picknick stattfinden?"', good: true, bonusTip: 1, guestResponse: '"Am Baggersee. Auf Lenas neuer Picknickdecke. Die ist... schneeweiß." Er schluckt hörbar. "Die hat sie extra gekauft."' },
+          ],
+        },
+        {
+          prompt: 'Was möchtest du noch wissen?',
+          choices: [
+            { text: '"Mag Lena es eher süß, eher trocken – oder irgendwo dazwischen?"', good: true, bonusTip: 2, guestResponse: '"Dazwischen! Bei Zitronenwasser verzieht sie schon das Gesicht – nicht zu sauer also. Aber Limo will sie auch nicht. So mild und blumig, hat sie mal gesagt."' },
+            { text: '"Nehmt doch einfach Dosenbier mit, das ist praktischer."', good: false, bonusTip: 0, guestResponse: '"Dosenbier?! Zum ersten Picknick? Da kann ich ihr gleich eine Bratwurst statt einer Rose schenken!"' },
+            { text: '"Soll der Wein eher leicht sein oder kräftig?"', good: true, bonusTip: 1, guestResponse: '"Leicht! Es sollen 30 Grad werden. Ich will nicht nach zwei Gläsern unterm Baum einschlafen – das wäre kein guter Eindruck."' },
+          ],
+        },
+        {
+          prompt: 'Welchen Wein empfiehlst du?',
+          options: [
+            { wineId: 'mueller_thurgau', correct: true, favorite: true, explanation: 'Perfekt! Müller-Thurgau ist leicht, halbtrocken und blumig – nicht zu sauer, nicht zu süß, genau "mild und blumig", wie Lena es mag. Er passt zu Putenwraps und Salat. Und als Weißwein bleibt die weiße Decke weiß. Gut gekühlt in der Kühltasche – fertig ist das Traum-Picknick!' },
+            { wineId: 'riesling', correct: true, explanation: 'Weiß, leicht und ein Klassiker zu Geflügel – passt! Aber der trockene Riesling hat eine kräftige Säure. Für Lena, die schon bei Zitronenwasser das Gesicht verzieht, ist der mildere Müller-Thurgau die sicherere Wahl.' },
+            { wineId: 'retsina', acceptable: true, explanation: 'Retsina ist weiß und trocken und passt zu Tomate-Mozzarella. Aber der Harzgeschmack ist sehr eigen – manche lieben ihn, manche gar nicht. Beim ersten Picknick ein Risiko, und mild ist er auch nicht.' },
+            { wineId: 'dornfelder', correct: false, explanation: 'Rotwein auf der schneeweißen Picknickdecke? Mutig! Dazu ist Dornfelder kräftiger als gewünscht. Bei 30 Grad zu Putenwraps lieber einen leichten Weißen.' },
+          ],
+        },
+      ],
+      summary: 'Beim Draußen-Trinken zählen Wetter und Anlass mit: Bei Hitze und leichtem Essen ist ein leichter Weißwein ideal – gut gekühlt bei 8–12 °C. Und wer "nicht zu sauer, nicht zu süß" sucht, landet bei halbtrocken.',
+    },
+    {
+      id: 'ber_0_4',
+      guestId: 'studenten',
+      mood: '🌶️',
+      intro: 'Die Studenten-Truppe drängelt sich an die Theke, einer hält einen Topfdeckel wie ein Schild. "Digga, wir brauchen Hilfe! Heute ist WG-Kochabend, zehn Leute, und wir wollen mal Wein statt Mate. Aber wir haben null Ahnung – und ungefähr 12 Euro."',
+      steps: [
+        {
+          prompt: 'Was möchtest du zuerst wissen?',
+          choices: [
+            { text: '"Was kocht ihr denn?"', good: true, bonusTip: 2, guestResponse: '"Chili con Carne, Riesentopf! Hack, Kidneybohnen, Tomaten – und Jonas hat die ganzen Jalapeños reingekippt. Ziemlich scharf jetzt. Und ziemlich deftig."' },
+            { text: '"Bei dem Budget nehmt ihr am besten Wein aus dem Tetrapak."', good: false, bonusTip: 0, guestResponse: '"Ey! Wir sind pleite, aber nicht ohne Würde! Wir wollen einen echten Wein, mit Flasche und so."' },
+            { text: '"Trinkt ihr lieber Rot oder Weiß?"', good: true, bonusTip: 1, guestResponse: '"Rot! Mia sagt, zu Chili gehört was Rotes. Ist wohl so eine Farbsache. Und alle anderen haben genickt."' },
+          ],
+        },
+        {
+          prompt: 'Was möchtest du noch wissen?',
+          choices: [
+            { text: '"Mögt ihr es eher süß oder eher trocken?"', good: true, bonusTip: 2, guestResponse: '"Puh, da streiten wir. Jonas findet süßen Wein \'Saft für Kinder\'. Mia sagt, trockener Wein schmeckt wie \'an einer Batterie lecken\'. Gibt\'s was dazwischen?"' },
+            { text: '"Habt ihr in der WG überhaupt Weingläser?"', good: false, bonusTip: 0, guestResponse: '"Äh... Senfgläser zählen, oder?" Sie schauen sich an. "Okay, das klären wir später. Was ist jetzt mit dem Wein?"' },
+            { text: '"Soll der Wein eher leicht sein oder was aushalten können?"', good: true, bonusTip: 1, guestResponse: '"Der muss was aushalten! Das Chili hat ordentlich Bumms. Da will keiner was, das schmeckt wie Saftschorle."' },
+          ],
+        },
+        {
+          prompt: 'Welchen Wein empfiehlst du?',
+          options: [
+            { wineId: 'dornfelder', correct: true, favorite: true, explanation: 'Treffer! Dornfelder ist halbtrocken – genau das "Dazwischen" für Jonas und Mia. Fruchtig nach Kirsche und Brombeere, mittelkräftig, also stark genug fürs deftige Chili. Und ein Hauch Restsüße mildert die Jalapeño-Schärfe. Günstig ist er auch – die WG ist gerettet.' },
+            { wineId: 'lambrusco', correct: true, explanation: 'Nicht schlecht! Lambrusco ist fruchtig, die Süße zähmt die Schärfe, und die feinen Perlen erfrischen. Aber er ist lieblich und leicht – Jonas meckert über "Kindersaft", und gegen das deftige Chili ist er etwas zart.' },
+            { wineId: 'imiglykos', acceptable: true, explanation: 'Imiglykos ist rot und fruchtig, die Süße hilft gegen die Schärfe. Aber er ist lieblich und leicht – für Jonas zu süß, und das kräftige Chili deckt ihn zu.' },
+            { wineId: 'riesling', correct: false, explanation: 'Weiß, trocken und mit viel Säure – Mia ruft "Batterie!", und die Gruppe wollte Rot. Dazu kommt: Säure macht scharfes Essen gefühlt noch schärfer. Autsch.' },
+          ],
+        },
+      ],
+      summary: 'Wenn sich zwei Geschmäcker streiten, ist "halbtrocken" oft der perfekte Kompromiss. Und zu scharfem Essen gilt: Ein bisschen Restsüße mildert die Schärfe, viel Säure macht sie stärker.',
+    },
+  ],
 };
