@@ -543,7 +543,7 @@ const CHEFS = {
     intro: [
       'Bienvenue dans Le Vignoble! Ich bin Laurent, Chefsommelier. Hier wird es ernst.',
       'Unsere Gäste sind Bankiers, Diplomaten, Professoren. Die reden über Terroir, Jahrgänge und Grand Cru. Da muss man mithalten können.',
-      'Wir arbeiten jetzt mit Weinen aus der ganzen Welt – Argentinien, Südafrika. Und ab jetzt gibt es Blindverkostungen.',
+      'Wir arbeiten jetzt mit Weinen aus der ganzen Welt – Argentinien, Südafrika. Und die Blindverkostungen werden ab jetzt deutlich anspruchsvoller.',
       'Vertrauen Sie Ihrer Nase, Ihrem Gaumen. Das unterscheidet einen guten Sommelier von einem großartigen.'
     ]
   },

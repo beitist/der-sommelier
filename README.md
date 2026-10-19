@@ -14,11 +14,11 @@ Weinwissen wird nicht durch trockene Theorie vermittelt, sondern durch Praxis: D
 
 | Level | Restaurant | Thema | Neue Regionen |
 |-------|-----------|-------|---------------|
-| 0 | Imbiss "Zum Goldenen Gyros" | Basics: Rot/Weiß/Rosé, trocken/süß | Deutschland, Italien, Griechenland |
-| 1 | Steakhaus "Black Angus" | Körper & Tannine, Neue Welt | Frankreich, Österreich, Spanien |
-| 2 | Gasthaus "Zur Linde" | Qualitätsstufen, regionale Tiefe | Elsass, Portugal |
-| 3 | Restaurant "Le Vignoble" | Terroir & Weinbereitung, Crus | Burgund, Bordeaux, Piemont, Südafrika, Argentinien |
-| 4 | Sterne-Restaurant "Étoile" | Verkostung & Weinsprache, Perfektion | Champagne, Rhône, Veneto |
+| 0 | Imbiss "Zum Goldenen Gyros" | Basics & Weinstile | Deutschland, Italien, Griechenland |
+| 1 | Steakhaus "Black Angus" | Rebsorten & Charakter | Österreich, Frankreich |
+| 2 | Gasthaus "Zur Linde" | Wein & Essen | Spanien, Portugal |
+| 3 | Restaurant "Le Vignoble" | Terroir & Weinbereitung | Argentinien, Südafrika |
+| 4 | Sterne-Restaurant "Étoile" | Verkostung & Weinsprache | – |
 
 ## Screenshots
 
@@ -147,9 +147,9 @@ Falls du direkt in ein bestimmtes Level springen möchtest:
 | Level | Code |
 |-------|------|
 | 0 | *Startlevel* |
-| 1 | `ANGUS` |
+| 1 | `RIESLING` |
 | 2 | `TERROIR` |
-| 3 | `VIGNOBLE` |
+| 3 | `BARRIQUE` |
 | 4 | `SOMMELIER` |
 
 Levelcode eingeben: Auf dem Titelbildschirm "Levelcode eingeben" klicken.

@@ -491,7 +491,7 @@ QUESTIONS.gehoben = {
       },
       options: [
         { wineId: 'pinotage', correct: true, favorite: true },
-        { wineId: 'champagner', correct: false },
+        { wineId: 'saint_emilion', correct: false },
         { wineId: 'gruener_veltliner', correct: false },
         { wineId: 'chianti', correct: false },
       ],

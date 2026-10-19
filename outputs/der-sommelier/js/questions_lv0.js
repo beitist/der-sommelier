@@ -30,7 +30,7 @@ QUESTIONS.imbiss = {
       scenario: 'Ein junges Paar kommt schüchtern rein, offensichtlich erstes Date. Sie kichert, er ist nervös. Bestellen Putenspieße mit Salat und fragen leise: "Haben Sie... etwas Leichtes zum Trinken?"',
       question: 'Was empfiehlst du?',
       options: [
-        { wineId: 'pinot_grigio', correct: false, explanation: 'Pinot Grigio ist leicht und frisch, aber den haben wir erst ab Level 2 im Keller. Müller-Thurgau ist die bessere Wahl!' },
+        { wineId: 'imiglykos', correct: false, explanation: 'Imiglykos ist zwar leicht, aber lieblich und rot – zu Putenspießen mit Salat passt ein milder Weißer besser. Müller-Thurgau ist die bessere Wahl!' },
         { wineId: 'mueller_thurgau', correct: true, favorite: true, explanation: 'Genau! Müller-Thurgau ist mild, blumig und leicht – perfekt zu Geflügel mit Salat. Und zum ersten Date passt die sanfte Art.' },
         { wineId: 'dornfelder', correct: false, explanation: 'Dornfelder hat zu viel Körper – nicht das, was man unter "leicht" versteht.' },
         { wineId: 'riesling', acceptable: true, explanation: 'Riesling geht zum Geflügel, klar – aber die kräftige Säure ist nicht gerade das "Leichte", das sich das nervöse Pärchen wünscht. Müller-Thurgau ist sanfter und passender fürs erste Date.' },
