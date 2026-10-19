@@ -53,7 +53,7 @@ function renderTitle() {
           </div>
           <div id="levelcode-input" style="display:none; margin-top:20px;">
             <div style="display:flex; gap:8px; justify-content:center; align-items:center;">
-              <input id="levelcode-field" type="text" placeholder="Code eingeben..."
+              <input id="levelcode-field" type="text" placeholder="Code eingeben..." autocapitalize="characters" autocomplete="off" autocorrect="off" spellcheck="false"
                 style="padding:10px 16px; font-size:16px; font-family:var(--font-ui); background:var(--c-card); color:var(--c-text); border:2px solid var(--c-purple); border-radius:6px; text-transform:uppercase; width:200px; text-align:center;"
                 onkeydown="if(event.key==='Enter')tryLevelCode()">
               <button class="btn btn-primary btn-small" onclick="tryLevelCode()">ENTER</button>
@@ -80,7 +80,7 @@ function renderChefIntro() {
       ${renderSidebar()}
       <div class="main-area">
         <div class="restaurant-bg">
-          <div class="rest-layer rest-bg-layer" style="background-image:url('assets/${lv.bgKey}/hintergrund.png')"></div>
+          <div class="rest-layer rest-bg-layer" style="background-image:url('assets/${lv.bgKey}/hintergrund_4x3.png')"></div>
           <div class="rest-layer rest-fg-layer" style="background-image:url('assets/${lv.bgKey}/theke.png')"></div>
           <div class="chef-intro-scene">
             <div class="chef-sprite-area">
@@ -268,8 +268,10 @@ function renderMap() {
             <h2>🗺️ Weinländer der Welt</h2>
             <button class="btn btn-small btn-secondary" onclick="goToScene('restaurant')">← Zurück zum Restaurant</button>
           </div>
-          <div class="map-world" style="background-image:url('assets/map/weltkarte.png')">
-            ${regions}
+          <div class="map-world">
+            <div class="map-image" style="background-image:url('assets/map/weltkarte.png')">
+              ${regions}
+            </div>
           </div>
         </div>
       </div>
@@ -392,7 +394,7 @@ function renderRestaurantLobby() {
       ${renderSidebar()}
       <div class="main-area">
         <div class="restaurant-bg">
-          <div class="rest-layer rest-bg-layer" style="background-image:url('assets/${lv.bgKey}/hintergrund.png')"></div>
+          <div class="rest-layer rest-bg-layer" style="background-image:url('assets/${lv.bgKey}/hintergrund_4x3.png')"></div>
           <div class="rest-layer rest-fg-layer" style="background-image:url('assets/${lv.bgKey}/theke.png')"></div>
           ${lv.id === 'steakhaus' ? '<div class="skull-easter-egg" onclick="handleSkullClick()" title="💀"></div>' : ''}
           <div class="rest-ui-overlay">
@@ -452,7 +454,7 @@ function renderQuestion() {
       ${renderSidebar()}
       <div class="main-area">
         <div class="restaurant-bg">
-          <div class="rest-layer rest-bg-layer" style="background-image:url('assets/${lv.bgKey}/hintergrund.png')"></div>
+          <div class="rest-layer rest-bg-layer" style="background-image:url('assets/${lv.bgKey}/hintergrund_4x3.png')"></div>
           ${guestHtml}
           <div class="rest-layer rest-fg-layer" style="background-image:url('assets/${lv.bgKey}/theke.png')"></div>
 
@@ -800,7 +802,7 @@ function renderShiftEnd() {
       ${renderSidebar()}
       <div class="main-area">
         <div class="restaurant-bg">
-          <div class="rest-layer rest-bg-layer" style="background-image:url('assets/${lv.bgKey}/hintergrund.png')"></div>
+          <div class="rest-layer rest-bg-layer" style="background-image:url('assets/${lv.bgKey}/hintergrund_4x3.png')"></div>
           <div class="rest-layer rest-fg-layer" style="background-image:url('assets/${lv.bgKey}/theke.png')"></div>
           <div class="rest-ui-overlay">
             <div class="shift-summary-card">
@@ -929,6 +931,7 @@ function renderMiniGame() {
     <div class="scene scene-minigame active">
       <div class="minigame-wrapper">
         <canvas id="minigame-canvas"></canvas>
+        ${state.overlay !== 'minigameEnd' ? '<button class="btn btn-secondary minigame-exit" onclick="endMiniGame()">✕ Beenden</button>' : ''}
       </div>
       ${state.overlay === 'minigameEnd' ? renderMiniGameEnd() : ''}
     </div>`;

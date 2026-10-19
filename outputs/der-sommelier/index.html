@@ -2,7 +2,9 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <title>Der Sommelier – Ein Wein-RPG</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -18,17 +20,26 @@
   <script src="js/engine.js"></script>
   <script src="js/scenes.js"></script>
   <script>
-    // Viewport scaler: fit 1920×1080 game to any screen
+    // Viewport scaler: fit 1920×1440 (4:3, iPad) game to any screen,
+    // ohne Safe Areas (Home-Indikator, Notch) zu überdecken
     (function() {
-      const GAME_W = 1920, GAME_H = 1080;
+      const GAME_W = 1920, GAME_H = 1440;
       const root = document.getElementById('game-root');
+      const probe = document.createElement('div');
+      probe.style.cssText = 'position:fixed;visibility:hidden;pointer-events:none;' +
+        'padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)';
+      document.body.appendChild(probe);
       function scaleGame() {
-        const sw = window.innerWidth, sh = window.innerHeight;
+        const cs = getComputedStyle(probe);
+        const t = parseFloat(cs.paddingTop) || 0, r = parseFloat(cs.paddingRight) || 0;
+        const b = parseFloat(cs.paddingBottom) || 0, l = parseFloat(cs.paddingLeft) || 0;
+        const sw = window.innerWidth - l - r, sh = window.innerHeight - t - b;
         const scale = Math.min(sw / GAME_W, sh / GAME_H);
-        root.style.transform = 'scale(' + scale + ')';
+        root.style.transform = 'translate(' + (l - r) / 2 + 'px,' + (t - b) / 2 + 'px) scale(' + scale + ')';
       }
       scaleGame();
       window.addEventListener('resize', scaleGame);
+      window.addEventListener('orientationchange', scaleGame);
     })();
     // Boot the game
     render();

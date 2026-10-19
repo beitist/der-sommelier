@@ -11,6 +11,18 @@
 /* ===== RESET ===== */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
+/* ===== TOUCH (iPad) ===== */
+html, body { overscroll-behavior: none; }
+body {
+  -webkit-user-select: none; user-select: none;      /* kein Markieren beim Tippen */
+  -webkit-touch-callout: none;                       /* kein Long-Press-Menü */
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+  touch-action: manipulation;                        /* kein Doppeltipp-Zoom */
+}
+img { -webkit-user-drag: none; user-drag: none; }
+input { -webkit-user-select: text; user-select: text; }
+
 :root {
   --c-bg:       #0f0f1a;
   --c-panel:    #1a1a2e;
@@ -44,7 +56,8 @@ body {
 }
 
 #game-root {
-  width: 1920px; height: 1080px;
+  width: 1920px; height: 1440px;
+  flex-shrink: 0;
   position: relative;
   background: var(--c-bg);
   transform-origin: center center;
@@ -94,9 +107,11 @@ body {
   transition: all 0.2s;
   position: relative;
 }
+@media (hover: hover) {
 .sidebar-item:hover:not(.locked) {
   background: rgba(233,69,96,0.15);
   border-color: var(--c-accent);
+}
 }
 .sidebar-item.current {
   background: rgba(233,69,96,0.2);
@@ -211,17 +226,23 @@ body {
   background: var(--c-accent); color: #fff;
   border-color: var(--c-accent);
 }
+@media (hover: hover) {
 .btn-primary:hover:not(:disabled) { background: #d43350; transform: translateY(-1px); }
+}
 .btn-secondary {
   background: transparent; color: var(--c-accent);
   border-color: var(--c-accent);
 }
+@media (hover: hover) {
 .btn-secondary:hover:not(:disabled) { background: rgba(233,69,96,0.15); }
+}
 .btn-ghost {
   background: transparent; color: var(--c-muted);
   border-color: transparent;
 }
+@media (hover: hover) {
 .btn-ghost:hover { color: var(--c-text); }
+}
 .btn-large { padding: 14px 36px; font-size: 14pt; }
 .btn-small { padding: 6px 14px; font-size: 11pt; }
 
@@ -448,7 +469,9 @@ body {
   transition: all 0.2s;
   padding: 4px 8px;
 }
+@media (hover: hover) {
 .map-pin:hover:not(.locked) { transform: scale(1.15); z-index: 10; }
+}
 .map-pin.locked { opacity: 0.25; cursor: not-allowed; filter: grayscale(1); }
 .pin-icon { font-size: 32px; display: block; filter: drop-shadow(2px 2px 0 #000); }
 .pin-name {
@@ -665,9 +688,11 @@ body {
   font-family: var(--font-ui);
   font-size: 14pt;
 }
+@media (hover: hover) {
 .dialog-choice:hover:not(:disabled):not(.correct):not(.wrong) {
   background: rgba(233,69,96,0.15);
   border-color: var(--c-accent);
+}
 }
 .dialog-choice.correct { background: rgba(46,204,113,0.2); border-color: var(--c-success); color: #8f8; }
 .dialog-choice.wrong { background: rgba(231,76,60,0.2); border-color: var(--c-danger); color: #f88; }
@@ -941,7 +966,7 @@ body {
   border-radius: 12px;
   padding: 32px 40px;
   max-width: 600px;
-  max-height: 80vh;
+  max-height: 1200px;
   overflow-y: auto;
   animation: popIn 0.3s ease;
   display: flex; gap: 24px;
@@ -1152,19 +1177,21 @@ body {
 .skull-easter-egg {
   position: absolute;
   z-index: 6;
-  /* Linker Stierschädel im Steakhaus-Hintergrund */
-  left: 1%;
-  top: 19%;
-  width: 130px;
-  height: 160px;
+  /* Linker Stierschädel im Steakhaus-Hintergrund (hintergrund_4x3.png) */
+  left: 0;
+  top: 26.5%;
+  width: 150px;
+  height: 180px;
   cursor: pointer;
   opacity: 0;
   transition: opacity 0.1s;
 }
+@media (hover: hover) {
 .skull-easter-egg:hover {
   opacity: 0.15;
   background: radial-gradient(circle, rgba(233,69,96,0.3), transparent 70%);
   border-radius: 50%;
+}
 }
 .skull-easter-egg:active {
   opacity: 0.4;
@@ -1210,10 +1237,12 @@ body {
   transition: all 0.2s;
   margin-bottom: 8px;
 }
+@media (hover: hover) {
 .btn-chef-hint:hover {
   background: rgba(240,230,140,0.2);
   border-color: var(--c-gold);
   transform: translateY(-1px);
+}
 }
 .chef-hint-box {
   background: rgba(240,230,140,0.1);
@@ -1286,8 +1315,10 @@ body {
 .ber-prompt {
   font-size: 14pt; color: #4a9; font-weight: 600; margin-bottom: 8px;
 }
+@media (hover: hover) {
 .ber-choice:hover:not(:disabled) {
   background: rgba(68,170,153,0.15); border-color: #4a9;
+}
 }
 .fb-beratung-summary {
   font-size: 12pt; color: var(--c-gold); font-style: italic;
@@ -1304,3 +1335,62 @@ body {
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--c-purple); border-radius: 3px; }
+
+/* ===== TOUCH-FEEDBACK & TOUCH-ZIELE (iPad) ===== */
+/* Bei Skalierung ~0,71 auf dem iPad entsprechen 64px ≈ 45pt (Apple-Minimum: 44pt) */
+.btn { min-height: 64px; }
+.btn-small { min-height: 56px; }
+.dialog-choice { min-height: 68px; font-size: 16pt; }
+.choice-detail { font-size: 13pt; }
+.btn-chef-hint { min-height: 56px; font-size: 13pt; }
+.map-pin { padding: 12px 16px; min-width: 96px; }
+.pin-icon { font-size: 44px; }
+.pin-name, .pin-wines { font-size: 12pt; }
+.region-wine-card { min-height: 96px; }
+
+.btn:active:not(:disabled),
+.dialog-choice:active:not(:disabled),
+.sidebar-item:active:not(.locked),
+.map-pin.unlocked:active,
+.region-wine-card:active,
+.btn-chef-hint:active {
+  transform: scale(0.97);
+  filter: brightness(1.2);
+  transition: transform 0.05s, filter 0.05s;
+}
+
+/* ===== 4:3-LAYOUT (1920×1440): Platz nutzen ===== */
+/* Titel */
+.title-text { font-size: 84px; margin-bottom: 20px; }
+.title-sub { font-size: 20pt; margin-bottom: 70px; }
+.title-glass { transform: scale(1.6); margin-bottom: 70px; }
+.title-buttons .btn { font-size: 16pt; padding: 18px 40px; }
+#levelcode-field { font-size: 22px !important; width: 280px !important; padding: 16px 20px !important; }
+
+/* Lehrgang: Weinkarte vertikal zentriert, Flasche größer */
+.explorer-card { align-items: center; padding: 40px 64px; gap: 64px; }
+.wine-bottle-area { width: 380px; padding-top: 0; }
+.wine-bottle-img { max-height: 640px; max-width: 360px; }
+.wine-title { font-size: 30pt; }
+.wine-desc { font-size: 20pt; }
+.detail-label { font-size: 14pt; }
+.detail-value { font-size: 18pt; }
+.wine-funfact { font-size: 18pt; }
+
+/* Weindetail-Fenster (Länderinfo) */
+.wine-detail-card { max-width: 980px; padding: 40px 48px; gap: 36px; }
+.wine-detail-bottle img { max-height: 460px; }
+
+/* Minispiel: Beenden-Button & Touch */
+#minigame-canvas { touch-action: none; }
+.minigame-exit { position: absolute; top: 24px; right: 24px; z-index: 5; background: rgba(0,0,0,0.5); }
+
+/* Weltkarte unbeschnitten im eigenen Seitenverhältnis – Pins (%) liegen direkt auf dem Bild */
+.map-world { display: flex; align-items: center; justify-content: center; background: #0a0a14; }
+.map-image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1920 / 1072;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}

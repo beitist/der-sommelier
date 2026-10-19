@@ -16,3 +16,5 @@ generate_assets.py
 der_sommelier_inhalte.html
 
 ideen.md
+
+__pycache__/

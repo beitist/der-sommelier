@@ -832,8 +832,9 @@ function initMiniGameLoop() {
   const canvas = document.getElementById('minigame-canvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
-  canvas.width = canvas.parentElement.clientWidth;
-  canvas.height = canvas.parentElement.clientHeight;
+  // Halbe Auflösung, per CSS hochskaliert: große Retro-Pixel
+  canvas.width = Math.round(canvas.parentElement.clientWidth / 2);
+  canvas.height = Math.round(canvas.parentElement.clientHeight / 2);
 
   miniGame = {
     ctx, canvas,
@@ -846,35 +847,53 @@ function initMiniGameLoop() {
     cowTimer: 0,
     ground: canvas.height - 40,
     running: true,
+    lastTime: null, acc: 0,   // Zeitmessung: feste 60 Schritte/s, egal ob 60- oder 120-Hz-Display
     stars: Array.from({length: 30}, () => ({ x: Math.random() * canvas.width, y: Math.random() * canvas.height * 0.5, s: Math.random() * 2 + 1 })),
   };
 
-  // Controls
-  canvas.onclick = () => {
+  // Controls: Touch = linke Hälfte springen, rechte Hälfte werfen.
+  // Maus = Klick wirft, Leertaste springt.
+  const throwBottle = () => miniGame.bottles.push({ x: miniGame.player.x + 30, y: miniGame.player.y, vx: 8, vy: -3 });
+  const jump = () => { if (miniGame.player.onGround) { miniGame.player.vy = -12; miniGame.player.onGround = false; } };
+  canvas.onpointerdown = (e) => {
     if (!miniGame || !miniGame.running) return;
-    miniGame.bottles.push({ x: miniGame.player.x + 30, y: miniGame.player.y, vx: 8, vy: -3 });
+    e.preventDefault();
+    const rect = canvas.getBoundingClientRect();
+    if (e.pointerType !== 'mouse' && e.clientX - rect.left < rect.width / 2) jump();
+    else throwBottle();
   };
   canvas.oncontextmenu = (e) => e.preventDefault();
   miniGame._keyHandler = (e) => {
     if (!miniGame || !miniGame.running) return;
-    if (e.code === 'Space') {
-      e.preventDefault();
-      if (miniGame.player.onGround) { miniGame.player.vy = -12; miniGame.player.onGround = false; }
-    }
+    if (e.code === 'Space') { e.preventDefault(); jump(); }
   };
   document.addEventListener('keydown', miniGame._keyHandler);
 
   requestAnimationFrame(miniGameTick);
 }
 
-function miniGameTick() {
+const MINIGAME_STEP_MS = 1000 / 60;
+
+function miniGameTick(now) {
   if (!miniGame || !miniGame.running) return;
   const mg = miniGame;
-  const ctx = mg.ctx;
+  // Feste Simulationsschritte: Spieltempo hängt nicht von der Bildrate ab
+  if (mg.lastTime === null) mg.lastTime = now;
+  mg.acc += Math.min(now - mg.lastTime, 250);  // nach Pausen (App im Hintergrund) nicht vorspulen
+  mg.lastTime = now;
+  while (mg.acc >= MINIGAME_STEP_MS) {
+    mg.acc -= MINIGAME_STEP_MS;
+    miniGameStep(mg);
+    if (!miniGame || !miniGame.running) return;
+  }
+  miniGameDraw(mg);
+  requestAnimationFrame(miniGameTick);
+}
+
+function miniGameStep(mg) {
   const W = mg.canvas.width;
   const H = mg.canvas.height;
 
-  // Update
   mg.timeLeft--;
   if (mg.timeLeft <= 0) { endMiniGame(); return; }
 
@@ -902,9 +921,10 @@ function miniGameTick() {
   mg.cows.forEach(c => c.x -= c.speed);
   mg.cows = mg.cows.filter(c => c.x > -60);
 
-  // Collisions
+  // Collisions (rückwärts, damit splice keine Kuh überspringt)
   mg.bottles.forEach(b => {
-    mg.cows.forEach((c, ci) => {
+    for (let ci = mg.cows.length - 1; ci >= 0; ci--) {
+      const c = mg.cows[ci];
       if (b.x > c.x && b.x < c.x + c.w && b.y > c.y && b.y < c.y + c.h) {
         mg.score += 10;
         // Particles
@@ -913,15 +933,21 @@ function miniGameTick() {
         }
         mg.cows.splice(ci, 1);
         b.x = -100; // remove
+        break;
       }
-    });
+    }
   });
 
   // Update particles
   mg.particles.forEach(p => { p.x += p.vx; p.y += p.vy; p.life--; });
   mg.particles = mg.particles.filter(p => p.life > 0);
+}
 
-  // Draw
+function miniGameDraw(mg) {
+  const ctx = mg.ctx;
+  const W = mg.canvas.width;
+  const H = mg.canvas.height;
+
   // Sky
   ctx.fillStyle = '#0a0a2e';
   ctx.fillRect(0, 0, W, H);
@@ -990,22 +1016,28 @@ function miniGameTick() {
 
   // HUD
   ctx.fillStyle = 'rgba(0,0,0,0.6)';
-  ctx.fillRect(10, 10, 200, 36);
+  ctx.fillRect(10, 10, 360, 36);
   ctx.font = '14px "Press Start 2P", monospace';
   ctx.fillStyle = '#e94560';
   ctx.fillText('SCORE: ' + mg.score, 20, 32);
   ctx.fillStyle = '#f0e68c';
   const secs = Math.ceil(mg.timeLeft / 60);
-  ctx.fillText('TIME: ' + secs + 's', 130, 32);
+  ctx.fillText('TIME: ' + secs + 's', 210, 32);
 
-  // Instructions
-  if (mg.timeLeft > 28 * 60) {
-    ctx.font = '10px "Press Start 2P", monospace';
+  // Instructions (erste 3 Sekunden)
+  if (mg.timeLeft > 27 * 60) {
+    ctx.font = '12px "Press Start 2P", monospace';
+    ctx.fillStyle = '#c0c0e0';
+    ctx.textAlign = 'center';
+    ctx.fillText('TIPP LINKS = Springen   |   TIPP RECHTS = Flasche werfen', W/2, H/2 - 40);
+    ctx.font = '9px "Press Start 2P", monospace';
     ctx.fillStyle = '#8888aa';
-    ctx.fillText('KLICK = Flasche werfen | SPACE = Springen', W/2 - 200, H/2 - 40);
+    ctx.fillText('(Maus: Klick = werfen, Leertaste = springen)', W/2, H/2 - 18);
+    ctx.textAlign = 'left';
+    // Trennlinie der Touch-Zonen
+    ctx.fillStyle = 'rgba(255,255,255,0.08)';
+    ctx.fillRect(W/2 - 1, 0, 2, mg.ground);
   }
-
-  requestAnimationFrame(miniGameTick);
 }
 
 function endMiniGame() {
