@@ -1518,3 +1518,67 @@ body {
 .hs-buttons { margin-top: 32px; }
 .hs-buttons .btn { font-family: var(--font-ui); }
 .hs-insert-coin { margin-top: 28px; font-size: 14px; color: var(--c-purple); animation: hsBlink 2s steps(1) infinite; }
+
+/* ===== iPad-Feinschliff nach Test auf echtem Gerät ===== */
+/* Seitenleiste +5 %, Trinkgeldzeile unten doppelt so groß */
+:root { --sidebar-w: 147px; --bottom-h: 128px; }
+.sidebar-item { width: 127px; }
+.bottom-bar { gap: 36px; padding: 0 32px; }
+.bb-level { font-size: 22pt; }
+.bb-xp { max-width: 640px; gap: 16px; }
+.xp-bar { height: 28px; border-width: 3px; }
+.xp-text { font-size: 22pt; }
+.bb-stats { font-size: 22pt; gap: 28px; }
+.bb-stats .stars .star { font-size: 22pt; }
+.bb-now-playing { font-size: 15pt; max-width: 420px; }
+.sound-toggle { min-height: 76px; font-size: 17pt; padding: 8px 20px; }
+
+/* Punkte oben rechts ×1,6 */
+.shift-hud { top: 20px; right: 26px; gap: 18px; }
+.hud-item { font-size: 19pt; padding: 10px 22px; border-radius: 10px; }
+
+/* Theke +30 %, seitlich beschnitten */
+.rest-fg-layer { background-size: 130% auto; background-position: bottom center; }
+
+/* Gäste & Köche +50 %, nach links gerückt (nicht in die Fragebox) */
+.guest-sprite-area { left: -7%; }
+.guest-sprite { height: 1050px; max-width: 1290px; max-height: none; }
+.chef-sprite-area { padding-left: 0; margin-left: -8%; }
+.chef-sprite-area img { height: 1050px; max-width: 1290px; max-height: none; }
+.chef-dialog-area { padding: 40px 40px 40px 0; }
+.chef-intro-card { max-width: 760px; }
+.chef-intro-text { font-size: 20pt; }
+
+/* Fragebox: Schrift ×1,5, breiter, weiter oben */
+.dialog-container { top: 110px; bottom: auto; left: 40%; max-height: calc(100% - 130px); padding: 0 28px 20px; }
+.dialog-box { max-width: 1100px; padding: 28px 34px; }
+.dialog-beratung { max-width: 1100px; }
+.dialog-guest { font-size: 24pt; }
+.dialog-type-badge, .bw-badge, .ww-badge, .bt-badge, .ber-badge { font-size: 16pt; padding: 4px 14px; }
+.dialog-scenario { font-size: 24pt; }
+.bw-statement { font-size: 25pt; }
+.dialog-question { font-size: 22pt; }
+.dialog-choices { gap: 10px; }
+.dialog-choice { font-size: 24pt; min-height: 84px; padding: 14px 22px; }
+.choice-detail { font-size: 18pt; }
+.btn-chef-hint { font-size: 19pt; min-height: 68px; padding: 8px 22px; }
+.chef-hint-text { font-size: 18pt; }
+.chef-hint-cost { font-size: 15pt; }
+.bt-clue-label { font-size: 16pt; }
+.bt-clue span:last-child { font-size: 18pt; }
+.ber-step-indicator { font-size: 16pt; }
+.ber-history { max-height: 360px; }
+.ber-speaker { font-size: 19pt; }
+.ber-text { font-size: 22pt; }
+.ber-prompt { font-size: 21pt; }
+
+/* Feedback nach der Antwort ebenfalls ×1,5 */
+.feedback-card { max-width: 900px; max-height: 1180px; padding: 36px 48px; }
+.fb-icon { font-size: 64px; }
+.feedback-card h3 { font-size: 27pt; }
+.fb-explanation { font-size: 21pt; }
+.fb-funfact { font-size: 18pt; }
+.fb-reveal { font-size: 17pt; }
+.fb-chef-comment { font-size: 19pt; }
+.fb-tips { font-size: 20pt; }
+.fb-beratung-summary { font-size: 18pt; }
