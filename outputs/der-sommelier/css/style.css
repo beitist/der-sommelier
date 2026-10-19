@@ -1663,3 +1663,6 @@ body {
 .lu-code-value { font-family: var(--font-pixel); font-size: 28px; color: var(--c-gold); letter-spacing: 6px; }
 .lu-code-hint { font-size: 15.4pt; color: var(--c-muted); margin-top: 6px; }
 .levelup-card .btn-large { font-size: 19.6pt; padding: 18px 50px; min-height: 86px; }
+
+/* Zweiter Stierschädel (rechts neben dem ersten) */
+.skull-easter-egg.skull-2 { left: 21%; }

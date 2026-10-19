@@ -406,7 +406,7 @@ function renderRestaurantLobby() {
         <div class="restaurant-bg">
           <div class="rest-layer rest-bg-layer" style="background-image:url('assets/${lv.bgKey}/hintergrund_4x3.png')"></div>
           <div class="rest-layer rest-fg-layer" style="background-image:url('assets/${lv.bgKey}/theke.png')"></div>
-          ${lv.id === 'steakhaus' ? '<div class="skull-easter-egg" onclick="handleSkullClick()" title="💀"></div>' : ''}
+          ${lv.id === 'steakhaus' ? '<div class="skull-easter-egg" onclick="handleSkullClick()"></div><div class="skull-easter-egg skull-2" onclick="handleSkullClick()"></div>' : ''}
           <div class="rest-ui-overlay">
             <div class="lobby-card">
               ${chef ? `<img class="lobby-chef-mini" src="${chef.sprite}" alt="${chef.name}" onerror="this.style.display='none'">` : ''}
