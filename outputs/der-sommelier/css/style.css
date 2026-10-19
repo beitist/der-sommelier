@@ -1667,8 +1667,6 @@ body {
 /* Zweiter Stierschädel (rechts neben dem ersten) */
 .skull-easter-egg.skull-2 { left: 21%; }
 
-/* TESTWEISE sichtbar: Easter-Egg-Klickflächen (später wieder entfernen) */
-.skull-easter-egg { opacity: 1; outline: 5px solid #7fff00; outline-offset: -5px; background: rgba(127,255,0,0.12); }
 
 /* Chef-Intro- und Lehrgangs-Knöpfe ×1,4 */
 .chef-intro-buttons { gap: 14px; }
@@ -1676,3 +1674,44 @@ body {
 .chef-intro-buttons .btn-large { font-size: 19.6pt; padding: 18px 44px; }
 .explorer-nav { padding: 22px 56px; }
 .explorer-nav .btn { font-size: 16.8pt; padding: 14px 36px; min-height: 80px; }
+
+/* Feedback: Hinweis auf die beste Wahl */
+.fb-best {
+  margin: 14px 0; padding: 14px 20px; text-align: left;
+  background: rgba(46,204,113,0.08); border: 1px solid rgba(46,204,113,0.35); border-radius: 10px;
+}
+.fb-best-title { font-size: 20pt; color: var(--c-success); margin-bottom: 6px; }
+.fb-best-text { font-size: 18pt; color: var(--c-text); line-height: 1.5; }
+
+/* Länderinfo ×1,4: Text, Weinliste, Weindetail */
+.region-header { padding: 18px 32px; }
+.region-header h2 { font-size: 25pt; }
+.region-body { padding: 32px; gap: 44px; }
+.region-desc { font-size: 19.6pt; }
+.region-main-regions, .fact-item { font-size: 19.6pt; }
+.region-wines-list h3 { font-size: 22.4pt; margin-bottom: 16px; }
+.region-wine-card { padding: 16px 22px; margin: 12px 0; gap: 18px; min-height: 130px; }
+.rwc-img { width: 68px; height: 100px; }
+.rwc-name { font-size: 19.6pt; }
+.rwc-detail, .rwc-flavors, .rwc-pairings { font-size: 15.4pt; }
+.region-locked-hint { font-size: 16.8pt; padding: 14px 22px; }
+.wine-detail-card { max-width: 1300px; padding: 48px 60px; gap: 48px; }
+.wine-detail-bottle img { max-height: 620px; }
+.wine-detail-info h3 { font-size: 22.4pt; }
+.wine-detail-info p { font-size: 19.6pt; }
+.wine-detail-info .wine-meta { font-size: 19pt; }
+.wine-detail-info .detail-label { font-size: 15.4pt; }
+.wine-detail-info .detail-value { font-size: 19.6pt; }
+.wine-detail-info .wine-funfact { font-size: 19.6pt; }
+.wine-detail-info .btn { font-size: 16.8pt; padding: 12px 32px; min-height: 70px; }
+.map-title-bar h2 { font-size: 22pt; }
+.map-title-bar .btn { font-size: 16.8pt; min-height: 70px; }
+
+/* Weltkarte: zoombar */
+.map-world { overflow: hidden; touch-action: none; position: relative; }
+.map-image { transform-origin: 0 0; will-change: transform; }
+.map-image.map-animate { transition: transform 0.3s ease; }
+.map-pin { transform-origin: 0 0; transform: scale(calc(1 / var(--z, 1))); }
+@media (hover: hover) { .map-pin:hover:not(.locked) { transform: scale(calc(1.15 / var(--z, 1))); } }
+.map-zoom-controls { position: absolute; right: 24px; bottom: 24px; display: flex; gap: 12px; z-index: 20; }
+.map-zoom-controls .btn { font-size: 20pt; min-height: 76px; min-width: 76px; background: rgba(15,15,26,0.85); }

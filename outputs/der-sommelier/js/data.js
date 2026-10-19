@@ -441,7 +441,8 @@ const REGIONS = {
 
 // ===== GUESTS =====
 // facing: 'left' = default (guckt zum Spieler), 'right' = muss gespiegelt werden
-// shiftX: optionale Verschiebung in % der Bildbreite (negativ = nach links), z.B. wenn ein Gast in die Fragebox ragt
+// Feinjustierung pro Gast (optional): shiftX = Verschiebung in % (negativ = nach links),
+// scale = Größe (0.9 = 10 % kleiner), shiftY = Anheben in % der Bildhöhe
 const GUESTS = {
   recurring: [
     { id: 'bergmann', name: 'Herr Bergmann', facing: 'right',
@@ -478,11 +479,11 @@ const GUESTS = {
     2: [
       { id: 'wandergruppe', name: 'Die Wandergruppe', sprite: 'assets/guests/wandergruppe.png', facing: 'right' },
       { id: 'buergermeister', name: 'Der Bürgermeister', sprite: 'assets/guests/buergermeister.png', facing: 'right' },
-      { id: 'oma_hildegard', name: 'Oma Hildegard', sprite: 'assets/guests/oma_hildegard.png', facing: 'right' },
+      { id: 'oma_hildegard', name: 'Oma Hildegard', sprite: 'assets/guests/oma_hildegard.png', facing: 'right', scale: 0.9 },
       { id: 'der_jaeger', name: 'Der Jäger', sprite: 'assets/guests/der_jaeger.png', facing: 'right' },
       { id: 'frau_doktor', name: 'Frau Doktor', sprite: 'assets/guests/frau_doktor.png', facing: 'right' },
       { id: 'brautpaar', name: 'Das Brautpaar', sprite: 'assets/guests/brautpaar.png', facing: 'left' },
-      { id: 'der_pfarrer', name: 'Der Pfarrer', sprite: 'assets/guests/der_pfarrer.png', facing: 'right' },
+      { id: 'der_pfarrer', name: 'Der Pfarrer', sprite: 'assets/guests/der_pfarrer.png', facing: 'right', scale: 0.9, shiftY: 4 },
       { id: 'austauschschuelerin', name: 'Die Austauschschülerin', sprite: 'assets/guests/austauschschuelerin.png', facing: 'right' },
     ],
     3: [
@@ -805,6 +806,23 @@ const LEVEL_INTROS = {
   },
 };
 
+// ===== THEMEN-GRUPPEN =====
+// Fragen, die dasselbe Wissen abfragen: nie zusammen in einer Schicht,
+// und nach einer davon rücken die anderen in der Rotation nach hinten.
+const QUESTION_TOPICS = [
+  ['bw_0_7', 'ww_0_4'],                 // Lambrusco perlend
+  ['ww_0_3', 'ww_0_6', 'ww_0_8'],       // trocken / Restzucker
+  ['bw_1_3', 'ww_1_3'],                 // Sekt vs. Champagner
+  ['bw_1_6', 'ww_1_7'],                 // Tannine / Gerbstoffe
+  ['bw_1_8', 'ww_1_10'],                // Serviertemperatur Rotwein
+  ['bw_2_1', 'bw_2_8', 'ww_2_6'],       // Gewürztraminer / Tramin
+  ['bw_3_2', 'ww_3_2'],                 // Barolo / Nebbiolo
+  ['ww_3_4', 'ww_3_11'],                // Pinotage
+  ['bw_4_2', 'bw_4_8', 'ww_4_1'],       // Amarone / Appassimento
+  ['bw_4_6', 'ww_4_3'],                 // Eiswein-Temperatur
+  ['bw_4_7', 'ww_4_2'],                 // Châteauneuf: 13 Rebsorten
+];
+
 // ===== QUESTIONS (wird aus Level-Dateien zusammengebaut) =====
 // Geladen aus: questions_lv0.js bis questions_lv4.js
 const QUESTIONS = {};
@@ -820,15 +838,20 @@ Object.values(WINES).forEach(w => {
   WINES_BY_LEVEL[w.level].push(w.id);
 });
 
+// Helper: Anzeige-Daten eines Gastes
+function guestView(g, sprite) {
+  return { name: g.name, sprite, facing: g.facing || 'left', shiftX: g.shiftX || 0, scale: g.scale || 1, shiftY: g.shiftY || 0 };
+}
+
 // Helper: Gast-Info aus ID holen
 function getGuestInfo(guestId, level) {
   // Recurring guests
   const rec = GUESTS.recurring.find(g => g.id === guestId);
-  if (rec) return { name: rec.name, sprite: rec.sprites[level] || rec.sprites[0], facing: rec.facing || 'left', shiftX: rec.shiftX || 0 };
+  if (rec) return guestView(rec, rec.sprites[level] || rec.sprites[0]);
   // Level guests
   for (const lv of Object.keys(GUESTS.byLevel)) {
     const g = GUESTS.byLevel[lv].find(g => g.id === guestId);
-    if (g) return { name: g.name, sprite: g.sprite, facing: g.facing || 'left', shiftX: g.shiftX || 0 };
+    if (g) return guestView(g, g.sprite);
   }
   return null;
 }

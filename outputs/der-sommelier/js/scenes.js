@@ -30,6 +30,7 @@ function render() {
 
   root.innerHTML = html;
   lockInput();
+  if (state.scene === 'map') initMapZoom();
   const TRACK_FOR_SCENE = { title: 'title', ending: 'title', minigame: 'minigame', highscore: 'minigame' };
   Sound.setTrack(TRACK_FOR_SCENE[state.scene] || getLevel().id);
   attachEvents();
@@ -278,9 +279,15 @@ function renderMap() {
             <h2>🗺️ Weinländer der Welt</h2>
             <button class="btn btn-small btn-secondary" onclick="goToScene('restaurant')">← Zurück zum Restaurant</button>
           </div>
-          <div class="map-world">
-            <div class="map-image" style="background-image:url('assets/map/weltkarte.png')">
+          <div class="map-world" id="map-world">
+            <div class="map-image" id="map-image" style="background-image:url('assets/map/weltkarte.png')">
               ${regions}
+            </div>
+            <div class="map-zoom-controls">
+              <button class="btn btn-secondary" onclick="mapZoomBy(1.6)">＋</button>
+              <button class="btn btn-secondary" onclick="mapZoomBy(1 / 1.6)">−</button>
+              <button class="btn btn-secondary" onclick="mapZoomTo(3.2, 0.52, 0.29)">🇪🇺 Europa</button>
+              <button class="btn btn-secondary" onclick="mapZoomTo(1, 0.5, 0.5)">🌍 Welt</button>
             </div>
           </div>
         </div>
@@ -458,8 +465,10 @@ function renderQuestion() {
   }
 
   const guest = state.currentGuest;
-  const flipStyle = guest && guest.facing === 'right' ? ' style="transform:scaleX(-1)"' : '';
-  const shiftStyle = guest && guest.shiftX ? ` style="margin-left:${guest.shiftX}%"` : '';
+  const areaCss = guest ? [guest.shiftX ? `margin-left:${guest.shiftX}%` : '', guest.shiftY ? `margin-bottom:${guest.shiftY}%` : ''].filter(Boolean).join(';') : '';
+  const shiftStyle = areaCss ? ` style="${areaCss}"` : '';
+  const imgCss = guest ? [guest.facing === 'right' ? 'transform:scaleX(-1)' : '', guest.scale && guest.scale !== 1 ? `height:${Math.round(945 * guest.scale)}px` : ''].filter(Boolean).join(';') : '';
+  const flipStyle = imgCss ? ` style="${imgCss}"` : '';
   const guestHtml = guest ? `<div class="guest-sprite-area"${shiftStyle}><img class="guest-sprite" src="${guest.sprite}" alt="${guest.name}"${flipStyle} onerror="this.style.display='none'"></div>` : '';
 
   return `
@@ -747,6 +756,10 @@ function renderFeedbackOverlay() {
         <h3>${d.correct ? (d.favorite ? 'Perfekt! Beste Wahl!' : 'Gute Wahl!') : d.acceptable ? 'Geht gerade noch...' : 'Nicht ganz...'}</h3>
         <p class="fb-explanation">${d.explanation}</p>
         ${revealHtml}
+        ${d.bestWine && WINES[d.bestWine] ? `<div class="fb-best">
+          <div class="fb-best-title">💡 ${d.bestIsUpgrade ? 'Noch besser wäre' : 'Die beste Wahl'}: <strong>${WINES[d.bestWine].name}</strong></div>
+          ${d.bestExplanation ? `<div class="fb-best-text">${d.bestExplanation}</div>` : ''}
+        </div>` : ''}
         ${d.funFact ? `<p class="fb-funfact">💡 ${d.funFact}</p>` : ''}
         ${chefHtml}
         <div class="fb-tips">+${d.tips}€ Trinkgeld${d.favorite ? ' (inkl. 3€ Bonus!)' : ''}${d.beratungBonus ? ` (inkl. ${d.beratungBonus}€ Beratungsbonus!)` : ''}${d.hintUsed ? ' (Chef-Tipp: halbes TG)' : ''}</div>
@@ -1027,6 +1040,102 @@ function renderMiniGameEnd() {
         <button class="btn btn-primary" onclick="closeMiniGame()">Zurück zum Restaurant</button>
       </div>
     </div>`;
+}
+
+// ===== WELTKARTE: Zoomen & Verschieben =====
+// Zwei Finger = zoomen, ein Finger = verschieben, Mausrad am Rechner. Zoom bleibt beim Neuzeichnen erhalten.
+const mapView = { z: 1, x: 0, y: 0 };
+const MAP_MAX_ZOOM = 5;
+
+function mapApply() {
+  const img = document.getElementById('map-image');
+  if (!img) return;
+  const w = img.offsetWidth, h = img.offsetHeight;
+  mapView.z = Math.max(1, Math.min(MAP_MAX_ZOOM, mapView.z));
+  mapView.x = Math.min(0, Math.max(w * (1 - mapView.z), mapView.x));
+  mapView.y = Math.min(0, Math.max(h * (1 - mapView.z), mapView.y));
+  img.style.transform = `translate(${mapView.x}px, ${mapView.y}px) scale(${mapView.z})`;
+  img.style.setProperty('--z', mapView.z);
+}
+
+// Zoom um einen Punkt (Koordinaten im unskalierten Kartenbild)
+function mapZoomAround(factor, px, py) {
+  const nz = Math.max(1, Math.min(MAP_MAX_ZOOM, mapView.z * factor));
+  const k = nz / mapView.z;
+  mapView.x = px - (px - mapView.x) * k;
+  mapView.y = py - (py - mapView.y) * k;
+  mapView.z = nz;
+  mapApply();
+}
+
+function mapZoomBy(factor) {
+  const img = document.getElementById('map-image');
+  if (img) mapZoomAround(factor, img.offsetWidth / 2, img.offsetHeight / 2);
+}
+
+// Zoomstufe z mit Bildpunkt (fx, fy in 0..1) in der Mitte
+function mapZoomTo(z, fx, fy) {
+  const img = document.getElementById('map-image');
+  if (!img) return;
+  const w = img.offsetWidth, h = img.offsetHeight;
+  mapView.z = z;
+  mapView.x = w / 2 - fx * w * z;
+  mapView.y = h / 2 - fy * h * z;
+  img.classList.add('map-animate');
+  mapApply();
+  setTimeout(() => img.classList.remove('map-animate'), 300);
+}
+
+function initMapZoom() {
+  const world = document.getElementById('map-world');
+  const img = document.getElementById('map-image');
+  if (!world || !img) return;
+  mapApply();
+  const pointers = new Map();
+  let last = null, moved = 0;
+  // Bildschirm-Pixel → Spiel-Pixel (das Spiel ist auf dem iPad skaliert)
+  const toGame = () => world.getBoundingClientRect().width / world.offsetWidth;
+  // Bildschirmpunkt → Koordinaten im (untransformierten) Kartenbild
+  const toImage = (cx, cy) => {
+    const r = world.getBoundingClientRect(), s = toGame();
+    return { x: (cx - r.left) / s - img.offsetLeft, y: (cy - r.top) / s - img.offsetTop };
+  };
+  const state2 = () => {
+    const pts = [...pointers.values()];
+    if (pts.length === 1) return { cx: pts[0].x, cy: pts[0].y, d: 0 };
+    const [a, b] = pts;
+    return { cx: (a.x + b.x) / 2, cy: (a.y + b.y) / 2, d: Math.hypot(a.x - b.x, a.y - b.y) };
+  };
+  world.onpointerdown = e => {
+    if (e.target.closest('.map-zoom-controls')) return;
+    pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    last = state2(); moved = 0;
+  };
+  world.onpointermove = e => {
+    if (!pointers.has(e.pointerId)) return;
+    pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    const now = state2(), s = toGame();
+    const dx = (now.cx - last.cx) / s, dy = (now.cy - last.cy) / s;
+    moved += Math.abs(dx) + Math.abs(dy);
+    mapView.x += dx; mapView.y += dy;
+    if (pointers.size === 2 && last.d > 0) {
+      const p = toImage(now.cx, now.cy);
+      mapZoomAround(now.d / last.d, p.x, p.y);
+    } else {
+      mapApply();
+    }
+    last = now;
+  };
+  const up = e => { pointers.delete(e.pointerId); last = pointers.size ? state2() : null; };
+  world.onpointerup = up;
+  world.onpointercancel = up;
+  // Nach einem Wisch kein versehentlicher Klick auf ein Land
+  world.addEventListener('click', e => { if (moved > 12) { e.stopPropagation(); e.preventDefault(); moved = 0; } }, true);
+  world.onwheel = e => {
+    e.preventDefault();
+    const p = toImage(e.clientX, e.clientY);
+    mapZoomAround(e.deltaY < 0 ? 1.15 : 1 / 1.15, p.x, p.y);
+  };
 }
 
 // ===== INPUT LOCK =====

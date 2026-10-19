@@ -52,6 +52,13 @@ function shuffle(arr) {
   }
   return a;
 }
+function shuffleInPlace(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
 function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 
 // ===== SAVE / LOAD =====
@@ -171,18 +178,19 @@ function assignGuestToQuestion(q, level) {
   return getRandomGuest(level);
 }
 
-function getRandomGuest(level) {
+function getRandomGuest(level, excludeNames = []) {
   const pool = [];
   // Add recurring guests (with level-appropriate sprite)
   GUESTS.recurring.forEach(g => {
-    pool.push({ name: g.name, sprite: g.sprites[level] || g.sprites[0], facing: g.facing || 'left', shiftX: g.shiftX || 0 });
+    pool.push(guestView(g, g.sprites[level] || g.sprites[0]));
   });
   // Add level-specific guests
   const levelGuests = GUESTS.byLevel[level] || [];
   levelGuests.forEach(g => {
-    pool.push({ name: g.name, sprite: g.sprite, facing: g.facing || 'left', shiftX: g.shiftX || 0 });
+    pool.push(guestView(g, g.sprite));
   });
-  return pick(pool);
+  const fresh = pool.filter(g => !excludeNames.includes(g.name));
+  return pick(fresh.length ? fresh : pool);
 }
 
 // ===== GAME ACTIONS =====
@@ -388,34 +396,59 @@ function startShift() {
   if (questionPool.blindtasting) questionPool.blindtasting.forEach(q => allQuestions.push({ type: 'blindtasting', data: q }));
   if (questionPool.beratung) questionPool.beratung.forEach(q => allQuestions.push({ type: 'beratung', data: q }));
 
-  // Smart rotation: unseen first, then wrong, then correct
+  // Smart rotation: unseen → wrong → seen (least-seen first).
+  // Ungesehene Fragen, deren Themen-Geschwister schon dran war, rücken nach hinten.
   const hist = state.player.questionHistory;
-  const unseen = shuffle(allQuestions.filter(q => !hist[q.data.id]));
+  const topicOf = id => QUESTION_TOPICS.findIndex(group => group.includes(id));
+  const siblingSeen = q => { const t = topicOf(q.data.id); return t >= 0 && QUESTION_TOPICS[t].some(id => id !== q.data.id && hist[id]); };
+  const unseen = shuffle(allQuestions.filter(q => !hist[q.data.id] && !siblingSeen(q)));
+  const unseenSibling = shuffle(allQuestions.filter(q => !hist[q.data.id] && siblingSeen(q)));
   const wrong = shuffle(allQuestions.filter(q => hist[q.data.id] && hist[q.data.id].wrong > hist[q.data.id].correct));
   const seen = shuffle(allQuestions.filter(q => hist[q.data.id] && hist[q.data.id].correct >= hist[q.data.id].wrong));
-  // Priority: unseen → wrong → seen (least-seen first)
   seen.sort((a, b) => (hist[a.data.id]?.seen || 0) - (hist[b.data.id]?.seen || 0));
-  const prioritized = [...unseen, ...wrong, ...seen];
+  const prioritized = [...unseen, ...wrong, ...unseenSibling, ...seen];
 
-  // Fragetypen mischen: erst höchstens maxPerTypePerShift pro Typ, dann auffüllen
+  // Auswahl: höchstens maxPerTypePerShift je Typ, je Thema & je Gast nur eine Frage,
+  // und – falls das Level Beratungen hat – garantiert eine Beratung pro Schicht.
   const selected = [];
-  const perType = {};
-  for (const q of prioritized) {
-    if (selected.length >= CONFIG.questionsPerShift) break;
-    if ((perType[q.type] || 0) >= CONFIG.maxPerTypePerShift) continue;
-    perType[q.type] = (perType[q.type] || 0) + 1;
+  const perType = {}, topics = new Set(), guests = new Set();
+  const fits = (q, strictType) => {
+    if (selected.includes(q)) return false;
+    if (strictType && (perType[q.type] || 0) >= CONFIG.maxPerTypePerShift) return false;
+    const t = topicOf(q.data.id);
+    if (t >= 0 && topics.has(t)) return false;
+    if (q.data.guestId && guests.has(q.data.guestId)) return false;
+    return true;
+  };
+  const take = q => {
     selected.push(q);
+    perType[q.type] = (perType[q.type] || 0) + 1;
+    const t = topicOf(q.data.id); if (t >= 0) topics.add(t);
+    if (q.data.guestId) guests.add(q.data.guestId);
+  };
+  const beratung = prioritized.find(q => q.type === 'beratung');
+  if (beratung) take(beratung);
+  for (const strict of [true, false]) {
+    for (const q of prioritized) {
+      if (selected.length >= CONFIG.questionsPerShift) break;
+      if (fits(q, strict)) take(q);
+    }
   }
+  // Notfall (sehr kleiner Pool): ohne Gast-/Themenregel auffüllen
   for (const q of prioritized) {
     if (selected.length >= CONFIG.questionsPerShift) break;
     if (!selected.includes(q)) selected.push(q);
   }
+  shuffleInPlace(selected);
 
-  // Kopie der Fragedaten (Originale bleiben unverändert), Weinoptionen auffüllen, Gäste zuweisen
+  // Kopie der Fragedaten (Originale bleiben unverändert), Weinoptionen auffüllen, Gäste zuweisen –
+  // zufällige Gäste nicht doppelt in derselben Schicht
+  const usedNames = selected.filter(q => q.data.guestId).map(q => (getGuestInfo(q.data.guestId, level) || {}).name);
   selected.forEach(q => {
     q.data = structuredClone(q.data);
     expandWineOptions(q, level);
-    q.guest = assignGuestToQuestion(q, level);
+    q.guest = q.data.guestId ? assignGuestToQuestion(q, level) : getRandomGuest(level, usedNames);
+    usedNames.push(q.guest.name);
   });
 
   state.currentShift = {
@@ -624,6 +657,13 @@ function askChefForHelp() {
   render();
 }
 
+// Nicht die beste Wahl getroffen? Dann die beste Wahl samt Begründung zeigen.
+function bestChoiceInfo(options, chosen) {
+  const best = options.find(o => o.favorite) || options.find(o => o.correct);
+  if (!best || best === chosen) return {};
+  return { bestWine: best.wineId, bestExplanation: best.explanation, bestIsUpgrade: !!chosen.correct };
+}
+
 // ===== ANSWER HANDLERS =====
 function answerQuestion(index) {
   const q = state.currentQuestion;
@@ -647,7 +687,7 @@ function answerQuestion(index) {
   }
 
   state.overlay = 'feedback';
-  state.overlayData = { correct: isCorrect, acceptable: isAcceptable, favorite: isFavorite, explanation: opt.explanation, funFact: wine ? wine.funFact : '', tips: tipGain, hintUsed: !!q.hintUsed };
+  state.overlayData = { correct: isCorrect, acceptable: isAcceptable, favorite: isFavorite, explanation: opt.explanation, funFact: wine ? wine.funFact : '', tips: tipGain, hintUsed: !!q.hintUsed, ...bestChoiceInfo(q.data.options, opt) };
   saveGame();
   render();
 }
@@ -776,6 +816,7 @@ function answerBeratungStep(index) {
       hintUsed: !!q.hintUsed,
       beratungBonus: bonus,
       beratungSummary: q.data.summary,
+      ...bestChoiceInfo(step.options, opt),
     };
     saveGame();
     render();
@@ -873,6 +914,8 @@ function initMiniGameLoop() {
     bottles: [],
     cows: [],
     particles: [],
+    popups: [],        // aufsteigende "+10" / "-5"
+    hurtTimer: 0,      // nach einem Kuh-Treffer kurz unverwundbar (Frames)
     score: 0,
     timeLeft: 30 * 60, // frames (at 60fps)
     cowTimer: 0,
@@ -952,12 +995,30 @@ function miniGameStep(mg) {
   mg.cows.forEach(c => c.x -= c.speed);
   mg.cows = mg.cows.filter(c => c.x > -60);
 
+  // Kuh rennt in den Sommelier: -5 Punkte, danach 1 s unverwundbar → Springen weicht aus
+  if (mg.hurtTimer > 0) mg.hurtTimer--;
+  const pl = mg.player;
+  for (let ci = mg.cows.length - 1; ci >= 0 && mg.hurtTimer === 0; ci--) {
+    const c = mg.cows[ci];
+    if (pl.x < c.x + c.w && pl.x + pl.w > c.x && pl.y < c.y + c.h && pl.y + pl.h > c.y) {
+      mg.score = Math.max(0, mg.score - 5);
+      mg.hurtTimer = 60;
+      mg.cows.splice(ci, 1);
+      mg.popups.push({ x: pl.x + pl.w / 2, y: pl.y - 20, text: '-5', color: '#ff5a5a', life: 45 });
+      for (let i = 0; i < 8; i++) {
+        mg.particles.push({ x: pl.x + pl.w, y: pl.y + pl.h / 2, vx: (Math.random() - 0.3) * 5, vy: (Math.random() - 0.5) * 5, life: 20, color: '#ffffff' });
+      }
+      Sound.play('wrong');
+    }
+  }
+
   // Collisions (rückwärts, damit splice keine Kuh überspringt)
   mg.bottles.forEach(b => {
     for (let ci = mg.cows.length - 1; ci >= 0; ci--) {
       const c = mg.cows[ci];
       if (b.x > c.x && b.x < c.x + c.w && b.y > c.y && b.y < c.y + c.h) {
         mg.score += 10;
+        mg.popups.push({ x: c.x + c.w / 2, y: c.y - 10, text: '+10', color: '#7fff7f', life: 40 });
         Sound.play('clank');
         // Particles
         for (let i = 0; i < 6; i++) {
@@ -970,9 +1031,11 @@ function miniGameStep(mg) {
     }
   });
 
-  // Update particles
+  // Update particles & Punkte-Popups
   mg.particles.forEach(p => { p.x += p.vx; p.y += p.vy; p.life--; });
   mg.particles = mg.particles.filter(p => p.life > 0);
+  mg.popups.forEach(p => { p.y -= 1; p.life--; });
+  mg.popups = mg.popups.filter(p => p.life > 0);
 }
 
 function miniGameDraw(mg) {
@@ -1005,8 +1068,9 @@ function miniGameDraw(mg) {
     ctx.fillRect(fx + ((mg.timeLeft * 0.5) % 120) - 20, mg.ground - 20, 46, 4);
   }
 
-  // Player (sommelier)
+  // Player (sommelier) – blinkt nach einem Treffer
   const p = mg.player;
+  if (mg.hurtTimer > 0 && Math.floor(mg.hurtTimer / 5) % 2 === 0) ctx.globalAlpha = 0.25;
   ctx.fillStyle = '#1a1a3e';
   ctx.fillRect(p.x, p.y, p.w, p.h); // body
   ctx.fillStyle = '#e94560';
@@ -1015,6 +1079,7 @@ function miniGameDraw(mg) {
   ctx.fillRect(p.x + 8, p.y - 20, 24, 8); // hat
   ctx.fillStyle = '#fff';
   ctx.fillRect(p.x + 30, p.y + 15, 15, 5); // arm
+  ctx.globalAlpha = 1;
 
   // Bottles
   ctx.fillStyle = '#2ecc71';
@@ -1046,6 +1111,17 @@ function miniGameDraw(mg) {
   });
   ctx.globalAlpha = 1;
 
+  // Punkte-Popups
+  ctx.font = '12px "Press Start 2P", monospace';
+  ctx.textAlign = 'center';
+  mg.popups.forEach(pp => {
+    ctx.globalAlpha = Math.min(1, pp.life / 20);
+    ctx.fillStyle = pp.color;
+    ctx.fillText(pp.text, pp.x, pp.y);
+  });
+  ctx.globalAlpha = 1;
+  ctx.textAlign = 'left';
+
   // HUD
   ctx.fillStyle = 'rgba(0,0,0,0.6)';
   ctx.fillRect(10, 10, 360, 36);
@@ -1062,6 +1138,8 @@ function miniGameDraw(mg) {
     ctx.fillStyle = '#c0c0e0';
     ctx.textAlign = 'center';
     ctx.fillText('TIPP LINKS = Springen   |   TIPP RECHTS = Flasche werfen', W/2, H/2 - 40);
+    ctx.fillStyle = '#ff9a9a';
+    ctx.fillText('Kuh trifft dich: -5 Punkte – spring drüber!', W/2, H/2 - 62);
     ctx.font = '9px "Press Start 2P", monospace';
     ctx.fillStyle = '#8888aa';
     ctx.fillText('(Maus: Klick = werfen, Leertaste = springen)', W/2, H/2 - 18);
