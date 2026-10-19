@@ -3,13 +3,18 @@
 // ============================================================
 
 // ===== ABSCHLUSSPRÜFUNG =====
-// Im Étoile, sobald das Trinkgeld-Ziel erreicht ist: 7 schwere Fragen beim
-// Michelin-Tester, kein Chef-Tipp. Bestanden ab 5 richtigen ("akzeptabel" zählt nicht).
+// Im Étoile, sobald das Trinkgeld-Ziel erreicht ist: Der Michelin-Tester prüft die ganze
+// Laufbahn als 7-Gänge-Menü (Fragen aus js/questions_exam.js): je 1 Gang zu Imbiss,
+// Steakhaus, Gasthaus, je 2 zu Le Vignoble und Étoile. Kein Chef-Tipp.
+// Bestanden ab 5 richtigen ("akzeptabel" zählt nicht).
 const EXAM = {
   passMark: 5,
   guestId: 'michelin_tester',
-  mix: ['blindtasting', 'blindtasting', 'weinwissen', 'weinwissen', 'besserwisser', 'food_pairing', 'beratung'],
+  perLevel: { 0: 1, 1: 1, 2: 1, 3: 2, 4: 2 },
+  courseOrder: ['Amuse-Bouche', 'Brot & Butter', 'Aperitif', 'Vorspeise', 'Suppe', 'Austern', 'Fischgang',
+                'Zwischengang', 'Risotto', 'Fleischgang', 'Hauptgang', 'Käse', 'Pré-Dessert', 'Dessert'],
 };
+const EXAM_TOTAL = Object.values(EXAM.perLevel).reduce((a, b) => a + b, 0);
 
 function isExamEligible() {
   const p = state.player;
@@ -18,16 +23,13 @@ function isExamEligible() {
 
 function startExam() {
   const level = state.player.level;
-  const pool = QUESTIONS[getLevel().id];
-  const used = new Set();
   let selected = [];
-  for (const type of EXAM.mix) {
-    const candidate = shuffle((pool[type] || []).filter(q => !used.has(q.id)))[0];
-    if (!candidate) continue;
-    used.add(candidate.id);
-    selected.push({ type, data: structuredClone(candidate) });
+  for (const [lv, count] of Object.entries(EXAM.perLevel)) {
+    shuffle(EXAM_QUESTIONS[lv] || []).slice(0, count).forEach(q => selected.push({ type: q.type, data: structuredClone(q) }));
   }
-  selected = shuffle(selected);
+  // als Menü servieren: Amuse-Bouche zuerst, Dessert zuletzt
+  const rank = q => { const i = EXAM.courseOrder.indexOf(q.data.course); return i < 0 ? EXAM.courseOrder.length : i; };
+  selected.sort((a, b) => rank(a) - rank(b));
   selected.forEach(q => {
     expandWineOptions(q, level);
     q.guest = getGuestInfo(EXAM.guestId, level);
@@ -68,10 +70,10 @@ function renderExamReadyOverlay() {
         <h3>Der Michelin-Tester ist da!</h3>
         <p class="fb-explanation">
           Chef Beaumont nimmt dich zur Seite: <em>„Sie haben sich das Vertrauen unserer Gäste verdient.
-          Heute Abend sitzt der Michelin-Tester an Tisch 7. Sieben Fragen, keine Hilfe von mir.
+          Heute Abend sitzt der Michelin-Tester an Tisch 7. Sein Menü hat sieben Gänge – zu jedem stellt er Ihnen eine Frage aus Ihrer ganzen Laufbahn. Keine Hilfe von mir.
           Bestehen Sie – und wir holen den dritten Stern.“</em>
         </p>
-        <p class="fb-explanation">Bestanden ab <strong>${EXAM.passMark} von ${EXAM.mix.length}</strong> richtigen Antworten. „Geht gerade noch“ zählt hier nicht.</p>
+        <p class="fb-explanation">Bestanden ab <strong>${EXAM.passMark} von ${EXAM_TOTAL}</strong> richtigen Antworten. „Geht gerade noch“ zählt hier nicht.</p>
         <div class="summary-buttons" style="margin-top:16px">
           <button class="btn btn-primary btn-large" onclick="startExam()">🎓 Zur Prüfung!</button>
           <button class="btn btn-secondary" onclick="state.overlay=null;render()">Noch nicht</button>

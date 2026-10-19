@@ -146,6 +146,15 @@ const WINES = {
     funFact: 'Rosé wird NICHT gemischt! Sondern durch kurzen Hautkontakt roter Trauben hergestellt.',
     label: 'assets/wines/rose_provence.png'
   },
+  weissherbst: {
+    id: 'weissherbst', name: 'Spätburgunder Weißherbst', region: 'deutschland', level: 1,
+    color: 'rose', body: 'leicht', sweetness: 'halbtrocken', price: '€', grape: 'Spätburgunder',
+    flavors: ['Erdbeere', 'Himbeere', 'Kirsche'],
+    pairings: ['Flammkuchen', 'Grillgemüse', 'Sommersalat', 'Brotzeit'],
+    description: 'Fruchtiger Rosé aus Baden – gekeltert aus nur einer einzigen roten Rebsorte.',
+    funFact: 'Trotz des Namens kein Weißwein! "Weiß" heißt hier: rote Trauben, hell gekeltert. Und "Herbst" ist das alte südwestdeutsche Wort für die Weinlese.',
+    label: 'assets/wines/weissherbst.png'
+  },
   sekt: {
     id: 'sekt', name: 'Deutscher Sekt', region: 'deutschland', level: 1,
     color: 'weiss', body: 'leicht', sweetness: 'trocken', price: '€', grape: 'Riesling/Pinot',
@@ -338,7 +347,7 @@ const REGIONS = {
       'Ca. 100.000 Hektar Rebfläche – 65% Weißwein',
       'Prädikate: Kabinett, Spätlese, Auslese, Beerenauslese, Trockenbeerenauslese, Eiswein',
     ],
-    wines: ['dornfelder', 'mueller_thurgau', 'riesling', 'spaetburgunder', 'sekt', 'gewuerztraminer', 'riesling_spaetlese', 'eiswein'],
+    wines: ['dornfelder', 'mueller_thurgau', 'riesling', 'spaetburgunder', 'weissherbst', 'sekt', 'gewuerztraminer', 'riesling_spaetlese', 'eiswein'],
   },
   italien: {
     id: 'italien', name: 'Italien', flag: '🇮🇹',
@@ -759,7 +768,7 @@ const LEVEL_INTROS = {
       },
       {
         icon: '🪵', heading: 'Eiche, Stahl & Reifung',
-        text: 'Im <strong>Edelstahltank</strong> bleibt der Wein frisch und fruchtig – reine Traubenaromen.<br><br>Im <strong>Eichenfass</strong> (Barrique) bekommt der Wein Vanille-, Toast- und Gewürznoten. Je neuer das Fass, desto stärker der Effekt.<br><br><strong>Reifung</strong>: Manche Weine (Barolo, Rioja Gran Reserva) brauchen Jahre, um ihr Potenzial zu entfalten. Andere (Vinho Verde) trinkt man jung und frisch.<br><br><strong>Cuvée</strong> (frz. Verschnitt): Ein Wein aus mehreren Rebsorten, die der Winzer perfekt aufeinander abstimmt. Berühmtes Beispiel: Saint-Émilion (Merlot + Cabernet Franc) oder viele Champagner.<br><br><strong>Deutsche Prädikate:</strong> <em>Spätlese</em> bedeutet "spät gelesene Trauben" – sie hängen länger am Stock und werden besonders reif und aromatisch. Die Stufen: Kabinett → Spätlese → Auslese → Beerenauslese → Eiswein.'
+        text: 'Im <strong>Edelstahltank</strong> bleibt der Wein frisch und fruchtig – reine Traubenaromen.<br><br>Im <strong>Eichenfass</strong> (Barrique) bekommt der Wein Vanille-, Toast- und Gewürznoten. Je neuer das Fass, desto stärker der Effekt.<br><br><strong>Reifung</strong>: Manche Weine (Barolo, Rioja Gran Reserva) brauchen Jahre, um ihr Potenzial zu entfalten. Andere (Vinho Verde) trinkt man jung und frisch.<br><br><strong>Cuvée</strong> (frz. Verschnitt): Ein Wein aus mehreren Rebsorten, die der Winzer perfekt aufeinander abstimmt. Berühmtes Beispiel: Saint-Émilion (Merlot + Cabernet Franc) oder viele Champagner.<br><br><strong>Deutsche Prädikate:</strong> <em>Spätlese</em> bedeutet "spät gelesene Trauben" – sie hängen länger am Stock und werden besonders reif und aromatisch. Die Stufen: Kabinett → Spätlese → Auslese → Beerenauslese → Trockenbeerenauslese, dazu der Eiswein.'
       },
       {
         icon: '🌍', heading: 'Neue Welt: Argentinien & Südafrika',
@@ -791,7 +800,7 @@ const LEVEL_INTROS = {
       },
       {
         icon: '🎓', heading: 'Der Sommelier – mehr als ein Kellner',
-        text: '<strong>Ein Sommelier</strong> (frz., von "sommier" = Lasttier, das Wein transportierte) ist der offizielle <strong>Weinberater und -experte im Restaurant</strong>. Er berät die Gäste, pflegt die Weinkarte, verhandelt mit Winzern und sorgt für perfekten Service.<br><br><strong>Champagner vs. Sekt:</strong> Champagner kommt NUR aus der Champagne und hat die strengsten Produktionsregeln aller Schaumweine – Kreideböden, bestimmte Rebsorten (Chardonnay, Pinot Noir, Pinot Meunier), mindestens 15 Monate Reife (davon 12 auf der Hefe). Sekt ist die deutsche Bezeichnung für Qualitätsschaumwein.<br><br><strong>Eiswein weltweit:</strong> Eiswein wird nicht nur in Deutschland gemacht! <strong>Kanada</strong> (Ontario, British Columbia) produziert hervorragenden "Icewine" – sogar in größeren Mengen. Auch <strong>Österreich</strong> macht Eiswein. Die Trauben müssen bei mindestens -7°C am Stock gefrieren.'
+        text: '<strong>Ein Sommelier</strong> (frz., von "sommier" = Lasttier, das Wein transportierte) ist der offizielle <strong>Weinberater und -experte im Restaurant</strong>. Er berät die Gäste, pflegt die Weinkarte, verhandelt mit Winzern und sorgt für perfekten Service.<br><br><strong>Champagner vs. Sekt:</strong> Champagner kommt NUR aus der Champagne und hat die strengsten Produktionsregeln aller Schaumweine – Kreideböden, bestimmte Rebsorten (Chardonnay, Pinot Noir, Pinot Meunier), mindestens 15 Monate Reife (davon 12 auf der Hefe). Sekt ist die deutsche Bezeichnung für Qualitätsschaumwein.<br><br><strong>Eiswein weltweit:</strong> Eiswein wird nicht nur in Deutschland gemacht! <strong>Kanada</strong> (Ontario, British Columbia) produziert hervorragenden "Icewine" – sogar in größeren Mengen. Auch <strong>Österreich</strong> macht Eiswein. Die Trauben müssen bei Lese und Kelterung gefroren sein – in der Praxis braucht es dafür etwa -7°C oder kälter.'
       },
     ],
     recap: [
@@ -821,6 +830,7 @@ const QUESTION_TOPICS = [
   ['bw_4_2', 'bw_4_8', 'ww_4_1'],       // Amarone / Appassimento
   ['bw_4_6', 'ww_4_3'],                 // Eiswein-Temperatur
   ['bw_4_7', 'ww_4_2'],                 // Châteauneuf: 13 Rebsorten
+  ['bw_1_11', 'ww_1_11'],               // Weißherbst
 ];
 
 // ===== QUESTIONS (wird aus Level-Dateien zusammengebaut) =====

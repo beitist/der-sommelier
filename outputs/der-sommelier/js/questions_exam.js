@@ -22,14 +22,14 @@ const EXAM_QUESTIONS = {
         { text: 'Aus dem Eichenfass, das Farbe abgibt', correct: false },
         { text: 'Aus einem kleinen Anteil Rotwein-Konzentrat', correct: false },
       ],
-      explanation: 'Der Saft fast aller roten Trauben ist hell – die Farbe steckt in den Schalen. Beim Rotwein gärt der Most mit den Schalen (Maischegärung), dabei lösen sich Farbe und Tannine. Deshalb kann man aus roten Trauben auch Weißwein machen, wenn man sie sofort abpresst. Der Tester macht einen kleinen Haken: "Gut. Die Basis sitzt. Das ist seltener, als Sie denken."'
+      explanation: 'Der Saft fast aller roten Trauben ist hell – die Farbe steckt in den Schalen. Beim Rotwein gärt der Most mit den Schalen (Maischegärung), dabei lösen sich Farbe und Tannine. Deshalb kann man aus roten Trauben auch Weißwein machen, wenn man sie sofort abpresst. Der Tester notiert etwas: "Die Basis. Erstaunlich, wie oft sie fehlt."'
     },
     {
       type: 'besserwisser', course: 'Brot & Butter',
       id: 'exam_0_2', guestId: 'michelin_tester', mood: '🧈',
       statement: 'Der Tester bricht ein Stück Brot und sagt beiläufig, ohne aufzusehen: "Ich nehme heute nur trockene Weine. Trocken heißt ja: weniger Alkohol. Ich muss morgen früh fahren."',
       isCorrect: false,
-      correction: 'Trocken hat nichts mit Alkohol zu tun! "Trocken" beschreibt den Restzucker – vereinfacht bis 9 g/l, der Wein schmeckt also nicht süß. Ein trockener Châteauneuf-du-Pape hat oft 14,5 % Alkohol und mehr, ein lieblicher Lambrusco eher um die 8–10 %. Der Tester hebt den Blick, fast amüsiert: "Richtig. Ich wollte nur sehen, ob Sie einem Gast widersprechen, wenn es nötig ist. Ich fahre übrigens Bahn."'
+      correction: 'Trocken hat nichts mit Alkohol zu tun! "Trocken" beschreibt den Restzucker – vereinfacht bis 9 g/l, der Wein schmeckt also nicht süß. Ein trockener Châteauneuf-du-Pape hat oft 14,5 % Alkohol und mehr, ein lieblicher Lambrusco eher um die 8–10 %. Der Tester hebt den Blick, fast amüsiert: "Ich wollte nur sehen, ob Sie einem Gast widersprechen, wenn es nötig ist. Ich fahre übrigens Bahn."'
     },
     {
       type: 'food_pairing', course: 'Vorspeise',
@@ -71,14 +71,14 @@ const EXAM_QUESTIONS = {
         { text: 'Pinot Noir', correct: true },
         { text: 'Pinot Blanc', correct: false },
       ],
-      explanation: 'Spätburgunder = Pinot Noir (in Italien: Pinot Nero). Gleiche Traube, deutscher Name. Pinot Gris ist der Grauburgunder, Pinot Blanc der Weißburgunder – Verwandte, aber andere Sorten. Gamay ist die Traube des Beaujolais. Der Tester: "Korrekt. Und mein Kollege würde trotzdem behaupten, der französische sei besser."'
+      explanation: 'Spätburgunder = Pinot Noir (in Italien: Pinot Nero). Gleiche Traube, deutscher Name. Pinot Gris ist der Grauburgunder, Pinot Blanc der Weißburgunder – Verwandte, aber andere Sorten. Gamay ist die Traube des Beaujolais. Der Tester: "Mein Kollege würde trotzdem behaupten, der französische sei besser."'
     },
     {
       type: 'besserwisser', course: 'Zwischengang',
       id: 'exam_1_2', guestId: 'michelin_tester', mood: '🇺🇸',
       statement: 'Der Tester dreht das Glas mit dem Primitivo zwischen den Fingern: "In Kalifornien hat man mir neulich einen Zinfandel als einzigartige amerikanische Rebsorte verkauft. Dabei ist das genetisch dieselbe Traube wie dieser Primitivo hier."',
       isCorrect: true,
-      correction: 'Stimmt! Primitivo und Zinfandel sind genetisch identisch – beide stammen ursprünglich aus Kroatien (Crljenak Kaštelanski bzw. Tribidrag). In Apulien wird daraus ein kraftvoller, pflaumiger Roter, in Kalifornien oft ein noch üppigerer. Der Tester nickt: "Schön, dass Sie mir nicht aus Höflichkeit widersprechen. Das tun die meisten."'
+      correction: 'Stimmt! Primitivo und Zinfandel sind genetisch identisch – beide stammen ursprünglich aus Kroatien (Crljenak Kaštelanski bzw. Tribidrag). In Apulien wird daraus ein kraftvoller, pflaumiger Roter, in Kalifornien oft ein noch üppigerer. Der Tester: "Viele widersprechen mir hier aus reiner Vorsicht. Ein Sommelier sollte wissen, wann ein Gast recht hat."'
     },
     {
       type: 'food_pairing', course: 'Hauptgang',
@@ -109,7 +109,7 @@ const EXAM_QUESTIONS = {
         { wineId: 'mueller_thurgau', correct: false },
         { wineId: 'pinot_grigio', correct: false },
       ],
-      explanation: 'Weißer Pfeffer ist die Visitenkarte des Grünen Veltliners – in Österreich liebevoll "Pfefferl" genannt. Dazu grüner Apfel und Kräuter: eindeutig. Riesling wäre zitroniger und mineralischer, Sancerre hätte Stachelbeere und Gras, Müller-Thurgau wäre milder mit Muskat, Pinot Grigio neutraler mit Birne. Der Tester dreht das Glas um: "Rebsorten erkennen ist Handwerk. Sie haben es gelernt."'
+      explanation: 'Weißer Pfeffer ist die Visitenkarte des Grünen Veltliners – in Österreich liebevoll "Pfefferl" genannt. Dazu grüner Apfel und Kräuter: eindeutig. Riesling wäre zitroniger und mineralischer, Sancerre hätte Stachelbeere und Gras, Müller-Thurgau wäre milder mit Muskat, Pinot Grigio neutraler mit Birne. Der Tester dreht das Glas um: "Rebsorten erkennen ist Handwerk. Kein Talent."'
     },
   ],
 
@@ -138,14 +138,14 @@ const EXAM_QUESTIONS = {
         { text: 'Säure verstärkt den Buttergeschmack, das ist Ergänzung', correct: false },
         { text: 'Weißwein hat mehr Tannine als Rotwein und bindet das Fett', correct: false },
       ],
-      explanation: 'Kontrastieren: Die Säure "schneidet" durch das Fett – sie wirkt wie ein Spritzer Zitrone, macht den Gaumen wieder frisch und Lust auf den nächsten Bissen. Chemisch aufgelöst wird dabei nichts, und Tannine kommen aus Schalen und Holz – Weißwein hat davon kaum welche. Das gleiche Prinzip wie Riesling oder Grüner Veltliner zum Schnitzel. Der Tester: "Endlich jemand, der nicht \'passt halt\' sagt."'
+      explanation: 'Kontrastieren: Die Säure "schneidet" durch das Fett – sie wirkt wie ein Spritzer Zitrone, macht den Gaumen wieder frisch und Lust auf den nächsten Bissen. Chemisch aufgelöst wird dabei nichts, und Tannine kommen aus Schalen und Holz – Weißwein hat davon kaum welche. Das gleiche Prinzip wie Riesling oder Grüner Veltliner zum Schnitzel. Der Tester: "\'Passt halt\' ist keine Begründung. Ich höre es trotzdem jede Woche."'
     },
     {
       type: 'besserwisser', course: 'Fischgang',
       id: 'exam_2_3', guestId: 'michelin_tester', mood: '🐠',
       statement: 'Der Fischgang kommt: Lachs mit Linsen und Rotweinbutter. Der Tester betrachtet die Weinkarte und murmelt: "Zum Fisch niemals Rotwein. Das ist keine Geschmacksfrage, das ist eine Regel."',
       isCorrect: false,
-      correction: 'Keine feste Regel! Kräftiger Fisch wie Lachs oder Thunfisch – und erst recht mit Rotweinbutter und Linsen – verträgt einen leichten, tanninarmen Rotwein wie Spätburgunder hervorragend. Vorsicht nur bei viel Tannin: Das kann mit Fischöl metallisch schmecken. Gewicht gegen Gewicht schlägt Farbe gegen Farbe. Der Tester klappt die Karte zu: "Gut. Wer Regeln auswendig lernt, ist Kellner. Wer sie versteht, ist Sommelier."'
+      correction: 'Keine feste Regel! Kräftiger Fisch wie Lachs oder Thunfisch – und erst recht mit Rotweinbutter und Linsen – verträgt einen leichten, tanninarmen Rotwein wie Spätburgunder hervorragend. Vorsicht nur bei viel Tannin: Das kann mit Fischöl metallisch schmecken. Gewicht gegen Gewicht schlägt Farbe gegen Farbe. Der Tester klappt die Karte zu: "Wer Regeln auswendig lernt, ist Kellner. Wer sie versteht, ist Sommelier."'
     },
     {
       type: 'blindtasting', course: 'Käse',
@@ -163,7 +163,7 @@ const EXAM_QUESTIONS = {
         { wineId: 'chianti', correct: false },
         { wineId: 'primitivo', correct: false },
       ],
-      explanation: 'Kirsche + Vanille + Holz bei noch frischer Frucht = Rioja Crianza! Tempranillo mit mindestens einem Jahr im Eichenfass – die Vanille kommt vom Holz. Eine Gran Reserva wäre am Rand schon ziegelrot und hätte Leder und Tabak (Tertiäraromen). Zweigelt hätte kaum Holz, Chianti mehr Säure und Kräuter, Primitivo mehr Pflaume und Wucht. Und Manchego mit Rioja: Was zusammen wächst, passt zusammen. Der Tester: "Spanien. Richtig. Der Käse hat es Ihnen verraten – oder Sie ihm?"'
+      explanation: 'Kirsche + Vanille + Holz bei noch frischer Frucht = Rioja Crianza! Tempranillo mit mindestens einem Jahr im Eichenfass – die Vanille kommt vom Holz. Eine Gran Reserva wäre am Rand schon ziegelrot und hätte Leder und Tabak (Tertiäraromen). Zweigelt hätte kaum Holz, Chianti mehr Säure und Kräuter, Primitivo mehr Pflaume und Wucht. Und Manchego mit Rioja: Was zusammen wächst, passt zusammen. Der Tester: "Spanien. Der Käse war ein Hinweis. Ich gebe nicht viele."'
     },
   ],
 
@@ -199,7 +199,7 @@ const EXAM_QUESTIONS = {
       id: 'exam_3_3', guestId: 'michelin_tester', mood: '🥂',
       statement: 'Der Tester riecht am Chablis und doziert, mehr zu sich selbst: "Chablis wird ohne Holz ausgebaut, also auch ohne malolaktische Gärung. Daher diese messerscharfe Säure."',
       isCorrect: false,
-      correction: 'Zwei Fehler in einem Satz! Erstens hat das Holz mit der malolaktischen Gärung nichts zu tun – sie findet auch im Stahltank statt. Zweitens durchlaufen die allermeisten Chablis sie sogar: Milchsäurebakterien wandeln die spitze Apfelsäure in mildere Milchsäure um. Die Frische kommt vom kühlen Klima und dem Kalkboden. Und ganz ohne Holz? Auch nicht immer – manche Premier- und Grand-Cru-Winzer nutzen (meist ältere) Fässer. Der Tester schließt das Büchlein für einen Moment: "Ich habe Ihnen eine Falle gestellt. Sie sind nicht hineingetreten."'
+      correction: 'Zwei Fehler in einem Satz! Erstens hat das Holz mit der malolaktischen Gärung nichts zu tun – sie findet auch im Stahltank statt. Zweitens durchlaufen die allermeisten Chablis sie sogar: Milchsäurebakterien wandeln die spitze Apfelsäure in mildere Milchsäure um. Die Frische kommt vom kühlen Klima und dem Kalkboden. Und ganz ohne Holz? Auch nicht immer – manche Premier- und Grand-Cru-Winzer nutzen (meist ältere) Fässer. Der Tester schließt das Büchlein für einen Moment: "Eine kleine Falle. Ich stelle sie jedem."'
     },
     {
       type: 'blindtasting', course: 'Risotto',
@@ -217,7 +217,7 @@ const EXAM_QUESTIONS = {
         { wineId: 'amarone', correct: false },
         { wineId: 'malbec', correct: false },
       ],
-      explanation: '"Teer und Rosen" ist die klassische Beschreibung für Nebbiolo – und Nebbiolo aus dem Piemont heißt Barolo. Die helle Farbe täuscht: Nebbiolo hat dünne Schalen und wenig Farbstoff, aber enorme Tannine und Säure. Mindestens 38 Monate Reife, davon 18 im Holz, bringen die orangefarbenen Reflexe. Alba-Trüffel und Barolo – Terroir auf dem Teller und im Glas. Chianti wäre ähnlich säurebetont, aber kräuteriger und weniger tanninstark; Malbec und Amarone wären tiefdunkel. Der Tester: "Die Farbe hat schon viele getäuscht. Sie nicht."'
+      explanation: '"Teer und Rosen" ist die klassische Beschreibung für Nebbiolo – und Nebbiolo aus dem Piemont heißt Barolo. Die helle Farbe täuscht: Nebbiolo hat dünne Schalen und wenig Farbstoff, aber enorme Tannine und Säure. Mindestens 38 Monate Reife, davon 18 im Holz, bringen die orangefarbenen Reflexe. Alba-Trüffel und Barolo – Terroir auf dem Teller und im Glas. Chianti wäre ähnlich säurebetont, aber kräuteriger und weniger tanninstark; Malbec und Amarone wären tiefdunkel. Der Tester: "Die Farbe hat schon viele getäuscht."'
     },
     {
       type: 'weinwissen', course: 'Vorspeise',
@@ -229,7 +229,7 @@ const EXAM_QUESTIONS = {
         { text: 'Dass die Trauben erst nach dem 1. November gelesen wurden', correct: false },
         { text: 'Mindestens zwei Jahre Reife im Holzfass', correct: false },
       ],
-      explanation: 'Das deutsche Prädikat richtet sich nach dem Zuckergehalt im Most (Mostgewicht in Grad Oechsle) – die Spätlese braucht reifere Trauben als der Kabinett. Ein fester Lesetermin ist nicht vorgeschrieben, und süß muss sie auch nicht sein: Es gibt "Spätlese trocken"! Die Riesling Spätlese im Glas ist lieblich ausgebaut – perfekt zur Gänseleber. Der Tester: "Die Hälfte meiner Kollegen hätte \'süß\' gesagt. Ich notiere, dass Sie nicht zur Hälfte gehören."'
+      explanation: 'Das deutsche Prädikat richtet sich nach dem Zuckergehalt im Most (Mostgewicht in Grad Oechsle) – die Spätlese braucht reifere Trauben als der Kabinett. Ein fester Lesetermin ist nicht vorgeschrieben, und süß muss sie auch nicht sein: Es gibt "Spätlese trocken"! Die Riesling Spätlese im Glas ist lieblich ausgebaut – perfekt zur Gänseleber. Der Tester: "Die Hälfte meiner Kollegen hätte \'süß\' gesagt. Die Hälfte meiner Kollegen trinkt auch Weinschorle."'
     },
     {
       type: 'food_pairing', course: 'Hauptgang',
@@ -249,7 +249,7 @@ const EXAM_QUESTIONS = {
       id: 'exam_3_7', guestId: 'michelin_tester', mood: '🪵',
       statement: 'Zwischen den Gängen fragt der Tester nach dem Keller. Er hört zu und sagt dann: "Ein neues Barrique gibt einem Wein deutlich mehr Vanille- und Röstaromen als ein Fass, das schon zum dritten Mal belegt ist."',
       isCorrect: true,
-      correction: 'Richtig! Ein Barrique (225 Liter, meist französische oder amerikanische Eiche) gibt beim ersten Mal am meisten Aromen ab: Vanille, Toast, Gewürze, dazu Holztannine. Mit jeder Belegung wird es "neutraler" – ältere Fässer bringen vor allem sanften Sauerstoffkontakt statt Holzgeschmack. Deshalb mischen viele Winzer neue und gebrauchte Fässer. Der Tester: "Gut. Und gut, dass Sie nicht dachten, mehr Holz sei immer besser. Das Gegenteil trinke ich zu oft."'
+      correction: 'Richtig! Ein Barrique (225 Liter, meist französische oder amerikanische Eiche) gibt beim ersten Mal am meisten Aromen ab: Vanille, Toast, Gewürze, dazu Holztannine. Mit jeder Belegung wird es "neutraler" – ältere Fässer bringen vor allem sanften Sauerstoffkontakt statt Holzgeschmack. Deshalb mischen viele Winzer neue und gebrauchte Fässer. Der Tester: "Mehr Holz ist nicht mehr Wein. Ich trinke das Gegenteil leider zu oft."'
     },
   ],
 
@@ -271,7 +271,7 @@ const EXAM_QUESTIONS = {
         { wineId: 'riesling', correct: false },
         { wineId: 'mueller_thurgau', correct: false },
       ],
-      explanation: 'Stachelbeere + Gras + Holunder = Sauvignon Blanc – und mit dem Feuerstein und der kühlen Mineralik: Sancerre von der Loire. Der Chablis hätte ebenfalls Feuerstein, aber Zitrus statt Stachelbeere und Gras. Grüner Veltliner wäre pfeffrig, Riesling hätte Zitrus und Apfel, Müller-Thurgau wäre milder mit Muskat. Ziegenkäse und Sancerre: Der berühmte Crottin de Chavignol stammt aus einem Dorf mitten in der Appellation Sancerre. Der Tester: "Primäraromen sauber gelesen. Weiter."'
+      explanation: 'Stachelbeere + Gras + Holunder = Sauvignon Blanc – und mit dem Feuerstein und der kühlen Mineralik: Sancerre von der Loire. Der Chablis hätte ebenfalls Feuerstein, aber Zitrus statt Stachelbeere und Gras. Grüner Veltliner wäre pfeffrig, Riesling hätte Zitrus und Apfel, Müller-Thurgau wäre milder mit Muskat. Ziegenkäse und Sancerre: Der berühmte Crottin de Chavignol stammt aus einem Dorf mitten in der Appellation Sancerre. Der Tester: "Primäraromen. Die Traube spricht – man muss nur zuhören. Weiter."'
     },
     {
       type: 'weinwissen', course: 'Suppe',
@@ -283,14 +283,14 @@ const EXAM_QUESTIONS = {
         { text: 'Tertiäraromen – sie entstehen durch Reifung über Jahre', correct: true },
         { text: 'Fehltöne – der Wein ist verdorben', correct: false },
       ],
-      explanation: 'Leder, Tabak, Pilze, Waldboden, Nüsse – das sind Tertiäraromen, die erst durch lange Reifung in Fass und Flasche entstehen. Primäraromen stammen aus der Traube (Frucht, Blüten), Sekundäraromen aus Gärung und Ausbau (Hefe, Brioche, Butter, Vanille vom Holz). Ein Fehlton wäre z. B. der muffige Korkschmecker (TCA). Der Tester: "Und Pilzsuppe zum Pilzaroma – Ergänzung. Der Chef hat mitgedacht. Sie auch."'
+      explanation: 'Leder, Tabak, Pilze, Waldboden, Nüsse – das sind Tertiäraromen, die erst durch lange Reifung in Fass und Flasche entstehen. Primäraromen stammen aus der Traube (Frucht, Blüten), Sekundäraromen aus Gärung und Ausbau (Hefe, Brioche, Butter, Vanille vom Holz). Ein Fehlton wäre z. B. der muffige Korkschmecker (TCA). Der Tester: "Und Pilzsuppe zum Pilzaroma – Ergänzung. Der Chef hat mitgedacht."'
     },
     {
       type: 'besserwisser', course: 'Amuse-Bouche',
       id: 'exam_4_3', guestId: 'michelin_tester', mood: '🪟',
       statement: 'Der Tester schwenkt sein Glas und beobachtet die langsam herablaufenden Schlieren. "Sehen Sie diese Kirchenfenster? Je dicker die Tränen, desto höher die Qualität. Das ist der schnellste Qualitätstest überhaupt."',
       isCorrect: false,
-      correction: 'Die Tränen (Kirchenfenster) zeigen vor allem Alkohol und Restzucker – nicht die Qualität! Sie entstehen, weil Alkohol schneller verdunstet als Wasser und die Oberflächenspannung am Glasrand verändert. Ein billiger, alkoholstarker Wein kann dicke Tränen haben, ein großer leichter Riesling kaum welche. Qualität erkennt man an Balance, Komplexität und Länge des Abgangs. Der Tester lässt das Glas sinken: "Ich höre diesen Satz jede Woche. Von Sommeliers. Sie werden ihn nicht sagen."'
+      correction: 'Die Tränen (Kirchenfenster) zeigen vor allem Alkohol und Restzucker – nicht die Qualität! Sie entstehen, weil Alkohol schneller verdunstet als Wasser und die Oberflächenspannung am Glasrand verändert. Ein billiger, alkoholstarker Wein kann dicke Tränen haben, ein großer leichter Riesling kaum welche. Qualität erkennt man an Balance, Komplexität und Länge des Abgangs. Der Tester lässt das Glas sinken: "Ich höre diesen Satz jede Woche. Von Sommeliers."'
     },
     {
       type: 'food_pairing', course: 'Dessert',
@@ -333,7 +333,7 @@ const EXAM_QUESTIONS = {
         { wineId: 'chateauneuf', correct: false },
         { wineId: 'amarone', correct: false },
       ],
-      explanation: 'Tertiäraromen (Leder, Tabak, getrocknete Frucht) + ziegelroter Rand = lange Reife. Vanille und Kokos verraten amerikanische Eiche – typisch für klassisches Rioja. Das ist eine Tempranillo Gran Reserva: mindestens 60 Monate gereift, davon 24 im Fass. Die Crianza wäre jünger, frischer, ohne Leder und Tabak. Barolo hätte Teer, Rosen und kantige Tannine, Châteauneuf Garrigue-Kräuter und Gewürze, Amarone Rosinen und Mokka. Der Tester legt den Stift hin: "Ein Wein, der Zeit hatte. Und ein Sommelier, der sie sich genommen hat."'
+      explanation: 'Tertiäraromen (Leder, Tabak, getrocknete Frucht) + ziegelroter Rand = lange Reife. Vanille und Kokos verraten amerikanische Eiche – typisch für klassisches Rioja. Das ist eine Tempranillo Gran Reserva: mindestens 60 Monate gereift, davon 24 im Fass. Die Crianza wäre jünger, frischer, ohne Leder und Tabak. Barolo hätte Teer, Rosen und kantige Tannine, Châteauneuf Garrigue-Kräuter und Gewürze, Amarone Rosinen und Mokka. Der Tester legt den Stift hin: "Ein Wein, der Zeit hatte. Lesen braucht auch Zeit."'
     },
     {
       type: 'preference', course: 'Hauptgang',

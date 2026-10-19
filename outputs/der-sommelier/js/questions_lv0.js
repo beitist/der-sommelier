@@ -69,6 +69,7 @@ QUESTIONS.imbiss = {
       question: 'Was schlägst du vor?',
       options: [
         { wineId: 'mueller_thurgau', correct: true, favorite: true, explanation: 'Perfekt! Müller-Thurgau ist mild, blumig und erfrischend – leicht genug nach dem Sport.' },
+        { wineId: 'riesling', correct: true, explanation: 'Riesling trocken ist eine richtig gute Wahl – frisch, leicht, mit knackiger Säure zum Salat. Der milde Müller-Thurgau ist nach dem Lauf nur noch etwas sanfter und unkomplizierter.' },
         { wineId: 'dornfelder', correct: false, explanation: 'Dornfelder hat zu viel Körper – zum leichten Salat nach dem Sport nicht ideal.' },
         { wineId: 'retsina', correct: false, explanation: 'Erfrischend ja, aber der Harzgeschmack passt nicht zu "nichts Schweres".' },
       ]

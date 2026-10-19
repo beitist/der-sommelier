@@ -481,7 +481,7 @@ function renderQuestion() {
           <div class="rest-layer rest-fg-layer" style="background-image:url('assets/${lv.bgKey}/theke.png')"></div>
 
           <div class="shift-hud">
-            <div class="hud-item">${shift.isExam ? '🎓 Prüfung · ' : ''}Gast ${shift.questionIndex + 1}/${shift.questions.length}</div>
+            <div class="hud-item">${shift.isExam ? `🎓 Gang ${shift.questionIndex + 1}/${shift.questions.length}${q.data.course ? ' · ' + q.data.course : ''}` : `Gast ${shift.questionIndex + 1}/${shift.questions.length}`}</div>
             <div class="hud-item hud-score">✅ ${shift.correct} ❌ ${shift.wrong}</div>
           </div>
 
@@ -648,7 +648,7 @@ function renderBlindtastingQ(q) {
         <span class="bt-badge">🥃 BLIND TASTING</span>
       </div>
       <div class="dialog-body">
-        <p class="dialog-scenario">Ein geheimnisvoller Wein im Glas – was könnten Sie hier vor sich haben?</p>
+        <p class="dialog-scenario">${data.scenario || 'Ein geheimnisvoller Wein im Glas – was könnten Sie hier vor sich haben?'}</p>
         ${cluesHtml}
       </div>
       ${renderHintArea(q)}

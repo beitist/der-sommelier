@@ -194,6 +194,7 @@ QUESTIONS.steakhaus = {
       options: [
         { wineId: 'rose_provence', correct: true, favorite: true, explanation: 'Rosé de Provence – trocken, leicht, fruchtig. Perfekt zum Gemüseteller und zur Einstellung.' },
         { wineId: 'gruener_veltliner', correct: true, explanation: 'Grüner Veltliner ist trocken und nicht schwer – eine solide Wahl. Aber sie hat explizit nach Rosé gefragt, und der Provence-Rosé trifft genau ihren Wunsch.' },
+        { wineId: 'weissherbst', acceptable: true, explanation: 'Ein Rosé, leicht und fruchtig – fast ein Treffer! Aber der Weißherbst ist halbtrocken, und sie wollte ausdrücklich "nicht zu Süßes". Der knochentrockene Provence-Rosé trifft ihren Wunsch genauer.' },
         { wineId: 'lambrusco', correct: false, explanation: 'Lambrusco ist süßlich – sie wollte ausdrücklich nichts Süßes.' },
       ]
     },
@@ -270,6 +271,7 @@ QUESTIONS.steakhaus = {
       options: [
         { wineId: 'rose_provence', correct: true, favorite: true, explanation: 'Rosé de Provence – DER Terrassenwein schlechthin! Trocken, leicht und mit zarten Fruchtaromen perfekt für einen lauen Sommerabend.' },
         { wineId: 'gruener_veltliner', correct: true, explanation: 'Grüner Veltliner ist frisch und trocken – ein guter Terrassenwein, aber für das sommerliche Feeling hat Rosé de Provence einfach das gewisse Etwas.' },
+        { wineId: 'weissherbst', acceptable: true, explanation: 'Sommerlich ist der Weißherbst allemal – Erdbeere pur! Aber er ist halbtrocken, und Claudia hat ausdrücklich "trocken" gesagt. Da ist der Provence-Rosé die sicherere Bank.' },
         { wineId: 'primitivo', correct: false, explanation: 'Primitivo auf der Sommerterrasse? Viel zu wuchtig und warm für einen leichten Abend draußen.' },
       ]
     },
@@ -281,6 +283,17 @@ QUESTIONS.steakhaus = {
         { wineId: 'chianti', correct: true, favorite: true, explanation: 'Chianti – das Herz der Toskana! Sangiovese mit Kirschfrucht und mediterranem Charme. Die Nachbarin wird sich beim nächsten Buchclub wie in der Toskana fühlen!' },
         { wineId: 'spaetburgunder', correct: true, explanation: 'Spätburgunder ist elegant und nicht zu schwer – aber die Nachbarin will ausdrücklich nach Italien reisen, und da ist Chianti die erste Adresse.' },
         { wineId: 'primitivo', correct: false, explanation: 'Primitivo ist zwar italienisch, aber aus Apulien – kein Toskana-Feeling. Und zum gemütlichen Buchclub-Abend ist er etwas zu wuchtig.' },
+      ]
+    },
+    {
+      id: 'pref_1_12', guestId: 'der_trucker', mood: '🍓',
+      scenario: 'Der Trucker hat Feierabend und grinst: "Heute mal kein Bier. Meine Frau trinkt immer so einen rosa Wein, so fruchtig nach Erdbeeren, nicht ganz trocken – und ehrlich gesagt mag ich den auch. Habt ihr so was? Am liebsten was Deutsches."',
+      question: 'Was empfiehlst du?',
+      options: [
+        { wineId: 'weissherbst', correct: true, favorite: true, explanation: 'Spätburgunder Weißherbst – rosa, Erdbeere und Himbeere, halbtrocken und aus Baden. Genau der Wein seiner Frau! Der Trucker strahlt: "Siehste, ich hab doch Geschmack."' },
+        { wineId: 'rose_provence', acceptable: true, explanation: 'Rosa ist er, und fruchtig auch – aber der Provence-Rosé ist knochentrocken und kommt aus Frankreich. "Nicht ganz trocken" und "was Deutsches" erfüllt der Weißherbst besser.' },
+        { wineId: 'dornfelder', correct: false, explanation: 'Dornfelder ist deutsch und fruchtig, aber eben ein Rotwein – rosa wollte er, nicht rot.' },
+        { wineId: 'lambrusco', correct: false, explanation: 'Lambrusco ist fruchtig und nicht trocken, aber ein perlender Roter aus Italien – weder rosa noch deutsch.' },
       ]
     },
   ],
@@ -345,6 +358,12 @@ QUESTIONS.steakhaus = {
       statement: 'Die Nachbarin nippt an ihrem Grüner Veltliner und sagt: "Mein Sohn studiert Weinbau und hat mir erzählt, dass Grüner Veltliner fast nur in Österreich angebaut wird. Das ist quasi ihr Nationalwein!"',
       isCorrect: true,
       correction: 'Hat sie recht! Grüner Veltliner ist mit Abstand die wichtigste Rebsorte Österreichs – rund ein Drittel der gesamten Rebfläche! Außerhalb Österreichs gibt es nur kleine Anbauflächen in der Slowakei und Tschechien. Ein echter österreichischer Nationalschatz.'
+    },
+    {
+      id: 'bw_1_11', guestId: 'stammgast_jens', mood: '🤓',
+      statement: 'Jens tippt auf die Karte: "Spätburgunder Weißherbst? Na, das ist ja wohl ein Weißwein – steht doch dick und fett drauf: WEISS-herbst!"',
+      isCorrect: false,
+      correction: 'Reingefallen auf den Namen! Weißherbst ist ein Rosé: rote Trauben, die "weiß", also hell gekeltert werden – nach kurzem Schalenkontakt. "Herbst" ist das alte südwestdeutsche Wort für die Weinlese. Und: Ein Weißherbst muss aus einer einzigen Rebsorte stammen, die auf dem Etikett steht.'
     },
   ],
 
@@ -454,6 +473,17 @@ QUESTIONS.steakhaus = {
         { text: 'Wie Weißwein bei 6-8°C', correct: false },
       ],
       explanation: '"Zimmertemperatur" stammt aus einer Zeit, als Zimmer 16-18°C hatten! Heute sind unsere Räume meist wärmer. Leichte Rote wie Spätburgunder lieben 14-16°C, kräftige wie Primitivo 16-18°C. Zu warm schmeckt der Alkohol vor, zu kalt verschwinden die Aromen.'
+    },
+    {
+      id: 'ww_1_11', guestId: 'claudia', mood: '🌸',
+      question: 'Claudia hält zwei Rosés nebeneinander: "Provence-Rosé und Weißherbst – beides rosa. Was ist denn das Besondere am Weißherbst?"',
+      options: [
+        { text: 'Er wird aus Weißwein und Rotwein gemischt', correct: false },
+        { text: 'Er stammt aus einer einzigen roten Rebsorte, die auf dem Etikett steht', correct: true },
+        { text: 'Er wird aus weißen Trauben gemacht, die im Herbst gelesen werden', correct: false },
+        { text: 'Er reift immer im Eichenfass', correct: false },
+      ],
+      explanation: 'Weißherbst ist eine deutsche Rosé-Spezialität vor allem aus Baden und Württemberg: Er muss aus einer einzigen roten Rebsorte stammen – meist Spätburgunder –, und die steht auf dem Etikett. Mischen von Rot- und Weißwein ist für Rosé in der EU übrigens verboten (Ausnahme: Rosé-Schaumwein).'
     },
   ],
 
