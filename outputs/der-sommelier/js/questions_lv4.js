@@ -14,6 +14,8 @@ QUESTIONS.sterne = {
         { wineId: 'cremant', correct: true, explanation: 'Crémant ist solide – gleiche Methode, französisch, passt zum Hummer. Aber der Michelin-Tester erwartet Champagner, nicht die Budget-Alternative.' },
         { wineId: 'dornfelder', correct: false, explanation: 'Dornfelder zum Hummer im Sterne-Restaurant? Das wäre das Ende Ihrer Karriere als Sommelier.' },
         { wineId: 'imiglykos', correct: false, explanation: 'Imiglykos zum Hummer? Der Michelin-Tester würde den Stern sofort aberkennen.' },
+        { wineId: 'sekt', acceptable: true, explanation: 'Sekt prickelt und passt zum Hummer – aber "Ihr bester Schaumwein" im Sterne-Restaurant? Da erwartet der Tester Champagner.' },
+        { wineId: 'eiswein', correct: false, explanation: 'Eiswein ist süß und kein Schaumwein – zum Hummer mit Beurre Blanc ein doppelter Fehlgriff.' },
       ]
     },
     {
@@ -25,6 +27,8 @@ QUESTIONS.sterne = {
         { wineId: 'riesling_spaetlese', correct: true, explanation: 'Riesling Spätlese zur Foie Gras funktioniert – die Restsüße schmeichelt, aber für "das Beste" fehlt die Opulenz eines Eisweins.' },
         { wineId: 'chianti', correct: false, explanation: 'Chianti ist trocken und tanninreich – er würde die Foie Gras überfordern statt umschmeicheln.' },
         { wineId: 'dornfelder', correct: false, explanation: 'Dornfelder zur Foie Gras im Sterne-Restaurant? Die Opernsängerin würde eine Arie der Entrüstung singen.' },
+        { wineId: 'gewuerztraminer', acceptable: true, explanation: 'Gewürztraminer ist aromatisch und halbtrocken – zur Foie Gras kein schlechter Gedanke! Aber für "Süßes, Opulentes" am Triumph-Abend ist er nicht süß genug; der Eiswein ist die Krönung.' },
+        { wineId: 'sancerre', correct: false, explanation: 'Sancerre ist trocken und grasig-frisch – weder süß noch opulent. Zur Foie Gras ein Missklang in der Arie.' },
       ]
     },
     {
@@ -47,6 +51,8 @@ QUESTIONS.sterne = {
         { wineId: 'champagner', correct: true, favorite: true, explanation: 'Champagner als Aperitif zum 7-Gänge-Menü – der perfekte Auftakt! Elegant, festlich, setzt den Standard für den Rest des Abends.' },
         { wineId: 'dornfelder', correct: false, explanation: 'Dornfelder als Aperitif im Étoile? Das wäre wie Turnschuhe zur Gala.' },
         { wineId: 'retsina', correct: false, explanation: 'Retsina zum 7-Gänge-Menü im Sterne-Restaurant? Die Promis wären schockiert.' },
+        { wineId: 'cremant', acceptable: true, explanation: 'Crémant ist elegant und prickelnd – ein feiner Auftakt! Aber im Sterne-Restaurant setzt nur Champagner den Standard für den Rest des Abends.' },
+        { wineId: 'sancerre', correct: false, explanation: 'Sancerre ist frisch und elegant – aber still. Die Promis wollten ausdrücklich etwas Prickelndes zum Einläuten des Abends.' },
       ]
     },
     {
@@ -69,6 +75,8 @@ QUESTIONS.sterne = {
         { wineId: 'sancerre', correct: true, favorite: true, explanation: 'Sancerre – ein eleganter Sauvignon Blanc von der Loire. Ziegenkäse und Sancerre ist eine der berühmtesten Paarungen Frankreichs. Die Botschafterin beweist damit wahren Geschmack!' },
         { wineId: 'dornfelder', correct: false, explanation: 'Dornfelder zum Ziegenkäse-Salat beim Diplomaten-Dinner? Das wäre ein diplomatischer Fauxpas.' },
         { wineId: 'imiglykos', correct: false, explanation: 'Imiglykos ist lieblich und griechisch – weder elegant noch französisch, wie die Botschafterin es wünscht.' },
+        { wineId: 'chablis_premier_cru', acceptable: true, explanation: 'Chablis Premier Cru ist französisch und elegant – eine Wahl mit Geschmack! Aber Ziegenkäse und Sancerre ist DAS berühmte Paar, da kommt selbst ein Premier Cru nicht ran.' },
+        { wineId: 'gewuerztraminer', correct: false, explanation: 'Gewürztraminer ist deutsch und halbtrocken mit Litschi-Parfum – weder französisch noch das elegante Signal, das die Botschafterin senden will.' },
       ]
     },
     {
@@ -80,6 +88,8 @@ QUESTIONS.sterne = {
         { wineId: 'rioja_crianza', correct: true, explanation: 'Rioja Crianza ist spanisch und passt zum Ibérico – solide Wahl! Aber für "etwas Großes" fehlt der Crianza die Reifekomplexität der Gran Reserva. Der Sternekoch hebt eine Augenbraue: "Nett, aber da geht mehr."' },
         { wineId: 'champagner', correct: false, explanation: 'Champagner zu einem 48-Stunden-Schmorbraten? Die feine Perlage geht in der Wucht des Gerichts komplett unter. Der Sternekoch verdreht die Augen.' },
         { wineId: 'sancerre', correct: false, explanation: 'Sancerre – ein leichter Loire-Weißer zu einem opulenten Schmorgericht mit Pimentón? Das wäre, als würde man eine Geige gegen ein Orchester antreten lassen.' },
+        { wineId: 'amarone', acceptable: true, explanation: 'Amarone ist groß und opulent, und seine Rosinennoten passen sogar zu den karamellisierten Feigen – aber der Sternekoch wollte ausdrücklich etwas Spanisches.' },
+        { wineId: 'lambrusco', correct: false, explanation: 'Lambrusco zum Signature Dish des Sternekochs? Leicht, lieblich und italienisch – weder spanisch noch groß. Er würde nicht mal die Augenbraue heben.' },
       ]
     },
     {
@@ -101,6 +111,8 @@ QUESTIONS.sterne = {
         { wineId: 'champagner', correct: true, favorite: true, explanation: 'Champagner zum Kaviar – das ultimative Luxus-Pairing! Die Mineralität und feine Perlage reinigen den Gaumen zwischen jedem Bissen, die Brioche-Noten ergänzen die Blinis. Der Scheich nickt zufrieden: "Meine Gäste sind beeindruckt. Sie haben Ihren Job verstanden."' },
         { wineId: 'amarone', correct: false, explanation: 'Amarone zum Kaviar? Ein schwerer, rosiniger Rotwein würde die subtilen Nuancen des Störrogens komplett erschlagen. Der Scheich wäre diplomatisch – aber innerlich entsetzt.' },
         { wineId: 'tempranillo_gran_reserva', correct: false, explanation: 'Gran Reserva zum Kaviar servieren? Leder- und Vanillenoten auf zartem Störrogen – das ist wie ein Vorschlaghammer auf ein Uhrwerk.' },
+        { wineId: 'cremant', acceptable: true, explanation: 'Crémant hat die gleiche Herstellungsmethode und eine feine Perlage – zum Kaviar passend. Aber "das Beste, was Sie haben" heißt bei Kaviar: Champagner.' },
+        { wineId: 'eiswein', correct: false, explanation: 'Eiswein ist süß und konzentriert – zum salzigen Kaviar mit Crème fraîche ein Fehlgriff. Enttäuschen ist unverzeihlich!' },
       ]
     },
     {
@@ -136,6 +148,8 @@ QUESTIONS.sterne = {
         { wineId: 'eiswein', correct: true, favorite: true, explanation: 'Eiswein – konzentrierte Süße mit brillanter Säure als Gegengewicht. Nie plump, immer elegant. Die Krönung eines jeden Menüs.' },
         { wineId: 'dornfelder', correct: false, explanation: 'Dornfelder ist weder süß noch besonders elegant als Dessertbegleitung.' },
         { wineId: 'chianti', correct: false, explanation: 'Chianti ist trocken und tanninreich – kein Dessertwein.' },
+        { wineId: 'riesling_spaetlese', acceptable: true, explanation: 'Riesling Spätlese ist lieblich und elegant mit Pfirsich und Honig – ein schöner Abschluss! Aber als echter Dessertwein mit konzentrierter Süße krönt der Eiswein den Abend.' },
+        { wineId: 'sancerre', correct: false, explanation: 'Sancerre ist trocken – neben dem süßen Dessert schmeckt er sauer und dünn. Kein Dessertwein, keine Krönung.' },
       ]
     },
     {
@@ -157,6 +171,8 @@ QUESTIONS.sterne = {
         { wineId: 'chateauneuf', correct: true, explanation: 'Châteauneuf-du-Pape hat durchaus Leidenschaft – warme Frucht, Würze und Kraft! Aber Amarone erzählt die dramatischere Geschichte: getrocknete Trauben, Konzentration, Opfer – ein ganzes Libretto in einer Flasche.' },
         { wineId: 'sancerre', correct: false, explanation: 'Sancerre – frisch, mineralisch, elegant. Aber dramatisch? Leidenschaftlich? Die Opernsängerin braucht ein Fortissimo, keinen Kammerton A.' },
         { wineId: 'champagner', correct: false, explanation: 'Champagner ist festlich und prickelnd – aber Leidenschaft und Tragödie verlangt nach Tiefe, nicht nach Bläschen.' },
+        { wineId: 'barolo', acceptable: true, explanation: 'Barolo hat Tiefe und Drama – Teer und Rosen, ein Wein wie eine Tragödie! Aber üppig und samtig ist er nicht; da singt der Amarone mit Rosinen und Schokolade die größere Arie.' },
+        { wineId: 'lambrusco', correct: false, explanation: 'Lambrusco ist leicht und perlend – das ist eine Operette, keine Traviata.' },
       ]
     },
     {
@@ -167,6 +183,8 @@ QUESTIONS.sterne = {
         { wineId: 'chateauneuf', correct: true, favorite: true, explanation: 'Châteauneuf-du-Pape – ein Stück Provence im Glas! Die Garrigue-Noten (Lavendel, Thymian, Rosmarin), die warmen Beerenfrucht und die sonnenverwöhnte Fülle malen ein perfektes Bild der südfranzösischen Abende. Der Michelin-Tester lächelt zum ersten Mal: "Genau das."' },
         { wineId: 'tempranillo_gran_reserva', correct: false, explanation: 'Gran Reserva – großer Wein, aber spanisch. Die Leder- und Vanillenoten erinnern an die Rioja, nicht an die Provence. Der Michelin-Tester schüttelt den Kopf: "Falsches Land, falsches Gefühl."' },
         { wineId: 'eiswein', correct: false, explanation: 'Eiswein – deutsch, süß, konzentriert. Wunderschön, aber das Gegenteil von warmen Provenceabenden. Der Michelin-Tester ist enttäuscht.' },
+        { wineId: 'chianti', acceptable: true, explanation: 'Chianti bringt Kräuternoten mit – ein Hauch Mittelmeer! Aber er ist toskanisch, nicht südfranzösisch; die Garrigue mit Lavendel und Thymian steckt im Châteauneuf.' },
+        { wineId: 'amarone', correct: false, explanation: 'Amarone ist opulent mit Rosinen und Mokka – großartig, aber eher ein norditalienischer Winterabend als ein Lavendelfeld. "Falsches Gefühl."' },
       ]
     },
     {
@@ -177,6 +195,8 @@ QUESTIONS.sterne = {
         { wineId: 'champagner', correct: true, favorite: true, explanation: 'Champagner – vielschichtig wie ein Monet! Erst die Zitrusnoten, dann die Brioche, dann die Mandeln, und im Abgang die Kreide-Mineralität. Jeder Schluck enthüllt eine neue Schicht, genau wie ein impressionistisches Gemälde bei wechselndem Licht. Die Kunstsammlerin ist verzaubert: "Genau – dieser Wein hat Tiefenschärfe!"' },
         { wineId: 'amarone', correct: false, explanation: 'Amarone ist eher Expressionismus als Impressionismus – wuchtig, direkt, überwältigend. Schön, aber ohne die subtilen Nuancen, die sie sucht.' },
         { wineId: 'chateauneuf', correct: false, explanation: 'Châteauneuf-du-Pape ist ein großes Gemälde, aber eher ein Cézanne – erdverbunden und strukturiert. Für impressionistische Finesse fehlt die Leichtigkeit.' },
+        { wineId: 'chablis_premier_cru', acceptable: true, explanation: 'Chablis Premier Cru ist fein und mineralisch – durchaus nuanciert! Aber die Schichten von Zitrus über Brioche bis Kreide, die sich Schluck für Schluck entfalten, bietet der Champagner noch reicher.' },
+        { wineId: 'mueller_thurgau', correct: false, explanation: 'Müller-Thurgau ist mild und unkompliziert – eher Malen nach Zahlen als Monet. Für Nuancen beim dritten Schluck fehlt ihm die Tiefe.' },
       ]
     },
     {
@@ -187,6 +207,8 @@ QUESTIONS.sterne = {
         { wineId: 'eiswein', correct: true, favorite: true, explanation: 'Eiswein – die intimste Wahl! Die kleine 375ml-Flasche ist wie gemacht für zwei Personen, die konzentrierte Süße symbolisiert die Essenz einer Beziehung, und die goldene Farbe taucht den Tisch in warmes Licht. Er flüstert ihr zu: "Dieser Sommelier versteht uns."' },
         { wineId: 'tempranillo_gran_reserva', correct: false, explanation: 'Gran Reserva – ein meditativer Wein, aber die ledrigen, kraftvollen Noten passen eher zu einem Herrenabend als zu einem romantischen Jahrestag.' },
         { wineId: 'chateauneuf', correct: false, explanation: 'Châteauneuf-du-Pape – mächtig und kräuterig. Für einen intimen Jahrestag zu dominant. Sie suchen Zärtlichkeit, nicht Kraft.' },
+        { wineId: 'riesling_spaetlese', acceptable: true, explanation: 'Riesling Spätlese ist lieblich, golden und zärtlich – ein schöner Wein für zwei! Aber das Seltene, Besondere, das man nur zu zweit öffnet, ist der Eiswein.' },
+        { wineId: 'champagner', acceptable: true, explanation: 'Champagner ist der Klassiker für Jahrestage – aber "nicht protzig"? Den Korkenknall hört das ganze Restaurant. Der Eiswein ist die leisere, intimere Wahl.' },
       ]
     },
     {
@@ -197,6 +219,8 @@ QUESTIONS.sterne = {
         { wineId: 'tempranillo_gran_reserva', correct: true, favorite: true, explanation: 'Tempranillo Gran Reserva – ein Wein mit eingebauter Konversation! Über 60 Monate Reifung, traditionell nur in großen Jahrgängen, mit einer Geschichte, die von Rioja bis zum Mittelalter reicht. Die Leder- und Vanillenoten entwickeln sich im Glas weiter. Herr Bergmann schwenkt, riecht, nickt: "Jetzt kann der Partner ruhig noch zehn Minuten brauchen."' },
         { wineId: 'sancerre', correct: false, explanation: 'Sancerre ist unkompliziert und frisch – perfekt als Aperitif, aber nicht der komplexe Gesprächswein, den Herr Bergmann sucht.' },
         { wineId: 'champagner', correct: false, explanation: 'Champagner alleine am Tisch? Das wirkt weniger nach Studium als nach einsamer Feier. Herr Bergmann braucht einen Wein zum Nachdenken, nicht zum Anstoßen.' },
+        { wineId: 'malbec', acceptable: true, explanation: 'Malbec ist kräftig und hat Charakter – aber zum stundenlangen Studieren im Glas fehlt ihm die Reifekomplexität der Gran Reserva.' },
+        { wineId: 'dornfelder', correct: false, explanation: 'Dornfelder? Den kennt Herr Bergmann noch aus dem Imbiss! Fruchtig und unkompliziert – nach dem dritten Schluck ist alles gesagt.' },
       ]
     },
   ],
@@ -481,6 +505,8 @@ QUESTIONS.sterne = {
             { wineId: 'chateauneuf', correct: true, favorite: true, explanation: 'Châteauneuf-du-Pape – eine brillante Wahl. Die Grenache-dominierte Cuvée bringt Wärme und Kräuternoten mit, die den Rosmarin und Thymian der Kruste spiegeln. Der Garrigue-Charakter des südlichen Rhônetals ist wie gemacht für dieses Lamm. Der Tester nickt fast unmerklich – das höchste Lob.' },
             { wineId: 'tempranillo_gran_reserva', correct: true, explanation: 'Tempranillo Gran Reserva ist eine solide Wahl – kräftig genug für das Lamm, mit reifen Tanninen und Komplexität. Aber die Kräuter-Synergie eines Châteauneuf wäre hier das i-Tüpfelchen gewesen. Der Tester notiert: "Akzeptabel."' },
             { wineId: 'sancerre', correct: false, explanation: 'Sancerre zum Lammkarree? Ein mineralischer Sauvignon Blanc zu rosa gebratenem Lamm mit Kräuterkruste und konzentriertem Jus – das ist ein Sommelier-Foul. Der Tester schüttelt den Kopf und schreibt etwas Längeres in sein Notizbuch. Das ist kein gutes Zeichen.' },
+            { wineId: 'chianti', acceptable: true, explanation: 'Chianti ist Alte Welt pur und bringt Kräuternoten zur Kruste – passt! Aber für rosa Lamm mit konzentriertem Jus fehlt ihm die warme Fülle des Châteauneuf.' },
+            { wineId: 'pinotage', correct: false, explanation: 'Pinotage ist Südafrika durch und durch – der Tester wollte ausdrücklich Alte Welt. Und die Rauchnoten übertönen Rosmarin und Thymian.' },
           ]
         }
       ],
@@ -515,6 +541,8 @@ QUESTIONS.sterne = {
             { wineId: 'champagner', correct: true, favorite: true, explanation: 'Champagner – die einzig würdige Wahl für eine Premierenfeier! Aufsteigende Perlen für die Fotos, festlicher Klang beim Anstoßen, perfekt zu leichten Canapés. Die Opernsängerin strahlt: "BRAVISSIMO! Genau SO feiert man einen Triumph!" Zwanzig Gläser golden perlend – ein ikonischer Moment.' },
             { wineId: 'sancerre', correct: true, explanation: 'Sancerre ist eine elegante, durchdachte Alternative – frisch, mineralisch, perfekt zu Lachs-Blinis und Austern. Aber für eine triumphale Premierenfeier fehlt das Prickeln, das Drama, das Ikonische. Die Opernsängerin nickt: "Hübsch – aber wo bleibt das Fortissimo?"' },
             { wineId: 'amarone', correct: false, explanation: 'Amarone zu einer Premierenfeier mit leichten Canapés? Ein 15-prozentiger Schwergewichts-Rotwein, der nach Rosinen und Schokolade schmeckt, zu Lachs-Blinis und Austern – die Gäste fallen nach dem zweiten Glas um. Die Opernsängerin ist entsetzt: "Das ist kein Fest, das ist eine TRAGÖDIE!"' },
+            { wineId: 'cremant', acceptable: true, explanation: 'Crémant prickelt elegant und sieht im Glas toll aus – aber für den TRIUMPH erwartet die Diva das Original: Champagner!' },
+            { wineId: 'eiswein', correct: false, explanation: 'Eiswein ist süß und still – kein Prickeln, kein Glanz für zwanzig Handykameras. Die Diva will Fortissimo, keine Dessert-Pause.' },
           ]
         }
       ],
@@ -549,6 +577,8 @@ QUESTIONS.sterne = {
             { wineId: 'tempranillo_gran_reserva', correct: true, favorite: true, explanation: 'Tempranillo Gran Reserva – die perfekte Brücke! Kräftig genug, um einen Napa-Cab-Trinker nicht zu langweilen, mit konzentrierter Frucht und reifem Holz. Aber dann die ledrigen Noten, der Tabak, die Komplexität von 60+ Monaten Reife – das ist unverkennbar Alte Welt. Prof. Weinstein strahlt: "EXZELLENT! Er wird nie wieder nur Napa trinken!"' },
             { wineId: 'chateauneuf', correct: true, explanation: 'Châteauneuf-du-Pape hat Kraft und Fülle – ein respektabler Versuch, den Neue-Welt-Fan zu gewinnen. Aber die erdigen, kräuterigen Garrigue-Noten könnten für einen Napa-Trinker zu fremd sein. Prof. Weinstein nickt: "Interessant – aber vielleicht zu schnell zu weit weg von seiner Komfortzone."' },
             { wineId: 'eiswein', correct: false, explanation: 'Eiswein – süß, konzentriert, deutsch – zum Rinderfilet, für einen Mann, der Cabernet Sauvignon aus Napa liebt? Das ist keine Bekehrung, das ist Sabotage. Prof. Weinstein starrt dich an: "Mein Kollege würde nie wieder mit mir essen gehen."' },
+            { wineId: 'barolo', acceptable: true, explanation: 'Barolo ist Alte Welt in Reinform mit enormer Tiefe – aber seine strengen Tannine und Teernoten sind eher Kulturschock als sanfte Verführung.' },
+            { wineId: 'spaetburgunder', correct: false, explanation: 'Spätburgunder ist fein und elegant – für einen Fan wuchtiger Napa-Cabernets viel zu zart. Der Kollege würde gähnen.' },
           ]
         }
       ],
@@ -583,6 +613,8 @@ QUESTIONS.sterne = {
             { wineId: 'eiswein', correct: true, favorite: true, explanation: 'Eiswein – ein Meisterstück der Empfehlung! Eine große deutsche Tradition, unglaublich selten (nur in wenigen Jahrgängen möglich), mit einer faszinierenden Entstehungsgeschichte: bei -7°C oder kälter geerntete gefrorene Trauben, wenige Tropfen pro Beere. In Japan wird Eiswein verehrt – die Verbindung von Naturgewalt und Handwerkskunst spricht die japanische Ästhetik direkt an. Die Botschafterin lächelt: "Perfekt. Eine Geschichte, die es wert ist, erzählt zu werden."' },
             { wineId: 'champagner', correct: true, explanation: 'Champagner ist universelles Prestige – ein sicherer, respektabler Griff. Aber als Einzelgeschenk für einen kultivierten japanischen Diplomaten fehlt das Überraschungsmoment. Champagner kennt jeder. Die Botschafterin nickt: "Solide – aber nicht außergewöhnlich genug für diesen Anlass."' },
             { wineId: 'tempranillo_gran_reserva', correct: false, explanation: 'Tempranillo Gran Reserva ist ein großartiger Wein – aber als diplomatisches Geschenk fehlt ihm das Alleinstellungsmerkmal. Spanische Gran Reserva gibt es viele. Die Botschafterin schüttelt den Kopf: "Respektabel, aber nicht einzigartig genug. Ein Geschenk muss eine Geschichte erzählen, die nur dieser Wein erzählen kann."' },
+            { wineId: 'riesling_spaetlese', acceptable: true, explanation: 'Riesling Spätlese ist ein Stück deutscher Weinkultur mit feiner Restsüße – aber selten ist sie nicht. Für echtes Staunen braucht es die Rarität Eiswein.' },
+            { wineId: 'mueller_thurgau', correct: false, explanation: 'Müller-Thurgau ist ein sympathischer Alltagswein – als diplomatisches Geschenk für einen Liebhaber des Seltenen eine Enttäuschung.' },
           ]
         }
       ],
@@ -617,6 +649,8 @@ QUESTIONS.sterne = {
             { wineId: 'chateauneuf', correct: true, favorite: true, explanation: 'Meisterhaft! Châteauneuf-du-Pape ist die perfekte Brücke zwischen Orient und Okzident: Die Garrigue-Kräuter und der Lavendel des Rhône-Tals harmonieren wie komponiert mit Safran und Kreuzkümmel. Die konzentrierte Frucht hält dem intensiven Lamm stand, und der Name allein – "Neues Schloss des Papstes" – lässt selbst den Bordeaux-Sammler respektvoll nicken. Der Scheich lächelt zufrieden: "Ein Wein mit Geschichte und Diplomatie."' },
             { wineId: 'tempranillo_gran_reserva', correct: true, explanation: 'Tempranillo Gran Reserva ist eine respektable Wahl – die ledrigen, reifen Aromen passen durchaus zum Lamm. Aber die orientalischen Gewürze des Gerichts verlangen nach einem Wein mit kräuterigen Nuancen, nicht nach Vanille und Tabak. Der Scheich nickt höflich: "Gut, aber nicht perfekt."' },
             { wineId: 'sancerre', correct: false, explanation: 'Sancerre – ein frischer Loire-Weißwein – zum gewürzintensiven Lammkarree für einen Scheich, der einen Bordeaux-Sammler beeindrucken will? Das wäre ein diplomatischer Fauxpas. Die Stachelbeere geht im Kreuzkümmel unter. Der Assistent hustet diskret: "Seine Exzellenz... ist nicht amüsiert."' },
+            { wineId: 'saint_emilion', acceptable: true, explanation: 'Saint-Émilion würde den Bordeaux-Sammler freuen – aber zu Safran und Kreuzkümmel fehlen ihm die Kräuter- und Gewürznoten. Der Châteauneuf ergänzt das Gericht besser.' },
+            { wineId: 'dornfelder', correct: false, explanation: 'Dornfelder beim Diplomaten-Dinner? Fruchtig und unkompliziert – aber den orientalischen Gewürzen und dem Anspruch der Gäste hält er nicht stand.' },
           ]
         }
       ],
@@ -651,6 +685,8 @@ QUESTIONS.sterne = {
             { wineId: 'amarone', correct: true, favorite: true, explanation: 'Ein Meisterstück! Amarone della Valpolicella ist selbst ein Kunstwerk: aus getrockneten Trauben (Appassimento), monatelang getrocknet, bevor sie gepresst werden, mit Aromen von dunkler Schokolade, Kaffee und Rosinen. Intensiv, unkonventionell, polarisierend – genau wie avantgardistische Kunst. Die Kunstsammlerin hebt das Glas ans Licht: "Dieser Wein ist ein Caravaggio – dunkel, dramatisch, unvergesslich. PERFEKT."' },
             { wineId: 'champagner', correct: true, explanation: 'Champagner bei einer Vernissage ist klassisch und sicher – das Prickeln sorgt für Stimmung. Aber für eine Kunstsammlerin, die "keine Mainstream-Weine" will, ist Champagner zu erwartbar. Es ist wie ein Monet in einer Galerie für zeitgenössische Kunst – schön, aber nicht überraschend.' },
             { wineId: 'sancerre', correct: false, explanation: 'Sancerre – frisch, leicht, unkompliziert – zu einer avantgardistischen Vernissage mit Foie-Gras-Pralinés und dunkler Schokolade? Das ist wie ein Aquarell neben einer Skulptur von Jeff Koons. Zu brav, zu leise. Die Kunstsammlerin würde den Sommelier aus der Galerie werfen.' },
+            { wineId: 'pinotage', acceptable: true, explanation: 'Pinotage ist rauchig und eigenwillig – mutig und alles andere als Mainstream! Aber zu dunkler Schokolade und Foie-Gras-Pralinés fehlt ihm die samtige Opulenz des Amarone.' },
+            { wineId: 'chianti', correct: false, explanation: 'Chianti ist ein toskanischer Klassiker – genau der Mainstream, den die Kunstsammlerin nicht will. Und zu dunkler Schokolade passt er auch nicht.' },
           ]
         }
       ],

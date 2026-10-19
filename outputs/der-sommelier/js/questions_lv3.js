@@ -34,6 +34,8 @@ QUESTIONS.gehoben = {
         { wineId: 'barolo', correct: true, favorite: true, explanation: 'Barolo – der "König der Weine". Seine Tannine und Komplexität stehen dem edlen Wagyu in nichts nach. Eine würdige Paarung!' },
         { wineId: 'saint_emilion', correct: true, explanation: 'Saint-Émilion bringt Struktur und Eleganz mit – ein solider Begleiter zum Wagyu, aber der Barolo ist hier die Königsklasse.' },
         { wineId: 'rose_provence', correct: false, explanation: 'Rosé zum Wagyu? Zu leicht, zu unambitioniert für dieses Premium-Fleisch.' },
+        { wineId: 'malbec', acceptable: true, explanation: 'Malbec ist ein kraftvoller Steakwein – gar nicht verkehrt! Aber dem edlen, marmorierten Wagyu fehlt bei ihm die Komplexität und Struktur, die der Barolo mitbringt.' },
+        { wineId: 'lambrusco', correct: false, explanation: 'Lambrusco ist leicht, lieblich und perlend – dem Premium-Wagyu im gehobenen Restaurant nicht ebenbürtig. Die Diplomaten wären pikiert.' },
       ]
     },
     {
@@ -44,6 +46,8 @@ QUESTIONS.gehoben = {
         { wineId: 'riesling_spaetlese', correct: true, favorite: true, explanation: 'Riesling Spätlese – die Restsüße und die lebendige Säure bilden einen perfekten Kontrast zu kräftigem Käse. Klassische Pairing-Regel!' },
         { wineId: 'malbec', correct: false, explanation: 'Malbec ist kräftig und trocken – er würde mit dem intensiven Roquefort konkurrieren statt harmonieren.' },
         { wineId: 'pinot_grigio', correct: false, explanation: 'Pinot Grigio ist zu neutral und leicht für eine so kraftvolle Käseauswahl.' },
+        { wineId: 'gewuerztraminer', acceptable: true, explanation: 'Gewürztraminer bringt etwas Restsüße und passt gern zu Käse – aber ihm fehlt die lebendige Säure als Gegengewicht, die die Professorin ausdrücklich will. Die Riesling Spätlese hat beides.' },
+        { wineId: 'mueller_thurgau', correct: false, explanation: 'Müller-Thurgau ist leicht und mild – gegen Roquefort und Époisses verschwindet er sang- und klanglos.' },
       ]
     },
     {
@@ -66,6 +70,8 @@ QUESTIONS.gehoben = {
         { wineId: 'riesling_spaetlese', correct: true, explanation: 'Riesling Spätlese ist frisch und fotogen – die Restsüße kontrastiert den rohen Fisch schön. Aber Chablis ist die klassischere Wahl zum Thunfisch-Tatar und bringt die mineralische Eleganz mit, die hier den Unterschied macht.' },
         { wineId: 'dornfelder', correct: false, explanation: 'Dornfelder ist ein Rotwein – zum rohen Thunfisch ein geschmackliches No-Go und auch kein guter Content.' },
         { wineId: 'lambrusco', correct: false, explanation: 'Lambrusco zum Thunfisch-Tatar im gehobenen Restaurant? Ihre Follower würden sie auslachen.' },
+        { wineId: 'pinot_grigio', acceptable: true, explanation: 'Pinot Grigio ist leicht und dezent und passt zum rohen Fisch – solide! Aber ihm fehlt die mineralische Eleganz des Chablis, die das Tatar (und den Reel) erst besonders macht.' },
+        { wineId: 'retsina', correct: false, explanation: 'Retsina zum Thunfisch-Tatar im Le Vignoble? Das Harzaroma überdeckt den feinen Fisch – daraus wird höchstens ein Fail-Video.' },
       ]
     },
     {
@@ -86,6 +92,8 @@ QUESTIONS.gehoben = {
         { wineId: 'chablis_premier_cru', correct: true, favorite: true, explanation: 'Chablis Premier Cru! Der Kimmeridge-Kalkboden enthält fossile Austernschalen – der Wein hat buchstäblich Meeresmineralik. Die klassischste Austern-Begleitung überhaupt.' },
         { wineId: 'riesling_spaetlese', correct: false, explanation: 'Riesling Spätlese hat zu viel Restsüße für die puristischen Austern – die salzige Frische geht verloren.' },
         { wineId: 'barolo', correct: false, explanation: 'Barolo zu Austern wäre ein Fauxpas der Extraklasse – die mächtigen Tannine erschlagen die zarten Schalentiere.' },
+        { wineId: 'vinho_verde', acceptable: true, explanation: 'Vinho Verde ist frisch, mineralisch und mag Meeresfrüchte – zu Austern kein Fehler! Aber kein Wein schmeckt so nach Meer wie Chablis mit den fossilen Austernschalen im Boden.' },
+        { wineId: 'gewuerztraminer', correct: false, explanation: 'Gewürztraminer mit Litschi, Rose und Restsüße zu puristischen Austern? Das Parfum überdeckt das Meer komplett.' },
       ]
     },
     {
@@ -96,6 +104,8 @@ QUESTIONS.gehoben = {
         { wineId: 'barolo', correct: true, favorite: true, explanation: 'Barolo – mit seinen Aromen von Rose, Kirsche und Teer das perfekte Crescendo zur Entenbrust! Die Tannine schneiden durch das Fett, die Kirschnoten umarmen die Sauce.' },
         { wineId: 'saint_emilion', correct: true, explanation: 'Saint-Émilion hat die nötige Struktur für die Ente – aber der Komponist bat ausdrücklich um etwas Italienisches mit Rosenduft. Da ist Barolo die einzig wahre Antwort.' },
         { wineId: 'chablis_premier_cru', correct: false, explanation: 'Chablis ist ein Weißwein – zur kräftigen Entenbrust mit Kirschsauce fehlt ihm schlicht die Substanz.' },
+        { wineId: 'chianti', acceptable: true, explanation: 'Chianti ist italienisch und bringt Kirschfrucht zur Kirschsauce – nicht schlecht! Aber für Rosenduft und das große Crescendo mit Trüffel fehlt ihm die Tiefe des Barolo.' },
+        { wineId: 'pinotage', correct: false, explanation: 'Pinotage ist rauchig und südafrikanisch – weder italienisch noch mit Rosenduft. Der Komponist wollte eine Arie, keinen Lagerfeuer-Song.' },
       ]
     },
     {
@@ -106,6 +116,8 @@ QUESTIONS.gehoben = {
         { wineId: 'riesling_spaetlese', correct: true, favorite: true, explanation: 'Riesling Spätlese – die Restsüße umschmeichelt die Foie Gras, die lebendige Säure schneidet durch das Fett, und die Honig-Pfirsich-Aromen ergänzen den Feigensenf. Ein Klassiker!' },
         { wineId: 'chablis_premier_cru', correct: false, explanation: 'Chablis ist trocken und französisch – der Gast wollte ausdrücklich etwas Deutsches mit Süße.' },
         { wineId: 'pinotage', correct: false, explanation: 'Pinotage zur Foie Gras? Die rauchigen Noten würden die zarte Gänseleber überfordern.' },
+        { wineId: 'gewuerztraminer', acceptable: true, explanation: 'Gewürztraminer ist deutsch und halbtrocken – zur Foie Gras gar kein schlechter Gedanke! Aber ihm fehlt die lebendige Säure der Riesling Spätlese, die durch das Fett schneidet.' },
+        { wineId: 'riesling', correct: false, explanation: 'Deutsch und säurebetont – zwei von drei Wünschen! Aber der trockene Riesling hat keine Süße, und genau die braucht die Foie Gras mit Feigensenf.' },
       ]
     },
     {
@@ -127,6 +139,8 @@ QUESTIONS.gehoben = {
         { wineId: 'saint_emilion', correct: true, favorite: true, explanation: 'Saint-Émilion Grand Cru – ein Bordeaux mit Tiefgang und Eleganz, der die Rotwein-Jus des Ochsenschwanzes spiegelt. Blog-Content mit Substanz!' },
         { wineId: 'barolo', correct: true, explanation: 'Barolo hat die Kraft und Komplexität für den Ochsenschwanz – aber die Bloggerin wollte explizit etwas Französisches, und da ist Saint-Émilion die erste Adresse.' },
         { wineId: 'chablis_premier_cru', correct: false, explanation: 'Chablis zum geschmorten Ochsenschwanz? Der mineralische Weißwein hat nicht annähernd genug Gewicht für das kräftige Schmorgericht.' },
+        { wineId: 'rioja_crianza', acceptable: true, explanation: 'Rioja Crianza liebt Schmorgerichte – zum Ochsenschwanz eine runde Sache! Aber die Bloggerin wollte etwas Französisches, und da führt kein Weg am Saint-Émilion vorbei.' },
+        { wineId: 'dornfelder', correct: false, explanation: 'Dornfelder ist fruchtig und unkompliziert – weder französisch noch mit Tiefgang. Für den Blog-Ochsenschwanz zu brav.' },
       ]
     },
     {
@@ -137,6 +151,8 @@ QUESTIONS.gehoben = {
         { wineId: 'riesling_spaetlese', correct: true, favorite: true, explanation: 'Riesling Spätlese – die perfekte Balance aus Restsüße und Säure kontrastiert den salzigen Bergkäse brillant, und die Honigaromen ergänzen den Feigensenf. Fundiert genug für jeden Weinclub!' },
         { wineId: 'barolo', correct: true, explanation: 'Barolo hat die Struktur für kräftigen Käse – aber die Tannine und der Käse können sich beißen. Die Riesling Spätlese löst das eleganter durch Süße-Säure-Kontrast.' },
         { wineId: 'chablis_premier_cru', correct: false, explanation: 'Chablis ist trocken und mineralisch – dem kräftigen Bergkäse mit Feigensenf hat er nicht genug entgegenzusetzen.' },
+        { wineId: 'gewuerztraminer', acceptable: true, explanation: 'Gewürztraminer mit leichter Restsüße und Würze ist ein beliebter Käsebegleiter – aber ihm fehlt die lebendige Säure, die den salzigen Bergkäse so brillant kontrastiert.' },
+        { wineId: 'vinho_verde', correct: false, explanation: 'Vinho Verde ist leicht und spritzig – gegen gereiften Bergkäse und Feigensenf geht er sang- und klanglos unter. Nicht fundiert genug für den Club.' },
       ]
     },
   ],
@@ -160,6 +176,8 @@ QUESTIONS.gehoben = {
         { wineId: 'malbec', correct: true, favorite: true, explanation: 'Malbec aus Argentinien – exotisch, kraftvoll und Instagram-tauglich! Die Influencerin wird begeistert sein.' },
         { wineId: 'pinotage', correct: true, explanation: 'Pinotage aus Südafrika ist definitiv exotisch und Neue Welt – aber Malbec hat den besseren "Wow-Faktor" für Social Media und ist der bekanntere Neue-Welt-Star.' },
         { wineId: 'chablis_premier_cru', correct: false, explanation: 'Chablis ist ein weißer Burgunder – weder Neue Welt noch kräftiger Roter.' },
+        { wineId: 'primitivo', correct: false, explanation: 'Primitivo ist kräftig und fruchtig – aber aus Apulien, also tiefste Alte Welt. Für "exotisch, Neue Welt" verfehlt das Thema.' },
+        { wineId: 'barolo', correct: false, explanation: 'Barolo ist kräftig und berühmt – aber Piemont ist Alte Welt pur. Die Follower wollten Neue Welt sehen!' },
       ]
     },
     {
@@ -170,6 +188,8 @@ QUESTIONS.gehoben = {
         { wineId: 'pinotage', correct: true, favorite: true, explanation: 'Pinotage aus Südafrika – rauchig, erdig, einzigartig! Die eigene Rebsorte des Kaps. Genau die Überraschung, die der Weinhändler sucht.' },
         { wineId: 'malbec', correct: true, explanation: 'Malbec hat dunkle, erdige Noten und ist durchaus ungewöhnlich – aber für echten Rauch und Lagerfeuer-Charakter ist Pinotage die unschlagbare Wahl.' },
         { wineId: 'cremant', correct: false, explanation: 'Crémant ist elegant, aber nicht der rauchig-erdige Rote, den er sucht.' },
+        { wineId: 'barolo', acceptable: true, explanation: 'Barolo mit Teer- und Rosennoten hat durchaus Ecken und Kanten – aber Rauch hat er nicht, und als "König der Weine" ist er für einen Weinhändler keine Überraschung.' },
+        { wineId: 'dornfelder', correct: false, explanation: 'Dornfelder ist fruchtig und unkompliziert – weder rauchig noch ungewöhnlich. Den kennt der Weinhändler im Schlaf.' },
       ]
     },
     {
@@ -180,6 +200,8 @@ QUESTIONS.gehoben = {
         { wineId: 'chablis_premier_cru', correct: true, favorite: true, explanation: 'Chablis Premier Cru – mineralisch, klar, analytisch! Die Kreide- und Feuersteinnoten sind ein Geologen-Traum im Glas. Perfekt für die Professorin.' },
         { wineId: 'riesling_spaetlese', correct: false, explanation: 'Riesling Spätlese hat zwar Mineralik, aber die Restsüße und Fruchtnoten sind genau das, was die Professorin heute NICHT möchte – sie will klar und analytisch, keinen Fruchtbomber.' },
         { wineId: 'malbec', correct: false, explanation: 'Malbec ist ein üppiger Fruchtbomber – das Gegenteil von dem, was die Professorin sucht.' },
+        { wineId: 'riesling', acceptable: true, explanation: 'Trockener Riesling ist klar und mineralisch – eine gute Idee! Aber als leichter Riesling hat er weniger Tiefe zum Analysieren als ein Chablis Premier Cru mit Feuerstein-Noten.' },
+        { wineId: 'gewuerztraminer', correct: false, explanation: 'Gewürztraminer ist das Paradebeispiel für aromatische Fülle – Litschi und Rosen statt Mineralik. Genau das, was die Professorin heute nicht will.' },
       ]
     },
     {
@@ -190,6 +212,8 @@ QUESTIONS.gehoben = {
         { wineId: 'barolo', correct: true, favorite: true, explanation: 'Barolo ist Wabi-Sabi im Glas! Tannine wie raue Seide, Aromen von Teer und verwelkten Rosen – nicht sofort gefällig, aber von überwältigender Ehrlichkeit und Tiefe.' },
         { wineId: 'pinotage', correct: true, explanation: 'Pinotage hat definitiv Ecken und Kanten – Rauch, Erde, Wildheit. Aber Barolo vereint die Spannung zwischen Rauheit und Eleganz auf einem noch höheren Niveau.' },
         { wineId: 'chablis_premier_cru', correct: false, explanation: 'Chablis ist elegant und klar, aber eher "Zen-Garten" als "Wabi-Sabi" – zu geschliffen für das, was Herr Tanaka sucht.' },
+        { wineId: 'chianti', acceptable: true, explanation: 'Chianti hat mit Kräutern und Leder durchaus Kanten und ist ehrlich-toskanisch – aber Barolo vereint Rauheit und Tiefe auf einem noch höheren Niveau.' },
+        { wineId: 'lambrusco', correct: false, explanation: 'Lambrusco ist lieblich, perlend und süffig – also genau "glatt und gefällig". Herr Tanaka würde höflich lächeln und das Glas stehen lassen.' },
       ]
     },
     {
@@ -204,12 +228,14 @@ QUESTIONS.gehoben = {
     },
     {
       id: 'pref_3_7', guestId: 'madame_dupont', mood: '🌙',
-      scenario: 'Madame Dupont lehnt sich zurück und seufzt ungewohnt sanft: "Heute Abend kein Duell, keine Kritik. Ich möchte einen Wein, der mich an die Sonntagnachmittage meiner Kindheit in der Dordogne erinnert – halbtrocken, golden, duftend nach reifen Früchten."',
+      scenario: 'Madame Dupont lehnt sich zurück und seufzt ungewohnt sanft: "Heute Abend kein Duell, keine Kritik. Ich möchte einen Wein, der mich an die Sonntagnachmittage meiner Kindheit in der Dordogne erinnert – fruchtig-süß, golden, duftend nach reifen Früchten."',
       question: 'Was empfiehlst du?',
       options: [
         { wineId: 'riesling_spaetlese', correct: true, favorite: true, explanation: 'Riesling Spätlese – golden, duftend nach Pfirsich und Honig, fruchtig-süß. Die sanfte Süße weckt Kindheitserinnerungen, die Säure hält die Nostalgie lebendig.' },
         { wineId: 'chablis_premier_cru', correct: false, explanation: 'Chablis ist trocken und mineralisch – zu streng für Madame Duponts seltenen sentimentalen Moment.' },
         { wineId: 'pinotage', correct: false, explanation: 'Ein rauchiger südafrikanischer Rotwein passt nicht zu goldenen Kindheitserinnerungen in der Dordogne.' },
+        { wineId: 'gewuerztraminer', acceptable: true, explanation: 'Gewürztraminer ist halbtrocken und herrlich duftend – fast ein Treffer! Aber sein Duft geht eher Richtung Rosen und Litschi als reife Pfirsiche und Aprikosen; die Riesling Spätlese trifft die goldene Erinnerung genauer.' },
+        { wineId: 'pinot_grigio', correct: false, explanation: 'Pinot Grigio ist trocken, leicht und dezent – keine Spur von golden und reifer Frucht. Für Madames sentimentalen Moment zu nüchtern.' },
       ]
     },
     {
@@ -220,6 +246,8 @@ QUESTIONS.gehoben = {
         { wineId: 'saint_emilion', correct: true, favorite: true, explanation: 'Saint-Émilion Grand Cru – Bordeaux ist die Benchmark für Prestige-Wein weltweit. Vollmundig, komplex, ein Statement. Der Bankier wird den nächsten Deal mit neuem Selbstbewusstsein angehen.' },
         { wineId: 'barolo', correct: true, explanation: 'Barolo ist der "König der Weine" und steht absolut für Exzellenz – aber wenn ein Bankier nach Prestige verlangt, ist Bordeaux die Währung, die jeder kennt.' },
         { wineId: 'riesling_spaetlese', correct: false, explanation: 'Restsüß und mittelschwer – nicht das Powerstatement, das der Bankier gerade braucht.' },
+        { wineId: 'malbec', acceptable: true, explanation: 'Malbec ist vollmundig und trocken – die Basics stimmen! Aber als Prestige-Statement kann er der Bordeaux-Benchmark nicht das Wasser reichen.' },
+        { wineId: 'dornfelder', correct: false, explanation: 'Dornfelder ist halbtrocken und unkompliziert – das schmeckt nach Feierabend, nicht nach Gewinner.' },
       ]
     },
     {
@@ -230,6 +258,8 @@ QUESTIONS.gehoben = {
         { wineId: 'malbec', correct: true, favorite: true, explanation: 'Malbec – tintenschwarz, fast opak, mit Aromen von dunklen Beeren und Schokolade. Eine der dunkelsten Farben aller Rotweine, perfekte Inspiration für die Leinwand!' },
         { wineId: 'pinotage', correct: true, explanation: 'Pinotage ist dunkel und intensiv mit rauchigen Noten – ein starker Charakter. Aber für pure Farbintensität ist Malbec mit seiner fast schwarzen Robe unschlagbar.' },
         { wineId: 'riesling_spaetlese', correct: false, explanation: 'Ein goldgelber Weißwein? Der Künstler malt in Schwarz und Dunkelrot – da braucht er Inspiration im Glas, nicht auf der Palette.' },
+        { wineId: 'primitivo', acceptable: true, explanation: 'Primitivo ist dunkel und vollmundig, mit Pflaume und Schokolade – starke Inspiration! Aber für die fast schwarze, tintige Farbe ist Malbec unschlagbar.' },
+        { wineId: 'spaetburgunder', correct: false, explanation: 'Spätburgunder ist ein heller, eleganter Roter – eher Aquarell als Schwarz und Dunkelrot. Für diese Serie die falsche Palette.' },
       ]
     },
     {
@@ -250,6 +280,8 @@ QUESTIONS.gehoben = {
         { wineId: 'riesling_spaetlese', correct: true, favorite: true, explanation: 'Riesling Spätlese – die Restsüße umschmeichelt den salzigen Roquefort, die lebendige Säure kontrastiert den nussigen Comté. Ein Geheimtipp, der die Community begeistern wird!' },
         { wineId: 'saint_emilion', correct: true, explanation: 'Saint-Émilion ist ein eleganter Begleiter zu Käse – aber die Kombination Restsüße + Säure der Riesling Spätlese ist die harmonischere Brücke zwischen den zwei sehr unterschiedlichen Käsesorten.' },
         { wineId: 'pinotage', correct: false, explanation: 'Pinotage mit seinen rauchigen Noten zum feinen Käse? Die Lagerfeuer-Aromatik würde den Roquefort dominieren statt ergänzen.' },
+        { wineId: 'gewuerztraminer', acceptable: true, explanation: 'Gewürztraminer mit leichter Restsüße ist ein beliebter Käsebegleiter – aber ihm fehlt die lebendige Säure, die den nussigen Comté kontrastiert. Die Riesling Spätlese kann beide Käse.' },
+        { wineId: 'vinho_verde', correct: false, explanation: 'Vinho Verde ist leicht und spritzig – gegen salzigen Roquefort hat er keine Chance. Kein Geheimtipp, eher ein Geheimflop.' },
       ]
     },
     {

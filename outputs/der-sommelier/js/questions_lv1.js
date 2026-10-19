@@ -24,6 +24,8 @@ QUESTIONS.steakhaus = {
         { wineId: 'primitivo', correct: true, favorite: true, explanation: 'Primitivo di Manduria – kraftvoll, fruchtig, vollmundig. Genau der Wumms, den ein Steak-Fan braucht!' },
         { wineId: 'chianti', correct: true, explanation: 'Chianti ist ein solider Roter zum Steak – aber für "den kräftigsten Roten" fehlt ihm der volle Körper des Primitivo.' },
         { wineId: 'riesling', correct: false, explanation: 'Riesling ist leicht und säurebetont – passt nicht zum kräftigen Steak.' },
+        { wineId: 'spaetburgunder', acceptable: true, explanation: 'Spätburgunder ist ein eleganter Roter, der zu Fleisch passt – aber mit mittlerem Körper ist er das Gegenteil von "Go big". Zum kräftigsten Roten fehlt ihm die Wucht des Primitivo.' },
+        { wineId: 'lambrusco', correct: false, explanation: 'Lambrusco ist leicht, lieblich und perlt – zum Mega-Rumpsteak eher "go home" als "go big". Der Amerikaner braucht Primitivo!' },
       ]
     },
     {
@@ -47,6 +49,8 @@ QUESTIONS.steakhaus = {
         { wineId: 'chianti', correct: true, favorite: true, explanation: 'Chianti zur Bolognese – wie von Marcos Mamma gemacht! Sangiovese und Tomate sind ein Traumpaar.' },
         { wineId: 'primitivo', correct: true, explanation: 'Primitivo ist auch italienisch und kräftig genug für Bolognese – aber Sangiovese und Tomate ist das klassischere Paar als Primitivo.' },
         { wineId: 'sekt', correct: false, explanation: 'Sekt zur Bolognese? In Italien würde man dich auslachen.' },
+        { wineId: 'lambrusco', acceptable: true, explanation: 'Lambrusco ist italienisch und passt zu Pasta – aber leicht und lieblich. Zur kräftigen Bolognese ist Chianti mit Sangiovese das klassischere Paar, wie bei Mamma.' },
+        { wineId: 'dornfelder', correct: false, explanation: 'Dornfelder könnte die Bolognese zwar begleiten – aber Marco hat ausdrücklich "keinen deutschen" gesagt. Zwinkern hin oder her!' },
       ]
     },
     {
@@ -57,6 +61,8 @@ QUESTIONS.steakhaus = {
         { wineId: 'sekt', correct: true, favorite: true, explanation: 'Deutscher Sekt – prickelnd, festlich und genau richtig für einen Toast auf 30 Jahre Liebe!' },
         { wineId: 'dornfelder', correct: false, explanation: 'Dornfelder ist ein stiller Rotwein – zum Anstoßen braucht es was Prickelndes!' },
         { wineId: 'retsina', correct: false, explanation: 'Retsina zum Hochzeitstag? Das wäre eine mutige Wahl – und nicht unbedingt festlich.' },
+        { wineId: 'riesling', correct: false, explanation: 'Trockener Riesling ist frisch und elegant – aber still. Zum Anstoßen auf 30 Jahre wollten die Kochs ausdrücklich etwas Prickelndes.' },
+        { wineId: 'gruener_veltliner', correct: false, explanation: 'Grüner Veltliner ist ein toller Essensbegleiter, aber ohne Perlage. Für den festlichen Toast fehlt das Prickeln – da muss der Sekt ran!' },
       ]
     },
     {
@@ -77,6 +83,8 @@ QUESTIONS.steakhaus = {
         { wineId: 'chianti', correct: true, favorite: true, explanation: 'Chianti mit seiner Kirschfrucht und den Tanninen schneidet durch die BBQ-Sauce und hält der Würze stand – ein kräftiger Essensbegleiter!' },
         { wineId: 'primitivo', correct: true, explanation: 'Primitivo hat die Power für den Mega-Burger – aber Jens hatte ihn letztes Mal schon. Chianti bietet das Neue, das er sucht, plus die Tannine zur BBQ-Sauce.' },
         { wineId: 'sekt', correct: false, explanation: 'Sekt zum Mega-Burger? Jens würde dich auslachen.' },
+        { wineId: 'dornfelder', acceptable: true, explanation: 'Dornfelder ist fruchtig und unkompliziert – zum Burger geht das. Aber ihm fehlen die Tannine und die Struktur, mit denen Chianti durch BBQ-Sauce und Jalapeños schneidet.' },
+        { wineId: 'spaetburgunder', correct: false, explanation: 'Spätburgunder ist ein feiner, eleganter Roter – Jalapeños und BBQ-Sauce würden ihn glatt überrollen. Für den Mega-Burger braucht es mehr Biss.' },
       ]
     },
     {
@@ -87,6 +95,8 @@ QUESTIONS.steakhaus = {
         { wineId: 'mueller_thurgau', correct: true, favorite: true, explanation: 'Müller-Thurgau ist mild, leicht und hat moderate 11-12% Alkohol – perfekt zum Lachs und für den Bootcamp-Morgen!' },
         { wineId: 'gruener_veltliner', correct: true, explanation: 'Grüner Veltliner ist trocken und passt gut zu Fisch – aber er hat etwas mehr Körper und Alkohol als Müller-Thurgau, was bei der Bootcamp-Bedingung nicht ideal ist.' },
         { wineId: 'dornfelder', correct: false, explanation: 'Dornfelder ist ein Rotwein – zum gegrillten Lachs mit Zitrone und Dill passt ein frischer Weißer viel besser.' },
+        { wineId: 'sekt', acceptable: true, explanation: 'Sekt ist leicht und frisch – zum Lachs geht das. Aber als Begleiter zum Hauptgang ist Müller-Thurgau die entspanntere Wahl; Sekt ist eher der Aperitif-Typ.' },
+        { wineId: 'retsina', correct: false, explanation: 'Retsina hat mittleren Körper und ein kräftiges Harzaroma – das überdeckt Dill und Zitrone und ist nicht das Leichte, das die beiden vor dem Bootcamp suchen.' },
       ]
     },
     {
@@ -97,6 +107,8 @@ QUESTIONS.steakhaus = {
         { wineId: 'gruener_veltliner', correct: true, favorite: true, explanation: 'Grüner Veltliner und Spargel – ein österreichischer Klassiker! Die pfeffrige Frische und die zarte Kräuternote passen perfekt zum grünen Spargel.' },
         { wineId: 'rose_provence', correct: true, explanation: 'Rosé de Provence ist trocken und leicht genug für Spargel – aber der Grüne Veltliner ist die Traumkombination schlechthin, seine Pfeffernote hebt den Spargel auf ein neues Level.' },
         { wineId: 'primitivo', correct: false, explanation: 'Primitivo zum Spargel? Der kraftvolle Rote würde den feinen Spargelgeschmack komplett überrollen.' },
+        { wineId: 'mueller_thurgau', acceptable: true, explanation: 'Müller-Thurgau begleitet Spargel mild und freundlich – aber er ist halbtrocken, und die beiden wollten ausdrücklich einen trockenen Weißen. Grüner Veltliner bringt dazu noch die Pfeffernote.' },
+        { wineId: 'retsina', correct: false, explanation: 'Retsina ist zwar trocken, aber das Harzaroma walzt den feinen Spargel platt – da ist von Frühlingsstimmung nichts mehr übrig.' },
       ]
     },
     {
@@ -108,6 +120,8 @@ QUESTIONS.steakhaus = {
         { wineId: 'chianti', correct: true, explanation: 'Chianti funktioniert gut zum Entrecôte – aber für Frau Kochs Lachs ist er schon etwas dominant. Spätburgunder ist die elegantere Brücke zwischen beiden Gerichten.' },
         { wineId: 'sekt', correct: false, explanation: 'Sekt als Essensbegleiter zum Entrecôte? Da fehlt es an Substanz für das Fleisch.' },
         { wineId: 'rose_provence', acceptable: true, explanation: 'Rosé de Provence ist trocken und leicht – zum Wildlachssalat von Frau Koch geht das, aber für Herrn Kochs Entrecôte fehlt die Substanz. Spätburgunder schafft die Brücke zwischen beiden besser.' },
+        { wineId: 'primitivo', acceptable: true, explanation: 'Primitivo ist zum Entrecôte top – aber mit seinem vollen Körper würde er Frau Kochs Wildlachs komplett erschlagen. Spätburgunder schafft die Brücke zwischen beiden Tellern.' },
+        { wineId: 'imiglykos', correct: false, explanation: 'Imiglykos ist lieblich und leicht – zum Entrecôte zu süß und zu dünn, zum Lachs passt die Süße auch nicht. Kein Kompromiss, sondern für beide daneben.' },
       ]
     },
     {
@@ -118,6 +132,8 @@ QUESTIONS.steakhaus = {
         { wineId: 'gruener_veltliner', correct: true, favorite: true, explanation: 'Grüner Veltliner – der Klassiker zum Wiener Schnitzel! Die pfeffrige Frische und die knackige Säure schneiden perfekt durch das panierte Fleisch.' },
         { wineId: 'mueller_thurgau', correct: true, explanation: 'Müller-Thurgau ist mild und unkompliziert – passt zum Schnitzel, aber dem Grünen Veltliner fehlt nichts: seine Pfeffernote und der Biss machen ihn zum ultimativen Schnitzelwein.' },
         { wineId: 'primitivo', correct: false, explanation: 'Primitivo zum Wiener Schnitzel? Der wuchtige Rote erschlägt das zarte Kalbfleisch unter der Panade.' },
+        { wineId: 'riesling', acceptable: true, explanation: 'Riesling schneidet mit seiner Säure ordentlich durch die Panade – solide! Aber Grüner Veltliner ist DER Schnitzelwein, und seine Pfeffernote macht ihn zum "Ordentlichen".' },
+        { wineId: 'retsina', correct: false, explanation: 'Retsina ist trocken, aber das Harzaroma passt nicht zum zarten Schnitzel – zum Gyros ja, zum Wiener nein.' },
       ]
     },
     {
@@ -128,6 +144,8 @@ QUESTIONS.steakhaus = {
         { wineId: 'gruener_veltliner', correct: true, favorite: true, explanation: 'Grüner Veltliner – die pfeffrige Würze und die frische Säure harmonieren wunderbar mit dem cremigen Ziegenkäse und kontrastieren das süße Honig-Dressing. Ein Wein mit Charakter!' },
         { wineId: 'mueller_thurgau', correct: false, explanation: 'Müller-Thurgau ist mild und zurückhaltend – genau das Neutrale, das Claudia nicht haben will. Dem fehlt der Charakter für den kräftigen Ziegenkäse.' },
         { wineId: 'dornfelder', correct: false, explanation: 'Dornfelder ist ein milder Roter – zum Ziegenkäse-Salat mit Honig fehlt ihm die frische Säure, die das Gericht braucht.' },
+        { wineId: 'riesling', acceptable: true, explanation: 'Riesling bringt frische Säure, die zum Ziegenkäse passt – eine gute Idee! Aber dem leichten Riesling fehlt die pfeffrige Würze, mit der der Grüne Veltliner dem Honig-Dressing Kontra gibt.' },
+        { wineId: 'retsina', acceptable: true, explanation: 'Gewagt, aber nicht verrückt: Ziegenkäse ist salzig-würzig wie Feta – und Retsina ist DER Feta-Wein, das Harz greift sogar die Kräuternoten im Salat auf. Doch am Honig-Walnuss-Dressing kippt der Kiefernton ins Bittere. Der Grüne Veltliner verbindet Käse und Süße eleganter.' },
       ]
     },
     {
@@ -138,6 +156,8 @@ QUESTIONS.steakhaus = {
         { wineId: 'gruener_veltliner', correct: true, favorite: true, explanation: 'Grüner Veltliner – die pfeffrige Würze und die frische Säure schneiden perfekt durch die cremige Ei-Käse-Sauce. Ihr Sohn hat recht: ein trockener Weißer ist hier Gold wert!' },
         { wineId: 'rose_provence', correct: true, explanation: 'Rosé de Provence ist leicht und trocken genug für Carbonara – aber der Grüne Veltliner hat mehr Biss und Würze, die der cremigen Sauce besser Paroli bieten.' },
         { wineId: 'imiglykos', correct: false, explanation: 'Ein lieblicher griechischer Rotwein zur Carbonara? Die Süße und die cremige Ei-Sauce würden sich gegenseitig erschlagen.' },
+        { wineId: 'riesling', acceptable: true, explanation: 'Riesling ist trocken und frisch – passt! Aber er ist leichter und hat weniger Würze als der Grüne Veltliner, der der cremigen Speck-Käse-Sauce besser Paroli bietet.' },
+        { wineId: 'mueller_thurgau', correct: false, explanation: 'Müller-Thurgau ist mild und halbtrocken – gegen Parmesan und Speck geht er unter, und trocken, wie der Sohn rät, ist er auch nicht.' },
       ]
     },
   ],
@@ -151,6 +171,8 @@ QUESTIONS.steakhaus = {
         { wineId: 'primitivo', correct: true, favorite: true, explanation: 'Primitivo – kräftig, fruchtig, vollmundig. Genau der Powerwein für einen Ex-Handballer, der vom Bier auf Wein umsteigt!' },
         { wineId: 'chianti', correct: true, explanation: 'Chianti ist ein ordentlicher Roter mit Charakter – aber für Jens\' Ansage "vollmundig, nix für Weicheier" hat Primitivo den kräftigeren Körper.' },
         { wineId: 'rose_provence', correct: false, explanation: 'Rosé ist zu leicht für Jens – der will was mit Wumms.' },
+        { wineId: 'spaetburgunder', acceptable: true, explanation: 'Spätburgunder ist ein feiner Roter mit Kirschfrucht – aber eher elegant als vollmundig. Für Jens\' "nix für Weicheier" braucht es den Wumms des Primitivo.' },
+        { wineId: 'lambrusco', correct: false, explanation: 'Lambrusco ist leicht, lieblich und perlt – das genaue Gegenteil von "richtig kräftig". Jens würde direkt zurück zum Bier flüchten.' },
       ]
     },
     {
@@ -161,6 +183,8 @@ QUESTIONS.steakhaus = {
         { wineId: 'sekt', correct: true, favorite: true, explanation: 'Sekt – prickelnd, festlich und preislich vernünftig. Champagner-Feeling ohne Champagner-Preis!' },
         { wineId: 'dornfelder', correct: false, explanation: 'Dornfelder ist still – ohne Prickeln keine Feststimmung.' },
         { wineId: 'retsina', correct: false, explanation: 'Retsina ist nicht prickelnd und geschmacklich sehr speziell.' },
+        { wineId: 'riesling', acceptable: true, explanation: 'Riesling ist frisch und passt gut zur Vorspeise – aber er perlt nicht, und Frau Koch wollte ausdrücklich etwas Prickelndes. Sekt bringt das Champagner-Feeling.' },
+        { wineId: 'mueller_thurgau', correct: false, explanation: 'Müller-Thurgau ist mild und still – weder prickelnd noch besonders festlich. Für die Feierstimmung der Kochs zu brav.' },
       ]
     },
     {
@@ -191,6 +215,8 @@ QUESTIONS.steakhaus = {
         { wineId: 'primitivo', correct: true, favorite: true, explanation: 'Primitivo – fruchtig, vollmundig, wenig Säure. Die dunkle Beerenfrucht harmoniert perfekt mit dem rauchigen Pulled Pork!' },
         { wineId: 'chianti', correct: true, explanation: 'Chianti hat genug Substanz für Pulled Pork – aber als Sangiovese-Wein bringt er von Natur aus mehr Säure mit, und der Grillmeister wollte explizit "nix Säuerliches". Primitivo ist hier die fruchtigere Wahl.' },
         { wineId: 'rose_provence', correct: false, explanation: 'Rosé zum Pulled Pork? Zu leicht. Das acht Stunden Smoker-Fleisch braucht einen Wein mit Wumms.' },
+        { wineId: 'dornfelder', acceptable: true, explanation: 'Dornfelder ist fruchtig und unkompliziert – kein schlechter Gedanke zum Grillfleisch! Aber gegen acht Stunden Smoker-Rauch fehlt ihm der volle Körper des Primitivo.' },
+        { wineId: 'lambrusco', correct: false, explanation: 'Lambrusco ist leicht und spritzig – neben acht Stunden Smoker wirkt er wie Limo. Der Grillmeister braucht einen Roten mit Wumms.' },
       ]
     },
     {
@@ -201,6 +227,8 @@ QUESTIONS.steakhaus = {
         { wineId: 'sekt', correct: true, favorite: true, explanation: 'Ein gut gekühlter Sekt – die Kohlensäure erfrischt, die Kühle belebt. Besser als jede Klimaanlage und der perfekte Einstieg in den Abend!' },
         { wineId: 'gruener_veltliner', correct: true, explanation: 'Grüner Veltliner ist frisch und kühl serviert sehr erfrischend – aber für das Spritzig-Prickelnde, das er sucht, ist Sekt mit seiner Kohlensäure der bessere Durstlöscher.' },
         { wineId: 'primitivo', correct: false, explanation: 'Primitivo bei Hitze? Der volle, warme Rote ist das Gegenteil von Erfrischung.' },
+        { wineId: 'riesling', acceptable: true, explanation: 'Gut gekühlter Riesling ist frisch und belebend – ein feiner Durstlöscher! Aber spritzig im Sinne von Prickeln ist er nicht; das schafft nur der Sekt.' },
+        { wineId: 'retsina', correct: false, explanation: 'Retsina ist trocken, aber ohne Kohlensäure und mit Harzaroma eher ein Abenteuer als eine Klimaanlage. Der Amerikaner wollte es spritzig!' },
       ]
     },
     {
@@ -221,6 +249,8 @@ QUESTIONS.steakhaus = {
         { wineId: 'gruener_veltliner', correct: true, favorite: true, explanation: 'Grüner Veltliner – trocken, charaktervoll mit seiner typischen Pfeffernote, und weiß genug für jedes Kleid. Ein Wein, der so selbstbewusst ist wie die Geschäftsfrau!' },
         { wineId: 'rose_provence', correct: true, explanation: 'Rosé de Provence ist trocken und hat Charakter – aber sie hat explizit "nichts Rotes" gesagt, und manche rechnen Rosé dazu. Der Grüne Veltliner ist die sichere, charakterstarke Wahl in Weiß.' },
         { wineId: 'chianti', correct: false, explanation: 'Chianti ist ein Rotwein – weißes Kleid plus Rotwein ist eine gefährliche Kombination, das weiß sie selbst am besten.' },
+        { wineId: 'retsina', acceptable: true, explanation: 'Charakter hat er, trocken und weiß ist er auch – aber das Harzaroma ist zum Feiern sehr speziell. Der Grüne Veltliner ist der Charakterkopf, der auf Anhieb überzeugt.' },
+        { wineId: 'mueller_thurgau', correct: false, explanation: 'Müller-Thurgau ist halbtrocken und mild – weder richtig trocken noch mit dem Charakter, den sie sich wünscht. Für einen Deal-Abschluss zu zurückhaltend.' },
       ]
     },
     {

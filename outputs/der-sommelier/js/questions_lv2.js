@@ -13,6 +13,8 @@ QUESTIONS.gutbuergerlich = {
         { wineId: 'gruener_veltliner', correct: true, favorite: true, explanation: 'Die Klassiker-Paarung! Grüner Veltliner mit seiner Pfeffrigkeit und Frische schneidet durch das knusprige Schnitzel perfekt.' },
         { wineId: 'riesling', correct: true, explanation: 'Riesling funktioniert auch – die knackige Säure schneidet durch die Panade. Nicht ganz so klassisch wie Veltliner, aber solide!' },
         { wineId: 'lambrusco', correct: false, explanation: 'Lambrusco ist süßlich – zum panierten Schnitzel mit Zitrone passt eher ein trockener Weißer.' },
+        { wineId: 'mueller_thurgau', acceptable: true, explanation: 'Müller-Thurgau ist mild und unkompliziert – zum Schnitzel geht das, Oma würde nicht schimpfen. Aber ihm fehlt der pfeffrige Biss, mit dem Grüner Veltliner durch die Panade schneidet.' },
+        { wineId: 'gewuerztraminer', correct: false, explanation: 'Gewürztraminer mit Litschi, Rosenblüte und halbtrockener Art ist zum Schnitzel mit Zitrone viel zu parfümiert. Oma Hildegard würde die Nase rümpfen.' },
       ]
     },
     {
@@ -34,6 +36,8 @@ QUESTIONS.gutbuergerlich = {
         { wineId: 'cremant', correct: true, favorite: true, explanation: 'Crémant d\'Alsace – elegant, prickelnd und erschwinglich. Perfekt zur festlichen Vorspeise und zum Budget einer Hochzeit!' },
         { wineId: 'pinot_grigio', correct: true, explanation: 'Pinot Grigio zum Lachs ist solide – leicht und trocken, ergänzt den Fisch gut. Aber für eine Hochzeit fehlt das gewisse Prickeln!' },
         { wineId: 'dornfelder', correct: false, explanation: 'Dornfelder zum Hochzeitsmenü? Etwas Eleganteres muss schon sein!' },
+        { wineId: 'sekt', acceptable: true, explanation: 'Sekt prickelt festlich und passt zum Lachs – eine nette Wahl! Aber der Crémant bringt mit französischem Flair noch mehr Eleganz für den großen Tag.' },
+        { wineId: 'retsina', correct: false, explanation: 'Retsina zum Hochzeitslachs? Das Harzaroma überdeckt den zarten Fisch – elegant ist anders.' },
       ]
     },
     {
@@ -55,6 +59,8 @@ QUESTIONS.gutbuergerlich = {
         { wineId: 'gewuerztraminer', correct: true, favorite: true, explanation: 'Gewürztraminer – aromatisch, leicht halbtrocken, passt großartig zu Schinken und Käse. Ein Klassiker zum Vesper!' },
         { wineId: 'gruener_veltliner', correct: true, explanation: 'Grüner Veltliner zur Vesperplatte ist eine gute Wahl – pfeffrig und frisch zu Schinken und Käse. Aber der Gewürztraminer hat mehr Aromenschmelz zum Vesper!' },
         { wineId: 'chianti', correct: false, explanation: 'Chianti ist gut, aber die Gruppe wollte ausdrücklich einen Weißen.' },
+        { wineId: 'mueller_thurgau', acceptable: true, explanation: 'Müller-Thurgau hat mit seiner Muskatnote einen Hauch Aroma und passt mild zum Vesper – aber gegen den Litschi- und Rosenduft des Gewürztraminers wirkt er zurückhaltend.' },
+        { wineId: 'pinot_grigio', correct: false, explanation: 'Pinot Grigio ist leicht und dezent – genau das Gegenteil vom aromatischen Weißen, den die Wanderer wollen. Gegen Essiggurken und Käse geht er unter.' },
       ]
     },
     {
@@ -65,6 +71,8 @@ QUESTIONS.gutbuergerlich = {
         { wineId: 'vinho_verde', correct: true, favorite: true, explanation: 'Vinho Verde – leicht, frisch, mit einer Spur Spritzigkeit. Wie eine Meeresbrise zum Wolfsbarsch! Die Austauschschülerin wäre begeistert.' },
         { wineId: 'pinot_grigio', correct: true, explanation: 'Pinot Grigio zum Wolfsbarsch funktioniert – leicht, trocken, dezent. Aber ihm fehlt die maritime Spritzigkeit des Vinho Verde, die sie von zu Hause kennt!' },
         { wineId: 'imiglykos', correct: false, explanation: 'Imiglykos ist süßlich – zur Meeresküche passt ein trockener, frischer Weißer besser.' },
+        { wineId: 'riesling', acceptable: true, explanation: 'Riesling ist frisch und passt zum Fisch – solide! Aber der Vinho Verde mit seiner zarten Spritzigkeit bringt genau das Meeresgefühl, nach dem sie sich sehnt.' },
+        { wineId: 'gewuerztraminer', correct: false, explanation: 'Gewürztraminer duftet intensiv nach Litschi und Rosen und ist halbtrocken – das übertönt den feinen Wolfsbarsch völlig. Mit Meeresbrise hat das nichts zu tun.' },
       ]
     },
     {
@@ -75,6 +83,8 @@ QUESTIONS.gutbuergerlich = {
         { wineId: 'zweigelt', correct: true, favorite: true, explanation: 'Zweigelt – kirschfruchtig, mittelschwer, mit sanften Tanninen. Passt wunderbar zum deftigen Schweinebraten ohne ihn zu erschlagen!' },
         { wineId: 'spaetburgunder', correct: true, explanation: 'Spätburgunder zum Schweinebraten ist vertretbar – elegante Frucht trifft deftiges Fleisch. Aber der Zweigelt hat mehr Schmelz für Knödel und Blaukraut!' },
         { wineId: 'vinho_verde', correct: false, explanation: 'Vinho Verde ist leicht und spritzig – nichts für Soulfood mit Knödeln und Blaukraut.' },
+        { wineId: 'dornfelder', acceptable: true, explanation: 'Dornfelder ist fruchtig und unkompliziert – zum Braten okay. Aber er ist halbtrocken und etwas schlichter; der Zweigelt hat die sanften Tannine, die Knödel und Blaukraut lieben.' },
+        { wineId: 'lambrusco', correct: false, explanation: 'Lambrusco ist leicht und lieblich – Frau Doktor wollte ausdrücklich nichts zu Leichtes. Zum Schweinebraten fehlt ihm jede Substanz.' },
       ]
     },
     {
@@ -85,6 +95,8 @@ QUESTIONS.gutbuergerlich = {
         { wineId: 'rioja_crianza', correct: true, favorite: true, explanation: 'Rioja Crianza zu Chorizo und Manchego – spanischer geht\'s nicht! Die Vanille- und Kirschnoten harmonieren perfekt mit der würzigen Wurst und dem kräftigen Käse.' },
         { wineId: 'zweigelt', correct: true, explanation: 'Zweigelt ist ein solider Roter zu Wurst und Käse – kirschfruchtig und mittelschwer. Aber zur spanischen Platte fehlt ihm das passende Terroir. Rioja wäre die authentischere Wahl!' },
         { wineId: 'cremant', correct: false, explanation: 'Crémant ist prickelnd und leicht – zur rustikalen Chorizo-Manchego-Platte unter Jägern braucht es einen kräftigen Roten mit Charakter.' },
+        { wineId: 'primitivo', acceptable: true, explanation: 'Primitivo hat genug Kraft für Chorizo und Manchego – mithalten kann er! Aber zur spanischen Platte ist Rioja die authentische Wahl, und die Vanille-Kirsch-Noten passen besser zur würzigen Wurst.' },
+        { wineId: 'imiglykos', correct: false, explanation: 'Imiglykos ist leicht und lieblich – gegen würzige Chorizo und kräftigen Manchego hat er keine Chance. Da lacht der Jagdkumpel.' },
       ]
     },
     {
@@ -106,6 +118,8 @@ QUESTIONS.gutbuergerlich = {
         { wineId: 'pinot_grigio', correct: true, favorite: true, explanation: 'Pinot Grigio – dezent, trocken, mit feinen Mandel- und Zitrusnoten. Ergänzt die Mandelbutter der Forelle perfekt, ohne den zarten Fisch zu übertönen!' },
         { wineId: 'vinho_verde', correct: true, explanation: 'Vinho Verde zur Forelle ist frisch und leicht – die Spritzigkeit passt gut zum Fisch. Aber die Mandelnoten des Pinot Grigio harmonieren noch besser mit der Mandelbutter!' },
         { wineId: 'zweigelt', correct: false, explanation: 'Zweigelt zur zarten Forelle? Die Kirschfrucht und die Tannine würden den feinen Fisch erschlagen. Freitags wird weiß getrunken, Herr Pfarrer!' },
+        { wineId: 'riesling', acceptable: true, explanation: 'Riesling und Forelle passen gut zusammen – aber seine kräftige Säure ist für das "zarte Geschöpf" fast etwas forsch. Die Mandelnoten des Pinot Grigio treffen die Mandelbutter genauer.' },
+        { wineId: 'gewuerztraminer', correct: false, explanation: 'Gewürztraminer mit Litschi- und Rosenduft ist alles andere als "leicht und fein" – die zarte Forelle hätte keine Chance. Da hilft auch kein Beten.' },
       ]
     },
   ],
@@ -119,6 +133,8 @@ QUESTIONS.gutbuergerlich = {
         { wineId: 'cremant', correct: true, favorite: true, explanation: 'Crémant – gleiche Methode wie Champagner, halber Preis! Festlich, elegant, bezahlbar.' },
         { wineId: 'sekt', correct: true, explanation: 'Deutscher Sekt ist auch prickelnd und festlich – aber Crémant hat etwas mehr Eleganz und französisches Flair für den Anlass!' },
         { wineId: 'dornfelder', correct: false, explanation: 'Dornfelder ist weder prickelnd noch festlich genug für diesen Anlass.' },
+        { wineId: 'vinho_verde', acceptable: true, explanation: 'Vinho Verde hat eine leichte Spritzigkeit und ist günstig – nicht verkehrt! Aber für die festliche Feier nach der OP fehlt ihm die feine Perlage eines Crémant.' },
+        { wineId: 'pinot_grigio', correct: false, explanation: 'Pinot Grigio ist leicht und angenehm, aber still – für den festlichen Aperitif fehlt das Prickeln komplett.' },
       ]
     },
     {
@@ -139,6 +155,8 @@ QUESTIONS.gutbuergerlich = {
         { wineId: 'cremant', correct: true, favorite: true, explanation: 'Crémant – edle Flaschengärung, festliche Perlage. Champagner-Qualität zum vernünftigen Preis für den besonderen Anlass!' },
         { wineId: 'sekt', correct: true, explanation: 'Deutscher Sekt prickelt auch festlich – aber für 25 Jahre Ehe darf es das französische Upgrade sein!' },
         { wineId: 'imiglykos', correct: false, explanation: 'Imiglykos zum Jubiläum? Da muss schon etwas mehr Eleganz her.' },
+        { wineId: 'vinho_verde', acceptable: true, explanation: 'Vinho Verde perlt zart und hebt die Stimmung – zum Anstoßen geht das. Aber als unkomplizierter Sommerwein fehlt ihm das Edle für 25 Jahre Ehe.' },
+        { wineId: 'riesling', correct: false, explanation: 'Trockener Riesling ist ein feiner Wein, aber still – ohne Perlage kein festlicher Anstoß-Moment für die Silberhochzeit.' },
       ]
     },
     {
@@ -149,6 +167,8 @@ QUESTIONS.gutbuergerlich = {
         { wineId: 'rioja_crianza', correct: true, favorite: true, explanation: 'Rioja Crianza – ein spanischer Klassiker! Das zeigt Respekt vor den Gästen und passt hervorragend zu Käse.' },
         { wineId: 'vinho_verde', correct: false, explanation: 'Vinho Verde ist portugiesisch und leicht – weder kräftig noch eine Ehrerbietung an Spanien.' },
         { wineId: 'rose_provence', correct: false, explanation: 'Ein französischer Rosé für spanische Gäste? Da gibt es bessere diplomatische Optionen.' },
+        { wineId: 'primitivo', acceptable: true, explanation: 'Primitivo ist kräftig und passt zu reifem Käse – aber für spanische Gäste ist ein italienischer Wein keine diplomatische Geste. Rioja zeigt Respekt.' },
+        { wineId: 'lambrusco', correct: false, explanation: 'Lambrusco ist leicht, lieblich und italienisch – weder kräftig noch eine Verbeugung vor Spanien. Diplomatisch ein Eigentor.' },
       ]
     },
     {
@@ -159,6 +179,8 @@ QUESTIONS.gutbuergerlich = {
         { wineId: 'rioja_crianza', correct: true, favorite: true, explanation: 'Rioja Crianza – gereift, kräftig, mit warmen Vanille- und Kirscharomen. Genau der Feierabend-Wein für einen Jäger mit Geschmack!' },
         { wineId: 'primitivo', correct: true, explanation: 'Primitivo aus dem warmen Apulien – kraftvoll, mit Pflaume und Schokolade. Hat Charakter! Aber die Rioja-Reife trifft den Wunsch noch besser.' },
         { wineId: 'pinot_grigio', correct: false, explanation: 'Pinot Grigio ist ein milder Weißer – der Jäger will einen kräftigen Roten.' },
+        { wineId: 'chianti', acceptable: true, explanation: 'Chianti aus der Toskana hat mit Kirsche, Kräutern und Leder durchaus Charakter – passt! Aber die Rioja Crianza bringt mit ihrer Fassreife und warmen Vanillenoten mehr Feierabend-Gemütlichkeit.' },
+        { wineId: 'spaetburgunder', correct: false, explanation: 'Spätburgunder kommt aus Deutschland – nicht gerade ein warmes Land – und ist eher elegant als kräftig. Nicht das, was sich der Jäger nach dem Ansitz wünscht.' },
       ]
     },
     {
@@ -169,6 +191,8 @@ QUESTIONS.gutbuergerlich = {
         { wineId: 'vinho_verde', correct: true, favorite: true, explanation: 'Vinho Verde – leicht, spritzig, mit nur ca. 9% Alkohol. Wie eine kühle Brise nach einer langen Wanderung! Die feine Kohlensäure erfrischt perfekt.' },
         { wineId: 'pinot_grigio', correct: true, explanation: 'Pinot Grigio ist auch leicht und trocken – passt als Durstlöscher. Aber dem Vinho Verde kann in Sachen Spritzigkeit und Frische niemand das Wasser reichen!' },
         { wineId: 'rioja_crianza', correct: false, explanation: 'Rioja Crianza nach 18 Kilometern in der Hitze? Der kräftige Rote mit Vanillenoten ist eher was für den Winterabend – nicht für verschwitzte Wanderer auf der Terrasse.' },
+        { wineId: 'mueller_thurgau', acceptable: true, explanation: 'Müller-Thurgau ist leicht und mild – trinkt sich gut auf der Terrasse. Aber an die spritzige Frische des Vinho Verde kommt er als Durstlöscher nicht heran.' },
+        { wineId: 'gewuerztraminer', correct: false, explanation: 'Gewürztraminer ist aromatisch-üppig und halbtrocken – nach 18 Kilometern in der Hitze eher schwer als erfrischend.' },
       ]
     },
     {
@@ -179,6 +203,8 @@ QUESTIONS.gutbuergerlich = {
         { wineId: 'zweigelt', correct: true, favorite: true, explanation: 'Zweigelt – kirschfruchtig, mittelschwer bis kräftig, mit weichen Tanninen. Perfekt zur fetten Gans! Die Frucht ergänzt das Rotkohl, und die Substanz überzeugt den Schwiegersohn.' },
         { wineId: 'rioja_crianza', correct: true, explanation: 'Rioja Crianza ist auch ein würdiger Begleiter zur Weihnachtsgans – kräftig und gereift. Aber die österreichische Kirschfrucht des Zweigelt harmoniert noch besser mit dem Rotkohl!' },
         { wineId: 'vinho_verde', correct: false, explanation: 'Vinho Verde zum Gänsebraten? Der leichte, spritzig-frische Weißwein geht neben der fetten Gans völlig unter. Der Schwiegersohn wäre enttäuscht!' },
+        { wineId: 'primitivo', acceptable: true, explanation: 'Primitivo ist alles andere als dünn und hält der fetten Gans stand – aber mit seiner Wucht aus Pflaume und Schokolade drängt er sich vor. Die Kirschfrucht des Zweigelt harmoniert feiner mit dem Rotkohl.' },
+        { wineId: 'lambrusco', correct: false, explanation: 'Lambrusco ist leicht und lieblich – genau der "dünne" Wein, den der Schwiegersohn nicht mag. Weihnachtsfrieden in Gefahr!' },
       ]
     },
     {
@@ -189,6 +215,8 @@ QUESTIONS.gutbuergerlich = {
         { wineId: 'vinho_verde', correct: true, favorite: true, explanation: 'Vinho Verde – leicht, frisch, mediterran. Perfekt zum Apéro mit Käse und Oliven! Die zarte Spritzigkeit und die Limetten-Aromen passen wunderbar zum lockeren Nachmittags-Snack.' },
         { wineId: 'cremant', correct: true, explanation: 'Crémant zum Apéro ist klassisch französisch und elegant – die Austauschschülerin würde sich wie zu Hause fühlen. Aber für den unkomplizierten Nachmittag ist Vinho Verde noch lockerer!' },
         { wineId: 'zweigelt', correct: false, explanation: 'Zweigelt zum leichten Apéro mit Käse und Oliven? Der kräftige Rote ist zu viel des Guten für einen sonnigen Nachmittags-Snack im mediterranen Stil.' },
+        { wineId: 'retsina', acceptable: true, explanation: 'Retsina ist mediterran und liebt Oliven und Käse – thematisch ein Treffer! Aber das Harzaroma ist alles andere als unkompliziert; Vinho Verde ist der lockerere Apéro-Wein.' },
+        { wineId: 'gewuerztraminer', correct: false, explanation: 'Gewürztraminer ist mit Litschi- und Rosenduft eher Parfum als lockerer Apéro-Wein – und mediterran ist er auch nicht.' },
       ]
     },
   ],
@@ -443,6 +471,8 @@ QUESTIONS.gutbuergerlich = {
             { wineId: 'zweigelt', correct: true, favorite: true, explanation: 'Perfekte Wahl! Der Zweigelt ist kirschfruchtig – genau das, was Schwester Gertrud mag – und kräftig genug, um neben dem deftigen Schweinebraten mit Blaukraut zu bestehen. Ein fruchtiger, bodenständiger Roter ohne Schnickschnack.' },
             { wineId: 'spaetburgunder', correct: true, explanation: 'Spätburgunder zum Schweinebraten ist solide – elegant und beerig. Allerdings könnte er für den deftigen Braten etwas zu fein sein, und Gertrud wollte es ja kräftig und kirschig.' },
             { wineId: 'vinho_verde', correct: false, explanation: 'Vinho Verde ist ein leichter, spritziger Weißwein – das Gegenteil von dem, was Gertrud will. Der würde definitiv wieder in den Blumen landen!' },
+            { wineId: 'dornfelder', acceptable: true, explanation: 'Dornfelder schmeckt nach Kirsche – das gefällt Gertrud! Aber er ist halbtrocken und etwas schlichter; zum deftigen Braten hat der Zweigelt mit seinen weichen Tanninen mehr Halt.' },
+            { wineId: 'lambrusco', correct: false, explanation: 'Lambrusco ist leicht, lieblich und perlt – zum deftigen Schweinebraten viel zu dünn. Der landet garantiert wieder in den Blumen!' },
           ]
         }
       ],
@@ -478,6 +508,8 @@ QUESTIONS.gutbuergerlich = {
             { wineId: 'cremant', correct: true, favorite: true, explanation: 'Volltreffer! Crémant d\'Alsace wird wie Champagner hergestellt – feine Perlage, elegant, festlich – aber deutlich günstiger. Perfekt für 50 Gäste unter Kastanien an einem Sommerabend. Das französische Flair, das sie sich wünschen!' },
             { wineId: 'sekt', correct: true, explanation: 'Deutscher Sekt ist eine solide Wahl – prickelnd und bezahlbar für 50 Gäste. Aber für den Wow-Moment bei einer Sommerhochzeit fehlt ihm das gewisse französische Etwas, das sich das Paar wünscht.' },
             { wineId: 'rioja_crianza', correct: false, explanation: 'Ein kräftiger Rotwein zum Anstoßen im Sommer? Bei 50 Gästen im Freien unter Sommerhitze braucht es etwas Frisches, Prickelndes – keinen schweren Roten.' },
+            { wineId: 'vinho_verde', acceptable: true, explanation: 'Vinho Verde ist leicht, sommerlich und hat eine zarte Spritzigkeit – unter Kastanien im Juli gar nicht verkehrt! Aber für den Wow-Moment beim Anstoßen fehlt die feine Perlage des Crémant.' },
+            { wineId: 'gewuerztraminer', correct: false, explanation: 'Gewürztraminer ist still und intensiv parfümiert – ohne Prickeln kein Wow-Moment beim Anstoßen, und sein Litschi-Duft spaltet die Gästeschar.' },
           ]
         }
       ],
@@ -513,6 +545,8 @@ QUESTIONS.gutbuergerlich = {
             { wineId: 'rioja_crianza', correct: true, favorite: true, explanation: 'Ausgezeichnete Wahl! Rioja Crianza bringt genau das mit, was der Bischof schätzt: Reife durch Fassausbau, würdevolle Vanille- und Eichennoten, und eine lange Weintradition. Ein Wein mit Geschichte und Tiefe – wie eine gute Predigt.' },
             { wineId: 'spaetburgunder', correct: true, explanation: 'Spätburgunder ist ein eleganter, respektabler Wein – aber ihm fehlt die Fassreife und die Vanillenoten, die der Bischof so schätzt. Für ein formelles Geschenk darf es etwas mehr Opulenz sein.' },
             { wineId: 'vinho_verde', correct: false, explanation: 'Ein leichter, junger Weißwein als Geschenk für den Bischof? Der Bischof trinkt ausschließlich Rotwein und schätzt gereifte Weine. Das wäre ein echtes Fettnäpfchen!' },
+            { wineId: 'chianti', acceptable: true, explanation: 'Chianti ist ein traditionsreicher Klassiker mit Kirsche, Kräutern und Leder – würdig! Aber die Vanille- und Eichennoten aus dem Fass, die der Bischof so liebt, bringt die Rioja Crianza mit.' },
+            { wineId: 'lambrusco', correct: false, explanation: 'Lambrusco ist leicht, lieblich und perlend – nichts für einen Bischof, der gereifte Weine mit Würde schätzt. Das wäre eine Sünde!' },
           ]
         }
       ],
@@ -583,6 +617,8 @@ QUESTIONS.gutbuergerlich = {
             { wineId: 'zweigelt', correct: true, favorite: true, explanation: 'Perfekt für die Hütte! Zweigelt ist kirschfruchtig und unkompliziert – kräftig genug für den Gulasch, aber nicht so schwer, dass die Wanderer morgen liegen bleiben. Dazu ein Vinho Verde für die Weißwein-Fraktion – der ist leicht und erfrischend nach dem Aufstieg.' },
             { wineId: 'rioja_crianza', correct: true, explanation: 'Rioja Crianza ist ein solider Begleiter zum Gulasch – Vanille und Kirsche passen gut. Aber für eine rustikale Hüttengaudi ist er fast etwas zu elegant. Der Zweigelt ist hemdsärmeliger und trinkt sich leichter in der Runde.' },
             { wineId: 'pinot_grigio', correct: false, explanation: 'Pinot Grigio für 12 hungrige Wanderer zum Gulasch? Der geht neben dem kräftigen Eintopf komplett unter. Die Gruppe braucht einen Rotwein mit Substanz – der Gulasch frisst den Pinot Grigio auf!' },
+            { wineId: 'primitivo', acceptable: true, explanation: 'Primitivo hat genug Kraft für den Gulasch – aber der volle, wuchtige Rote ist für eine lange Hüttenrunde ziemlich schwer. Der Zweigelt trinkt sich in der Runde leichter.' },
+            { wineId: 'imiglykos', correct: false, explanation: 'Imiglykos ist lieblich und leicht – zum kräftigen Gulasch viel zu süß und zu dünn. Die Wanderer würden zum Bier greifen.' },
           ]
         }
       ],
@@ -618,6 +654,8 @@ QUESTIONS.gutbuergerlich = {
             { wineId: 'rioja_crianza', correct: true, favorite: true, explanation: 'Ausgezeichnet! Rioja Crianza mit seinen Aromen von Vanille, Kirsche und Leder ist der klassische Begleiter zu Wild. Die Fassreife gibt ihm die Tiefe, die zum kräftigen Rehrücken passt, und die Tannine harmonieren perfekt mit der Preiselbeersauce. Ein Wein, den auch Bier-Trinker respektieren!' },
             { wineId: 'zweigelt', correct: true, explanation: 'Zweigelt zum Wild ist solide – fruchtbetont und unkompliziert. Aber für einen besonderen Jäger-Abend mit rosa Rehrücken fehlt ihm die Tiefe und Würze. Da darf es ruhig etwas mehr Fassreife und Komplexität sein.' },
             { wineId: 'vinho_verde', correct: false, explanation: 'Vinho Verde – ein leichter, spritziger Sommerwein – zum kräftigen Rehrücken mit Preiselbeer-Rotwein-Sauce? Das ist wie mit der Wasserpistole auf die Jagd gehen. Die Jäger würden dich auslachen!' },
+            { wineId: 'spaetburgunder', acceptable: true, explanation: 'Spätburgunder ist ein feiner Begleiter zu Wild – aber der Jäger will "kräftig, kein zartes Tröpfchen", und dafür ist der elegante Spätburgunder zu fein.' },
+            { wineId: 'lambrusco', correct: false, explanation: 'Lambrusco zum Rehrücken? Leicht, lieblich und perlend – das ist wie mit der Steinschleuder auf die Jagd zu gehen.' },
           ]
         }
       ],
@@ -688,6 +726,8 @@ QUESTIONS.gutbuergerlich = {
             { wineId: 'cremant', correct: true, favorite: true, explanation: 'Volltreffer! Crémant d\'Alsace ist die perfekte Wahl: Prickelnd und festlich genug für den Neujahrsempfang, bezahlbar für 80 Gäste, und mit seiner feinen Perlage und Brioche-Note beeindruckt er sowohl den Bauern als auch die Professorin. Das europäische Flair aus dem Elsass zeigt Weltoffenheit. Der Bürgermeister strahlt: "DAS ist ein Wein, der Stimmen gewinnt!"' },
             { wineId: 'pinot_grigio', correct: false, explanation: 'Pinot Grigio ist leicht und nett – aber zum Anstoßen auf das neue Jahr fehlt das Festliche komplett. Ohne Perlage und ohne Wow-Faktor sagt die Opposition: "Nicht mal ein ordentlicher Sekt zum Neujahr?" Damit gewinnt man keine Wiederwahl.' },
             { wineId: 'rioja_crianza', correct: false, explanation: 'Ein kräftiger Rotwein zum Neujahrsempfang mit Lachsschnittchen? Und für 80 Leute, die angestoßen wollen? Rotwein ist zum Anstoßen unpraktisch (Flecken auf der weißen Bluse!) und passt nicht zu leichten Häppchen. Der Bürgermeister schüttelt den Kopf.' },
+            { wineId: 'vinho_verde', acceptable: true, explanation: 'Vinho Verde ist leicht, hat eine zarte Spritzigkeit und passt zu Lachsschnittchen – nicht schlecht! Aber für den großen Anstoß-Moment ist seine Perlage zu zurückhaltend; der Crémant bringt echtes Festgefühl.' },
+            { wineId: 'mueller_thurgau', correct: false, explanation: 'Müller-Thurgau ist mild und gefällig – aber still. Zum großen Anstoß-Moment fehlt das Prickeln, und ohne Perlage kein Neujahrsgefühl.' },
           ]
         }
       ],

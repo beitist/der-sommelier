@@ -13,6 +13,8 @@ QUESTIONS.imbiss = {
         { wineId: 'imiglykos', correct: true, favorite: true, explanation: 'Perfekt! Imiglykos passt hervorragend zur griechischen Küche – süffig und unkompliziert zum deftigen Gyros.' },
         { wineId: 'retsina', correct: true, explanation: 'Retsina zum Gyros ist ein Klassiker! Der harzige Charakter passt super zu gegrilltem Fleisch und Tsatsiki. Aber Stavros mag es lieber süffig – da ist Imiglykos seine erste Wahl.' },
         { wineId: 'riesling', correct: false, explanation: 'Riesling wäre zu säurebetont für das herzhafte Gyros mit Tsatsiki.' },
+        { wineId: 'dornfelder', acceptable: true, explanation: 'Dornfelder passt mit seiner Kirschfrucht durchaus zum deftigen Gyros – kein schlechter Griff! Aber Stavros ist Grieche durch und durch, und der süffige Imiglykos aus der Heimat ist für ihn unschlagbar.' },
+        { wineId: 'lambrusco', acceptable: true, explanation: 'Lambrusco ist süffig und fruchtig, das geht zum Gyros. Aber er ist eher der Pizza-Kumpel aus Italien – zum griechischen Teller gehört für Stavros der griechische Imiglykos.' },
       ]
     },
     {
@@ -23,6 +25,7 @@ QUESTIONS.imbiss = {
         { wineId: 'lambrusco', correct: true, favorite: true, explanation: 'Richtig! Lambrusco zur Pizza ist ein Klassiker – leicht, spritzig, italienisch, und bezahlbar.' },
         { wineId: 'retsina', correct: false, explanation: 'Retsina schmeckt nach Harz – bei Pizza würde das eher irritieren.' },
         { wineId: 'dornfelder', correct: true, explanation: 'Geht auch! Dornfelder ist günstig und unkompliziert – allerdings ist Lambrusco DER Klassiker zu Pizza.' },
+        { wineId: 'imiglykos', acceptable: true, explanation: 'Imiglykos ist süffig und bezahlbar – die Studenten würden nicht meckern. Aber er ist eher der Gyros-Begleiter; zur Pizza ist der spritzige Lambrusco DER Klassiker.' },
       ]
     },
     {
@@ -34,6 +37,7 @@ QUESTIONS.imbiss = {
         { wineId: 'mueller_thurgau', correct: true, favorite: true, explanation: 'Genau! Müller-Thurgau ist mild, blumig und leicht – perfekt zu Geflügel mit Salat. Und zum ersten Date passt die sanfte Art.' },
         { wineId: 'dornfelder', correct: false, explanation: 'Dornfelder hat zu viel Körper – nicht das, was man unter "leicht" versteht.' },
         { wineId: 'riesling', acceptable: true, explanation: 'Riesling geht zum Geflügel, klar – aber die kräftige Säure ist nicht gerade das "Leichte", das sich das nervöse Pärchen wünscht. Müller-Thurgau ist sanfter und passender fürs erste Date.' },
+        { wineId: 'retsina', correct: false, explanation: 'Retsina hat mit seinem Harzaroma und mittleren Körper viel zu viel Eigencharakter – fürs nervöse erste Date mit Putenspießen braucht es etwas Sanftes wie Müller-Thurgau.' },
       ]
     },
     {
@@ -44,6 +48,8 @@ QUESTIONS.imbiss = {
         { wineId: 'dornfelder', correct: true, favorite: true, explanation: 'Dornfelder – der unkomplizierte Rote für den eiligen Gast. Fruchtig, passt zu Deftigem.' },
         { wineId: 'mueller_thurgau', correct: false, explanation: 'Er wollte ausdrücklich ROT – Müller-Thurgau ist ein Weißwein!' },
         { wineId: 'riesling', correct: false, explanation: 'Auch ein Weißer! Der Gast war deutlich: "Hauptsache rot."' },
+        { wineId: 'lambrusco', acceptable: true, explanation: 'Rot ist er, und die spritzige Frucht verträgt sich sogar mit der Currysauce. Aber der leichte, liebliche Lambrusco ist eher Pizza-Wein – zur deftigen Currywurst hat Dornfelder mehr Substanz.' },
+        { wineId: 'imiglykos', acceptable: true, explanation: 'Erfüllt das "Hauptsache rot" – aber der liebliche Grieche ist zur Currywurst etwas zu süß und zu leicht. Dornfelder ist der robustere Allrounder für Deftiges.' },
       ]
     },
     {
@@ -54,6 +60,7 @@ QUESTIONS.imbiss = {
         { wineId: 'imiglykos', correct: true, favorite: true, explanation: 'Richtig! Imiglykos ist lieblich und rot – genau was Frau Müller sucht.' },
         { wineId: 'lambrusco', correct: true, explanation: 'Gute Wahl! Lambrusco ist rot und fruchtig-süß. Aber Imiglykos ist noch lieblicher und runder – genau der sanfte, süße Stil, den Frau Müller sucht.' },
         { wineId: 'riesling', correct: false, explanation: 'Sie sagte ausdrücklich keinen Weißwein – Riesling fällt also raus.' },
+        { wineId: 'dornfelder', acceptable: true, explanation: 'Dornfelder ist rot und halbtrocken, also immerhin nicht knochentrocken. Für Frau Müllers Wunsch nach "etwas Süßem" ist er aber nicht süß genug – Imiglykos ist richtig schön lieblich.' },
       ]
     },
     {
@@ -85,6 +92,7 @@ QUESTIONS.imbiss = {
         { wineId: 'retsina', correct: true, favorite: true, explanation: 'Perfekt! Retsina ist DER Wein zu griechischen Meze – der harzige Charakter harmoniert wunderbar mit salzigem Feta, Oliven und Meeresfrüchten.' },
         { wineId: 'mueller_thurgau', correct: false, explanation: 'Müller-Thurgau ist zu mild und blumig – gegen Oliven und Sardinen geht er geschmacklich unter.' },
         { wineId: 'dornfelder', correct: false, explanation: 'Rotwein zu Sardinen und Feta? Das wird bitter und metallisch. Hier passt ein frischer Weißer besser.' },
+        { wineId: 'riesling', acceptable: true, explanation: 'Riesling bringt Frische und Säure zu Sardinen und Feta – keine schlechte Idee! Aber Stavros will was Griechisches, und Retsina ist der Meze-Wein schlechthin.' },
       ]
     },
     {
@@ -95,6 +103,7 @@ QUESTIONS.imbiss = {
         { wineId: 'dornfelder', correct: true, favorite: true, explanation: 'Richtig! Dornfelder mit seinem fruchtigen Körper passt gut zur kräftigen Tomaten-Fleischsauce der Bolognese.' },
         { wineId: 'lambrusco', correct: true, explanation: 'Auch eine gute Wahl! Lambrusco ist der klassische italienische Begleiter zu Pasta. Aber Dornfelder hat mehr Körper und Frucht – genau richtig für die kräftige Fleisch-Tomatensauce der Bolognese.' },
         { wineId: 'riesling', correct: false, explanation: 'Riesling-Säure und kräftige Bolognese-Sauce beißen sich. Zur Tomatensauce lieber einen Roten!' },
+        { wineId: 'imiglykos', acceptable: true, explanation: 'Rot ist er – aber der liebliche, leichte Imiglykos ist zur kräftigen Fleisch-Tomatensauce etwas zu süß und zu dünn. Dornfelder hat den Körper, den die Bolognese braucht.' },
       ]
     },
     {
@@ -105,6 +114,7 @@ QUESTIONS.imbiss = {
         { wineId: 'riesling', correct: true, favorite: true, explanation: 'Klassiker! Riesling und Fisch ist eine Traumkombination – die lebendige Säure schneidet durch die Panade und erfrischt den Gaumen.' },
         { wineId: 'mueller_thurgau', correct: true, explanation: 'Auch gut! Müller-Thurgau ist mild und passt zu leichten Fischgerichten. Riesling hat hier aber die Nase vorn mit seiner knackigen Säure.' },
         { wineId: 'imiglykos', correct: false, explanation: 'Lieblicher Rotwein zum Backfisch? Das passt überhaupt nicht – der Zucker und die roten Fruchtaromen übertönen den feinen Fischgeschmack.' },
+        { wineId: 'retsina', acceptable: true, explanation: 'Retsina mag Fisch und Meeresfrüchte, das stimmt – aber sein Harzaroma ist für Omas Backfisch recht eigenwillig. Riesling ist der elegantere Fischpartner, der durch die Panade schneidet.' },
       ]
     },
   ],
@@ -118,6 +128,7 @@ QUESTIONS.imbiss = {
         { wineId: 'imiglykos', correct: true, favorite: true, explanation: 'Perfekt für Einsteiger! Imiglykos ist lieblich, fruchtig und rot – ideal zum Kennenlernen.' },
         { wineId: 'lambrusco', correct: true, explanation: 'Lambrusco wäre auch eine gute Wahl – lieblich und rot. Aber Imiglykos ist etwas fruchtiger für Einsteiger.' },
         { wineId: 'retsina', correct: false, explanation: 'Retsina ist weiß und schmeckt nach Harz – nichts für unsichere Einsteiger.' },
+        { wineId: 'dornfelder', acceptable: true, explanation: 'Dornfelder ist rot und fruchtig, aber nur halbtrocken – "süß" ist was anderes. Für Einsteiger, die es süß mögen, ist Imiglykos die sichere Wahl.' },
       ]
     },
     {
@@ -128,6 +139,7 @@ QUESTIONS.imbiss = {
         { wineId: 'riesling', correct: true, favorite: true, explanation: 'Genau! Einfacher trockener Riesling – klar, frisch, unkompliziert. Wie bestellt.' },
         { wineId: 'mueller_thurgau', correct: true, explanation: 'Auch gut! Müller-Thurgau ist mild und unkompliziert. Nur etwas weniger trocken als bestellt.' },
         { wineId: 'imiglykos', correct: false, explanation: 'Imiglykos ist rot UND lieblich – das Gegenteil von trocken und weiß!' },
+        { wineId: 'retsina', acceptable: true, explanation: 'Trocken und weiß – formal erfüllt! Aber der harzige Retsina ist alles andere als unkompliziert. Für Bergmanns Feierabend ist der klare Riesling die sichere Bank.' },
       ]
     },
     {
@@ -138,6 +150,7 @@ QUESTIONS.imbiss = {
         { wineId: 'lambrusco', correct: true, favorite: true, explanation: 'Wir haben keinen Rosé im Keller, aber Lambrusco hat eine fruchtige Süße und rötliche Farbe – eine gute Alternative!' },
         { wineId: 'imiglykos', correct: true, explanation: 'Imiglykos ist auch lieblich und rot – aber Lambrusco kommt mit seiner spritzigen Art einem Rosé am nächsten.' },
         { wineId: 'retsina', correct: false, explanation: 'Retsina ist weiß und hat einen starken Eigengeschmack – nichts für Rosé-Fans.' },
+        { wineId: 'dornfelder', acceptable: true, explanation: 'Dornfelder ist halbtrocken, also immerhin nicht zu trocken – aber mit mittlerem Körper und dunkler Kirschfrucht ist er weit weg vom leichten Rosé-Gefühl. Lambrusco ist spritziger und lieblicher.' },
       ]
     },
     {
@@ -148,6 +161,8 @@ QUESTIONS.imbiss = {
         { wineId: 'riesling', correct: true, favorite: true, explanation: 'Trockener Riesling hat oft nur 11-12% Alkohol und ist erfrischend trocken – perfekt für die disziplinierte Sportlerin!' },
         { wineId: 'imiglykos', correct: false, explanation: 'Imiglykos ist lieblich – sie wollte ausdrücklich trocken!' },
         { wineId: 'dornfelder', correct: false, explanation: 'Dornfelder ist rot, nicht weiß. Zuhören ist die halbe Miete!' },
+        { wineId: 'mueller_thurgau', acceptable: true, explanation: 'Müller-Thurgau ist weiß und leicht – aber halbtrocken. Für jemanden, der ausdrücklich "trocken" bestellt und keine süßen Weine mag, nicht ganz das Richtige.' },
+        { wineId: 'retsina', acceptable: true, explanation: 'Weiß und trocken – passt formal! Aber der harzige Retsina ist sehr speziell und hat mehr Körper. Der leichte, frische Riesling ist genau richtig vor dem Halbmarathon.' },
       ]
     },
     {
@@ -158,6 +173,8 @@ QUESTIONS.imbiss = {
         { wineId: 'dornfelder', correct: true, favorite: true, explanation: 'Genau richtig! Dornfelder ist fruchtig, weich und unkompliziert – der perfekte Einstiegswein für Biertrinker. Kein Säureschock, keine komplizierte Süße.' },
         { wineId: 'riesling', correct: false, explanation: 'Riesling hat eine kräftige Säure – für Biertrinker, die "nichts Saures" wollen, der falsche Start.' },
         { wineId: 'retsina', correct: false, explanation: 'Retsina mit Harzgeschmack für Biertrinker? Die kommen nie wieder!' },
+        { wineId: 'lambrusco', correct: false, explanation: 'Lambrusco ist süffig, keine Frage – aber lieblich, und Werner hat "nichts Süßes" bestellt. Dornfelder ist fruchtig und weich, ohne lieblich zu sein.' },
+        { wineId: 'imiglykos', correct: false, explanation: 'Imiglykos ist lieblich – genau das wollte Werner nicht. Die Kegelbrüder bestellen sonst ganz schnell wieder Bier!' },
       ]
     },
     {
@@ -168,6 +185,7 @@ QUESTIONS.imbiss = {
         { wineId: 'riesling', correct: true, favorite: true, explanation: 'Natürlich Riesling! Er ist DER deutsche Wein schlechthin – weltweit berühmt für seine Eleganz und Vielseitigkeit. Damit besteht sie auch jede Prüfung!' },
         { wineId: 'mueller_thurgau', correct: true, explanation: 'Auch ein deutscher Klassiker! Müller-Thurgau ist sogar mengenmäßig weit verbreitet. Aber Riesling ist international DAS Aushängeschild Deutschlands.' },
         { wineId: 'lambrusco', correct: false, explanation: 'Lambrusco ist italienisch – nicht gerade der deutsche Klassiker, den sie sucht.' },
+        { wineId: 'retsina', correct: false, explanation: 'Retsina ist ein Grieche durch und durch – der harzige Weiße hat mit dem deutschen Klassiker nichts zu tun. Für die Prüfung heißt die Antwort Riesling!' },
       ]
     },
     {
@@ -178,6 +196,7 @@ QUESTIONS.imbiss = {
         { wineId: 'mueller_thurgau', correct: true, favorite: true, explanation: 'Perfekte Wahl! Müller-Thurgau ist mild, blumig und halbtrocken – nicht zu trocken, nicht zu süß. Da kann die Schwiegermutter nicht meckern!' },
         { wineId: 'riesling', correct: false, explanation: 'Der Riesling hier ist trocken – die Schwiegermutter will es milder. Damit riskierst du Bergmanns Familienfrieden!' },
         { wineId: 'imiglykos', correct: false, explanation: 'Imiglykos ist rot und lieblich – sie will ausdrücklich Weißwein, und "milder" ist nicht gleich "lieblich".' },
+        { wineId: 'retsina', correct: false, explanation: 'Retsina ist trocken und mit seinem Harzaroma eine echte Geschmacksprobe – für eine Schwiegermutter, die es mild mag, ein Risiko. Müller-Thurgau ist die friedliche Lösung.' },
       ]
     },
     {
