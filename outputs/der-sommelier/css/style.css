@@ -1582,3 +1582,47 @@ body {
 .fb-chef-comment { font-size: 19pt; }
 .fb-tips { font-size: 20pt; }
 .fb-beratung-summary { font-size: 18pt; }
+
+/* ===== Feinschliff Runde 2 (iPad) ===== */
+:root { --sidebar-w: 154px; }
+.sidebar-item { width: 134px; }
+
+/* Theke: leicht nach rechts (links sitzt der Levelbalken) */
+.rest-fg-layer { background-position: calc(50% + 88px) bottom; }
+
+/* Gäste & Köche +35 % */
+.guest-sprite-area { left: -5%; }
+.guest-sprite { height: 945px; max-width: 1160px; }
+.chef-sprite-area { margin-left: -6%; }
+.chef-sprite-area img { height: 945px; max-width: 1160px; }
+
+/* Fragebox: Schrift ×1,4 (statt ×1,5) */
+.dialog-guest { font-size: 22.4pt; }
+.dialog-type-badge, .bw-badge, .ww-badge, .bt-badge, .ber-badge { font-size: 15.4pt; }
+.dialog-scenario { font-size: 22.4pt; }
+.bw-statement { font-size: 23.8pt; }
+.dialog-question { font-size: 21pt; }
+.dialog-choice { font-size: 22.4pt; min-height: 78px; }
+.choice-detail { font-size: 18pt; }
+.btn-chef-hint { font-size: 18.2pt; }
+.chef-hint-text { font-size: 16.8pt; }
+.chef-hint-cost { font-size: 15.4pt; }
+.bt-clue-label { font-size: 15.4pt; }
+.bt-clue span:last-child { font-size: 16.8pt; }
+.ber-step-indicator { font-size: 15.4pt; }
+.ber-speaker { font-size: 18.2pt; }
+.ber-text { font-size: 21pt; }
+.ber-prompt { font-size: 19.6pt; }
+
+/* Feedback ×1,7 */
+.feedback-card { max-width: 1040px; }
+.fb-icon { font-size: 82px; }
+.feedback-card h3 { font-size: 30.6pt; }
+.fb-explanation { font-size: 23.8pt; }
+.fb-funfact { font-size: 20.4pt; }
+.fb-reveal { font-size: 18.7pt; }
+.fb-chef-comment { font-size: 22.1pt; }
+.fb-tips { font-size: 25.5pt; }
+.fb-beratung-summary { font-size: 20.4pt; }
+.feedback-card .btn { font-size: 20pt; padding: 16px 44px; }
+.fb-tips { font-size: 21pt; }   /* Pixelschrift: ×1,7 bricht sonst um */

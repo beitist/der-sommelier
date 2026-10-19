@@ -4,7 +4,7 @@ Jede Szene hat ihren eigenen „Radiosender“:
 - **Gemischt:** Die Lieder einer Szene laufen in zufälliger Reihenfolge nacheinander. Ist die Liste durch, wird neu gemischt.
 - **Weiterspielen wie im Radio:** Wechselst du die Szene und kommst zurück, läuft der Sender an der Stelle weiter, an der du warst.
 - **Gestreamt:** Die Lieder werden nicht komplett in den Speicher geladen, daher sind auch lange Listen kein Problem.
-- **Anzeige:** In der unteren Leiste steht „♪ Titel – Künstler (Lizenz)“. Damit ist auch die Namensnennung für CC-BY-Musik erfüllt.
+- **Urheber:** Titel, Künstler und Lizenz stehen im Spiel unter „Über das Spiel“.
 - **Platzhalter:** Solange die Liste einer Szene leer ist, läuft dort der Chiptune-Platzhalter aus `js/audio.js`.
 
 ## So fügst du Lieder hinzu

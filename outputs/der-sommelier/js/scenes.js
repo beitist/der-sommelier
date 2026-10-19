@@ -972,20 +972,10 @@ function renderBottomBar() {
         <span>🍷 ${state.player.discoveredWines.size} Weine</span>
         <span>⭐ ${renderStarsSmall(state.player.reputation[state.player.level])}</span>
       </div>
-      <div class="bb-now-playing" id="now-playing">${nowPlayingText(Sound.nowPlaying)}</div>
       ${renderSoundToggles()}
     </div>`;
 }
 
-// Radio-Anzeige "♪ Titel – Künstler (Lizenz)" – auch Namensnennung für CC-BY-Musik
-function nowPlayingText(song) {
-  if (!song) return '';
-  return `♪ ${song.title || song.file} – ${song.artist || 'unbekannt'}${song.license ? ` <span class="np-license">(${song.license})</span>` : ''}`;
-}
-Sound.onNowPlaying(song => {
-  const el = document.getElementById('now-playing');
-  if (el) el.innerHTML = nowPlayingText(song);
-});
 
 function renderSoundToggles() {
   return `<div class="sound-toggles">
