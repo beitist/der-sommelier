@@ -1635,3 +1635,16 @@ body {
 .stat-label { font-size: 15.4pt; }
 .shift-chef-comment { font-size: 19.6pt; padding: 16px 24px; }
 .shift-summary-card .btn { font-size: 16.8pt; padding: 14px 34px; min-height: 76px; }
+
+/* Lobby "Schicht starten" ×1,4 */
+.lobby-card { padding: 56px 68px; max-width: 700px; }
+.lobby-chef-mini { width: 90px; height: 90px; margin-bottom: 12px; }
+.lobby-icon { font-size: 78px; margin-bottom: 16px; }
+.lobby-title { font-size: 22.4pt; margin-bottom: 12px; }
+.lobby-desc { font-size: 19.6pt; margin-bottom: 28px; }
+.lobby-stats { gap: 46px; margin-bottom: 34px; }
+.lobby-stat-label { font-size: 15.4pt; }
+.lobby-stat-value { font-size: 19.6pt; }
+.lobby-buttons { gap: 14px; }
+.lobby-buttons .btn { font-size: 16.8pt; padding: 14px 34px; min-height: 76px; }
+.lobby-buttons .btn-large { font-size: 19.6pt; padding: 18px 50px; min-height: 86px; }
