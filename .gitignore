@@ -18,3 +18,9 @@ der_sommelier_inhalte.html
 ideen.md
 
 __pycache__/
+
+# Musik nur lokal/in der App – nicht im öffentlichen Repo (Pixabay-Lizenz verbietet Einzelweitergabe)
+outputs/der-sommelier/assets/audio/music/*
+!outputs/der-sommelier/assets/audio/music/.gitkeep
+outputs/der-sommelier/assets/audio/sfx/
+audio-inbox/

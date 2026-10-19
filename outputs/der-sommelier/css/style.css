@@ -1394,3 +1394,37 @@ body {
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
+
+/* ===== SOUND-SCHALTER ===== */
+:root { --bottom-h: 64px; }
+.sound-toggles { display: flex; gap: 8px; margin-left: auto; }
+.sound-toggle {
+  min-height: 48px; padding: 6px 16px;
+  font-family: var(--font-ui); font-size: 12pt; font-weight: 600;
+  background: rgba(0,0,0,0.3); color: var(--c-text);
+  border: 2px solid var(--c-purple); border-radius: 8px; cursor: pointer;
+}
+.sound-toggle.off { opacity: 0.45; text-decoration: line-through; }
+.sound-toggle:active { transform: scale(0.95); }
+.title-sound { position: absolute; top: 24px; right: 24px; z-index: 3; }
+.bb-now-playing {
+  margin-left: auto; max-width: 560px;
+  font-size: 11pt; color: var(--c-gold);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.bb-now-playing:empty { display: none; }
+.bb-now-playing:not(:empty) + .sound-toggles { margin-left: 16px; }
+.np-license { color: var(--c-muted); }
+
+/* ===== ÜBER DAS SPIEL ===== */
+.about-card {
+  background: var(--c-card); border: 3px solid var(--c-gold); border-radius: 16px;
+  padding: 40px 56px; width: 1100px; max-height: 1250px; overflow-y: auto;
+  animation: popIn 0.3s ease; -webkit-user-select: text; user-select: text;
+}
+.about-card h2 { font-family: var(--font-pixel); font-size: 20pt; color: var(--c-gold); margin-bottom: 24px; }
+.about-card section { margin-bottom: 22px; }
+.about-card h3 { font-size: 16pt; color: var(--c-accent); margin-bottom: 8px; }
+.about-card h4 { font-size: 13pt; color: var(--c-gold); margin: 10px 0 4px; }
+.about-card p, .about-song { font-size: 14pt; line-height: 1.6; }
+.about-meta { font-size: 11pt; color: var(--c-muted); }

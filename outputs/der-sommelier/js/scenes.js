@@ -22,9 +22,11 @@ function render() {
   // Global overlays (can appear on any scene)
   if (state.overlay === 'downgrade') html += renderDowngradeOverlay();
   if (state.overlay === 'confirmNewGame') html += renderConfirmNewGameOverlay();
+  if (state.overlay === 'about') html += renderAboutOverlay();
 
   root.innerHTML = html;
   lockInput();
+  Sound.setTrack(state.scene === 'title' ? 'title' : state.scene === 'minigame' ? 'minigame' : getLevel().id);
   attachEvents();
 
   // Auto-scroll beratung chat history
@@ -38,6 +40,7 @@ function renderTitle() {
     <div class="scene scene-title active">
       <div class="title-bg">
         <div class="title-vignette"></div>
+        <div class="title-sound">${renderSoundToggles()}</div>
         <div class="title-content">
           <div class="title-glass">
             <div class="glass-bowl"><div class="glass-wine"></div></div>
@@ -50,6 +53,7 @@ function renderTitle() {
             <button class="btn btn-primary" onclick="requestNewGame()">🍷 Neues Spiel</button>
             ${hasSave() ? '<button class="btn btn-secondary" onclick="continueGame()">📂 Weiterspielen</button>' : ''}
             <button class="btn btn-ghost" onclick="showLevelCodeInput()">🔑 Levelcode eingeben</button>
+            <button class="btn btn-ghost" onclick="state.overlay='about';render()">ℹ️ Über das Spiel</button>
           </div>
           <div id="levelcode-input" style="display:none; margin-top:20px;">
             <div style="display:flex; gap:8px; justify-content:center; align-items:center;">
@@ -766,6 +770,55 @@ function renderDowngradeOverlay() {
     </div>`;
 }
 
+// ===== ÜBER DAS SPIEL (Credits) =====
+// Musik-Credits kommen automatisch aus assets/audio/playlist.js.
+// Links nur als Text: Ein Klick würde in der App die Spielansicht verlassen.
+const ABOUT_SCENE_NAMES = {
+  title: 'Titel', imbiss: 'Goldener Gyros', steakhaus: 'Black Angus', gutbuergerlich: 'Zur Linde',
+  gehoben: 'Le Vignoble', sterne: 'Étoile', minigame: 'Minispiel',
+};
+
+function renderAboutOverlay() {
+  const lists = (typeof PLAYLISTS !== 'undefined') ? PLAYLISTS : {};
+  const musicHtml = Object.entries(lists).filter(([, songs]) => songs.length).map(([scene, songs]) => `
+    <div class="about-music-scene">
+      <h4>${ABOUT_SCENE_NAMES[scene] || scene}</h4>
+      ${songs.map(s => `<div class="about-song">♪ <strong>${s.title || s.file}</strong> – ${s.artist || 'unbekannt'}
+        <span class="about-meta">${[s.license, s.source].filter(Boolean).join(' · ')}${s.url ? ` · ${s.url}` : ''}</span></div>`).join('')}
+    </div>`).join('');
+
+  return `
+    <div class="overlay-backdrop" onclick="state.overlay=null;render()">
+      <div class="about-card" onclick="event.stopPropagation()">
+        <h2>🍷 Über „Der Sommelier“</h2>
+        <section>
+          <h3>Spiel & Inhalte</h3>
+          <p>Idee, Texte und Weinwissen: Sebastian Stüwe</p>
+          <p class="about-meta">Lizenz: CC BY 4.0 – github.com/beitist/der-sommelier<br>
+          Die Musik ist nicht Teil dieser Lizenz und steht unter den Lizenzen ihrer Urheber.</p>
+        </section>
+        <section>
+          <h3>Grafik</h3>
+          <p>Pixel-Art erstellt mit FLUX (Black Forest Labs)</p>
+        </section>
+        <section>
+          <h3>Schriften</h3>
+          <p>Press Start 2P – Cody „CodeMan38“ Boisclair <span class="about-meta">SIL Open Font License</span></p>
+          <p>Inter – Rasmus Andersson <span class="about-meta">SIL Open Font License</span></p>
+        </section>
+        <section>
+          <h3>Musik</h3>
+          ${musicHtml || '<p class="about-meta">Chiptune-Platzhalter, im Spiel erzeugt.</p>'}
+        </section>
+        ${typeof SOUND_CREDITS !== 'undefined' && SOUND_CREDITS.length ? `<section>
+          <h3>Soundeffekte</h3>
+          ${SOUND_CREDITS.map(c => `<div class="about-song">🔊 ${c.title} – ${c.artist} <span class="about-meta">${[c.license, c.source].filter(Boolean).join(' · ')}</span></div>`).join('')}
+        </section>` : ''}
+        <button class="btn btn-primary" onclick="state.overlay=null;render()">Schließen</button>
+      </div>
+    </div>`;
+}
+
 // ===== CONFIRM NEW GAME OVERLAY =====
 function renderConfirmNewGameOverlay() {
   return `
@@ -910,6 +963,25 @@ function renderBottomBar() {
         <span>🍷 ${state.player.discoveredWines.size} Weine</span>
         <span>⭐ ${renderStarsSmall(state.player.reputation[state.player.level])}</span>
       </div>
+      <div class="bb-now-playing" id="now-playing">${nowPlayingText(Sound.nowPlaying)}</div>
+      ${renderSoundToggles()}
+    </div>`;
+}
+
+// Radio-Anzeige "♪ Titel – Künstler (Lizenz)" – auch Namensnennung für CC-BY-Musik
+function nowPlayingText(song) {
+  if (!song) return '';
+  return `♪ ${song.title || song.file} – ${song.artist || 'unbekannt'}${song.license ? ` <span class="np-license">(${song.license})</span>` : ''}`;
+}
+Sound.onNowPlaying(song => {
+  const el = document.getElementById('now-playing');
+  if (el) el.innerHTML = nowPlayingText(song);
+});
+
+function renderSoundToggles() {
+  return `<div class="sound-toggles">
+      <button class="sound-toggle ${Sound.musicOn ? 'on' : 'off'}" onclick="Sound.toggleMusic();render()" title="Musik">🎵 Musik</button>
+      <button class="sound-toggle ${Sound.sfxOn ? 'on' : 'off'}" onclick="Sound.toggleSfx();render()" title="Effekte">${Sound.sfxOn ? '🔔' : '🔕'} Effekte</button>
     </div>`;
 }
 

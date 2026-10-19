@@ -449,7 +449,10 @@ function applyTipAndRep(isCorrect, isFavorite, isAcceptable) {
     state.player.reputation[state.player.level] + repGain));
   state.currentShift.tipsEarned += tipGain;
   if (isCorrect || isAcceptable) { state.currentShift.correct++; state.consecutiveWrong = 0; }
-  else { state.currentShift.wrong++; state.consecutiveWrong++; }
+  else {
+    state.currentShift.wrong++; state.consecutiveWrong++;
+    if (state.consecutiveWrong === 5) Sound.play('beer', 0.5);   // Chef geht ein Bier zapfen
+  }
   state.currentShift.total++;
 
   // Track question history for smart rotation
@@ -618,6 +621,7 @@ function answerQuestion(index) {
 
   const isFavorite = isCorrect && !!opt.favorite;
   const tipGain = applyTipAndRep(isCorrect, isFavorite, isAcceptable);
+  Sound.answer(isCorrect, isFavorite, isAcceptable);
 
   // Track wine knowledge
   if (opt.wineId) {
@@ -641,6 +645,7 @@ function answerBesserwisser(value) {
   const isCorrect = (playerSaidTrue === q.data.isCorrect);
 
   const tipGain = applyTipAndRep(isCorrect);
+  Sound.answer(isCorrect);
 
   state.overlay = 'feedback';
   state.overlayData = { correct: isCorrect, explanation: q.data.correction, funFact: '', tips: tipGain, hintUsed: !!q.hintUsed };
@@ -657,6 +662,7 @@ function answerWeinwissen(index) {
   const isCorrect = opt.correct;
 
   const tipGain = applyTipAndRep(isCorrect);
+  Sound.answer(isCorrect);
 
   state.overlay = 'feedback';
   state.overlayData = { correct: isCorrect, explanation: q.data.explanation, funFact: '', tips: tipGain, hintUsed: !!q.hintUsed };
@@ -676,6 +682,7 @@ function answerBlindtasting(index) {
   const wine = WINES[opt.wineId];
 
   const tipGain = applyTipAndRep(isCorrect, isFavorite, isAcceptable);
+  Sound.answer(isCorrect, isFavorite, isAcceptable);
 
   state.overlay = 'feedback';
   state.overlayData = {
@@ -727,6 +734,7 @@ function answerBeratungStep(index) {
     const wine = WINES[opt.wineId];
 
     const tipGain = applyTipAndRep(isCorrect, isFavorite, isAcceptable);
+    Sound.answer(isCorrect, isFavorite, isAcceptable);
 
     // Add accumulated bonus from good questions
     const bonus = bs.bonusAccumulated;
@@ -776,6 +784,8 @@ function nextQuestion() {
       state.player.level++;
       state.overlay = 'levelup';
       state.overlayData = { newLevel: CONFIG.levels[state.player.level] };
+      Sound.play('cork2');
+      Sound.play('fanfare', 0.35);
     }
     saveGame();
     render();
@@ -853,8 +863,8 @@ function initMiniGameLoop() {
 
   // Controls: Touch = linke Hälfte springen, rechte Hälfte werfen.
   // Maus = Klick wirft, Leertaste springt.
-  const throwBottle = () => miniGame.bottles.push({ x: miniGame.player.x + 30, y: miniGame.player.y, vx: 8, vy: -3 });
-  const jump = () => { if (miniGame.player.onGround) { miniGame.player.vy = -12; miniGame.player.onGround = false; } };
+  const throwBottle = () => { miniGame.bottles.push({ x: miniGame.player.x + 30, y: miniGame.player.y, vx: 8, vy: -3 }); Sound.play('throw'); };
+  const jump = () => { if (miniGame.player.onGround) { miniGame.player.vy = -12; miniGame.player.onGround = false; Sound.play('jump'); } };
   canvas.onpointerdown = (e) => {
     if (!miniGame || !miniGame.running) return;
     e.preventDefault();
@@ -927,6 +937,7 @@ function miniGameStep(mg) {
       const c = mg.cows[ci];
       if (b.x > c.x && b.x < c.x + c.w && b.y > c.y && b.y < c.y + c.h) {
         mg.score += 10;
+        Sound.play('clank');
         // Particles
         for (let i = 0; i < 6; i++) {
           mg.particles.push({ x: c.x + c.w/2, y: c.y + c.h/2, vx: (Math.random()-0.5)*6, vy: (Math.random()-0.5)*6, life: 20, color: '#e94560' });

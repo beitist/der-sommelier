@@ -158,6 +158,8 @@ Levelcode eingeben: Auf dem Titelbildschirm "Levelcode eingeben" klicken.
 
 **CC BY 4.0** — [Creative Commons Namensnennung 4.0 International](https://creativecommons.org/licenses/by/4.0/deed.de)
 
+> **Ausgenommen:** Die Musik (`outputs/der-sommelier/assets/audio/music/`) gehört ihren jeweiligen Urhebern und ist nicht Teil der CC-BY-Lizenz. Sie liegt deshalb nicht im Repository. Urheber und Lizenzen stehen im Spiel unter „Über das Spiel“. Die Schriften stehen unter der SIL Open Font License.
+
 Du darfst das Werk:
 - **Teilen** — in jedwedem Format oder Medium vervielfältigen und weiterverbreiten
 - **Bearbeiten** — remixen, verändern und darauf aufbauen, auch kommerziell
