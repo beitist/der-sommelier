@@ -155,10 +155,7 @@ function renderEnding() {
       <div class="pl pl-skyline"></div>
       <div class="ending-facades">${facades}</div>
       <div class="pl pl-street"></div>
-      <div class="ending-walker">
-        <img class="walk-a" src="assets/ending/sommelier_walk1.png" alt="" onerror="this.style.display='none'">
-        <img class="walk-b" src="assets/ending/sommelier_walk2.png" alt="" onerror="this.style.display='none'">
-      </div>
+      <div class="ending-walker"></div>
 
       <div class="credits-viewport">
         <div class="credits-roll" onanimationend="finishEnding()">
