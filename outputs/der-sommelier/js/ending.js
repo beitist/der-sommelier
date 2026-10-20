@@ -130,6 +130,17 @@ function computeScore() {
 // ===== ABSPANN (Parallax) =====
 const ENDING_SECONDS = 70;
 
+// Fassaden im Abspann – gestaffelt nach Etagen. scale = Anzeigegröße der Bilddatei,
+// anchor = Wandpunkt fürs Schild (Pixel im Fassadenbild), signMountY = Montagepunkt im Schildbild (480×480).
+const ENDING_FACADES = {
+  imbiss:         { w: 1300, h: 1000, scale: 0.46,  anchor: [1237, 560], signMountY: 156 },  // 1 Etage
+  steakhaus:      { w: 1300, h: 1000, scale: 0.61,  anchor: [1133, 610], signMountY: 122 },  // 2 Etagen
+  gutbuergerlich: { w: 1300, h: 1000, scale: 0.87,  anchor: [1106, 455], signMountY: 106 },  // 2,5 Etagen
+  gehoben:        { w: 1300, h: 1000, scale: 0.633, anchor: [1048, 300], signMountY: 105 },  // 2 Etagen
+  sterne:         { w: 2400, h: 800,  scale: 0.577, anchor: [2255, 330], signMountY: 141 },  // breiter Bungalow
+};
+const ENDING_SIGN_WIDTH = 190;   // alle Schilder gleich groß
+
 function startEnding() {
   state.currentShift = null;
   state.currentQuestion = null;
@@ -144,8 +155,16 @@ function finishEnding() {
 
 function renderEnding() {
   const c = getCareerStats();
-  const facades = CONFIG.levels.map(lv =>
-    `<img class="ending-facade" src="assets/ending/facade_${lv.id}.png" alt="${lv.shortName}" onerror="this.style.visibility='hidden'">`).join('');
+  const facades = CONFIG.levels.map(lv => {
+    const f = ENDING_FACADES[lv.id];
+    const w = Math.round(f.w * f.scale), h = Math.round(f.h * f.scale);
+    const k = ENDING_SIGN_WIDTH / 480;
+    const signLeft = Math.round(f.anchor[0] * f.scale), signTop = Math.round(f.anchor[1] * f.scale - f.signMountY * k);
+    return `<div class="ending-facade-wrap" style="width:${w}px;height:${h}px">
+        <img class="ending-facade" src="assets/ending/facade_${lv.id}.png" alt="${lv.shortName}" onerror="this.style.visibility='hidden'">
+        <img class="ending-sign" src="assets/ending/sign_${lv.id}.png" alt="" style="left:${signLeft}px;top:${signTop}px;width:${ENDING_SIGN_WIDTH}px" onerror="this.style.display='none'">
+      </div>`;
+  }).join('');
   const chefs = CONFIG.levels.map(lv => `<p>${CHEFS[lv.id].name} <span>– ${lv.name}</span></p>`).join('');
   const artists = [...new Set(Object.values(typeof PLAYLISTS !== 'undefined' ? PLAYLISTS : {}).flat().map(s => s.artist).filter(Boolean))];
 

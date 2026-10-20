@@ -1724,3 +1724,16 @@ body {
   image-rendering: pixelated;
 }
 @keyframes walkStrip { to { background-position-x: -3648px; } }
+
+/* Abspann: Fassaden unterschiedlich groß (nach Etagen), Schild an der Hauskante */
+.ending-facades { gap: 220px; }
+.ending-facade-wrap { position: relative; flex-shrink: 0; }
+.ending-facade-wrap .ending-facade { width: 100%; height: 100%; }
+.ending-sign { position: absolute; height: auto; image-rendering: pixelated; z-index: 1; }
+@keyframes facadesPass { from { transform: translateX(1920px); } to { transform: translateX(-5900px); } }
+/* Sommelier passend zu den gestaffelten Fassaden (kleiner als zuvor) */
+.ending-walker { width: 171px; height: 300px; background-size: 2736px 300px; animation: walkStripS 1s steps(16) infinite; }
+@keyframes walkStripS { to { background-position-x: -2736px; } }
+
+/* Einheitliche Restaurant-Logos (Schmiedeeisen-Medaillons) größer in der Seitenleiste */
+.sidebar-logo { width: 70px; height: 70px; border-radius: 0; object-fit: contain; image-rendering: auto; }
