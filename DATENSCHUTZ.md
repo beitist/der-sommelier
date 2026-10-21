@@ -1,4 +1,4 @@
-# Datenschutzerklärung – „Der Sommelier“ (iPad-App)
+# Datenschutzerklärung: „Der Sommelier“ (iPad-App)
 
 Stand: Oktober 2026
 
@@ -7,7 +7,7 @@ Stand: Oktober 2026
 ## Verantwortlicher
 
 Sebastian Stüwe
-E-Mail: [KONTAKT-E-MAIL EINTRAGEN]
+E-Mail: sommelier@beiti.me
 
 ## Welche Daten verarbeitet die App?
 
