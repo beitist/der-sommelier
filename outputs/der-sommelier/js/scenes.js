@@ -991,10 +991,19 @@ function renderBottomBar() {
 }
 
 
+// Nur die Knöpfe umschalten – kein komplettes Neuzeichnen (sonst starten Animationen neu)
+function updateSoundToggles() {
+  document.querySelectorAll('.sound-toggle-music').forEach(b => b.className = `sound-toggle sound-toggle-music ${Sound.musicOn ? 'on' : 'off'}`);
+  document.querySelectorAll('.sound-toggle-sfx').forEach(b => {
+    b.className = `sound-toggle sound-toggle-sfx ${Sound.sfxOn ? 'on' : 'off'}`;
+    b.textContent = `${Sound.sfxOn ? '🔔' : '🔕'} Effekte`;
+  });
+}
+
 function renderSoundToggles() {
   return `<div class="sound-toggles">
-      <button class="sound-toggle ${Sound.musicOn ? 'on' : 'off'}" onclick="Sound.toggleMusic();render()" title="Musik">🎵 Musik</button>
-      <button class="sound-toggle ${Sound.sfxOn ? 'on' : 'off'}" onclick="Sound.toggleSfx();render()" title="Effekte">${Sound.sfxOn ? '🔔' : '🔕'} Effekte</button>
+      <button class="sound-toggle sound-toggle-music ${Sound.musicOn ? 'on' : 'off'}" onclick="Sound.toggleMusic();updateSoundToggles()" title="Musik">🎵 Musik</button>
+      <button class="sound-toggle sound-toggle-sfx ${Sound.sfxOn ? 'on' : 'off'}" onclick="Sound.toggleSfx();updateSoundToggles()" title="Effekte">${Sound.sfxOn ? '🔔' : '🔕'} Effekte</button>
     </div>`;
 }
 

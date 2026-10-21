@@ -1737,3 +1737,6 @@ body {
 
 /* Einheitliche Restaurant-Logos (Schmiedeeisen-Medaillons) größer in der Seitenleiste */
 .sidebar-logo { width: 70px; height: 70px; border-radius: 0; object-fit: contain; image-rendering: auto; }
+/* Lauf-Zyklus: nur 15 Bilder – Bild 16 ist identisch mit Bild 1 (Loop-Abschluss von AutoSprite) */
+.ending-walker { animation: walkStrip15 0.95s steps(15) infinite; }
+@keyframes walkStrip15 { to { background-position-x: -2565px; } }
