@@ -7,9 +7,12 @@ const ACADEMY_PAUSE_MS = 1800;   // Box blendet zwischen den Lektionen kurz aus 
 
 // ===== AKADEMIE: Ablauf =====
 // step: 'intro' → je Lektion 'lesson' → 'exercise' (bis richtig) → Pause → … → 'outro'
+// Wer bei einer Übung zweimal danebenliegt, bekommt danach eine Zusatzübung (lesson.extra).
+const ACADEMY_EXTRA_AFTER_WRONG = 2;
+
 function startAcademy() {
   state.scene = 'academy';
-  state.academy = { step: 'intro', lesson: 0, tried: [], solved: false, pausing: false };
+  state.academy = { step: 'intro', lesson: 0, tried: [], solved: false, pausing: false, extra: false };
   state.overlay = null;
   render();
 }
@@ -21,8 +24,16 @@ function academyDay() {
 function academyNext() {
   const a = state.academy, day = academyDay();
   if (a.step === 'intro') { a.step = 'lesson'; render(); return; }
-  if (a.step === 'lesson') { a.step = 'exercise'; a.tried = []; a.solved = false; render(); return; }
+  if (a.step === 'lesson') { a.step = 'exercise'; a.tried = []; a.solved = false; a.extra = false; render(); return; }
   if (a.step === 'exercise' && a.solved) {
+    // Zweimal daneben? Dann noch eine Übung zum gleichen Thema, bevor es weitergeht
+    const lesson = day.lessons[a.lesson];
+    const wrongs = a.tried.filter(i => !currentExercise().options[i].correct).length;
+    if (!a.extra && lesson.extra && wrongs >= ACADEMY_EXTRA_AFTER_WRONG) {
+      a.extra = true; a.tried = []; a.solved = false;
+      render();
+      return;
+    }
     // kurze Pause: Box blendet aus, Madame & Keller bleiben stehen
     a.pausing = true;
     render();
@@ -36,10 +47,15 @@ function academyNext() {
   }
 }
 
+function currentExercise() {
+  const lesson = academyDay().lessons[state.academy.lesson];
+  return state.academy.extra && lesson.extra ? lesson.extra : lesson.exercise;
+}
+
 function academyAnswer(i) {
   const a = state.academy;
   if (a.solved || a.tried.includes(i)) return;
-  const opt = academyDay().lessons[a.lesson].exercise.options[i];
+  const opt = currentExercise().options[i];
   a.tried.push(i);
   if (opt.correct) { a.solved = true; Sound.play('pling'); }
   else Sound.play('wrong');
@@ -80,8 +96,9 @@ function renderAcademy() {
         <div class="dialog-body"><p class="dialog-scenario">${lesson.text}</p></div>
         <button class="btn btn-primary btn-large" onclick="academyNext()">Verstanden – zur Übung →</button>`;
     } else {
-      const ex = lesson.exercise;
+      const ex = currentExercise();
       const label = ex.type === 'label' ? renderWineLabel(ex.label) : '';
+      const extraIntro = a.extra ? '<p class="ak-extra">„Noch eine – damit es sitzt.“</p>' : '';
       const opts = ex.options.map((o, i) => {
         const tried = a.tried.includes(i);
         const cls = tried ? (o.correct ? ' correct' : ' wrong') : '';
@@ -94,6 +111,7 @@ function renderAcademy() {
           ${last.correct ? '' : '<div class="ak-retry">Versuchen Sie es noch einmal.</div>'}
         </div>` : '';
       body = `${header}
+        ${extraIntro}
         ${label}
         <div class="dialog-body"><p class="dialog-question">${ex.question}</p></div>
         <div class="dialog-choices">${opts}</div>
