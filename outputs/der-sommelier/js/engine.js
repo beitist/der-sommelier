@@ -260,6 +260,28 @@ function tryLevelCode() {
 
 function startFromCode(code) {
   const upperCode = code.trim().toUpperCase();
+  // TESTCODES – vor dem App-Store-Release entfernen!
+  if (upperCode === 'ABSPANN' || upperCode === 'PRUEFUNG') {
+    startNewGame();
+    const last = CONFIG.levels.length - 1;
+    state.player.level = last;
+    state.player.tips = CONFIG.levels[last].xpToNext;
+    state.player.chefIntroSeen = state.player.chefIntroSeen.map(() => true);
+    Object.values(WINES).forEach(w => state.player.discoveredWines.add(w.id));
+    state.player.shiftsCompleted = [4, 4, 5, 5, 6];
+    state.player.stats = { answered: 120, correct: 98, favorites: 41, tipsTotal: 1240 };
+    state.showChefIntro = false;
+    if (upperCode === 'ABSPANN') {
+      state.player.examPassed = true;
+      state.player.examAttempts = 1;
+      saveGame();
+      startEnding();
+    } else {
+      saveGame();
+      render();
+    }
+    return true;
+  }
   const lvIndex = CONFIG.levels.findIndex(l => l.levelCode && l.levelCode === upperCode);
   if (lvIndex < 0) return false;
   startNewGame();
