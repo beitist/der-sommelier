@@ -1740,3 +1740,49 @@ body {
 /* Lauf-Zyklus: Bilder 1–14 – Bild 15 ist praktisch identisch mit Bild 1, Bild 16 gehört schon zum nächsten Durchlauf */
 .ending-walker { animation: walkStrip14 0.9s steps(14) infinite; }
 @keyframes walkStrip14 { to { background-position-x: -2394px; } }
+
+/* ===== AKADEMIE (Madame Duvin) ===== */
+.dialog-academy { border-color: var(--c-gold); }
+.ak-badge { background: var(--c-gold); color: #2a1f00; }
+.ak-title { font-family: var(--font-pixel); font-size: 17pt; color: var(--c-gold); margin: 4px 0 14px; line-height: 1.4; }
+.dialog-academy .btn { margin-top: 14px; }
+.ak-feedback { margin-top: 14px; padding: 14px 18px; border-radius: 10px; font-size: 19pt; line-height: 1.5; }
+.ak-feedback.ok { background: rgba(46,204,113,0.12); border: 1px solid rgba(46,204,113,0.45); }
+.ak-feedback.nope { background: rgba(240,230,140,0.08); border: 1px solid rgba(240,230,140,0.35); }
+.ak-feedback-who { font-weight: 700; color: var(--c-gold); }
+.ak-retry { margin-top: 6px; font-size: 16pt; color: var(--c-muted); font-style: italic; }
+/* Pause zwischen den Lektionen: Box blendet aus, Madame & Keller bleiben */
+.ak-enter { animation: akIn 0.6s ease; }
+.ak-pausing { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; pointer-events: none; }
+@keyframes akIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+
+/* Erfundenes Weinetikett (Etikett-Übungen) */
+.wine-label {
+  margin: 6px auto 16px; max-width: 560px; padding: 22px 28px; text-align: center;
+  background: linear-gradient(180deg, #f6eedb, #e9dcbc); color: #3a2a18;
+  border: 3px double #8a6a3a; border-radius: 6px; box-shadow: 0 6px 20px rgba(0,0,0,0.45);
+  font-family: Georgia, 'Times New Roman', serif;
+}
+.wl-producer { font-size: 15pt; letter-spacing: 3px; text-transform: uppercase; color: #6a5030; }
+.wl-wine { font-size: 28pt; font-weight: 700; margin: 8px 0 4px; color: #5a1a1a; }
+.wl-region { font-size: 17pt; font-style: italic; }
+.wl-quality { font-size: 14pt; margin-top: 4px; color: #6a5030; }
+.wl-bottom { display: flex; justify-content: space-between; margin-top: 14px; padding-top: 10px; border-top: 1px solid #b89a6a; font-size: 15pt; }
+
+/* Chef stellt vor der Schicht neue Weine vor */
+.chef-wines-card {
+  background: var(--c-card); border: 3px solid var(--c-gold); border-radius: 16px;
+  padding: 34px 44px; width: 1300px; max-height: 1250px; overflow-y: auto; animation: popIn 0.35s ease;
+}
+.cw-head { display: flex; align-items: center; gap: 22px; margin-bottom: 18px; }
+.cw-chef { width: 120px; height: 120px; object-fit: cover; object-position: top; border-radius: 50%; border: 3px solid var(--c-gold); background: #0f0f1a; }
+.cw-chef-name { font-family: var(--font-pixel); font-size: 17pt; color: var(--c-gold); margin-bottom: 8px; }
+.cw-line { font-size: 21pt; font-style: italic; color: var(--c-text); }
+.cw-subtitle { font-size: 17pt; color: var(--c-muted); margin: 6px 0 10px; }
+.cw-card { display: flex; gap: 24px; align-items: center; padding: 16px 20px; margin-bottom: 14px; background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; }
+.cw-bottle { height: 200px; width: auto; flex-shrink: 0; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5)); }
+.cw-name { font-size: 23pt; font-weight: 700; color: var(--c-accent); }
+.cw-profile { font-size: 16pt; color: var(--c-muted); margin: 4px 0 8px; }
+.cw-text { font-size: 19pt; line-height: 1.55; color: var(--c-text); }
+.chef-wines-card .btn { margin-top: 10px; }
+.hud-review { background: rgba(83,52,131,0.85); }

@@ -4,6 +4,11 @@
 
 function render() {
   const root = document.getElementById('game-root');
+  // Neues Restaurant: erst in die Akademie zu Madame Duvin
+  if (state.scene === 'restaurant' && !state.currentShift && state.player.academyDone && !state.player.academyDone[state.player.level]) {
+    startAcademy();
+    return;
+  }
   let html = '';
 
   // Chef intro has priority
@@ -17,6 +22,7 @@ function render() {
       case 'restaurant': html = renderRestaurant(); break;
       case 'region': html = renderRegion(); break;
       case 'minigame': html = renderMiniGame(); break;
+      case 'academy': html = renderAcademy(); break;
       case 'ending': html = renderEnding(); break;
       case 'highscore': html = renderHighscore(); break;
     }
@@ -26,6 +32,7 @@ function render() {
   if (state.overlay === 'confirmNewGame') html += renderConfirmNewGameOverlay();
   if (state.overlay === 'about') html += renderAboutOverlay();
   if (state.overlay === 'examReady') html += renderExamReadyOverlay();
+  if (state.overlay === 'chefWines') html += renderChefWinesOverlay();
   if (state.overlay === 'examResult') html += renderExamResultOverlay();
 
   root.innerHTML = html;
@@ -104,7 +111,7 @@ function renderChefIntro() {
                 <div class="chef-theme">Thema: ${lv.themeLabel}</div>
                 <div class="chef-intro-text">${introText}</div>
                 <div class="chef-intro-buttons">
-                  <button class="btn btn-primary btn-large" onclick="dismissChefIntro()">📚 Zum Lehrgang!</button>
+                  <button class="btn btn-primary btn-large" onclick="dismissChefIntro()">👨‍🍳 Ab an die Arbeit!</button>
                   <button class="btn btn-secondary" onclick="dismissChefIntro();goToScene('map')">🗺️ Erst Länderinfo</button>
                 </div>
               </div>
@@ -400,11 +407,8 @@ function renderRestaurantLobby() {
   const rep = state.player.reputation[state.player.level];
   const stars = renderStars(rep);
   const shifts = state.player.shiftsCompleted[state.player.level];
-  // Lehrgang noch nicht (ganz) gemacht, z.B. nach "Erst Länderinfo"? Dann hervorheben.
-  const newWinesOpen = Object.values(WINES).some(w => w.level === state.player.level && !state.player.discoveredWines.has(w.id));
-  const lehrgangBtn = newWinesOpen
-    ? `<button class="btn btn-primary" onclick="goToScene('explorer', {explorerWineIndex:-1, explorerNewOnly:true})">📚 Lehrgang: neue Weine!</button>`
-    : `<button class="btn btn-secondary" onclick="goToScene('explorer', {explorerWineIndex:0})">📚 Weine wiederholen</button>`;
+  // Weinbuch: Nachschlagewerk (der Chef stellt die Weine vor den Schichten vor)
+  const lehrgangBtn = `<button class="btn btn-secondary" onclick="goToScene('explorer', {explorerWineIndex:0})">📖 Weinbuch</button>`;
 
   return `
     <div class="scene scene-restaurant active">
@@ -481,6 +485,7 @@ function renderQuestion() {
           <div class="rest-layer rest-fg-layer" style="background-image:url('assets/${lv.bgKey}/theke.png')"></div>
 
           <div class="shift-hud">
+            ${q.isReview ? '<div class="hud-item hud-review">🔁 Wiederholung</div>' : ''}
             <div class="hud-item">${shift.isExam ? `🎓 Gang ${shift.questionIndex + 1}/${shift.questions.length}${q.data.course ? ' · ' + q.data.course : ''}` : `Gast ${shift.questionIndex + 1}/${shift.questions.length}`}</div>
             <div class="hud-item hud-score">✅ ${shift.correct} ❌ ${shift.wrong}</div>
           </div>
@@ -762,7 +767,7 @@ function renderFeedbackOverlay() {
         </div>` : ''}
         ${d.funFact ? `<p class="fb-funfact">💡 ${d.funFact}</p>` : ''}
         ${chefHtml}
-        <div class="fb-tips">+${d.tips}€ Trinkgeld${d.favorite ? ' (inkl. 3€ Bonus!)' : ''}${d.beratungBonus ? ` (inkl. ${d.beratungBonus}€ Beratungsbonus!)` : ''}${d.hintUsed ? ' (Chef-Tipp: halbes TG)' : ''}</div>
+        <div class="fb-tips">${d.tips === 0 ? 'Kein Trinkgeld – der Gast zahlt nur die Rechnung.' : `+${d.tips}€ Trinkgeld`}${d.favorite ? ' (inkl. Bonus für die beste Wahl!)' : ''}${d.beratungBonus ? ` (inkl. ${d.beratungBonus}€ Beratungsbonus!)` : ''}${d.hintUsed ? ' (Chef-Tipp: halbes TG)' : ''}</div>
         ${d.beratungSummary ? `<div class="fb-beratung-summary">\u{1F4A1} ${d.beratungSummary}</div>` : ''}
         <button class="btn btn-primary" onclick="nextQuestion()">Weiter →</button>
       </div>
@@ -923,8 +928,8 @@ function renderLevelUpOverlay() {
           <div class="lu-code-value">${d.newLevel.levelCode}</div>
           <div class="lu-code-hint">Merke ihn dir, um später direkt hier einzusteigen!</div>
         </div>` : ''}
-        <button class="btn btn-primary btn-large" onclick="state.currentShift=null;state.overlay=null;state.overlayData=null;checkChefIntro();if(!state.showChefIntro)goToScene('explorer',{explorerWineIndex:-1,explorerNewOnly:true})">
-          🍷 Neue Weine kennenlernen!
+        <button class="btn btn-primary btn-large" onclick="state.currentShift=null;state.overlay=null;state.overlayData=null;goToScene('restaurant',{showChefIntro:true})">
+          🎓 Auf zur Akademie!
         </button>
       </div>
     </div>`;

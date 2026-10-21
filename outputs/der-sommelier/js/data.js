@@ -35,6 +35,7 @@ const CONFIG = {
       description: 'Blindverkostung, perfekte Menü-Begleitung, Profi-Vokabular.' },
   ],
   questionsPerShift: 5,
+  tipFactor: 0.8,            // Trinkgeld-Niveau (≈ 3 Schichten pro Restaurant bei ~80 % richtig)
   optionsPerQuestion: 5,     // Antwortmöglichkeiten bei Weinfragen (eigene Optionen + zufällige Füller)
   maxPerTypePerShift: 2,     // höchstens so viele Fragen desselben Typs pro Schicht
   // Trinkgeld: Würfelsystem in engine.js (richtig: 4+1W6, falsch: 1W3, ×Level-Multiplikator)

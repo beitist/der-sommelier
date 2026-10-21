@@ -106,6 +106,9 @@ function sanitizePlayer(p) {
     examPassed: p.examPassed === true,
     examAttempts: num(p.examAttempts, 0, 1e4),
     highscoreEntered: p.highscoreEntered === true,
+    // Akademie & vom Chef vorgestellte Weine (alte Spielstände: frühere Level gelten als besucht)
+    academyDone: arr(p.academyDone, v => v === true).map((v, i) => Array.isArray(p.academyDone) ? v : i < num(p.level, 0, n - 1)),
+    introducedWines: (Array.isArray(p.introducedWines) ? p.introducedWines : []).filter(id => WINES[id]),
   };
 }
 
@@ -163,8 +166,8 @@ function dismissChefIntro() {
   state.player.chefIntroSeen[state.player.level] = true;
   state.showChefIntro = false;
   saveGame();
-  // After chef intro → go to explorer (only new wines for this level)
-  goToScene('explorer', { explorerWineIndex: -1, explorerNewOnly: true });
+  // Die Akademie war schon – nach dem Chef-Intro geht es direkt in die Lobby
+  goToScene('restaurant');
 }
 
 // ===== GUEST ASSIGNMENT =====
@@ -219,6 +222,8 @@ function startNewGame() {
       questionHistory: {},
       stats: { answered: 0, correct: 0, favorites: 0, tipsTotal: 0 },
       examPassed: false, examAttempts: 0, highscoreEntered: false,
+      academyDone: [false, false, false, false, false],
+      introducedWines: [],
     },
     currentShift: null,
     currentQuestion: null,
@@ -267,6 +272,8 @@ function startFromCode(code) {
     state.player.level = last;
     state.player.tips = CONFIG.levels[last].xpToNext;
     state.player.chefIntroSeen = state.player.chefIntroSeen.map(() => true);
+    state.player.academyDone = state.player.academyDone.map(() => true);
+    state.player.introducedWines = Object.keys(WINES);
     Object.values(WINES).forEach(w => state.player.discoveredWines.add(w.id));
     state.player.shiftsCompleted = [4, 4, 5, 5, 6];
     state.player.stats = { answered: 120, correct: 98, favorites: 41, tipsTotal: 1240 };
@@ -287,7 +294,7 @@ function startFromCode(code) {
   startNewGame();
   state.player.level = lvIndex;
   state.player.tips = CONFIG.levels[lvIndex].xpNeeded;
-  for (let i = 0; i < lvIndex; i++) state.player.chefIntroSeen[i] = true;
+  for (let i = 0; i < lvIndex; i++) { state.player.chefIntroSeen[i] = true; state.player.academyDone[i] = true; }
   // Weine der übersprungenen Level gelten als bekannt
   Object.values(WINES).filter(w => w.level < lvIndex).forEach(w => state.player.discoveredWines.add(w.id));
   state.showChefIntro = true;
@@ -418,15 +425,25 @@ function startShift() {
   if (questionPool.blindtasting) questionPool.blindtasting.forEach(q => allQuestions.push({ type: 'blindtasting', data: q }));
   if (questionPool.beratung) questionPool.beratung.forEach(q => allQuestions.push({ type: 'beratung', data: q }));
 
+  // Vor Schicht 1–3 stellt der Chef neue Weine vor; ab Schicht 4 sind alle Weine des Hauses bekannt
+  const shiftNo = state.player.shiftsCompleted[level];
+  const plan = SHIFT_PLAN[levelId] || [];
+  const levelWines = Object.values(WINES).filter(w => w.level === level).map(w => w.id);
+  const toIntroduce = shiftNo < plan.length ? plan[shiftNo] : levelWines;
+  const newWines = toIntroduce.filter(id => !state.player.introducedWines.includes(id));
+  newWines.forEach(id => { state.player.introducedWines.push(id); state.player.discoveredWines.add(id); });
+  const unlocked = allQuestions.filter(isQuestionUnlocked);
+  const pool = unlocked.length >= CONFIG.questionsPerShift ? unlocked : allQuestions;
+
   // Smart rotation: unseen → wrong → seen (least-seen first).
   // Ungesehene Fragen, deren Themen-Geschwister schon dran war, rücken nach hinten.
   const hist = state.player.questionHistory;
   const topicOf = id => QUESTION_TOPICS.findIndex(group => group.includes(id));
   const siblingSeen = q => { const t = topicOf(q.data.id); return t >= 0 && QUESTION_TOPICS[t].some(id => id !== q.data.id && hist[id]); };
-  const unseen = shuffle(allQuestions.filter(q => !hist[q.data.id] && !siblingSeen(q)));
-  const unseenSibling = shuffle(allQuestions.filter(q => !hist[q.data.id] && siblingSeen(q)));
-  const wrong = shuffle(allQuestions.filter(q => hist[q.data.id] && hist[q.data.id].wrong > hist[q.data.id].correct));
-  const seen = shuffle(allQuestions.filter(q => hist[q.data.id] && hist[q.data.id].correct >= hist[q.data.id].wrong));
+  const unseen = shuffle(pool.filter(q => !hist[q.data.id] && !siblingSeen(q)));
+  const unseenSibling = shuffle(pool.filter(q => !hist[q.data.id] && siblingSeen(q)));
+  const wrong = shuffle(pool.filter(q => hist[q.data.id] && hist[q.data.id].wrong > hist[q.data.id].correct));
+  const seen = shuffle(pool.filter(q => hist[q.data.id] && hist[q.data.id].correct >= hist[q.data.id].wrong));
   seen.sort((a, b) => (hist[a.data.id]?.seen || 0) - (hist[b.data.id]?.seen || 0));
   const prioritized = [...unseen, ...wrong, ...unseenSibling, ...seen];
 
@@ -448,19 +465,23 @@ function startShift() {
     const t = topicOf(q.data.id); if (t >= 0) topics.add(t);
     if (q.data.guestId) guests.add(q.data.guestId);
   };
+  // Ab dem 2. Restaurant: ein Gast aus einem früheren Restaurant als Wiederholung
+  const review = level > 0 ? pickReviewQuestion(level) : null;
+  const target = CONFIG.questionsPerShift - (review ? 1 : 0);
   const beratung = prioritized.find(q => q.type === 'beratung');
   if (beratung) take(beratung);
   for (const strict of [true, false]) {
     for (const q of prioritized) {
-      if (selected.length >= CONFIG.questionsPerShift) break;
+      if (selected.length >= target) break;
       if (fits(q, strict)) take(q);
     }
   }
   // Notfall (sehr kleiner Pool): ohne Gast-/Themenregel auffüllen
   for (const q of prioritized) {
-    if (selected.length >= CONFIG.questionsPerShift) break;
+    if (selected.length >= target) break;
     if (!selected.includes(q)) selected.push(q);
   }
+  if (review && !(review.data.guestId && guests.has(review.data.guestId))) selected.push(review);
   shuffleInPlace(selected);
 
   // Kopie der Fragedaten (Originale bleiben unverändert), Weinoptionen auffüllen, Gäste zuweisen –
@@ -482,7 +503,40 @@ function startShift() {
   state.currentQuestion = selected[0];
   state.currentGuest = selected[0].guest;
   state.overlay = null;
+  // Chef stellt vor der Schicht die neuen Weine vor
+  if (newWines.length) {
+    state.overlay = 'chefWines';
+    state.overlayData = { wines: newWines, line: (CHEF_SHIFT_LINES[levelId] || [])[Math.min(shiftNo, 2)] || '' };
+  }
+  saveGame();
   render();
+}
+
+// Darf die Frage schon kommen? Nur zu Weinen, die der Spieler kennt (vorgestellt oder aus früheren Restaurants).
+function isQuestionUnlocked(q) {
+  const d = q.data;
+  if (q.type === 'besserwisser' || q.type === 'weinwissen') {
+    const tag = FACT_WINE_TAGS[d.id];
+    return !tag || isWineKnown(tag);
+  }
+  const opts = q.type === 'beratung' ? d.steps[d.steps.length - 1].options : d.options;
+  if (q.type === 'blindtasting') return opts.every(o => isWineKnown(o.wineId));   // nur Namen sichtbar → alle müssen bekannt sein
+  const fav = opts.find(o => o.favorite) || opts.find(o => o.correct);
+  return !fav || isWineKnown(fav.wineId);
+}
+
+// Wiederholungsfrage aus einem früheren Restaurant (bevorzugt: früher falsch beantwortet)
+function pickReviewQuestion(level) {
+  const hist = state.player.questionHistory;
+  const cands = [];
+  for (let lv = 0; lv < level; lv++) {
+    const pool = QUESTIONS[CONFIG.levels[lv].id] || {};
+    ['food_pairing', 'preference', 'besserwisser', 'weinwissen'].forEach(type =>
+      (pool[type] || []).forEach(q => cands.push({ type, data: q, isReview: true })));
+  }
+  if (!cands.length) return null;
+  const wrong = cands.filter(q => hist[q.data.id] && hist[q.data.id].wrong > hist[q.data.id].correct);
+  return pick(wrong.length ? wrong : cands);
 }
 
 // ===== SHARED TIP/REP LOGIC =====
@@ -497,11 +551,11 @@ function applyTipAndRep(isCorrect, isFavorite, isAcceptable) {
   } else if (isAcceptable) {
     tipGain = Math.max(1, Math.round((4 + rollDice(6)) / 3));  // akzeptabel: ~2-3€ (Faktor ×⅓)
   } else {
-    tipGain = rollDice(3);  // falsch: 1-3€
+    tipGain = 0;  // falsch: kein Trinkgeld – der Gast zahlt nur die Rechnung
   }
   // Level-Multiplikator: höheres Level = bessere Gäste = mehr Trinkgeld
   const lvMult = 1 + state.player.level;  // x1, x2, x3, x4, x5
-  tipGain = Math.round(tipGain * lvMult);
+  tipGain = Math.round(tipGain * lvMult * CONFIG.tipFactor);
   if (q && q.hintUsed) tipGain = Math.ceil(tipGain / 2);
   const repGain = isCorrect ? CONFIG.repPerCorrect :
                   isAcceptable ? Math.ceil(CONFIG.repPerCorrect / 2) :
