@@ -134,9 +134,9 @@ const ENDING_SECONDS = 70;
 // anchor = Wandpunkt fürs Schild (Pixel im Fassadenbild), signMountY = Montagepunkt im Schildbild (480×480).
 const ENDING_FACADES = {
   imbiss:         { w: 1300, h: 1000, scale: 0.46,  anchor: [1237, 560], signMountY: 156 },  // 1 Etage
-  steakhaus:      { w: 1300, h: 1000, scale: 0.61,  anchor: [1133, 610], signMountY: 122 },  // 2 Etagen
-  gutbuergerlich: { w: 1300, h: 1000, scale: 0.87,  anchor: [1106, 455], signMountY: 106 },  // 2,5 Etagen
-  gehoben:        { w: 1300, h: 1000, scale: 0.76,  anchor: [1048, 300], signMountY: 105 },  // 2 Etagen, etwas stattlicher
+  steakhaus:      { w: 1300, h: 1000, scale: 0.64,  anchor: [1133, 610], signMountY: 122 },  // 2 Etagen
+  gutbuergerlich: { w: 1300, h: 1000, scale: 0.957, anchor: [1106, 455], signMountY: 106 },  // 2,5 Etagen
+  gehoben:        { w: 1300, h: 1000, scale: 0.791, anchor: [1048, 300], signMountY: 105 },  // 2 Etagen, etwas stattlicher
   sterne:         { w: 2400, h: 800,  scale: 0.577, anchor: [2255, 330], signMountY: 141 },  // breiter Bungalow
 };
 const ENDING_SIGN_WIDTH = 190;   // alle Schilder gleich groß
