@@ -2,6 +2,9 @@
 // DER SOMMELIER — Game Engine
 // ============================================================
 
+// Testcodes ABSPANN / PRUEFUNG im Levelcode-Feld – nur für Tests auf true setzen
+const DEV_TEST_CODES = false;
+
 // ===== GAME STATE =====
 let state = {
   scene: 'title',       // title, map, restaurant, region, explorer
@@ -265,8 +268,8 @@ function tryLevelCode() {
 
 function startFromCode(code) {
   const upperCode = code.trim().toUpperCase();
-  // TESTCODES – vor dem App-Store-Release entfernen!
-  if (upperCode === 'ABSPANN' || upperCode === 'PRUEFUNG') {
+  // TESTCODES (ABSPANN = direkt zum Abspann, PRUEFUNG = Étoile mit Prüfung) – im Release aus
+  if (DEV_TEST_CODES && (upperCode === 'ABSPANN' || upperCode === 'PRUEFUNG')) {
     startNewGame();
     const last = CONFIG.levels.length - 1;
     state.player.level = last;

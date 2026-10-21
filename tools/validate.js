@@ -15,7 +15,7 @@ const ex=f=>fs.existsSync(path.join(base,f));
 // assets
 Object.values(WINES).forEach(w=>{if(!ex(w.label))p('MISSING wine label',w.id,w.label); if(!REGIONS[w.region])p('wine bad region',w.id); if(!REGIONS[w.region]?.wines.includes(w.id))p('wine not in region list',w.id,w.region);});
 Object.values(REGIONS).forEach(r=>r.wines.forEach(id=>{if(!WINES[id])p('region refs unknown wine',r.id,id)}));
-CONFIG.levels.forEach((l,i)=>{if(l.logo&&!ex(l.logo))p('MISSING logo',l.logo);['hintergrund.png','theke.png'].forEach(f=>{if(!ex('assets/'+l.bgKey+'/'+f))p('MISSING bg',l.bgKey,f)});if(!CHEFS[l.id])p('no chef',l.id);if(!CHEF_COMMENTS[l.id])p('no chef comments',l.id);if(!CHEF_HINT_INTROS[l.id])p('no hint intros',l.id);if(!LEVEL_INTROS[l.id])p('no level intro',l.id);if(!QUESTIONS[l.id])p('no questions',l.id); l.unlockRegions.forEach(r=>{if(!REGIONS[r])p('unlock unknown region',r)});});
+CONFIG.levels.forEach((l,i)=>{if(l.logo&&!ex(l.logo))p('MISSING logo',l.logo);['hintergrund_4x3.png','theke.png'].forEach(f=>{if(!ex('assets/'+l.bgKey+'/'+f))p('MISSING bg',l.bgKey,f)});if(!CHEFS[l.id])p('no chef',l.id);if(!CHEF_COMMENTS[l.id])p('no chef comments',l.id);if(!CHEF_HINT_INTROS[l.id])p('no hint intros',l.id);if(!LEVEL_INTROS[l.id])p('no level intro',l.id);if(!QUESTIONS[l.id])p('no questions',l.id); l.unlockRegions.forEach(r=>{if(!REGIONS[r])p('unlock unknown region',r)});});
 Object.values(CHEFS).forEach(c=>{if(!ex(c.sprite))p('MISSING chef sprite',c.sprite)});
 const allGuestIds=new Set();
 GUESTS.recurring.forEach(g=>{allGuestIds.add(g.id);Object.values(g.sprites).forEach(s=>{if(!ex(s))p('MISSING sprite',s)})});
