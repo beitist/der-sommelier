@@ -99,5 +99,35 @@ def tafel_ohne_schrift(box=(640, 208, 1392, 752)):
     print("→ Tafel ersetzt")
 
 
-if __name__ == "__main__" and len(sys.argv) > 1 and sys.argv[1] == "tafel":
-    tafel_ohne_schrift()
+def madame_ohne_theke():
+    """Theke aus dem Madame-Bild entfernen (Figur steht frei, die Akademie hat einen eigenen Tresen)."""
+    key = load_api_key()
+    raw = Image.open(RAW / "madame_raw.png").convert("RGB")
+    prompt = ("Edit this pixel-art character image: REMOVE the wooden counter in the foreground completely. "
+              "She stands freely; her black jacket and long black sommelier apron continue down to the bottom edge of the image, "
+              "her free hand hangs relaxed at her side. Keep her face, hair, glasses, tastevin, wine glass, pose, style and the "
+              "flat pure magenta background exactly the same. No counter, no furniture, no text.")
+    img = generate(key, prompt, 1024, 1024, refs=[raw])
+    img.save(RAW / "madame_ohne_theke_raw.png")
+    chroma_key(img).save(OUT / "madame_duvin.png", optimize=True)
+    print("→ madame_duvin.png ohne Theke")
+
+
+def tresen():
+    """Vordergrund-Tresen der Akademie (1920×400, transparent oben) wie assets/<level>/theke.png."""
+    key = load_api_key()
+    ref = on_magenta(ASSETS / "gehoben" / "theke.png")
+    prompt = ("Pixel art foreground counter strip, exactly the same style, perspective and framing as the reference image: "
+              "front view of a long tasting counter spanning the full width, pale limestone front with a polished oak top. "
+              "On the counter: a crystal decanter with red wine, a row of tasting glasses with small pours of white, rose and red wine, "
+              "a small metal spittoon bucket, an open wooden aroma kit box with tiny vials, a leather notebook and a pencil, "
+              "a white tasting cloth. Everything above the counter is flat pure magenta (#FF00FF). No text, no letters.")
+    img = generate(key, prompt, 1920, 400, refs=[ref])
+    RAW.mkdir(parents=True, exist_ok=True)
+    img.save(RAW / "tresen_raw.png")
+    chroma_key(img).save(OUT / "theke.png", optimize=True)
+    print("→ academy/theke.png")
+
+
+if __name__ == "__main__" and len(sys.argv) > 1:
+    {"tafel": tafel_ohne_schrift, "madame2": madame_ohne_theke, "tresen": tresen}.get(sys.argv[1], lambda: None)()
