@@ -212,7 +212,7 @@ QUESTIONS.gutbuergerlich = {
       scenario: 'Die Austauschschülerin schwärmt: "In Frankreich machen wir immer \'Apéro\' – Käse, Oliven, ein bisschen Schinken, und dazu einen leichten Wein. Können wir das hier auch machen? Etwas Mediterranes, Unkompliziertes!"',
       question: 'Was empfiehlst du?',
       options: [
-        { wineId: 'vinho_verde', correct: true, favorite: true, explanation: 'Vinho Verde – leicht, frisch, mediterran. Perfekt zum Apéro mit Käse und Oliven! Die zarte Spritzigkeit und die Limetten-Aromen passen wunderbar zum lockeren Nachmittags-Snack.' },
+        { wineId: 'vinho_verde', correct: true, favorite: true, explanation: 'Vinho Verde – leicht, frisch, unkompliziert. Perfekt zum Apéro mit Käse und Oliven! Die zarte Spritzigkeit und die Limetten-Aromen passen wunderbar zum lockeren Nachmittags-Snack. Kleine Randnotiz: Streng genommen ist sein Klima gar nicht mediterran, sondern atlantisch – er wächst im kühlen, feuchten Norden Portugals an der Atlantikküste. Genau darum ist er so frisch!' },
         { wineId: 'cremant', correct: true, explanation: 'Crémant zum Apéro ist klassisch französisch und elegant – die Austauschschülerin würde sich wie zu Hause fühlen. Aber für den unkomplizierten Nachmittag ist Vinho Verde noch lockerer!' },
         { wineId: 'zweigelt', correct: false, explanation: 'Zweigelt zum leichten Apéro mit Käse und Oliven? Der kräftige Rote ist zu viel des Guten für einen sonnigen Nachmittags-Snack im mediterranen Stil.' },
         { wineId: 'retsina', acceptable: true, explanation: 'Retsina ist mediterran und liebt Oliven und Käse – thematisch ein Treffer! Aber das Harzaroma ist alles andere als unkompliziert; Vinho Verde ist der lockerere Apéro-Wein.' },
@@ -224,9 +224,9 @@ QUESTIONS.gutbuergerlich = {
   besserwisser: [
     {
       id: 'bw_2_1', guestId: 'der_pfarrer', mood: '🍷',
-      statement: 'Der Pfarrer doziert am Tisch: "Gewürztraminer heißt so, weil er nach Gewürzen schmeckt – Nelke, Zimt und so weiter. Das ist ja wie Glühwein!"',
+      statement: 'Der Pfarrer doziert am Tisch: "Gewürztraminer heißt so, weil er so würzig duftet – nach Gewürzen wie Nelke!"',
       isCorrect: true,
-      correction: 'Stimmt im Kern! "Gewürz-" kennzeichnet die besonders aromatische Spielart der Traminer-Familie – das Bukett erinnert an Rosen, Litschi und Gewürze wie Nelke. Mit Zimt und Glühwein hat er aber wenig zu tun. Der Name "Traminer" kommt übrigens vom Ort Tramin in Südtirol.'
+      correction: 'Stimmt! "Gewürz-" steht für den würzigen Duft dieser besonders aromatischen Spielart der Traminer-Familie – das Bukett erinnert an Rosen, Litschi und Gewürze wie Nelke. Der Name "Traminer" kommt übrigens vom Ort Tramin in Südtirol.'
     },
     {
       id: 'bw_2_2', guestId: 'wandergruppe', mood: '🧐',
@@ -238,7 +238,7 @@ QUESTIONS.gutbuergerlich = {
       id: 'bw_2_3', guestId: 'austauschschuelerin', mood: '🇵🇹',
       statement: '"In Portugal trinkt man eigentlich nur Portwein," erzählt die Austauschschülerin. "Andere Weine gibt es da kaum."',
       isCorrect: false,
-      correction: 'Ganz falsch! Portugal hat über 250 einheimische Rebsorten und produziert exzellente Stillweine. Vinho Verde ist sogar einer der beliebtesten Exportweine Europas!'
+      correction: 'Ganz falsch! Portugal hat über 250 einheimische Rebsorten und macht exzellente Weiß- und Rotweine. Der frische Vinho Verde zum Beispiel wird in viele Länder exportiert – auch zu uns!'
     },
     {
       id: 'bw_2_4', guestId: 'buergermeister', mood: '🏔️',
@@ -355,11 +355,11 @@ QUESTIONS.gutbuergerlich = {
       id: 'ww_2_7', guestId: 'buergermeister', mood: '🧐',
       question: 'Der Bürgermeister studiert die Weinkarte und fragt: "Hier steht \'halbtrocken\' beim Gewürztraminer. Was bedeutet das eigentlich genau – halb fertig gegoren?"',
       options: [
-        { text: 'Der Wein hat eine leichte Restsüße (9–18 g/l Zucker)', correct: true },
+        { text: 'Der Wein hat eine leichte Restsüße (bis 12 g/l, mit viel Säure bis 18 g/l)', correct: true },
         { text: 'Der Wein wurde nur halb so lange gelagert wie trocken', correct: false },
         { text: 'Die Trauben waren bei der Ernte nur halb reif', correct: false },
       ],
-      explanation: 'Halbtrocken bedeutet, dass der Wein eine leichte Restsüße hat – vereinfacht zwischen 9 und 18 Gramm Zucker pro Liter. Die Gärung wird gestoppt, bevor aller Zucker in Alkohol umgewandelt ist. Das macht den Wein weicher und fruchtiger als einen trockenen.'
+      explanation: 'Halbtrocken bedeutet, dass der Wein eine leichte Restsüße hat – vereinfacht bis 12 Gramm Zucker pro Liter, bei viel Säure bis 18 Gramm. Die Gärung wird gestoppt, bevor aller Zucker in Alkohol umgewandelt ist. Das macht den Wein weicher und fruchtiger als einen trockenen.'
     },
     {
       id: 'ww_2_8', guestId: 'frau_doktor', mood: '🔬',
@@ -385,7 +385,7 @@ QUESTIONS.gutbuergerlich = {
       id: 'ww_2_10', guestId: 'lisa', mood: '🤷',
       question: 'Lisa räumt Gläser ein und fragt: "Chef, warum servieren wir eigentlich Weißwein kalt und Rotwein wärmer? Ist das nur Tradition oder hat das einen Grund?"',
       options: [
-        { text: 'Kälte betont Säure und Frische, Wärme betont Aromen und Tannine', correct: true },
+        { text: 'Kälte betont Säure und Frische, Wärme öffnet die Aromen und macht Tannine weicher', correct: true },
         { text: 'Rotwein verträgt keine Kälte, weil er dann trüb wird', correct: false },
         { text: 'Das ist nur eine alte Gewohnheit ohne wissenschaftlichen Grund', correct: false },
       ],
@@ -413,7 +413,7 @@ QUESTIONS.gutbuergerlich = {
       id: 'bt_2_2', guestId: 'der_jaeger', mood: '👃',
       clues: {
         appearance: 'Mittleres Rubinrot mit violetten Reflexen am Rand – jugendlich und einladend.',
-        nose: 'Saftige Kirsche und dunkle Brombeere dominieren, dahinter ein zarter Hauch von Vanille und etwas Pfeffer.',
+        nose: 'Saftige Kirsche und dunkle Brombeere dominieren, dahinter etwas Pfeffer, keine Spur von Holz.',
         palate: 'Mittelschwerer Körper, weiche, geschmeidige Tannine. Fruchtbetont mit einer angenehmen Frische im Abgang.'
       },
       options: [

@@ -53,12 +53,12 @@ const ACADEMY = {
       },
       {
         id: 'ak_0_2', title: 'Rot, Weiß, Rosé',
-        text: 'Die Farbe steckt in der <strong>Schale</strong>, nicht im Saft – auch rote Trauben haben fast immer hellen Saft. <strong>Rotwein</strong> gärt tagelang mit den Schalen: Farbe, Tannin, Kraft. <strong>Weißwein</strong> wird sofort abgepresst – darum kann man ihn sogar aus roten Trauben machen. Und <strong>Rosé</strong>? Rote Trauben, nur kurzer Schalenkontakt, oft nur einige Stunden. Gemischt wird er nicht: Rot und Weiß zusammenkippen ist bei Stillwein in der EU verboten – Ausnahme Schaumwein, etwa Rosé-Champagner.',
+        text: 'Die Farbe steckt in der <strong>Schale</strong>, nicht im Saft – auch rote Trauben haben fast immer hellen Saft. <strong>Rotwein</strong> gärt tagelang mit den Schalen: Farbe, Tannin, Kraft. <strong>Weißwein</strong> wird sofort abgepresst – darum kann man ihn sogar aus roten Trauben machen. Und <strong>Rosé</strong>? Rote Trauben, nur kurzer Schalenkontakt, oft nur einige Stunden. Gemischt wird er nicht: Rot und Weiß zusammenkippen ist bei Stillwein – also Wein ohne Kohlensäure – in der EU verboten. Ausnahme Schaumwein, etwa Rosé-Champagner.',
         exercise: {
           type: 'choice',
           question: 'Ein Gast behauptet: "Rosé ist doch nur Rotwein, den man mit Weißwein verdünnt hat." Was antworten Sie?',
           options: [
-            { text: '"Rosé entsteht aus roten Trauben mit kurzem Schalenkontakt – mischen ist bei Stillwein in der EU sogar verboten."', correct: true,
+            { text: '"Rosé entsteht aus roten Trauben mit kurzem Schalenkontakt – mischen ist bei Wein ohne Kohlensäure in der EU sogar verboten."', correct: true,
               feedback: 'Bien. Kurz, höflich, richtig. Und lächeln Sie dabei – der Gast soll etwas lernen, nicht sich schämen.' },
             { text: '"Stimmt, deshalb ist Rosé auch immer billiger."', correct: false,
               feedback: 'Non. Erstens falsch, zweitens gibt es Rosés, die mehr kosten als Ihr Fahrrad.' },
@@ -77,7 +77,7 @@ const ACADEMY = {
             { text: '"Man filtert die rote Farbe nach der Gärung wieder heraus."', correct: false,
               feedback: 'Non. Da muss nichts herausgefiltert werden – die Farbe kommt gar nicht erst hinein, wenn die Schalen sofort weg sind.' },
             { text: '"Man mischt ein wenig Rotwein mit viel Weißwein."', correct: false,
-              feedback: 'Dann wäre er rosa – und bei Stillwein wäre das in der EU sogar verboten. Non.' },
+              feedback: 'Dann wäre er rosa – und bei Wein ohne Kohlensäure wäre das in der EU sogar verboten. Non.' },
             { text: '"Die Trauben werden vorher in der Sonne gebleicht."', correct: false,
               feedback: 'Gebleichte Trauben? Mon Dieu. Nein – sofort abpressen, die Schale weglassen, voilà.' },
           ]
@@ -85,10 +85,10 @@ const ACADEMY = {
       },
       {
         id: 'ak_0_3', title: 'Trocken bis süß',
-        text: '"Trocken" hat nichts mit Alkohol zu tun: Es geht um <strong>Restzucker</strong> – den Zucker, den die Hefe nicht zu Alkohol vergoren hat. Vereinfacht: <strong>trocken</strong> bis 4 g/l (mit genug Säure bis 9 g/l), <strong>halbtrocken</strong> bis 12 g/l (bzw. 18 g/l), <strong>lieblich</strong> bis 45 g/l, darüber <strong>süß</strong>. Steht die Süße auf dem Etikett – im Supermarkt üblich, bei anderen Weinen immer öfter –, dann lesen Sie sie! Oft fehlt sie aber, und dann schließen Sie aus <strong>Alkohol und Weinart</strong>: Nur 7–10 % bei einem Riesling von der Mosel oder einem Moscato d\'Asti heißt, dass Zucker übrig geblieben ist – wahrscheinlich lieblich; 12,5–14 % bei einem gewöhnlichen Weiß- oder Rotwein heißt meist: durchgegoren, also trocken. Manche Weinarten verraten es auch: Ein Lambrusco "amabile" ist lieblich, eine deutsche Spätlese oft fruchtsüß. Alors – das sind Faustregeln, keine Gesetze, aber sie bringen Sie fast immer ans Ziel.',
+        text: '"Trocken" hat nichts mit Alkohol zu tun: Es geht um <strong>Restzucker</strong> – den Zucker, den die Hefe nicht zu Alkohol vergoren hat. Vereinfacht: <strong>trocken</strong> bis 4 g/l (mit genug Säure bis 9 g/l), <strong>halbtrocken</strong> bis 12 g/l (bzw. 18 g/l), <strong>lieblich</strong> bis 45 g/l, darüber <strong>süß</strong>. Steht die Süße auf dem Etikett – im Supermarkt üblich, bei anderen Weinen immer öfter –, dann lesen Sie sie! Oft fehlt sie aber, und dann schließen Sie aus <strong>Alkohol und Weinart</strong>: Nur 7–10 % bei einem Riesling von der Mosel oder einem Moscato d\'Asti heißt, dass Zucker übrig geblieben ist – wahrscheinlich lieblich; 12,5–14 % bei einem gewöhnlichen Weiß- oder Rotwein heißt meist: durchgegoren, also trocken. Manche Weinarten verraten es auch: Ein Lambrusco "amabile" ist lieblich, eine deutsche Spätlese oft fruchtsüß. Alors – das sind Faustregeln, keine Gesetze, aber sie bringen Sie oft ans Ziel.',
         exercise: {
           type: 'label',
-          label: { producer: 'Weingut Uferhaus', wine: 'Riesling', region: 'Mosel', quality: 'Qualitätswein', vintage: '2023', alcohol: '8,5 % vol' },
+          label: { producer: 'Weingut Uferhaus', color: 'Weißwein', wine: 'Riesling', region: 'Mosel', quality: 'Qualitätswein', vintage: '2023', alcohol: '8,5 % vol' },
           question: 'Ein Gast sagt: "Bloß nichts Süßes!" Zur Süße steht nichts auf dem Etikett. Passt dieser Wein?',
           options: [
             { text: 'Eher nicht – nur 8,5 % bei einem Mosel-Riesling: Da ist wahrscheinlich viel Zucker übrig geblieben', correct: true,
@@ -103,7 +103,7 @@ const ACADEMY = {
         },
         extra: {
           type: 'label',
-          label: { producer: 'Weingut Sonnenbühl', wine: 'Grauburgunder', region: 'Baden', quality: 'Qualitätswein', vintage: '2023', alcohol: '13,5 % vol' },
+          label: { producer: 'Weingut Sonnenbühl', color: 'Weißwein', wine: 'Grauburgunder', region: 'Baden', quality: 'Qualitätswein', vintage: '2023', alcohol: '13,5 % vol' },
           question: 'Wieder sagt ein Gast: "Bloß nichts Süßes!" Auch hier steht nichts zur Süße. Was schätzen Sie?',
           options: [
             { text: 'Wahrscheinlich trocken – 13,5 % bei einem gewöhnlichen Weißwein heißt: Der Zucker ist durchgegoren', correct: true,
@@ -259,7 +259,7 @@ const ACADEMY = {
         text: 'Ein Etikett ist ein Steckbrief, kein Kunstwerk. Suchen Sie vier Dinge: <strong>Rebsorte</strong> (DNA), <strong>Herkunft</strong> (Klima), <strong>Alkohol</strong> und <strong>Süße</strong>. Für den Alkohol gibt es eine Faustregel – wirklich nur eine Faustregel: unter 11,5 % eher leicht, 12–13,5 % mittel, <strong>über 13,5 % meist kräftiger Körper</strong>. Ausnahme süße Weine: Da gibt der Zucker den Körper. Fehlt die Süße-Angabe, denken Sie an Tag 1: Ein Rotwein mit 13,5 % und mehr ist fast immer durchgegoren, also trocken – wenig Alkohol bei einem Mosel-Riesling deutet dagegen auf Restsüße. Und schwenken Sie das Glas: Dicke, langsam laufende <strong>Tränen</strong> an der Glaswand zeigen viel Alkohol (bei süßen Weinen auch Zucker) und damit mehr Körper – über die Qualität sagen sie nichts.',
         exercise: {
           type: 'label',
-          label: { producer: 'Masseria Collefosco', wine: 'Primitivo', region: 'Apulien, Italien', vintage: '2021', alcohol: '14,5 % vol' },
+          label: { producer: 'Masseria Collefosco', color: 'Rotwein', wine: 'Primitivo', region: 'Apulien, Italien', vintage: '2021', alcohol: '14,5 % vol' },
           question: 'Was erwarten Sie: Welchen Körper hat dieser Wein?',
           options: [
             { text: 'Leicht und spritzig – ein Sommerwein', correct: false,
@@ -274,7 +274,7 @@ const ACADEMY = {
         },
         extra: {
           type: 'label',
-          label: { producer: 'Domaine des Coteaux Frais', wine: 'Sauvignon Blanc', region: 'Loire, Frankreich', vintage: '2023', alcohol: '11,5 % vol' },
+          label: { producer: 'Domaine des Coteaux Frais', color: 'Weißwein', wine: 'Sauvignon Blanc', region: 'Loire, Frankreich', vintage: '2023', alcohol: '11,5 % vol' },
           question: 'Die Rebsorte kennen Sie noch nicht. Was erwarten Sie trotzdem: Welchen Körper hat dieser Wein?',
           options: [
             { text: 'Eher leicht und frisch – kühle Loire, nur 11,5 %', correct: true,
@@ -599,7 +599,7 @@ const ACADEMY = {
         text: 'Auf deutschen Etiketten finden Sie oft das Wort <strong>Prädikatswein</strong> – die oberste Qualitätsstufe. Dazu kommt ein Prädikat, und das sagt, wie <strong>reif</strong>, also wie zuckerreich, die Trauben bei der Lese waren: <strong>Kabinett</strong> (reif), <strong>Spätlese</strong> (später gelesen, reifer), <strong>Auslese</strong> (besonders reife, ausgewählte Trauben) – und darüber nur noch süße Raritäten. Wichtig: Das Prädikat sagt nicht automatisch, wie süß der Wein ist – eine Spätlese kann auch trocken sein! Die Süße verrät Ihnen das Etikett oder, wenn sie fehlt, der Alkohol, wie an Tag 1. Und <strong>Grand Cru</strong> oder <strong>Premier Cru</strong> auf französischen Etiketten heißt: offiziell als besonders gut eingestuft – im Burgund und in Chablis sind das Lagen, Grand Cru die höchste Stufe, Premier Cru die zweithöchste; Bordeaux hat eigene Regeln.',
         exercise: {
           type: 'label',
-          label: { producer: 'Weingut Kranzberger', wine: 'Riesling Auslese', region: 'Mosel · Wehlsteiner Himmelsleiter', quality: 'Prädikatswein', vintage: '2019', alcohol: '8,0 % vol' },
+          label: { producer: 'Weingut Kranzberger', color: 'Weißwein', wine: 'Riesling Auslese', region: 'Mosel · Wehlsteiner Himmelsleiter', quality: 'Prädikatswein', vintage: '2019', alcohol: '8,0 % vol' },
           question: 'Kein Wort von "süß" auf dem Etikett. Was erwarten Sie?',
           options: [
             { text: 'Sehr reif gelesene Trauben – und bei nur 8 % Alkohol eine deutliche Restsüße', correct: true,
@@ -614,7 +614,7 @@ const ACADEMY = {
         },
         extra: {
           type: 'label',
-          label: { producer: 'Weingut Steinreuther', wine: 'Riesling Spätlese', region: 'Pfalz', quality: 'Prädikatswein', vintage: '2022', sweetness: 'trocken', alcohol: '13,0 % vol' },
+          label: { producer: 'Weingut Steinreuther', color: 'Weißwein', wine: 'Riesling Spätlese', region: 'Pfalz', quality: 'Prädikatswein', vintage: '2022', sweetness: 'trocken', alcohol: '13,0 % vol' },
           question: 'Ein Gast winkt ab: "Spätlese? Nein danke, die ist doch immer süß!" Was sagen Sie?',
           options: [
             { text: '"Diese nicht: Spätlese heißt nur, dass die Trauben reifer gelesen wurden. Hier steht trocken – und 13 % zeigen, dass der Zucker vergoren ist."', correct: true,
@@ -633,7 +633,7 @@ const ACADEMY = {
         text: 'In drei Jahren stehen Sie vor einer Karte voller Weine, die Sie nie gesehen haben. Das ist normal. Sie müssen nicht alle Weine kennen – Sie müssen jeden <strong>einordnen</strong> können. Dafür der Steckbrief mit fünf Achsen: <strong>Farbe · Süße · Körper · Säure · Tannin</strong>, dazu eine <strong>Aromafamilie</strong> (zitrisch-frisch, rote Frucht, dunkle Frucht, würzig, Holz & Reife …). Die Rebsorte liefert die DNA, die Herkunft das Klima, das Etikett Alkohol und Süße. Voilà – plötzlich kennen Sie einen Wein, den Sie nie probiert haben.',
         exercise: {
           type: 'label',
-          label: { producer: 'Weingut Ebnerhof', wine: 'Blaufränkisch', region: 'Burgenland, Österreich', quality: 'Qualitätswein', vintage: '2021', sweetness: 'trocken', alcohol: '13,0 % vol' },
+          label: { producer: 'Weingut Ebnerhof', color: 'Rotwein', wine: 'Blaufränkisch', region: 'Burgenland, Österreich', quality: 'Qualitätswein', vintage: '2021', sweetness: 'trocken', alcohol: '13,0 % vol' },
           question: 'Blaufränkisch kennen Sie nicht. Aber Frau Lindner hat es Ihnen verraten: Er ist ein Elternteil des Zweigelt. Welcher Steckbrief passt am besten?',
           options: [
             { text: 'Rot · trocken · mittel bis kräftig · frische Säure · spürbares Tannin · dunkle Beeren & Pfeffer', correct: true,
@@ -648,7 +648,7 @@ const ACADEMY = {
         },
         extra: {
           type: 'label',
-          label: { producer: 'Tenuta Pietrarossa', wine: 'Nero d\'Avola', region: 'Sizilien, Italien', vintage: '2021', sweetness: 'trocken', alcohol: '14,5 % vol' },
+          label: { producer: 'Tenuta Pietrarossa', color: 'Rotwein', wine: 'Nero d\'Avola', region: 'Sizilien, Italien', vintage: '2021', sweetness: 'trocken', alcohol: '14,5 % vol' },
           question: 'Nero d\'Avola kennen Sie nicht. Sie wissen nur: Sizilien ist heiß und sonnig. Welcher Steckbrief passt am besten?',
           options: [
             { text: 'Rot · trocken · voll · eher wenig Säure · spürbares Tannin · reife dunkle Frucht & Gewürze', correct: true,
@@ -740,7 +740,7 @@ const ACADEMY = {
         text: 'Neues Haus, 40 Positionen, der Gast wartet – Sie haben zwei Minuten. Keine Panik. Sortieren Sie im Kopf: erst <strong>Farbe</strong>, dann <strong>Stil</strong> (Schaum, frisch, kräftig, süß), dann <strong>Körper</strong>. Suchen Sie <strong>Ankerweine</strong> – Namen, die Sie kennen und an denen Sie die anderen messen. Und die Unbekannten? Steckbrief aus dem Etikett, wie gelernt. Niemand kennt alle Weine – aber ein guter Sommelier findet in zwei Minuten den richtigen.',
         exercise: {
           type: 'label',
-          label: { producer: 'Domaine de la Grange-Neuve', wine: 'Muscadet Sèvre et Maine sur lie · Melon de Bourgogne', region: 'Loire, nahe der Atlantikküste', vintage: '2023', sweetness: 'trocken', alcohol: '12,0 % vol' },
+          label: { producer: 'Domaine de la Grange-Neuve', color: 'Weißwein', wine: 'Muscadet Sèvre et Maine sur lie · Melon de Bourgogne', region: 'Loire, nahe der Atlantikküste', vintage: '2023', sweetness: 'trocken', alcohol: '12,0 % vol' },
           question: 'Diesen Wein kennen Sie nicht. Am Tisch: ein Gast mit sechs Austern und Zitrone. Was tun Sie?',
           options: [
             { text: 'Ihn empfehlen: kühles Küstenklima, trocken, 12 % – leicht, frisch, salzig-mineralisch. Ideal zu Austern.', correct: true,
@@ -755,7 +755,7 @@ const ACADEMY = {
         },
         extra: {
           type: 'label',
-          label: { producer: 'Bodegas Altamesa', wine: 'Monastrell', region: 'Jumilla, Südostspanien', vintage: '2020', sweetness: 'trocken', alcohol: '15,0 % vol' },
+          label: { producer: 'Bodegas Altamesa', color: 'Rotwein', wine: 'Monastrell', region: 'Jumilla, Südostspanien', vintage: '2020', sweetness: 'trocken', alcohol: '15,0 % vol' },
           question: 'Auch diesen Wein kennen Sie nicht. Am Tisch: ein Gast mit geschmorter Lammschulter und Rosmarin, der "etwas Kräftiges, Rotes" möchte. Was tun Sie?',
           options: [
             { text: 'Ihn empfehlen: Südspanien, heiß, trocken, 15 % – voll, reif und kräftig. Genau richtig zum Schmorgericht.', correct: true,
@@ -818,7 +818,7 @@ const CHEF_WINE_INTROS = {
 
   // --- Mike, Steakhaus ---
   gruener_veltliner: 'Okay Bro, Grüner Veltliner – Österreichs Nummer eins in Weiß, und er wächst fast nur dort: quasi deren Nationalwein. Trocken, Apfel, Kräuter und so ein pfeffriger Kick hinten am Gaumen. Zum Wiener Schnitzel ein absolutes Dream Team – und zu Fisch und Spargel easy. Auch zu Hähnchen, Salat oder Ziegenkäse bringt der richtig Charakter ins Glas.',
-  spaetburgunder: 'Spätburgunder, Dude – international heißt der Pinot Noir. Gleiche Traube, deutscher Pass. Trocken, mittlerer Körper, Kirsche, Himbeere, was Erdiges. Nicht der Wein fürs fette Ribeye – eher zu Braten, Geflügel, Pilzen, sogar zu Lachs. Elegant, Bro.',
+  spaetburgunder: 'Spätburgunder, Dude – international heißt der Pinot Noir. Gleiche Traube, deutscher Pass. Trocken, mittlerer Körper, Kirsche, Himbeere, was Erdiges. Nicht der Wein fürs fette Ribeye – eher zu magerem Rind wie Filet, zu Braten, Geflügel, Pilzen, sogar zu Lachs. Elegant, Bro.',
   primitivo: 'Und jetzt: The Beast. Primitivo di Manduria aus Apulien – voll, trocken, Pflaume, Schokolade, Gewürze. Der steht dem Steak auf Augenhöhe gegenüber, Lamm und Wild auch. Der Name heißt übrigens "der Frühe" – die Traube reift als eine der ersten, mit primitiv hat das null zu tun. Fun Fact: In Kalifornien heißt der Zinfandel – gleiche DNA! Und gönn ihm ne Karaffe, Bro: Dekantieren lässt ihn atmen, dann gehen die Aromen auf.',
   chianti: 'Chianti aus der Toskana – die Rebsorte ist Sangiovese, Chianti ist die Region, merk dir das! Kirsche, Kräuter, ein bisschen Leder, schön frische Säure. Zu Steak, Tomatenpasta und Hartkäse – Marco bestellt nix anderes. Und siehst du das DOCG auf der Flasche? Das ist Italiens höchste Qualitätsstufe, Bro.',
   sekt: 'Deutscher Sekt, Bro – Bubbles! Trocken, Apfel, Hefe, ein bisschen Brioche. Perfekt als Aperitif oder wenn einer was zu feiern hat. Und nein, das ist kein Champagner: Der Name ist geschützt und darf nur aus der Champagne in Frankreich kommen – Sekt machen wir hier. Und ja: Wir Deutschen trinken weltweit am meisten Sekt. Cheers!',
@@ -845,7 +845,7 @@ const CHEF_WINE_INTROS = {
   champagner: 'Champagner. Nur aus der Champagne, mindestens 15 Monate Reife, davon 12 auf der Hefe – die großen drei Jahre und länger, manche sieben bis zehn. Brioche, Zitrus, weiße Blüten, vielschichtig. Zu Kaviar, Hummer, als Aperitif. Bei 8 bis 10 Grad – und der Korken seufzt leise, er knallt nicht.',
   chateauneuf: 'Châteauneuf-du-Pape. Südliche Rhône, bis zu 13 Rebsorten erlaubt, Grenache vorneweg. Voll, Beeren, Gewürze, Leder – und Kräuter der Garrigue, Thymian, Lavendel: Die Provence liegt nebenan. Zu Lamm, Wild, Schmorgerichten. Benannt nach dem Sommersitz der Päpste – benehmen Sie sich entsprechend.',
   eiswein: 'Eiswein. Die Trauben werden gefroren gelesen und gefroren gekeltert – in der Praxis bei minus sieben Grad oder kälter. Das schaffen nur wenige Winter: bei uns, in Österreich und vor allem in Kanada. Honig, Aprikose, Mango, Karamell: sehr süß, aber frisch durch die Säure. Zum Dessert, zu Foie Gras, zu Blauschimmelkäse. Kleine Gläser, meist halbe Flaschen – genug für zwei, denn er ist kostbar.',
-  tempranillo_gran_reserva: 'Tempranillo Gran Reserva. Mindestens 60 Monate gereift, davon 24 im Fass. Leder, Tabak, reife Kirschen, Vanille. Zu Lamm, gereiftem Käse, zum Festmenü. Ein Wein, der Geduld verlangt – wie dieser Beruf.',
+  tempranillo_gran_reserva: 'Tempranillo Gran Reserva. In der Rioja heißt das: mindestens 60 Monate gereift, davon 24 im Fass. Leder, Tabak, reife Kirschen, Vanille. Zu Lamm, gereiftem Käse, zum Festmenü. Ein Wein, der Geduld verlangt – wie dieser Beruf.',
   amarone: 'Amarone della Valpolicella. Die Trauben trocknen monatelang, bevor sie gekeltert werden – Appassimento; dabei verlieren sie ein Drittel bis fast die Hälfte ihres Gewichts. Rosinen, Schokolade, Süßkirsche, Mokka: trocken ausgebaut, aber wuchtig. Zu Ossobuco, Wildbraten, reifem Käse. Wer ihn zu Austern empfiehlt, ist entlassen.',
   sancerre: 'Sancerre. Sauvignon Blanc von der Loire, der Maßstab für diese Rebsorte – in Neuseeland wird dieselbe Traube explosiv-fruchtig, hier bleibt sie mineralisch. Stachelbeere, frisches Gras, Mineralik. Zu Ziegenkäse – der kommt aus derselben Gegend –, zu Fisch und Salat. Präzise. So erwarte ich auch Ihren Service.',
 };

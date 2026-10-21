@@ -189,7 +189,7 @@ QUESTIONS.sterne = {
     },
     {
       id: 'pref_4_6', guestId: 'kunstsammlerin', mood: '🏛️',
-      scenario: 'Die Kunstsammlerin kommt gerade von einer Vernissage, sichtlich inspiriert. "Ich habe heute einen Monet gesehen – diese Lichtspiele auf dem Wasser! Jetzt möchte ich einen Wein, der wie ein Impressionismus-Gemälde ist: vielschichtig, mit Nuancen, die man erst beim zweiten und dritten Schluck entdeckt."',
+      scenario: 'Die Kunstsammlerin kommt gerade von einer Vernissage, sichtlich inspiriert. "Ich habe heute einen Monet gesehen – diese Lichtspiele auf dem Wasser! Jetzt möchte ich einen Wein, der wie ein Impressionismus-Gemälde ist: leicht und schimmernd wie Licht auf dem Wasser, vielschichtig, mit Nuancen, die man erst beim zweiten und dritten Schluck entdeckt."',
       question: 'Was empfiehlst du?',
       options: [
         { wineId: 'champagner', correct: true, favorite: true, explanation: 'Champagner – vielschichtig wie ein Monet! Erst die Zitrusnoten, dann die Brioche, dann die Mandeln, und im Abgang die Kreide-Mineralität. Jeder Schluck enthüllt eine neue Schicht, genau wie ein impressionistisches Gemälde bei wechselndem Licht. Die Kunstsammlerin ist verzaubert: "Genau – dieser Wein hat Tiefenschärfe!"' },
@@ -431,7 +431,7 @@ QUESTIONS.sterne = {
     {
       id: 'bt_4_3', guestId: 'michelin_tester', mood: '🍯',
       clues: {
-        appearance: 'Intensives Bernsteingold, ölig-viskos',
+        appearance: 'Leuchtendes Gold, ölig-viskos',
         nose: 'Konzentrierter Honig, Aprikose, Mango und kandierte Orange',
         palate: 'Üppig süß aber mit brillanter Säure als Gegengewicht, endlos langer Abgang mit Karamell-Note'
       },
@@ -441,7 +441,7 @@ QUESTIONS.sterne = {
         { wineId: 'sancerre', correct: false },
         { wineId: 'mueller_thurgau', correct: false },
       ],
-      explanation: 'Bernsteingold + Honig + extreme Süße mit Säure-Balance = Eiswein! Die gefrorenen Trauben geben konzentriertesten Most – wenige Tropfen pro Traube. Daher auch die kleine Flasche (375ml) und der hohe Preis.'
+      explanation: 'Leuchtendes Gold + Honig + extreme Süße mit Säure-Balance = Eiswein! Die gefrorenen Trauben geben konzentriertesten Most – wenige Tropfen pro Traube. Daher auch die kleine Flasche (375ml) und der hohe Preis.'
     },
     {
       id: 'bt_4_4', guestId: 'prof_weinstein', mood: '👃',
@@ -539,9 +539,9 @@ QUESTIONS.sterne = {
           prompt: 'Welchen Wein empfiehlst du?',
           options: [
             { wineId: 'champagner', correct: true, favorite: true, explanation: 'Champagner – die einzig würdige Wahl für eine Premierenfeier! Aufsteigende Perlen für die Fotos, festlicher Klang beim Anstoßen, perfekt zu leichten Canapés. Die Opernsängerin strahlt: "BRAVISSIMO! Genau SO feiert man einen Triumph!" Zwanzig Gläser golden perlend – ein ikonischer Moment.' },
-            { wineId: 'sancerre', correct: true, explanation: 'Sancerre ist eine elegante, durchdachte Alternative – frisch, mineralisch, perfekt zu Lachs-Blinis und Austern. Aber für eine triumphale Premierenfeier fehlt das Prickeln, das Drama, das Ikonische. Die Opernsängerin nickt: "Hübsch – aber wo bleibt das Fortissimo?"' },
+            { wineId: 'sancerre', acceptable: true, explanation: 'Sancerre ist frisch, mineralisch und passt perfekt zu Lachs-Blinis und Austern. Aber die Diva hat es klar gesagt: Es muss prickeln – und Sancerre ist ein Wein ohne Kohlensäure. Für die triumphale Premierenfeier fehlt das Drama, das Ikonische. Die Opernsängerin nickt: "Hübsch – aber wo bleibt das Fortissimo?"' },
             { wineId: 'amarone', correct: false, explanation: 'Amarone zu einer Premierenfeier mit leichten Canapés? Ein 15-prozentiger Schwergewichts-Rotwein, der nach Rosinen und Schokolade schmeckt, zu Lachs-Blinis und Austern – die Gäste fallen nach dem zweiten Glas um. Die Opernsängerin ist entsetzt: "Das ist kein Fest, das ist eine TRAGÖDIE!"' },
-            { wineId: 'cremant', acceptable: true, explanation: 'Crémant prickelt elegant und sieht im Glas toll aus – aber für den TRIUMPH erwartet die Diva das Original: Champagner!' },
+            { wineId: 'cremant', correct: true, explanation: 'Sehr gute Wahl! Crémant prickelt elegant, wird mit derselben Flaschengärung gemacht wie Champagner und sieht im Glas toll aus – zwanzig Gläser wären kein Problem. Nur für den ganz großen TRIUMPH erwartet die Diva das Original: Champagner!' },
             { wineId: 'eiswein', correct: false, explanation: 'Eiswein ist süß und still – kein Prickeln, kein Glanz für zwanzig Handykameras. Die Diva will Fortissimo, keine Dessert-Pause.' },
           ]
         }
@@ -597,7 +597,7 @@ QUESTIONS.sterne = {
           choices: [
             { text: '"An wen ist das Geschenk gerichtet – aus welchem Kulturkreis kommt der Empfänger?"', good: true, bonusTip: 2, guestResponse: '"Der japanische Botschafter. Ein Mann von enormer Kultiviertheit, feinem Geschmack und Wertschätzung für Handwerkskunst und Seltenheit. In Japan zählt die Geste ebenso viel wie der Inhalt."' },
             { text: '"Wollen Sie einfach den teuersten Wein, den wir haben?"', good: false, bonusTip: 0, guestResponse: '"Diplomatie ist nicht die Kunst des Teuersten, sondern des Bedeutsamsten. Der Preis allein drückt keine Botschaft aus." Ihr Blick wird kühl.' },
-            { text: '"Welche Botschaft soll der Wein vermitteln?"', good: true, bonusTip: 1, guestResponse: '"Exzellenz. Einzigartigkeit. Etwas, das es nur in Europa gibt – eine Geschichte, die man beim Überreichen erzählen kann. Es soll zeigen, dass wir uns Gedanken gemacht haben."' },
+            { text: '"Welche Botschaft soll der Wein vermitteln?"', good: true, bonusTip: 1, guestResponse: '"Exzellenz. Einzigartigkeit. Etwas mit europäischer Tradition – eine Geschichte, die man beim Überreichen erzählen kann. Es soll zeigen, dass wir uns Gedanken gemacht haben."' },
           ]
         },
         {
@@ -675,7 +675,7 @@ QUESTIONS.sterne = {
         {
           prompt: 'Was möchtest du noch wissen?',
           choices: [
-            { text: '"Soll der Wein selbst ein Kunstwerk sein – etwas mit unerwarteten Aromen?"', good: true, bonusTip: 2, guestResponse: '"JA! Genau das. Kein Wein, den jeder kennt. Kein Cabernet, den jeder trinkt. Etwas mit Charakter, Ecken und Kanten – wie ein Bild, das man erst beim zweiten Blick versteht. Etwas, das polarisiert!"' },
+            { text: '"Soll der Wein selbst ein Kunstwerk sein – etwas mit unerwarteten Aromen?"', good: true, bonusTip: 2, guestResponse: '"JA! Genau das. Kein Wein, den jeder kennt. Kein Cabernet, den jeder trinkt. Etwas mit Charakter, Ecken und Kanten – wie ein Bild, das man erst beim zweiten Blick versteht. Etwas, das polarisiert! Und dunkel und wuchtig soll er sein – er muss neben meiner Schokolade bestehen."' },
             { text: '"Rot oder weiß?"', good: false, bonusTip: 0, guestResponse: '"Sie denken zu binär! Rot ODER weiß ist wie schwarz ODER weiß – in der Kunst gibt es auch dazwischen. Aber gut, wenn ich muss: etwas Dunkles, Mysteriöses."' },
           ]
         },
@@ -683,7 +683,7 @@ QUESTIONS.sterne = {
           prompt: 'Welchen Wein empfiehlst du?',
           options: [
             { wineId: 'amarone', correct: true, favorite: true, explanation: 'Ein Meisterstück! Amarone della Valpolicella ist selbst ein Kunstwerk: aus getrockneten Trauben (Appassimento), monatelang getrocknet, bevor sie gepresst werden, mit Aromen von dunkler Schokolade, Kaffee und Rosinen. Intensiv, unkonventionell, polarisierend – genau wie avantgardistische Kunst. Die Kunstsammlerin hebt das Glas ans Licht: "Dieser Wein ist ein Caravaggio – dunkel, dramatisch, unvergesslich. PERFEKT."' },
-            { wineId: 'champagner', correct: true, explanation: 'Champagner bei einer Vernissage ist klassisch und sicher – das Prickeln sorgt für Stimmung. Aber für eine Kunstsammlerin, die "keine Mainstream-Weine" will, ist Champagner zu erwartbar. Es ist wie ein Monet in einer Galerie für zeitgenössische Kunst – schön, aber nicht überraschend.' },
+            { wineId: 'champagner', acceptable: true, explanation: 'Champagner bei einer Vernissage ist klassisch und sicher – elegant, aber Mainstream-Luxus. Das Prickeln sorgt für Stimmung, doch für eine Kunstsammlerin, die "kein Mainstream" will, ist Champagner zu erwartbar. Es ist wie ein Monet in einer Galerie für zeitgenössische Kunst – schön, aber nicht überraschend.' },
             { wineId: 'sancerre', correct: false, explanation: 'Sancerre – frisch, leicht, unkompliziert – zu einer avantgardistischen Vernissage mit Foie-Gras-Pralinés und dunkler Schokolade? Das ist wie ein Aquarell neben einer Skulptur von Jeff Koons. Zu brav, zu leise. Die Kunstsammlerin würde den Sommelier aus der Galerie werfen.' },
             { wineId: 'pinotage', acceptable: true, explanation: 'Pinotage ist rauchig und eigenwillig – mutig und alles andere als Mainstream! Aber zu dunkler Schokolade und Foie-Gras-Pralinés fehlt ihm die samtige Opulenz des Amarone.' },
             { wineId: 'chianti', correct: false, explanation: 'Chianti ist ein toskanischer Klassiker – genau der Mainstream, den die Kunstsammlerin nicht will. Und zu dunkler Schokolade passt er auch nicht.' },

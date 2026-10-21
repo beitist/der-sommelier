@@ -35,7 +35,7 @@ QUESTIONS.steakhaus = {
       options: [
         { wineId: 'gruener_veltliner', correct: true, favorite: true, explanation: 'Grüner Veltliner – pfeffrig, frisch und leicht. Perfekt zur gesunden Hähnchenbrust!' },
         { wineId: 'rose_provence', correct: true, explanation: 'Rosé de Provence ist leicht und frisch – passt zum Salat, aber die pfeffrige Note des Veltliners harmoniert besser mit dem Hähnchen.' },
-        { wineId: 'riesling', acceptable: true, explanation: 'Riesling trocken ist frisch und leicht – keine schlechte Idee. Aber seine kräftige Säure wirkt neben der cremigen Avocado etwas spitz. Der Veltliner ist runder und bringt die pfeffrige Würze fürs Grillhähnchen mit.' },
+        { wineId: 'riesling', correct: true, explanation: 'Gute Wahl! Riesling trocken ist frisch und leicht – genau wie bestellt, und seine Säure belebt das Grillhähnchen. Neben der cremigen Avocado wirkt er nur etwas spitzer; der Veltliner ist runder und bringt noch die pfeffrige Würze mit.' },
         { wineId: 'mueller_thurgau', acceptable: true, explanation: 'Müller-Thurgau ist leicht, ja – aber halbtrocken und eher mild-blumig. "Frisch" trifft der trockene, pfeffrige Veltliner deutlich besser.' },
         { wineId: 'retsina', correct: false, explanation: 'Retsina ist zwar frisch, aber der harzige Kiefernton erschlägt die feine Avocado. Den hebst du dir besser für Gyros und Feta auf.' },
         { wineId: 'sekt', acceptable: true, explanation: 'Gut gekühlter Sekt zur leichten Hähnchenbrust ist nicht verkehrt – die Kohlensäure erfrischt. Aber als Essensbegleiter fehlt ihm die Würze und Substanz, die der Grüne Veltliner mitbringt.' },
@@ -113,15 +113,15 @@ QUESTIONS.steakhaus = {
     },
     {
       id: 'fp_1_10', guestId: 'ehepaar_koch', mood: '🍽️',
-      scenario: 'Herr Koch hat sich für das Entrecôte mit Rosmarin-Kartoffeln entschieden, Frau Koch nimmt den Wildlachssalat. Sie schauen sich an: "Können Sie uns einen Wein empfehlen, der zu beiden Gerichten passt? Wir teilen gerne eine Flasche."',
+      scenario: 'Herr Koch hat sich für das Rinderfilet mit Rosmarin-Kartoffeln entschieden, Frau Koch nimmt den Wildlachssalat. Sie schauen sich an: "Können Sie uns einen Wein empfehlen, der zu beiden Gerichten passt? Wir teilen gerne eine Flasche."',
       question: 'Welchen Wein empfiehlst du?',
       options: [
-        { wineId: 'spaetburgunder', correct: true, favorite: true, explanation: 'Spätburgunder ist der perfekte Kompromiss – leicht genug für den Lachs, aber mit genügend Frucht und Struktur für das Entrecôte. Der Diplomat unter den Rotweinen!' },
-        { wineId: 'chianti', correct: true, explanation: 'Chianti funktioniert gut zum Entrecôte – aber für Frau Kochs Lachs ist er schon etwas dominant. Spätburgunder ist die elegantere Brücke zwischen beiden Gerichten.' },
-        { wineId: 'sekt', correct: false, explanation: 'Sekt als Essensbegleiter zum Entrecôte? Da fehlt es an Substanz für das Fleisch.' },
-        { wineId: 'rose_provence', acceptable: true, explanation: 'Rosé de Provence ist trocken und leicht – zum Wildlachssalat von Frau Koch geht das, aber für Herrn Kochs Entrecôte fehlt die Substanz. Spätburgunder schafft die Brücke zwischen beiden besser.' },
-        { wineId: 'primitivo', acceptable: true, explanation: 'Primitivo ist zum Entrecôte top – aber mit seinem vollen Körper würde er Frau Kochs Wildlachs komplett erschlagen. Spätburgunder schafft die Brücke zwischen beiden Tellern.' },
-        { wineId: 'imiglykos', correct: false, explanation: 'Imiglykos ist lieblich und leicht – zum Entrecôte zu süß und zu dünn, zum Lachs passt die Süße auch nicht. Kein Kompromiss, sondern für beide daneben.' },
+        { wineId: 'spaetburgunder', correct: true, favorite: true, explanation: 'Spätburgunder ist der perfekte Kompromiss – leicht genug für den Lachs, aber mit genügend Frucht und Struktur für das magere, zarte Rinderfilet. Der Diplomat unter den Rotweinen!' },
+        { wineId: 'chianti', correct: true, explanation: 'Chianti funktioniert gut zum Rinderfilet – aber für Frau Kochs Lachs ist er schon etwas dominant. Spätburgunder ist die elegantere Brücke zwischen beiden Gerichten.' },
+        { wineId: 'sekt', correct: false, explanation: 'Sekt als Essensbegleiter zum Rinderfilet? Da fehlt es an Substanz für das Fleisch.' },
+        { wineId: 'rose_provence', acceptable: true, explanation: 'Rosé de Provence ist trocken und leicht – zum Wildlachssalat von Frau Koch geht das, aber für Herrn Kochs Rinderfilet fehlt die Substanz. Spätburgunder schafft die Brücke zwischen beiden besser.' },
+        { wineId: 'primitivo', acceptable: true, explanation: 'Primitivo geht zum Rinderfilet – aber mit seinem vollen Körper würde er Frau Kochs Wildlachs komplett erschlagen. Spätburgunder schafft die Brücke zwischen beiden Tellern.' },
+        { wineId: 'imiglykos', correct: false, explanation: 'Imiglykos ist lieblich und leicht – zum Rinderfilet zu süß und zu dünn, zum Lachs passt die Süße auch nicht. Kein Kompromiss, sondern für beide daneben.' },
       ]
     },
     {
@@ -214,7 +214,7 @@ QUESTIONS.steakhaus = {
       question: 'Was empfiehlst du?',
       options: [
         { wineId: 'primitivo', correct: true, favorite: true, explanation: 'Primitivo – fruchtig, vollmundig, wenig Säure. Die dunkle Beerenfrucht harmoniert perfekt mit dem rauchigen Pulled Pork!' },
-        { wineId: 'chianti', correct: true, explanation: 'Chianti hat genug Substanz für Pulled Pork – aber als Sangiovese-Wein bringt er von Natur aus mehr Säure mit, und der Grillmeister wollte explizit "nix Säuerliches". Primitivo ist hier die fruchtigere Wahl.' },
+        { wineId: 'chianti', acceptable: true, explanation: 'Chianti hat genug Substanz für Pulled Pork – aber als Sangiovese-Wein bringt er von Natur aus eine frische, kräftige Säure mit, und der Grillmeister wollte explizit "nix Säuerliches". Der weiche, säurearme Primitivo trifft seinen Wunsch genau.' },
         { wineId: 'rose_provence', correct: false, explanation: 'Rosé zum Pulled Pork? Zu leicht. Das acht Stunden Smoker-Fleisch braucht einen Wein mit Wumms.' },
         { wineId: 'dornfelder', acceptable: true, explanation: 'Dornfelder ist fruchtig und unkompliziert – kein schlechter Gedanke zum Grillfleisch! Aber gegen acht Stunden Smoker-Rauch fehlt ihm der volle Körper des Primitivo.' },
         { wineId: 'lambrusco', correct: false, explanation: 'Lambrusco ist leicht und spritzig – neben acht Stunden Smoker wirkt er wie Limo. Der Grillmeister braucht einen Roten mit Wumms.' },
@@ -343,15 +343,15 @@ QUESTIONS.steakhaus = {
     },
     {
       id: 'bw_1_8', guestId: 'der_trucker', mood: '🤓',
-      statement: 'Der Trucker bestellt seinen Spätburgunder und meint: "Hab ich im Radio gehört: Rotwein soll man nicht so kalt trinken wie Weißwein, aber auch nicht warm. So 16 bis 18 Grad, oder?"',
+      statement: 'Der Trucker bestellt seinen Spätburgunder und meint: "Hab ich im Radio gehört: Rotwein soll man nicht so kalt trinken wie Weißwein, aber auch nicht warm. So 14 bis 18 Grad, je nach Wein, oder?"',
       isCorrect: true,
-      correction: 'Gut aufgepasst! Kräftige Rotweine entfalten bei 16-18°C ihre besten Aromen. Leichte Rote wie Spätburgunder sogar etwas kühler bei 14-16°C. Zu warm (über 20°C) schmeckt der Alkohol vor, zu kalt werden die Aromen verschluckt.'
+      correction: 'Gut aufgepasst! Kräftige Rotweine entfalten bei 16-18°C ihre besten Aromen, leichtere wie sein Spätburgunder etwas kühler bei 14-16°C. Zu warm (über 20°C) schmeckt der Alkohol vor, zu kalt werden die Aromen verschluckt.'
     },
     {
       id: 'bw_1_9', guestId: 'claudia', mood: '🤓',
-      statement: 'Claudia schaut nachdenklich auf den Rosé de Provence und sagt: "Ich hab gelesen, dass Chardonnay die verbreitetste weiße Rebsorte der Welt ist. Die wächst doch wirklich überall, oder?"',
+      statement: 'Claudia schaut nachdenklich auf die Weinkarte und sagt: "Ich hab gelesen, dass Chardonnay fast überall auf der Welt wächst – und dass er aus warmen Gegenden kräftiger und alkoholreicher wird als aus kühlen. Stimmt das?"',
       isCorrect: true,
-      correction: 'Stimmt! Chardonnay ist eine der meistangebauten weißen Rebsorten weltweit (nur die spanische Airén kommt auf ähnlich viel Fläche) – von Burgund über Kalifornien bis Australien. Sie ist extrem anpassungsfähig und kann völlig unterschiedliche Stile hervorbringen: vom schlanken Chablis bis zum buttrigen kalifornischen Chardonnay.'
+      correction: 'Stimmt! Chardonnay wächst von Burgund über Kalifornien bis Australien – die Traube ist extrem anpassungsfähig. Und das Klima prägt sie: Sonne macht Zucker, Zucker macht Alkohol. Aus kühlen Gegenden wie Chablis kommt er schlank und frisch, aus warmen wie Kalifornien reif, kräftig und alkoholreicher.'
     },
     {
       id: 'bw_1_10', guestId: 'die_nachbarin', mood: '🤓',
@@ -596,7 +596,7 @@ QUESTIONS.steakhaus = {
           prompt: 'Welchen Wein empfiehlst du?',
           options: [
             { wineId: 'spaetburgunder', correct: true, favorite: true, explanation: 'Perfetto! Spätburgunder ist deutsch, trocken und elegant – und passt mit Kirsche, Himbeere und einer erdigen Note wunderbar zu Braten mit Pilzsoße. Der Clou: Spätburgunder ist Pinot Noir, und auf Italienisch heißt er Pinot Nero. Ein deutscher Wein mit italienischem Zweitnamen – der Papa ist geschlagen.' },
-            { wineId: 'dornfelder', correct: true, explanation: 'Ein deutscher Roter, fruchtig und unkompliziert – das passt zum Schweinebraten. Aber er ist halbtrocken, und der Papa will es trocken. Außerdem fehlt die Italien-Geschichte, mit der Marco punkten wollte.' },
+            { wineId: 'dornfelder', acceptable: true, explanation: 'Ein deutscher Roter, fruchtig und unkompliziert – das passt zum Schweinebraten. Aber er ist halbtrocken, und der Papa hat ausdrücklich "bitte trocken" gesagt. Außerdem fehlt die Italien-Geschichte, mit der Marco punkten wollte.' },
             { wineId: 'chianti', acceptable: true, explanation: 'Chianti passt gut zu Braten, und Marco wäre stolz. Aber er kommt über den Brenner – und genau das will der Papa nicht im Glas. Diplomatisch eher ein Eigentor.' },
             { wineId: 'lambrusco', correct: false, explanation: 'Lieblich, leicht und perlend? Der Papa wollte elegant und trocken – "Süßes ist für Kinder und Touristen". Und italienisch ist er obendrein. Doppeltes Eigentor!' },
           ],

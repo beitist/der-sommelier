@@ -22,7 +22,7 @@ QUESTIONS.gehoben = {
       question: 'Was empfiehlst du?',
       options: [
         { wineId: 'chablis_premier_cru', correct: true, favorite: true, explanation: 'Chablis Premier Cru – mineralischer Chardonnay aus dem Burgund, ohne Holz. Elegant genug für Madame und perfekt zum Coq au Vin!' },
-        { wineId: 'riesling_spaetlese', correct: true, explanation: 'Die Spätlese hat genug Substanz für den Coq au Vin und die Restsüße kontrastiert die Sauce schön – aber Madame wollte ausdrücklich etwas Burgundisches, keinen deutschen Wein.' },
+        { wineId: 'riesling_spaetlese', acceptable: true, explanation: 'Gar nicht so dumm: Die reife, restsüße Spätlese ist etwas ganz anderes als ein trockener, spritziger Riesling, und sie hat genug Substanz für den Coq au Vin. Aber Riesling bleibt Riesling – Madame hat ausdrücklich keinen gewollt, und etwas Burgundisches ist es auch nicht.' },
         { wineId: 'sekt', correct: false, explanation: 'Sekt zum Hauptgang? Das wäre ein Affront für eine französische Feinschmeckerin.' },
       ]
     },
@@ -301,7 +301,7 @@ QUESTIONS.gehoben = {
       id: 'bw_3_1', guestId: 'der_bankier', mood: '💎',
       statement: 'Der Bankier belehrt seinen Tischnachbarn: "Grand Cru bedeutet, dass der Wein besonders alt ist. Je älter, desto Grand Cru – so einfach ist das."',
       isCorrect: false,
-      correction: 'Grand Cru beschreibt die Lage, nicht das Alter! Im Burgund, Elsass und in der Champagne ist es die höchste Klassifikation eines Weinbergs – Boden und Mikroklima bestimmen den Status, nicht die Reifezeit. (In Saint-Émilion ist "Grand Cru" dagegen eine breitere Qualitätsstufe.)'
+      correction: 'Grand Cru beschreibt die Herkunft, nicht das Alter! Im Burgund und im Elsass ist es die höchste Einstufung eines Weinbergs – Boden und Mikroklima bestimmen den Status, nicht die Reifezeit. In der Champagne werden sogar ganze Gemeinden als Grand Cru eingestuft. (Und in Saint-Émilion ist "Grand Cru" eine eigene Appellation mit strengeren Regeln.)'
     },
     {
       id: 'bw_3_2', guestId: 'die_professorin', mood: '📚',
@@ -313,7 +313,7 @@ QUESTIONS.gehoben = {
       id: 'bw_3_3', guestId: 'influencerin', mood: '🌎',
       statement: '"Malbec ist doch eine argentinische Rebsorte, oder?" fragt die Influencerin. "Die haben die in Südamerika erfunden!"',
       isCorrect: false,
-      correction: 'Malbec stammt ursprünglich aus Cahors in Südwest-Frankreich! Erst im 19. Jahrhundert wurde die Rebe nach Argentinien gebracht – und dort zum Nationalwein. Heute macht Argentinien den besseren Malbec als Frankreich!'
+      correction: 'Malbec stammt ursprünglich aus Cahors in Südwest-Frankreich! Erst im 19. Jahrhundert wurde die Rebe nach Argentinien gebracht – und dort zum Nationalwein. Viele finden heute sogar, dass Argentinien den besseren Malbec macht: In Mendoza stehen die Reben hoch oben am Fuß der Anden – viel Sonne, kühle Nächte, das gibt samtige, tiefdunkle Weine. Die Fans aus Cahors sehen das natürlich anders!'
     },
     {
       id: 'bw_3_4', guestId: 'herr_tanaka', mood: '🪵',
@@ -424,7 +424,7 @@ QUESTIONS.gehoben = {
         { text: 'Wein der erst spät, nach Jahren, getrunken werden sollte', correct: false },
         { text: 'Eine Methode bei der die Lese besonders langsam erfolgt', correct: false },
       ],
-      explanation: '"Spätlese" bedeutet: Die Trauben werden später als normal geerntet – sie sind dadurch reifer und konzentrierter. Das Mostgewicht muss mindestens 76° Oechsle betragen. Der Wein kann trocken oder restsüß sein!'
+      explanation: '"Spätlese" bedeutet: Die Trauben werden später als normal geerntet – sie sind dadurch reifer und konzentrierter. Das Mostgewicht – also der Zuckergehalt der Trauben, gemessen in Grad Oechsle – muss dafür einen Mindestwert erreichen, der je nach Anbaugebiet etwas unterschiedlich ist. Der Wein kann trocken oder restsüß sein!'
     },
     {
       id: 'ww_3_7', guestId: 'weinhaendler', mood: '🪵',
@@ -517,7 +517,7 @@ QUESTIONS.gehoben = {
     {
       id: 'bt_3_3', guestId: 'weinhaendler', mood: '🔥',
       clues: {
-        appearance: 'Rubinrot mit bräunlichem Rand',
+        appearance: 'Kräftiges, dichtes Rubinrot',
         nose: 'Rauch, Kaffee, rote Beeren und ein erdiger, fast rustikaler Unterton',
         palate: 'Mittelschwer, leicht erdig, mit einem typischen "Lagerfeuer"-Charakter'
       },

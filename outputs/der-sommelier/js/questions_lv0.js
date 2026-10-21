@@ -80,7 +80,7 @@ QUESTIONS.imbiss = {
       question: 'Was empfiehlst du?',
       options: [
         { wineId: 'riesling', correct: true, favorite: true, explanation: 'Riesling zum Leberkäse – ein ehrlicher deutscher Wein zum ehrlichen deutschen Essen. Die Säure schneidet schön durch das Fett!' },
-        { wineId: 'retsina', correct: false, explanation: 'Retsina ist für Werner definitiv "neumodischer Kram" – griechischer Harzwein zum Leberkäse? Da dreht er sich um.' },
+        { wineId: 'retsina', acceptable: true, explanation: 'Weiß, trocken und mit Biss – zum fetten Leberkäse geht das sogar. Aber griechischer Harzwein ist für Werner "neumodischer Kram". Der bodenständige deutsche Riesling trifft seinen Wunsch genau, und seine Säure schneidet noch besser durchs Fett.' },
         { wineId: 'imiglykos', correct: false, explanation: 'Ein lieblicher Grieche zum Leberkäse? Onkel Werner will was Bodenständiges, nicht was Süßes.' },
         { wineId: 'mueller_thurgau', acceptable: true, explanation: 'Müller-Thurgau ist weiß und bodenständig – passt vom Stil. Aber zum fetten Leberkäse fehlt ihm die Säure, die das Fett aufbricht. Riesling macht das deutlich besser!' },
       ]
@@ -134,13 +134,13 @@ QUESTIONS.imbiss = {
     },
     {
       id: 'pref_0_2', guestId: 'bergmann', mood: '😌',
-      scenario: 'Herr Bergmann, ein gemütlicher Stammgast in Arbeitskluft, lässt sich auf seinen Stammplatz fallen. "So, Feierabend! Heute mal nen Wein statt Bier. Aber bitte was Trockenes, Weißes. Nix Kompliziertes – ich bin Handwerker, kein Sommelier." Er grinst breit.',
+      scenario: 'Herr Bergmann, ein gemütlicher Stammgast in Arbeitskluft, lässt sich auf seinen Stammplatz fallen. "So, Feierabend! Heute mal nen Wein statt Bier. Aber bitte was Mildes, Weißes, nichts Ausgefallenes. Nix Kompliziertes – ich bin Handwerker, kein Sommelier." Er grinst breit.',
       question: 'Was empfiehlst du?',
       options: [
-        { wineId: 'riesling', correct: true, favorite: true, explanation: 'Genau! Einfacher trockener Riesling – klar, frisch, unkompliziert. Wie bestellt.' },
-        { wineId: 'mueller_thurgau', correct: true, explanation: 'Auch gut! Müller-Thurgau ist mild und unkompliziert. Nur etwas weniger trocken als bestellt.' },
-        { wineId: 'imiglykos', correct: false, explanation: 'Imiglykos ist rot UND lieblich – das Gegenteil von trocken und weiß!' },
-        { wineId: 'retsina', acceptable: true, explanation: 'Trocken und weiß – formal erfüllt! Aber der harzige Retsina ist alles andere als unkompliziert. Für Bergmanns Feierabend ist der klare Riesling die sichere Bank.' },
+        { wineId: 'mueller_thurgau', correct: true, favorite: true, explanation: 'Genau! Müller-Thurgau ist weiß, mild und halbtrocken – sanft, unkompliziert, der perfekte Feierabendwein. Wie bestellt.' },
+        { wineId: 'riesling', acceptable: true, explanation: 'Weiß und unkompliziert – fast getroffen! Aber der trockene Riesling hat ordentlich Säure, "mild" ist was anderes. Der sanfte Müller-Thurgau trifft Bergmanns Wunsch genauer.' },
+        { wineId: 'imiglykos', correct: false, explanation: 'Imiglykos ist ein Roter – Bergmann wollte ausdrücklich was Weißes!' },
+        { wineId: 'retsina', correct: false, explanation: 'Weiß ist er, aber mit seinem Harzgeschmack der ausgefallenste Wein der Karte! Retsina ist sehr speziell und braucht das passende Essen, etwa Gegrilltes oder Meze. Für ein mildes Feierabendglas ist er nichts.' },
       ]
     },
     {
@@ -217,7 +217,7 @@ QUESTIONS.imbiss = {
       id: 'bw_0_1', guestId: 'onkel_werner', mood: '☝️',
       statement: 'Onkel Werner hebt den Zeigefinger: "Also, junger Mann, ich sag dir eins: Rosé wird doch einfach aus Rotwein und Weißwein zusammengekippt! Das weiß doch jeder."',
       isCorrect: false,
-      correction: 'Nicht ganz, Onkel Werner! Rosé entsteht durch kurzen Hautkontakt roter Trauben. Mischen ist in der EU sogar verboten – außer bei Champagner!'
+      correction: 'Nicht ganz, Onkel Werner! Rosé entsteht durch kurzen Hautkontakt roter Trauben. Mischen ist in der EU sogar verboten – Ausnahme Schaumwein, etwa Rosé-Champagner!'
     },
     {
       id: 'bw_0_2', guestId: 'der_eilige', mood: '🧐',
@@ -271,7 +271,7 @@ QUESTIONS.imbiss = {
       id: 'bw_0_10', guestId: 'das_paerchen', mood: '🤓',
       statement: 'Er will vor ihr angeben und sagt: "Weißt du, Roséwein wird tatsächlich aus roten Trauben gemacht. Die Schale bleibt nur kurz im Most, darum ist er nicht so dunkel."',
       isCorrect: true,
-      correction: 'Genau richtig! Bei Rosé werden rote Trauben nur kurz auf der Schale belassen (wenige Stunden statt Tage wie bei Rotwein). Die kurze Kontaktzeit gibt dem Wein seine hellrosa Farbe. Man nennt das "Direktpressung" oder "Saignée-Methode".'
+      correction: 'Genau richtig! Bei Rosé werden rote Trauben nur kurz auf der Schale belassen (wenige Stunden statt Tage wie bei Rotwein). Die kurze Kontaktzeit gibt dem Wein seine hellrosa Farbe. Presst man die Trauben sofort ab ("Direktpressung"), wird er besonders blass. Eine eigene Methode ist die "Saignée" (Saftabzug): Dabei zapft man beim Rotweinmachen früh etwas rosa Saft aus dem Tank ab.'
     },
     {
       id: 'bw_0_11', guestId: 'bergmann', mood: '🤓',
@@ -281,7 +281,7 @@ QUESTIONS.imbiss = {
     },
     {
       id: 'bw_0_12', guestId: 'stavros', mood: '🤓',
-      statement: 'Stavros zeigt stolz auf den Imiglykos: "Weißt du, in Griechenland wird seit über 6.000 Jahren Wein angebaut! Wir Griechen haben das quasi erfunden – lange vor den Franzosen!"',
+      statement: 'Stavros zeigt stolz auf den Imiglykos: "Weißt du, in Griechenland wird seit über 6.000 Jahren Wein angebaut! Wir Griechen machen das schon ewig – lange vor den Franzosen!"',
       isCorrect: true,
       correction: 'Stimmt! Griechenland gehört zu den ältesten Weinbaukulturen der Welt. Archäologische Funde belegen Weinbau seit mindestens 4.500 v. Chr. Die alten Griechen hatten sogar einen eigenen Gott des Weins – Dionysos! Erfunden hat ihn aber wohl der Kaukasus – in Georgien wird seit rund 8.000 Jahren Wein gemacht!'
     },
@@ -543,7 +543,7 @@ QUESTIONS.imbiss = {
           prompt: 'Welchen Wein empfiehlst du?',
           options: [
             { wineId: 'dornfelder', correct: true, favorite: true, explanation: 'Treffer! Dornfelder ist halbtrocken – genau das "Dazwischen" für Jonas und Mia. Fruchtig nach Kirsche und Brombeere, mittelkräftig, also stark genug fürs deftige Chili. Und ein Hauch Restsüße mildert die Jalapeño-Schärfe. Günstig ist er auch – die WG ist gerettet.' },
-            { wineId: 'lambrusco', correct: true, explanation: 'Nicht schlecht! Lambrusco ist fruchtig, die Süße zähmt die Schärfe, und die feinen Perlen erfrischen. Aber er ist lieblich und leicht – Jonas meckert über "Kindersaft", und gegen das deftige Chili ist er etwas zart.' },
+            { wineId: 'lambrusco', acceptable: true, explanation: 'Nicht ganz daneben: Lambrusco ist fruchtig, die Süße zähmt die Schärfe, und die feinen Perlen erfrischen. Aber er ist lieblich und leicht – Jonas meckert über "Kindersaft", und das deftige Chili, das "was aushalten" muss, macht ihn platt. Der halbtrockene, kräftigere Dornfelder trifft das "Dazwischen" besser.' },
             { wineId: 'imiglykos', acceptable: true, explanation: 'Imiglykos ist rot und fruchtig, die Süße hilft gegen die Schärfe. Aber er ist lieblich und leicht – für Jonas zu süß, und das kräftige Chili deckt ihn zu.' },
             { wineId: 'riesling', correct: false, explanation: 'Weiß, trocken und mit viel Säure – Mia ruft "Batterie!", und die Gruppe wollte Rot. Dazu kommt: Säure macht scharfes Essen gefühlt noch schärfer. Autsch.' },
           ],

@@ -144,6 +144,7 @@ function renderWineLabel(l) {
       <div class="wl-producer">${l.producer || ''}</div>
       <div class="wl-wine">${l.wine || ''}</div>
       <div class="wl-region">${l.region || ''}</div>
+      ${l.color ? `<div class="wl-color">${l.color}</div>` : ''}
       ${l.quality ? `<div class="wl-quality">${l.quality}</div>` : ''}
       <div class="wl-bottom">
         <span>${l.vintage || ''}</span>

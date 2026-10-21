@@ -1787,3 +1787,4 @@ body {
 .chef-wines-card .btn { margin-top: 10px; }
 .hud-review { background: rgba(83,52,131,0.85); }
 .ak-extra { font-size: 19pt; font-style: italic; color: var(--c-gold); margin: 0 0 10px; }
+.wl-color { display: inline-block; margin-top: 6px; padding: 2px 12px; border: 1px solid #8a6a3a; border-radius: 12px; font-size: 13pt; font-style: normal; color: #5a1a1a; }
