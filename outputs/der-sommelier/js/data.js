@@ -265,7 +265,7 @@ const WINES = {
     flavors: ['Zitrus', 'Feuerstein', 'mineralisch'],
     pairings: ['Austern', 'Fisch', 'Meeresfrüchte', 'Geflügel'],
     description: 'Mineralischer Chardonnay aus dem Burgund – ohne Holz, pure Eleganz.',
-    funFact: 'Chablis-Böden enthalten fossile Austernschalen – man schmeckt das Meer!',
+    funFact: 'Die Kalkböden von Chablis (Kimmeridge-Kalk) enthalten fossile Austernschalen; man schmeckt das Meer!',
     label: 'assets/wines/chablis.png'
   },
   riesling_spaetlese: {
@@ -282,7 +282,7 @@ const WINES = {
   champagner: {
     id: 'champagner', name: 'Champagner', region: 'frankreich', level: 4,
     color: 'weiss', body: 'mittel', sweetness: 'trocken', price: '€€€', grape: 'Chardonnay/Pinot Noir',
-    flavors: ['Brioche', 'Zitrus', 'weiße Blüten'],
+    flavors: ['Brioche', 'Zitrus', 'weiße Blüten', 'Kreide'],
     pairings: ['Hummer', 'Kaviar', 'Aperitif', 'Feiern'],
     description: 'Der König der Schaumweine – nur aus der Champagne, Frankreich.',
     funFact: 'Dom Pérignon hat den Champagner NICHT erfunden – aber perfektioniert.',
@@ -335,17 +335,36 @@ const WINES = {
   },
 };
 
+// ===== AUFFÜLLER =====
+// Wenn noch zu wenige Weine vorgestellt sind (Imbiss, Schicht 1 und 2), füllen diese Getränke
+// die Auswahl auf. Sie sind immer falsch und tauchen nicht im Keller auf.
+const EXTRA_DRINKS = {
+  pils:   { id: 'pils', name: 'Pils vom Fass', icon: '🍺', detail: 'Bier · herb, frisch gezapft',
+            explanation: 'Ein Pils ist ein ehrliches Getränk, aber der Gast hat nach Wein gefragt. Kostas ruft aus der Küche: „Malaka, du bist Sommelier, nicht Zapfer!“' },
+  wasser: { id: 'wasser', name: 'Leitungswasser', icon: '💧', detail: 'still · gratis',
+            explanation: 'Wasser gehört auf jeden Tisch, ersetzt aber keine Weinempfehlung. Kostas seufzt: „Wasser? Da verdient keiner was dran, und Spaß hat auch keiner.“' },
+  ouzo:   { id: 'ouzo', name: 'Ouzo', icon: '🥃', detail: 'Anisschnaps · 38 % vol',
+            explanation: 'Ouzo gibt es bei Kostas aufs Haus, aber erst nach dem Essen. Und ein Wein ist er auch nicht.' },
+  cola:   { id: 'cola', name: 'Cola', icon: '🥤', detail: 'süß · viel Kohlensäure',
+            explanation: 'Cola zum Weinwunsch? Kostas schüttelt den Kopf: „Noch so eine Empfehlung, und du stehst morgen an der Fritteuse.“' },
+};
+
+// Wein oder Auffüller zu einer Options-ID
+function drinkInfo(id) {
+  return WINES[id] || EXTRA_DRINKS[id] || null;
+}
+
 // ===== REGIONS (9 Länder) =====
 const REGIONS = {
   deutschland: {
     id: 'deutschland', name: 'Deutschland', flag: '🇩🇪',
     mapX: 51.5, mapY: 30, mapLabel: 'top',
-    description: 'Deutschland ist das Land des Rieslings – keine andere Rebsorte bringt hier so elegante, mineralische Weißweine hervor. Mit 13 Anbaugebieten von der steilen Mosel bis zum sonnigen Baden gibt es eine enorme Vielfalt. Rund 65% der Rebfläche ist mit weißen Sorten bepflanzt, aber auch der Spätburgunder hat sich international einen Namen gemacht.',
+    description: 'Deutschland ist eines der nördlichsten Weinbauländer der Welt. Das Klima ist kühl, die Trauben reifen langsam und behalten viel Säure; darum wächst hier vor allem Weißwein. Deutschland ist das Land des Rieslings – keine andere Rebsorte bringt hier so elegante, mineralische Weißweine hervor. Mit 13 Anbaugebieten von der steilen Mosel bis zum sonnigen Baden gibt es eine enorme Vielfalt. Rund 65% der Rebfläche ist mit weißen Sorten bepflanzt, aber auch der Spätburgunder hat sich international einen Namen gemacht.',
     mainRegions: 'Mosel, Rheingau, Pfalz, Baden, Württemberg',
     keyFacts: [
       'Größte Rebsorten: Riesling (weiß) und Spätburgunder (rot)',
       'Qualitätsstufen: Deutscher Wein → Landwein → Qualitätswein (QbA) → Prädikatswein',
-      'Ca. 100.000 Hektar Rebfläche – 65% Weißwein',
+      'Ca. 100.000 Hektar Rebfläche, rund 65 % Weißwein (kühles Klima, eines der nördlichsten Weinbauländer)',
       'Prädikate: Kabinett, Spätlese, Auslese, Beerenauslese, Trockenbeerenauslese, Eiswein',
     ],
     wines: ['dornfelder', 'mueller_thurgau', 'riesling', 'spaetburgunder', 'weissherbst', 'sekt', 'gewuerztraminer', 'riesling_spaetlese', 'eiswein'],

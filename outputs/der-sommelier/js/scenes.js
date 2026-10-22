@@ -381,17 +381,17 @@ function renderPairingQ(q) {
   const guest = state.currentGuest;
 
   const optionsHtml = q.data.options.map((opt, i) => {
-    const wine = WINES[opt.wineId];
+    const wine = drinkInfo(opt.wineId);
     let cls = 'dialog-choice';
     if (answered) {
       if (opt.correct) cls += ' correct';
       else if (i === q.answered && !opt.correct) cls += ' wrong';
     }
     if (q.eliminatedOption === i) cls += ' eliminated';
-    const dot = wine ? (wine.color === 'rot' ? '🔴' : wine.color === 'weiss' ? '⚪' : '🩷') : '';
+    const dot = wine ? (wine.icon || (wine.color === 'rot' ? '🔴' : wine.color === 'weiss' ? '⚪' : '🩷')) : '';
     return `<button class="${cls}" ${answered || q.eliminatedOption === i ? 'disabled' : ''} onclick="answerQuestion(${i})">
       <span class="choice-wine">${dot} ${wine ? wine.name : '???'}</span>
-      <span class="choice-detail">${wine ? wine.sweetness + ' · ' + wine.flavors.slice(0,2).join(', ') : ''}</span>
+      <span class="choice-detail">${wine ? (wine.detail || wine.sweetness + ' · ' + wine.flavors.slice(0,2).join(', ')) : ''}</span>
     </button>`;
   }).join('');
 
@@ -496,7 +496,7 @@ function renderBlindtastingQ(q) {
     </div>`;
 
   const optionsHtml = data.options.map((opt, i) => {
-    const wine = WINES[opt.wineId];
+    const wine = drinkInfo(opt.wineId);
     let cls = 'dialog-choice';
     if (answered) {
       if (opt.correct) cls += ' correct';
@@ -566,13 +566,13 @@ function renderBeratungQ(q) {
   } else if (stepIndex === 2 && !answered) {
     // Wine choices for final step
     choicesHtml = step.options.map((opt, i) => {
-      const wine = WINES[opt.wineId];
+      const wine = drinkInfo(opt.wineId);
       let cls = 'dialog-choice';
       if (q.eliminatedOption === i) cls += ' eliminated';
-      const dot = wine ? (wine.color === 'rot' ? '\u{1F534}' : wine.color === 'weiss' ? '\u26AA' : '\u{1FA77}') : '';
+      const dot = wine ? (wine.icon || (wine.color === 'rot' ? '\u{1F534}' : wine.color === 'weiss' ? '\u26AA' : '\u{1FA77}')) : '';
       return `<button class="${cls}" ${q.eliminatedOption === i ? 'disabled' : ''} onclick="answerBeratungStep(${i})">
         <span class="choice-wine">${dot} ${wine ? wine.name : '???'}</span>
-        <span class="choice-detail">${wine ? wine.sweetness + ' \u00B7 ' + wine.flavors.slice(0, 2).join(', ') : ''}</span>
+        <span class="choice-detail">${wine ? (wine.detail || wine.sweetness + ' \u00B7 ' + wine.flavors.slice(0, 2).join(', ')) : ''}</span>
       </button>`;
     }).join('');
   }

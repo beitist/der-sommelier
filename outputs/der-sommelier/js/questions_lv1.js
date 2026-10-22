@@ -77,14 +77,14 @@ QUESTIONS.steakhaus = {
     },
     {
       id: 'fp_1_7', guestId: 'stammgast_jens', mood: '🍔',
-      scenario: 'Stammgast Jens hat sich heute den Mega-Burger mit Jalapeños und BBQ-Sauce bestellt. Er klopft auf den Tisch: "So, letztes Mal hatte ich Primitivo – top! Aber heute will ich was Neues. Was passt zum Burger, Chef?"',
+      scenario: 'Stammgast Jens hat sich heute den Mega-Burger mit Bacon, Cheddar und BBQ-Sauce bestellt. Er klopft auf den Tisch: "So, letztes Mal hatte ich Primitivo – top! Aber heute will ich was Neues. Was passt zum Burger, Chef?"',
       question: 'Was empfiehlst du?',
       options: [
-        { wineId: 'chianti', correct: true, favorite: true, explanation: 'Chianti mit seiner Kirschfrucht und den Tanninen schneidet durch die BBQ-Sauce und hält der Würze stand – ein kräftiger Essensbegleiter!' },
+        { wineId: 'chianti', correct: true, favorite: true, explanation: 'Chianti mit seiner Kirschfrucht, der Säure und den Tanninen schneidet durch Bacon, Cheddar und BBQ-Sauce. Ein kräftiger Essensbegleiter, und für Jens etwas Neues!' },
         { wineId: 'primitivo', correct: true, explanation: 'Primitivo hat die Power für den Mega-Burger – aber Jens hatte ihn letztes Mal schon. Chianti bietet das Neue, das er sucht, plus die Tannine zur BBQ-Sauce.' },
         { wineId: 'sekt', correct: false, explanation: 'Sekt zum Mega-Burger? Jens würde dich auslachen.' },
-        { wineId: 'dornfelder', acceptable: true, explanation: 'Dornfelder ist fruchtig und unkompliziert – zum Burger geht das. Aber ihm fehlen die Tannine und die Struktur, mit denen Chianti durch BBQ-Sauce und Jalapeños schneidet.' },
-        { wineId: 'spaetburgunder', correct: false, explanation: 'Spätburgunder ist ein feiner, eleganter Roter – Jalapeños und BBQ-Sauce würden ihn glatt überrollen. Für den Mega-Burger braucht es mehr Biss.' },
+        { wineId: 'dornfelder', acceptable: true, explanation: 'Dornfelder ist fruchtig und unkompliziert – zum Burger geht das. Aber ihm fehlen die Säure und die Struktur, mit denen Chianti durch Bacon und BBQ-Sauce schneidet.' },
+        { wineId: 'spaetburgunder', correct: false, explanation: 'Spätburgunder ist ein feiner, eleganter Roter – Bacon, Cheddar und BBQ-Sauce würden ihn glatt überrollen. Für den Mega-Burger braucht es mehr Biss.' },
       ]
     },
     {
@@ -256,7 +256,7 @@ QUESTIONS.steakhaus = {
     },
     {
       id: 'pref_1_9', guestId: 'der_trucker', mood: '🍺',
-      scenario: 'Der Trucker kratzt sich am Kopf: "Also, normalerweise trink ich Bier. Aber meine Frau hat gesagt, ich soll mal was Neues probieren. Haben Sie so einen Anfängerwein? Nicht sauer, nicht kompliziert – einfach lecker."',
+      scenario: 'Der Trucker kratzt sich am Kopf: "Also, normalerweise trink ich Bier. Aber meine Frau hat gesagt, ich soll mal was Neues probieren. Haben Sie so einen roten Anfängerwein? Nicht sauer, nicht kompliziert, einfach lecker."',
       question: 'Was empfiehlst du?',
       options: [
         { wineId: 'dornfelder', correct: true, favorite: true, explanation: 'Dornfelder – mild, fruchtig, wenig Tannine. Der perfekte Einstiegswein für Biertrinker: unkompliziert und mit einer Beerenfrucht, die sofort schmeckt!' },

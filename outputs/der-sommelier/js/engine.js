@@ -423,6 +423,7 @@ function startShift() {
   // Ab dem 2. Restaurant: ein Gast aus einem früheren Restaurant als Wiederholung
   const review = level > 0 ? pickReviewQuestion(level) : null;
   const target = CONFIG.questionsPerShift - (review ? 1 : 0);
+  if (review && review.data.guestId) guests.add(review.data.guestId);   // Gast der Wiederholung kommt nicht doppelt
   const beratung = prioritized.find(q => q.type === 'beratung');
   if (beratung) take(beratung);
   for (const strict of [true, false]) {
@@ -436,7 +437,7 @@ function startShift() {
     if (selected.length >= target) break;
     if (!selected.includes(q)) selected.push(q);
   }
-  if (review && !(review.data.guestId && guests.has(review.data.guestId))) selected.push(review);
+  if (review) selected.push(review);
   shuffleInPlace(selected);
 
   // Kopie der Fragedaten (Originale bleiben unverändert), Weinoptionen auffüllen, Gäste zuweisen –
@@ -597,8 +598,9 @@ function expandWineOptions(q, level) {
 }
 
 function buildWineOptions(options, level) {
-  // Falsche Optionen mit noch unbekannten Weinen fallen weg; richtige/akzeptable bleiben immer
-  const kept = options.filter(o => WINES[o.wineId] && (o.correct || o.acceptable || WINES[o.wineId].level <= level));
+  // Nur Weine, die der Chef schon vorgestellt hat (oder aus früheren Restaurants); die beste Antwort bleibt immer
+  const anchor = options.find(o => o.favorite) || options.find(o => o.correct);
+  const kept = options.filter(o => WINES[o.wineId] && (o === anchor || isWineKnown(o.wineId)));
   const correctWines = kept.filter(o => o.correct).map(o => WINES[o.wineId]);
   if (correctWines.length === 0) return shuffle(kept);
 
@@ -612,10 +614,15 @@ function buildWineOptions(options, level) {
   // (gleiche Farbe, Süße und Körper wäre womöglich ebenfalls richtig)
   const used = new Set(result.map(o => o.wineId));
   const isTwin = w => correctWines.some(c => c.color === w.color && c.sweetness === w.sweetness && c.body === w.body);
-  const fillers = shuffle(Object.values(WINES).filter(w => w.level <= level && !used.has(w.id) && !isTwin(w)));
+  const fillers = shuffle(Object.values(WINES).filter(w => isWineKnown(w.id) && !used.has(w.id) && !isTwin(w)));
   for (const w of fillers) {
     if (result.length >= CONFIG.optionsPerQuestion) break;
     result.push({ wineId: w.id, correct: false, explanation: wineMismatchText(w) });
+  }
+  // Zu wenige bekannte Weine (Imbiss, erste Schichten): mit Bier, Wasser & Co. auffüllen
+  for (const d of shuffle(Object.values(EXTRA_DRINKS))) {
+    if (result.length >= CONFIG.optionsPerQuestion) break;
+    result.push({ wineId: d.id, correct: false, extra: true, explanation: d.explanation });
   }
   return shuffle(result);
 }
@@ -727,14 +734,14 @@ function answerQuestion(index) {
   const opt = q.data.options[index];
   const isCorrect = opt.correct;
   const isAcceptable = !isCorrect && !!opt.acceptable;
-  const wine = WINES[opt.wineId];
+  const wine = drinkInfo(opt.wineId);
 
   const isFavorite = isCorrect && !!opt.favorite;
   const tipGain = applyTipAndRep(isCorrect, isFavorite, isAcceptable);
   Sound.answer(isCorrect, isFavorite, isAcceptable);
 
   // Track wine knowledge
-  if (opt.wineId) {
+  if (WINES[opt.wineId]) {
     if (!state.player.wineKnowledge[opt.wineId]) state.player.wineKnowledge[opt.wineId] = { seen: 0, correct: 0 };
     state.player.wineKnowledge[opt.wineId].seen++;
     if (isCorrect || isAcceptable) state.player.wineKnowledge[opt.wineId].correct++;
@@ -789,7 +796,7 @@ function answerBlindtasting(index) {
   const isCorrect = opt.correct;
   const isAcceptable = !isCorrect && !!opt.acceptable;
   const isFavorite = isCorrect && !!opt.favorite;
-  const wine = WINES[opt.wineId];
+  const wine = drinkInfo(opt.wineId);
 
   const tipGain = applyTipAndRep(isCorrect, isFavorite, isAcceptable);
   Sound.answer(isCorrect, isFavorite, isAcceptable);
@@ -841,7 +848,7 @@ function answerBeratungStep(index) {
     const isCorrect = opt.correct;
     const isAcceptable = !isCorrect && !!opt.acceptable;
     const isFavorite = isCorrect && !!opt.favorite;
-    const wine = WINES[opt.wineId];
+    const wine = drinkInfo(opt.wineId);
 
     const tipGain = applyTipAndRep(isCorrect, isFavorite, isAcceptable);
     Sound.answer(isCorrect, isFavorite, isAcceptable);

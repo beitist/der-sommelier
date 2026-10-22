@@ -189,7 +189,7 @@ QUESTIONS.sterne = {
     },
     {
       id: 'pref_4_6', guestId: 'kunstsammlerin', mood: '🏛️',
-      scenario: 'Die Kunstsammlerin kommt gerade von einer Vernissage, sichtlich inspiriert. "Ich habe heute einen Monet gesehen – diese Lichtspiele auf dem Wasser! Jetzt möchte ich einen Wein, der wie ein Impressionismus-Gemälde ist: leicht und schimmernd wie Licht auf dem Wasser, vielschichtig, mit Nuancen, die man erst beim zweiten und dritten Schluck entdeckt."',
+      scenario: 'Die Kunstsammlerin kommt gerade von einer Vernissage, sichtlich inspiriert. "Ich habe heute einen Monet gesehen – diese Lichtspiele auf dem Wasser! Jetzt möchte ich einen Wein, der wie ein Impressionismus-Gemälde ist: leicht und schimmernd wie Licht auf dem Wasser, mit Perlen, die im Licht tanzen, vielschichtig, mit Nuancen, die man erst beim zweiten und dritten Schluck entdeckt."',
       question: 'Was empfiehlst du?',
       options: [
         { wineId: 'champagner', correct: true, favorite: true, explanation: 'Champagner – vielschichtig wie ein Monet! Erst die Zitrusnoten, dann die Brioche, dann die Mandeln, und im Abgang die Kreide-Mineralität. Jeder Schluck enthüllt eine neue Schicht, genau wie ein impressionistisches Gemälde bei wechselndem Licht. Die Kunstsammlerin ist verzaubert: "Genau – dieser Wein hat Tiefenschärfe!"' },

@@ -139,7 +139,7 @@ QUESTIONS.gutbuergerlich = {
     },
     {
       id: 'pref_2_2', guestId: 'oma_hildegard', mood: '🌸',
-      scenario: 'Oma Hildegard möchte mal was Neues probieren: "Kindchen, ich hab gehört, es gibt Weißweine, die richtig nach Blumen und Gewürzen duften. Haben Sie sowas? Darf auch halbtrocken sein."',
+      scenario: 'Oma Hildegard möchte mal was Neues probieren: "Kindchen, ich hab gehört, es gibt Weißweine, die richtig intensiv nach Rosen und Litschi duften, wie ein Parfum. Haben Sie sowas? Darf auch halbtrocken sein."',
       question: 'Was empfiehlst du?',
       options: [
         { wineId: 'gewuerztraminer', correct: true, favorite: true, explanation: 'Gewürztraminer – der duftintensivste Weißwein überhaupt! Litschi, Rosenblüte, Gewürze. Genau was Oma Hildegard sucht.' },
