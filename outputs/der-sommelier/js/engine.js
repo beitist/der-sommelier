@@ -165,12 +165,15 @@ function checkChefIntro() {
   return false;
 }
 
-function dismissChefIntro() {
+function dismissChefIntro(then) {
   state.player.chefIntroSeen[state.player.level] = true;
   state.showChefIntro = false;
+  // Die Akademie war schon – nach dem Chef-Intro stellt der Chef gleich die Weine für Schicht 1 vor
+  const newWines = introduceShiftWines();
   saveGame();
-  // Die Akademie war schon – nach dem Chef-Intro geht es direkt in die Lobby
   goToScene('restaurant');
+  if (newWines.length) { showChefWines(newWines, then); render(); }
+  else if (then) goToScene(then);
 }
 
 // ===== GUEST ASSIGNMENT =====
@@ -383,13 +386,7 @@ function startShift() {
   if (questionPool.blindtasting) questionPool.blindtasting.forEach(q => allQuestions.push({ type: 'blindtasting', data: q }));
   if (questionPool.beratung) questionPool.beratung.forEach(q => allQuestions.push({ type: 'beratung', data: q }));
 
-  // Vor Schicht 1–3 stellt der Chef neue Weine vor; ab Schicht 4 sind alle Weine des Hauses bekannt
-  const shiftNo = state.player.shiftsCompleted[level];
-  const plan = SHIFT_PLAN[levelId] || [];
-  const levelWines = Object.values(WINES).filter(w => w.level === level).map(w => w.id);
-  const toIntroduce = shiftNo < plan.length ? plan[shiftNo] : levelWines;
-  const newWines = toIntroduce.filter(id => !state.player.introducedWines.includes(id));
-  newWines.forEach(id => { state.player.introducedWines.push(id); state.player.discoveredWines.add(id); });
+  const newWines = introduceShiftWines();
   const unlocked = allQuestions.filter(isQuestionUnlocked);
   const pool = unlocked.length >= CONFIG.questionsPerShift ? unlocked : allQuestions;
 
@@ -462,12 +459,35 @@ function startShift() {
   state.currentGuest = selected[0].guest;
   state.overlay = null;
   // Chef stellt vor der Schicht die neuen Weine vor
-  if (newWines.length) {
-    state.overlay = 'chefWines';
-    state.overlayData = { wines: newWines, line: (CHEF_SHIFT_LINES[levelId] || [])[Math.min(shiftNo, 2)] || '' };
-  }
+  if (newWines.length) showChefWines(newWines);
   saveGame();
   render();
+}
+
+// Vor Schicht 1–3 stellt der Chef neue Weine vor; ab Schicht 4 sind alle Weine des Hauses bekannt.
+// Gibt die neu vorgestellten Weine zurück (leer, wenn für die nächste Schicht schon alles bekannt ist).
+function introduceShiftWines() {
+  const level = state.player.level, levelId = getLevel().id;
+  const shiftNo = state.player.shiftsCompleted[level];
+  const plan = SHIFT_PLAN[levelId] || [];
+  const levelWines = Object.values(WINES).filter(w => w.level === level).map(w => w.id);
+  const toIntroduce = shiftNo < plan.length ? plan[shiftNo] : levelWines;
+  const newWines = toIntroduce.filter(id => !state.player.introducedWines.includes(id));
+  newWines.forEach(id => { state.player.introducedWines.push(id); state.player.discoveredWines.add(id); });
+  return newWines;
+}
+
+function showChefWines(wines, then) {
+  const shiftNo = state.player.shiftsCompleted[state.player.level];
+  state.overlay = 'chefWines';
+  state.overlayData = { wines, then, line: (CHEF_SHIFT_LINES[getLevel().id] || [])[Math.min(shiftNo, 2)] || '' };
+}
+
+function closeChefWines() {
+  const then = state.overlayData && state.overlayData.then;
+  state.overlay = null;
+  state.overlayData = null;
+  if (then) goToScene(then); else render();
 }
 
 // Darf die Frage schon kommen? Nur zu Weinen, die der Spieler kennt (vorgestellt oder aus früheren Restaurants).

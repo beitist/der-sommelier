@@ -113,7 +113,7 @@ function renderChefIntro() {
                 <div class="chef-intro-text">${introText}</div>
                 <div class="chef-intro-buttons">
                   <button class="btn btn-primary btn-large" onclick="dismissChefIntro()">👨‍🍳 Ab an die Arbeit!</button>
-                  <button class="btn btn-secondary" onclick="dismissChefIntro();goToScene('map')">🗺️ Erst Länderinfo</button>
+                  <button class="btn btn-secondary" onclick="dismissChefIntro('map')">🗺️ Erst Länderinfo</button>
                 </div>
               </div>
             </div>
@@ -273,8 +273,6 @@ function renderRestaurantLobby() {
   const rep = state.player.reputation[state.player.level];
   const stars = renderStars(rep);
   const shifts = state.player.shiftsCompleted[state.player.level];
-  // Weinkeller: Nachschlagewerk (der Chef stellt die Weine vor den Schichten vor)
-  const lehrgangBtn = `<button class="btn btn-secondary" onclick="goToScene('cellar')">🍾 Weinkeller</button>`;
 
   return `
     <div class="scene scene-restaurant active">
@@ -308,7 +306,6 @@ function renderRestaurantLobby() {
                 <button class="btn btn-primary btn-large" onclick="startShift()">🍽️ Schicht starten</button>
                 ${isExamEligible() ? `<button class="btn btn-primary btn-large btn-exam" onclick="startExam()">🎓 Abschlussprüfung</button>` : ''}
                 ${state.player.examPassed ? `<button class="btn btn-secondary" onclick="goToScene('highscore')">🏆 Bestenliste</button>` : ''}
-                ${lehrgangBtn}
                 <button class="btn btn-ghost" onclick="goToScene('map')">🗺️ Länderinfo</button>
               </div>
             </div>

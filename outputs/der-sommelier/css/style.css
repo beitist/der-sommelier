@@ -1844,3 +1844,7 @@ body {
 .cellar-q { height: 200px; display: flex; align-items: center; font-size: 72pt; color: rgba(255,255,255,0.3); }
 @media (hover: hover) { .cellar-wine:not(.unknown):hover { border-color: #f0e68c; } .book-day:not(.locked):hover, .book-lesson:hover { background: rgba(255,255,255,0.1); } }
 .cellar-wine:not(.unknown):active, .book-day:not(.locked):active, .book-lesson:active { transform: scale(0.97); }
+
+/* Madame Duvins Antworten so groß wie die Antwortknöpfe */
+.ak-feedback { font-size: 22.4pt; }
+.ak-retry { font-size: 18pt; }

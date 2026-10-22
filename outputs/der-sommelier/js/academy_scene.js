@@ -190,7 +190,7 @@ function renderChefWinesOverlay() {
         </div>
         <div class="cw-subtitle">Neu im Keller:</div>
         ${cards}
-        <button class="btn btn-primary btn-large" onclick="state.overlay=null;state.overlayData=null;render()">Verstanden, Chef! Los geht's →</button>
+        <button class="btn btn-primary btn-large" onclick="closeChefWines()">Verstanden, Chef! Los geht's →</button>
       </div>
     </div>`;
 }

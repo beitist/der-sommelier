@@ -471,7 +471,7 @@ const GUESTS = {
       { id: 'das_paerchen', name: 'Das Pärchen', sprite: 'assets/guests/das_paerchen.png', facing: 'left' },
       { id: 'die_sportlerin', name: 'Die Sportlerin', sprite: 'assets/guests/die_sportlerin.png', facing: 'right' },
       { id: 'onkel_werner', name: 'Onkel Werner', sprite: 'assets/guests/onkel_werner.png', facing: 'right' },
-      { id: 'die_touristen', name: 'Die Touristen', sprite: 'assets/guests/die_touristen.png', facing: 'right' },
+      { id: 'die_touristen', name: 'Die Touristen', sprite: 'assets/guests/die_touristen.png', facing: 'left' },
     ],
     1: [
       { id: 'grillmeister', name: 'Der Grillmeister', sprite: 'assets/guests/grillmeister.png', facing: 'right' },
