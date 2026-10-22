@@ -28,3 +28,4 @@ audio-inbox/
 # Capacitor / Node
 node_modules/
 .cache/
+build/
