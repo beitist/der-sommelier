@@ -7,7 +7,7 @@ const DEV_TEST_CODES = false;
 
 // ===== GAME STATE =====
 let state = {
-  scene: 'title',       // title, map, restaurant, region, explorer
+  scene: 'title',       // title, map, restaurant, region, book, cellar, academy, ...
   player: {
     level: 0,
     tips: 0,             // Trinkgeld (ehemals XP)
@@ -366,51 +366,6 @@ function goToScene(scene, data) {
 }
 
 // ===== EXPLORER MODE =====
-function getExplorerWines() {
-  // After level-up: show only new wines for the current level
-  if (state.explorerNewOnly) {
-    return Object.values(WINES).filter(w => w.level === state.player.level).sort((a, b) => a.id.localeCompare(b.id));
-  }
-  // Manual "Weine wiederholen": show all unlocked wines
-  return Object.values(WINES).filter(w => w.level <= state.player.level).sort((a, b) => a.level - b.level);
-}
-
-function explorerNext() {
-  const wines = getExplorerWines();
-  // From intro page → first wine
-  if (state.explorerWineIndex === -1) {
-    state.explorerWineIndex = 0;
-    state.player.discoveredWines.add(wines[0].id);
-    saveGame();
-    render();
-    return;
-  }
-  if (state.explorerWineIndex < wines.length - 1) {
-    state.explorerWineIndex++;
-    state.player.discoveredWines.add(wines[state.explorerWineIndex].id);
-    saveGame();
-  } else {
-    // Explorer done → restaurant
-    goToScene('restaurant');
-    return;
-  }
-  render();
-}
-
-function explorerPrev() {
-  if (state.explorerWineIndex > 0) {
-    state.explorerWineIndex--;
-    render();
-  }
-}
-
-function explorerSkip() {
-  const wines = getExplorerWines();
-  wines.forEach(w => state.player.discoveredWines.add(w.id));
-  saveGame();
-  goToScene('restaurant');
-}
-
 // ===== SHIFT SYSTEM =====
 function startShift() {
   const levelId = getLevel().id;

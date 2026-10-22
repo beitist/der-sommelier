@@ -17,7 +17,8 @@ function render() {
   } else {
     switch (state.scene) {
       case 'title': html = renderTitle(); break;
-      case 'explorer': html = renderExplorer(); break;
+      case 'book': html = renderBook(); break;
+      case 'cellar': html = renderCellar(); break;
       case 'map': html = renderMap(); break;
       case 'restaurant': html = renderRestaurant(); break;
       case 'region': html = renderRegion(); break;
@@ -123,144 +124,6 @@ function renderChefIntro() {
     </div>`;
 }
 
-// ===== EXPLORER MODE =====
-function renderExplorer() {
-  const wines = getExplorerWines();
-  if (wines.length === 0) return renderRestaurant();
-
-  // Intro page (explorerWineIndex === -1)
-  if (state.explorerWineIndex === -1) return renderExplorerIntro(wines);
-
-  const wine = wines[state.explorerWineIndex];
-  const region = REGIONS[wine.region];
-  const progress = `${state.explorerWineIndex + 1} / ${wines.length}`;
-  const isLast = state.explorerWineIndex === wines.length - 1;
-
-  const colorBg = wine.color === 'rot' ? '#5c1a2a' : wine.color === 'weiss' ? '#4a4a2a' : '#5c2a3a';
-  const colorAccent = wine.color === 'rot' ? '#e94560' : wine.color === 'weiss' ? '#f0e68c' : '#ffb6c1';
-
-  state.player.discoveredWines.add(wine.id);
-
-  return `
-    <div class="scene scene-explorer active">
-      ${renderSidebar()}
-      <div class="main-area">
-        <div class="explorer-bg" style="background:linear-gradient(135deg, ${colorBg}, #1a1a2e)">
-          <div class="explorer-header">
-            <div class="explorer-title">
-              <span class="explorer-badge">📚 LEHRGANG</span>
-              <span class="explorer-level">${CONFIG.levels[wine.level].name}</span>
-            </div>
-            <div class="explorer-progress">${progress}</div>
-          </div>
-
-          <div class="explorer-card">
-            <!-- Wine Bottle Image -->
-            <div class="wine-bottle-area">
-              <img class="wine-bottle-img" src="${wine.label}" alt="${wine.name}" onerror="this.style.display='none'">
-            </div>
-
-            <!-- Wine Info -->
-            <div class="wine-info-area">
-              <h2 class="wine-title" style="color:${colorAccent}">${wine.name}</h2>
-              <div class="wine-meta">
-                <span class="wine-price">${wine.price}</span>
-                <span class="wine-grape">${wine.grape}</span>
-              </div>
-              <p class="wine-desc">${wine.description}</p>
-
-              <div class="wine-details">
-                <div class="detail-row">
-                  <span class="detail-label">🎨 Farbe</span>
-                  <span class="detail-value">${wine.color === 'rot' ? 'Rot' : wine.color === 'weiss' ? 'Weiß' : 'Rosé'}</span>
-                </div>
-                <div class="detail-row">
-                  <span class="detail-label">💧 Geschmack</span>
-                  <span class="detail-value">${wine.sweetness}</span>
-                </div>
-                <div class="detail-row">
-                  <span class="detail-label">💪 Körper</span>
-                  <span class="detail-value">${wine.body}</span>
-                </div>
-                <div class="detail-row">
-                  <span class="detail-label">🌍 Region</span>
-                  <span class="detail-value">${region ? region.flag + ' ' + region.name : ''}</span>
-                </div>
-                <div class="detail-row">
-                  <span class="detail-label">👃 Aromen</span>
-                  <span class="detail-value">${wine.flavors.join(', ')}</span>
-                </div>
-                <div class="detail-row">
-                  <span class="detail-label">🍽️ Passt zu</span>
-                  <span class="detail-value">${wine.pairings.join(', ')}</span>
-                </div>
-              </div>
-
-              <div class="wine-funfact">
-                <span class="funfact-icon">💡</span>
-                <span>${wine.funFact}</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="explorer-nav">
-            <button class="btn btn-secondary" onclick="explorerPrev()" ${state.explorerWineIndex === 0 ? 'disabled' : ''}>← Zurück</button>
-            <button class="btn btn-ghost" onclick="explorerSkip()">Überspringen →→</button>
-            <button class="btn btn-primary" onclick="explorerNext()">${isLast ? '✅ Zur Arbeit!' : 'Nächster Wein →'}</button>
-          </div>
-        </div>
-      </div>
-      ${renderBottomBar()}
-    </div>`;
-}
-
-// ===== EXPLORER INTRO =====
-function renderExplorerIntro(wines) {
-  const lv = getLevel();
-  const intro = LEVEL_INTROS[lv.id];
-  if (!intro) { state.explorerWineIndex = 0; return renderExplorer(); }
-
-  const sectionsHtml = intro.sections.map(s => `
-    <div class="intro-section">
-      <h3>${s.icon} ${s.heading}</h3>
-      <p>${s.text}</p>
-    </div>
-  `).join('');
-
-  const recapHtml = intro.recap ? `
-    <div class="intro-recap">
-      <h3>📋 Zusammenfassung</h3>
-      <ul>${intro.recap.map(r => `<li>${r}</li>`).join('')}</ul>
-    </div>` : '';
-
-  return `
-    <div class="scene scene-explorer active">
-      ${renderSidebar()}
-      <div class="main-area">
-        <div class="explorer-bg" style="background:linear-gradient(135deg, #2a1a3a, #1a1a2e)">
-          <div class="explorer-header">
-            <div class="explorer-title">
-              <span class="explorer-badge">📚 LEHRGANG</span>
-              <span class="explorer-level">${lv.name}</span>
-            </div>
-            <div class="explorer-progress">Einführung</div>
-          </div>
-          <div class="explorer-intro">
-            <h2>${intro.title}</h2>
-            ${sectionsHtml}
-            ${recapHtml}
-          </div>
-          <div class="explorer-nav">
-            <div></div>
-            <button class="btn btn-ghost" onclick="explorerSkip()">Überspringen →→</button>
-            <button class="btn btn-primary" onclick="explorerNext()">Weiter zu den Weinen →</button>
-          </div>
-        </div>
-      </div>
-      ${renderBottomBar()}
-    </div>`;
-}
-
 // ===== MAP =====
 function renderMap() {
   const unlocked = getUnlockedRegionIds();
@@ -268,12 +131,15 @@ function renderMap() {
   let regions = Object.values(REGIONS).map(r => {
     const isUnlocked = unlocked.includes(r.id);
     const wineCount = r.wines.filter(wId => WINES[wId] && WINES[wId].level <= state.player.level).length;
+    // Flagge sitzt auf dem Land; Name und Weinzahl erscheinen erst beim Zoomen, seitlich versetzt (mapLabel)
     return `<div class="map-pin ${isUnlocked ? 'unlocked' : 'locked'}"
                  style="left:${r.mapX}%;top:${r.mapY}%"
                  ${isUnlocked ? `onclick="goToScene('region', {selectedRegion:'${r.id}'})"` : ''}>
       <span class="pin-icon">${r.flag}</span>
-      <span class="pin-name">${r.name}</span>
-      ${!isUnlocked ? '<span class="pin-lock">🔒</span>' : `<span class="pin-wines">${wineCount} Weine</span>`}
+      <span class="pin-label pin-label-${r.mapLabel || 'bottom'}">
+        <span class="pin-name">${r.name}</span>
+        ${!isUnlocked ? '<span class="pin-lock">🔒</span>' : `<span class="pin-wines">${wineCount} ${wineCount === 1 ? 'Wein' : 'Weine'}</span>`}
+      </span>
     </div>`;
   }).join('');
 
@@ -293,7 +159,7 @@ function renderMap() {
             <div class="map-zoom-controls">
               <button class="btn btn-secondary" onclick="mapZoomBy(1.6)">＋</button>
               <button class="btn btn-secondary" onclick="mapZoomBy(1 / 1.6)">−</button>
-              <button class="btn btn-secondary" onclick="mapZoomTo(3.2, 0.52, 0.29)">🇪🇺 Europa</button>
+              <button class="btn btn-secondary" onclick="mapZoomTo(3.2, 0.52, 0.31)">🇪🇺 Europa</button>
               <button class="btn btn-secondary" onclick="mapZoomTo(1, 0.5, 0.5)">🌍 Welt</button>
             </div>
           </div>
@@ -407,8 +273,8 @@ function renderRestaurantLobby() {
   const rep = state.player.reputation[state.player.level];
   const stars = renderStars(rep);
   const shifts = state.player.shiftsCompleted[state.player.level];
-  // Weinbuch: Nachschlagewerk (der Chef stellt die Weine vor den Schichten vor)
-  const lehrgangBtn = `<button class="btn btn-secondary" onclick="goToScene('explorer', {explorerWineIndex:0})">📖 Weinbuch</button>`;
+  // Weinkeller: Nachschlagewerk (der Chef stellt die Weine vor den Schichten vor)
+  const lehrgangBtn = `<button class="btn btn-secondary" onclick="goToScene('cellar')">🍾 Weinkeller</button>`;
 
   return `
     <div class="scene scene-restaurant active">
@@ -431,7 +297,7 @@ function renderRestaurantLobby() {
                 </div>
                 <div class="lobby-stat">
                   <span class="lobby-stat-label">Bekannte Weine</span>
-                  <span class="lobby-stat-value">${state.player.discoveredWines.size}</span>
+                  <span class="lobby-stat-value">${knownWineCount()}</span>
                 </div>
                 <div class="lobby-stat">
                   <span class="lobby-stat-label">Schichten</span>
@@ -962,9 +828,13 @@ function renderSidebar() {
       <div class="sidebar-title">🍷</div>
       ${items}
       <div class="sidebar-spacer"></div>
-      <div class="sidebar-item" onclick="goToScene('explorer',{explorerWineIndex:-1})">
+      <div class="sidebar-item ${state.scene === 'book' ? 'current' : ''}" onclick="openBook()">
         <div class="sidebar-icon">📖</div>
         <div class="sidebar-label">Buch</div>
+      </div>
+      <div class="sidebar-item ${state.scene === 'cellar' ? 'current' : ''}" onclick="goToScene('cellar')">
+        <div class="sidebar-icon">🍾</div>
+        <div class="sidebar-label">Keller</div>
       </div>
       <div class="sidebar-item map-btn" onclick="goToScene('map')">
         <div class="sidebar-icon">🗺️</div>
@@ -988,7 +858,7 @@ function renderBottomBar() {
         <span class="xp-text">${state.player.tips}€ / ${lv.xpToNext}€</span>
       </div>
       <div class="bb-stats">
-        <span>🍷 ${state.player.discoveredWines.size} Weine</span>
+        <span>🍷 ${knownWineCount()} Weine</span>
         <span>⭐ ${renderStarsSmall(state.player.reputation[state.player.level])}</span>
       </div>
       ${renderSoundToggles()}
@@ -1070,6 +940,8 @@ function mapApply() {
   mapView.y = Math.min(0, Math.max(h * (1 - mapView.z), mapView.y));
   img.style.transform = `translate(${mapView.x}px, ${mapView.y}px) scale(${mapView.z})`;
   img.style.setProperty('--z', mapView.z);
+  img.style.setProperty('--pz', Math.pow(mapView.z, 0.5));   // Pins wachsen beim Zoomen mit, aber langsamer als die Karte
+  img.classList.toggle('zoomed', mapView.z >= 1.8);
 }
 
 // Zoom um einen Punkt (Koordinaten im unskalierten Kartenbild)

@@ -74,7 +74,7 @@ body {
 .scene.active { display: flex; }
 
 /* ===== LAYOUT: SIDEBAR + MAIN + BOTTOM ===== */
-.scene-explorer, .scene-map, .scene-restaurant, .scene-region {
+.scene-book, .scene-cellar, .scene-map, .scene-restaurant, .scene-region {
   flex-direction: row;
   flex-wrap: wrap;
 }
@@ -1788,3 +1788,59 @@ body {
 .hud-review { background: rgba(83,52,131,0.85); }
 .ak-extra { font-size: 19pt; font-style: italic; color: var(--c-gold); margin: 0 0 10px; }
 .wl-color { display: inline-block; margin-top: 6px; padding: 2px 12px; border: 1px solid #8a6a3a; border-radius: 12px; font-size: 13pt; font-style: normal; color: #5a1a1a; }
+
+/* Weltkarte: Pins neu (Flagge auf dem Land, Namen erst im Zoom) */
+.map-pin { padding: 0; min-width: 0; width: 0; height: 0; transition: none;
+  transform-origin: 0 0; transform: scale(calc(var(--pz, 1) / var(--z, 1))); }
+@media (hover: hover) { .map-pin:hover:not(.locked) { transform: scale(calc(1.15 * var(--pz, 1) / var(--z, 1))); z-index: 10; } }
+.map-pin .pin-icon { position: absolute; left: 0; top: 0; transform: translate(-50%, -50%); font-size: 64px; line-height: 1; }
+.map-pin .pin-label { position: absolute; white-space: nowrap; text-align: center; display: none; line-height: 1.15; }
+.map-image.zoomed .pin-label { display: block; }
+.pin-label-bottom { left: 0; top: 40px; transform: translateX(-50%); }
+.pin-label-top { left: 0; bottom: 40px; transform: translateX(-50%); }
+.pin-label-right { left: 44px; top: 0; transform: translateY(-50%); text-align: left !important; }
+.pin-label-left { right: 44px; top: 0; transform: translateY(-50%); text-align: right !important; }
+.map-pin .pin-name { font-size: 17pt; font-weight: 700; color: #fff; text-shadow: 0 0 4px #000, 2px 2px 0 #000; display: block; }
+.map-pin .pin-wines { font-size: 12pt; color: #f0e68c; text-shadow: 0 0 4px #000, 1px 1px 0 #000; display: block; }
+.map-pin .pin-lock { font-size: 13pt; }
+.map-pin.unlocked:active { transform: scale(calc(0.95 * var(--pz, 1) / var(--z, 1))); }
+
+/* ===== BUCH (Akademie zum Nachlesen) ===== */
+.book-bg, .cellar-bg { width: 100%; height: 100%; display: flex; flex-direction: column; }
+.book-bg { background: linear-gradient(135deg, #2a1a3a, #1a1a2e); }
+.cellar-bg { background: radial-gradient(ellipse at 50% 0%, #3a2418 0%, #1a1210 55%, #0e0a08 100%); }
+.book-header { display: flex; align-items: center; gap: 20px; padding: 20px 32px; background: rgba(0,0,0,0.3); }
+.book-sub { font-size: 16pt; color: var(--c-muted); }
+.book-close { margin-left: auto; font-size: 15pt; }
+.book-body { flex: 1; display: flex; gap: 28px; padding: 28px 32px 12px; min-height: 0; }
+.book-nav { width: 470px; flex-shrink: 0; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; }
+.book-day { text-align: left; font: 700 16pt var(--font-ui); color: #fff; background: rgba(255,255,255,0.06);
+  border: 2px solid rgba(255,255,255,0.12); border-radius: 10px; padding: 14px 18px; min-height: 64px; cursor: pointer; }
+.book-day.active { border-color: var(--c-accent); background: rgba(233,69,96,0.15); }
+.book-day.locked { color: rgba(255,255,255,0.3); cursor: default; }
+.book-lessons { display: flex; flex-direction: column; gap: 4px; margin: 2px 0 8px 16px; }
+.book-lesson { text-align: left; font: 14pt var(--font-ui); color: #ddd; background: none; border: none;
+  border-left: 3px solid rgba(255,255,255,0.15); padding: 10px 14px; min-height: 52px; cursor: pointer; }
+.book-lesson.active { color: #f0e68c; border-left-color: #f0e68c; background: rgba(240,230,140,0.08); }
+.book-page { flex: 1; overflow-y: auto; background: #f5ecd7; color: #2a2016; border-radius: 12px;
+  padding: 40px 52px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
+.book-page h2 { font-size: 28pt; margin: 6px 0 20px; color: #6b1f2e; }
+.book-page p { font-size: 18pt; line-height: 1.6; margin: 0; }
+.book-page strong { color: #6b1f2e; }
+.book-kicker { font-size: 13pt; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #8b6914; }
+.book-footer { display: flex; justify-content: space-between; align-items: center; padding: 12px 32px 24px; }
+.book-footer .btn { font-size: 17pt; min-width: 220px; }
+
+/* ===== WEINKELLER ===== */
+.cellar-list { flex: 1; overflow-y: auto; padding: 20px 32px 32px; }
+.cellar-group h3 { font-size: 20pt; color: #f0e68c; margin: 18px 0 12px; border-bottom: 2px solid rgba(240,230,140,0.25); padding-bottom: 6px; }
+.cellar-row { display: flex; flex-wrap: wrap; gap: 16px; }
+.cellar-wine { width: 196px; height: 300px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 8px;
+  background: rgba(255,255,255,0.05); border: 2px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 12px 8px; cursor: pointer; color: #fff; }
+.cellar-wine img { height: 200px; width: auto; object-fit: contain; image-rendering: pixelated; filter: drop-shadow(4px 4px 0 rgba(0,0,0,0.5)); }
+.cellar-name { font-size: 13pt; font-weight: 700; text-align: center; line-height: 1.2; min-height: 2.4em; display: flex; align-items: center; }
+.cellar-wine.unknown { cursor: default; opacity: 0.45; }
+.cellar-wine.unknown .cellar-name { font-weight: 400; font-size: 11pt; color: #aaa; }
+.cellar-q { height: 200px; display: flex; align-items: center; font-size: 72pt; color: rgba(255,255,255,0.3); }
+@media (hover: hover) { .cellar-wine:not(.unknown):hover { border-color: #f0e68c; } .book-day:not(.locked):hover, .book-lesson:hover { background: rgba(255,255,255,0.1); } }
+.cellar-wine:not(.unknown):active, .book-day:not(.locked):active, .book-lesson:active { transform: scale(0.97); }

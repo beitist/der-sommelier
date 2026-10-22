@@ -339,7 +339,7 @@ const WINES = {
 const REGIONS = {
   deutschland: {
     id: 'deutschland', name: 'Deutschland', flag: '🇩🇪',
-    mapX: 51, mapY: 26,
+    mapX: 51.5, mapY: 30, mapLabel: 'top',
     description: 'Deutschland ist das Land des Rieslings – keine andere Rebsorte bringt hier so elegante, mineralische Weißweine hervor. Mit 13 Anbaugebieten von der steilen Mosel bis zum sonnigen Baden gibt es eine enorme Vielfalt. Rund 65% der Rebfläche ist mit weißen Sorten bepflanzt, aber auch der Spätburgunder hat sich international einen Namen gemacht.',
     mainRegions: 'Mosel, Rheingau, Pfalz, Baden, Württemberg',
     keyFacts: [
@@ -352,7 +352,7 @@ const REGIONS = {
   },
   italien: {
     id: 'italien', name: 'Italien', flag: '🇮🇹',
-    mapX: 52, mapY: 33,
+    mapX: 52.6, mapY: 34.3, mapLabel: 'right',
     description: 'Italien ist der größte Weinproduzent der Welt – und das mit über 500 einheimischen Rebsorten, die es sonst nirgends gibt. Von den leichten Weißen Südtirols über den spritzigen Lambrusco der Emilia-Romagna bis zum mächtigen Barolo aus dem Piemont: Jede Region hat ihren eigenen Charakter. Wein gehört hier zum Essen wie Olivenöl zum Brot.',
     mainRegions: 'Toskana, Piemont, Venetien, Apulien, Sizilien',
     keyFacts: [
@@ -364,7 +364,7 @@ const REGIONS = {
   },
   griechenland: {
     id: 'griechenland', name: 'Griechenland', flag: '🇬🇷',
-    mapX: 56, mapY: 37,
+    mapX: 55.7, mapY: 37.2, mapLabel: 'bottom',
     description: 'Griechenland ist die Wiege des europäischen Weinbaus – hier wird seit über 6.000 Jahren Wein gemacht. Bekannt ist vor allem der Retsina, der mit Kiefernharz aromatisiert wird – eine Tradition aus der Antike. Aber auch moderne griechische Weine von Santorin oder dem Peloponnes überraschen mit eigenständigen Rebsorten wie Assyrtiko und Agiorgitiko.',
     mainRegions: 'Attika, Peloponnes, Kreta, Santorin',
     keyFacts: [
@@ -376,7 +376,7 @@ const REGIONS = {
   },
   oesterreich: {
     id: 'oesterreich', name: 'Österreich', flag: '🇦🇹',
-    mapX: 53, mapY: 28,
+    mapX: 53.4, mapY: 31.6, mapLabel: 'right',
     description: 'Klein aber fein: Österreich hat mit dem Grünen Veltliner einen echten Paradewein, der über 30% der gesamten Rebfläche ausmacht. Pfeffrig, frisch und unglaublich vielseitig zum Essen. Im Burgenland entstehen dazu kräftige Rotweine aus Zweigelt und Blaufränkisch. Die Wachau an der Donau gilt als eines der schönsten Weinbaugebiete Europas.',
     mainRegions: 'Wachau, Kamptal, Burgenland, Weinviertel',
     keyFacts: [
@@ -388,7 +388,7 @@ const REGIONS = {
   },
   frankreich: {
     id: 'frankreich', name: 'Frankreich', flag: '🇫🇷',
-    mapX: 48, mapY: 30,
+    mapX: 49.3, mapY: 32.3, mapLabel: 'left',
     description: 'Frankreich ist die Wiege der modernen Weinkultur. Begriffe wie Terroir, Cuvée und Appellation wurden hier geprägt. Von Bordeaux über Burgund bis in die Champagne – französische Weine setzen weltweit den Maßstab. Das AOC-System, das Herkunft und Qualität schützt, wurde zum Vorbild für alle europäischen Weinländer.',
     mainRegions: 'Bordeaux, Burgund, Champagne, Rhône, Loire, Elsass, Provence',
     keyFacts: [
@@ -401,7 +401,7 @@ const REGIONS = {
   },
   spanien: {
     id: 'spanien', name: 'Spanien', flag: '🇪🇸',
-    mapX: 45, mapY: 35,
+    mapX: 48.0, mapY: 36.4, mapLabel: 'bottom',
     description: 'Spanien besitzt die größte Rebfläche der Welt – und hat mit dem Reifesystem von Joven bis Gran Reserva eine ganz eigene Weinphilosophie. Tempranillo ist der Star unter den Rebsorten, vor allem in Rioja und Ribera del Duero. Spanische Weine bieten oft ein unschlagbares Preis-Genuss-Verhältnis, weil die Weingüter den Wein erst nach Jahren Fassreife auf den Markt bringen.',
     mainRegions: 'Rioja, Ribera del Duero, Priorat, Rueda, Penedès',
     keyFacts: [
@@ -413,7 +413,7 @@ const REGIONS = {
   },
   portugal: {
     id: 'portugal', name: 'Portugal', flag: '🇵🇹',
-    mapX: 43, mapY: 36,
+    mapX: 46.6, mapY: 36.3, mapLabel: 'left',
     description: 'Portugal ist ein kleines Land mit einer riesigen Weinvielfalt – über 250 einheimische Rebsorten sorgen dafür, dass es hier immer etwas Neues zu entdecken gibt. Berühmt ist der Portwein aus dem Douro-Tal, aber auch der leichte, prickelnde Vinho Verde aus dem Norden hat sich zum Exportschlager entwickelt. In keinem Land Europas trinkt man pro Kopf mehr Wein.',
     mainRegions: 'Minho (Vinho Verde), Douro, Alentejo, Dão',
     keyFacts: [
@@ -425,7 +425,7 @@ const REGIONS = {
   },
   argentinien: {
     id: 'argentinien', name: 'Argentinien', flag: '🇦🇷',
-    mapX: 30, mapY: 75,
+    mapX: 31.5, mapY: 76.5, mapLabel: 'bottom',
     description: 'Argentinien ist der fünftgrößte Weinproduzent der Welt und die unbestrittene Heimat des Malbec. Die Rebsorte kam einst aus Frankreich, wurde dort aber fast bedeutungslos – in den Höhenlagen von Mendoza auf bis zu 2.000 Metern fand sie ihre perfekte zweite Heimat. Kräftig, samtig und dunkelviolett: So schmeckt Argentinien.',
     mainRegions: 'Mendoza, Salta, Patagonien',
     keyFacts: [
@@ -437,7 +437,7 @@ const REGIONS = {
   },
   suedafrika: {
     id: 'suedafrika', name: 'Südafrika', flag: '🇿🇦',
-    mapX: 55, mapY: 73,
+    mapX: 56.3, mapY: 74.5, mapLabel: 'bottom',
     description: 'Südafrika macht seit über 350 Jahren Wein und hat mit Pinotage eine Rebsorte, die hier erfunden wurde – 1925 aus Pinot Noir und Cinsault gekreuzt. Die Weinregion um Stellenbosch und Franschhoek zählt zu den schönsten der Welt. Das Zusammenspiel aus kühlem Atlantikwind und heißer Sonne gibt den Weinen einen unverwechselbaren Charakter.',
     mainRegions: 'Stellenbosch, Paarl, Franschhoek, Swartland',
     keyFacts: [
