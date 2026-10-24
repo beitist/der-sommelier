@@ -64,7 +64,7 @@ Mit dem Levelcode („Levelcode eingeben“ auf dem Titelbildschirm) startet das
 - Vanilla HTML, CSS und JavaScript ohne Frameworks; Rendering über das DOM
 - Spielfläche 1920 × 1440 (4:3, für das iPad ausgelegt), skaliert automatisch auf jede Bildschirmgröße und berücksichtigt die Safe Areas
 - Touch-Bedienung mit Eingabesperre gegen Doppeltipps; Hover-Effekte nur auf Geräten mit Maus
-- iPad-App mit [Capacitor](https://capacitorjs.com/); der Spielstand wird zusätzlich in den App-Einstellungen gesichert
+- iPad-App mit [Capacitor](https://capacitorjs.com/); der Spielstand wird zusätzlich in den App-Einstellungen gesichert (`js/native.js`)
 - Pixel-Art-Grafiken mit FLUX (Black Forest Labs), Lauf-Animation mit AutoSprite
 - Schriften „Press Start 2P“ und „Inter“, lokal eingebunden
 
@@ -83,12 +83,15 @@ Jeder andere lokale Webserver funktioniert ebenso, zum Beispiel `npx serve` oder
 
 ### Als iPad-App
 
-Voraussetzung sind Xcode und Node.js.
+Das Xcode-Projekt liegt nicht im Repository. Wer die App selbst bauen will, erzeugt es mit Capacitor (Voraussetzung: Xcode und Node.js):
 
 ```bash
 npm install
+npx cap add ios    # legt ios/ an, Konfiguration aus capacitor.config.json
 npm run ios        # prüft die Daten, kopiert das Spiel ins iOS-Projekt und öffnet Xcode
 ```
+
+In Xcode müssen danach eine eigene Bundle-ID und ein eigenes Team eingetragen werden. Das Spiel ist für das iPad im Querformat ausgelegt.
 
 ### Daten prüfen und Begleitheft erzeugen
 
@@ -118,7 +121,6 @@ der-sommelier/
 │   │   ├── audio.js              # Musik und Soundeffekte
 │   │   └── native.js             # Speicher-Brücke für die iPad-App
 │   └── assets/                   # Hintergründe, Gäste, Chefs, Flaschen, Karte, Abspann, Audio
-├── ios/                          # Xcode-Projekt (Capacitor)
 ├── tools/                        # Datenprüfung, Export, Bild- und Audio-Werkzeuge
 ├── appstore/                     # App-Store-Texte, Screenshots, Kopfzeilen-Bilder
 ├── generate_pdf.py               # Begleitheft für Lehrkräfte

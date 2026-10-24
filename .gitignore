@@ -29,3 +29,6 @@ audio-inbox/
 node_modules/
 .cache/
 build/
+
+# iOS-Projekt (Capacitor) nur lokal; wer die App bauen will, erzeugt es mit npx cap add ios
+ios/
