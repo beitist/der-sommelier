@@ -81,22 +81,10 @@ python3 -m http.server 8000
 
 Jeder andere lokale Webserver funktioniert ebenso, zum Beispiel `npx serve` oder Live Server in VS Code. Die Musik liegt aus Lizenzgründen nicht im Repository (siehe unten); ohne sie läuft das Spiel mit den eingebauten Ersatzklängen.
 
-### Als iPad-App
-
-Das Xcode-Projekt liegt nicht im Repository. Wer die App selbst bauen will, erzeugt es mit Capacitor (Voraussetzung: Xcode und Node.js):
-
-```bash
-npm install
-npx cap add ios    # legt ios/ an, Konfiguration aus capacitor.config.json
-npm run ios        # prüft die Daten, kopiert das Spiel ins iOS-Projekt und öffnet Xcode
-```
-
-In Xcode müssen danach eine eigene Bundle-ID und ein eigenes Team eingetragen werden. Das Spiel ist für das iPad im Querformat ausgelegt.
-
 ### Daten prüfen und Begleitheft erzeugen
 
 ```bash
-npm run validate                 # prüft Weine, Fragen, Gäste und Assets auf Fehler
+node tools/validate.js           # prüft Weine, Fragen, Gäste und Assets auf Fehler
 python3 generate_pdf.py          # erzeugt der_sommelier_inhalte.pdf aus den Spieldaten (benötigt weasyprint)
 ```
 
@@ -119,10 +107,9 @@ der-sommelier/
 │   │   ├── book_scene.js         # Akademie-Buch und Weinkeller
 │   │   ├── ending.js             # Prüfung, Abspann, Bestenliste
 │   │   ├── audio.js              # Musik und Soundeffekte
-│   │   └── native.js             # Speicher-Brücke für die iPad-App
+│   │   └── native.js             # Speicher-Brücke für die iPad-App (im Browser ohne Funktion)
 │   └── assets/                   # Hintergründe, Gäste, Chefs, Flaschen, Karte, Abspann, Audio
 ├── tools/                        # Datenprüfung, Export, Bild- und Audio-Werkzeuge
-├── appstore/                     # App-Store-Texte, Screenshots, Kopfzeilen-Bilder
 ├── generate_pdf.py               # Begleitheft für Lehrkräfte
 ├── der_sommelier_inhalte.pdf
 └── img/                          # Bilder für diese README

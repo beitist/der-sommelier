@@ -32,3 +32,6 @@ build/
 
 # iOS-Projekt (Capacitor) nur lokal; wer die App bauen will, erzeugt es mit npx cap add ios
 ios/
+
+# App-Store-Material nur lokal (intern)
+appstore/
